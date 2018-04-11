@@ -1,0 +1,103 @@
+<div class="ui-g">
+    <div class="ui-g-12">
+        <h3 class="first">Filtros</h3>            
+    </div> 
+    <app-tipo-aplicacao-multi (onSelecionarTipoAplicacao)="onSelecionarTipoAplicacao($event)"></app-tipo-aplicacao-multi> 
+</div>
+<div class="ui-g">    
+  <div class="ui-g-12">      
+      <p-growl [value]="msgs"></p-growl>
+      <p-table  [columns]="cols" autoLayout="true" sortMode="multiple" selectionMode="single" [value]="modulos" [(contextMenuSelection)]="selectedModulo" [contextMenu]="cm" [rows]="10"
+      [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,20,30,40,50]">
+          <ng-template pTemplate="caption">
+              Lista de Módulos
+          </ng-template>        
+          <ng-template pTemplate="header" let-columns>
+              <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                      {{col.header}}
+                  </th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr [pContextMenuRow]="rowData">
+                  <td *ngFor="let col of columns" [class]="col.classe">                      
+                    {{rowData[col.field]}}
+                  </td>
+              </tr>
+          </ng-template>                
+      </p-table>                
+      <p-contextMenu global="true" #cm [model]="items"></p-contextMenu>
+  </div>
+</div>
+
+
+<p-dialog header="Detalhes do Módulo" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
+    <div class="ui-g ui-fluid" *ngIf="modulo">
+        <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-1">
+                <label for="id">Id</label>
+            </div>
+            <div class="ui-g-1">
+                <input pInputText id="id" [(ngModel)]="modulo.id" [disabled]="true"/>
+            </div>
+            <div class="ui-g-3">
+                <label for="id">Sigla</label>
+            </div>
+            <div class="ui-g-3">
+                <input pInputText id="id" [(ngModel)]="modulo.sigla" [disabled]="true"/>
+            </div>            
+        </div>
+        <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-1">
+                <label for="alias">Alias</label>
+            </div>
+            <div class="ui-g-2">
+                <p-dropdown [options]="alias" [(ngModel)]="modulo.alias" placeholder="Selecione um Alias" optionLabel="name" [showClear]="true"></p-dropdown>
+            </div>
+            <div class="ui-g-2">
+                <label for="esquema">Esquema</label>
+            </div>
+            <div class="ui-g-3">
+                <input pInputText id="esquema" [(ngModel)]="modulo.esquema" size="30"/>
+            </div>                        
+        </div>
+        <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-2">
+                <label for="versao">Versão</label>
+            </div>
+            <div class="ui-g-2">
+                <input pInputText id="versao" [(ngModel)]="modulo.versao" [disabled]="true"/>
+            </div>
+        </div>
+        <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-4">
+               <label for="tabela">Tabela Mensagem</label>
+            </div>
+            <div class="ui-g-2">                          
+               <p-inputSwitch onLabel="Sim" offLabel="Não" [(ngModel)]="modulo.mensagemCompartilhada"></p-inputSwitch>        
+             </div>
+             <div class="ui-g-4">
+                <label for="tabela">Controla Acesso</label>
+             </div>
+             <div class="ui-g-2">                          
+                <p-inputSwitch onLabel="Sim" offLabel="Não" [(ngModel)]="modulo.controlaAcesso"></p-inputSwitch>        
+             </div>             
+        </div>
+        <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-6">
+                <label for="tipoAplicacao">Tipo de Aplicacao</label>
+                <p-dropdown [options]="tipoAplicacao" [(ngModel)]="modulo.tipoModulo.value" optionLabel="label" (onChange)="alteraTipoModulo($event.value)" placeholder="Tipo de aplicação" [showClear]="true"></p-dropdown>             
+            </div>
+            <div class="ui-g-4">
+                <app-servidor-list [options]="servers" [(ngModel)]="selectedServers" (onChange)="onSelecionarServidor(modulo.sigla)" optionLabel="servers.alias"></app-servidor-list>
+            </div>
+    </div>            
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="delete()" label="Excluir"></button>
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Salvar"></button>
+        </div>
+    </p-footer>
+</p-dialog>
