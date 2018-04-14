@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 <p-listbox [options]="servers" [(ngModel)]="selectedServers" multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="alias" [listStyle]="{'max-height':'200px'}">
   <p-header>
     <i class="fa"></i>
     Servidores do Modulo
   </p-header>
 </p-listbox>
+=======
+<h3>Advanced (Multiple, Checkbox and Filter)</h3>
+<p-listbox [options]="servers" [(ngModel)]="selectedServers" multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="name">
+  <p-header>
+    <i class="fa fa-car"></i>
+    Cars
+  </p-header>
+</p-listbox>
+<p>Servidores Selecionados: <span *ngFor="let c of selectedServers" style="margin-right: 10px">{{c.name}}</span></p>
+>>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a

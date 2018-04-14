@@ -49,9 +49,17 @@
             </div>            
         </div>
         <div class="ui-g-12 ui-fluid">
+<<<<<<< HEAD
             <div class="ui-g-6">
                 <label for="alias">Alias</label>
                 <p-dropdown [options]="alias" [(ngModel)]="selectedAlias" placeholder="Selecione um Alias" [showClear]="true" [style]="{'width':'150px'}"></p-dropdown>
+=======
+            <div class="ui-g-1">
+                <label for="alias">Alias</label>
+            </div>
+            <div class="ui-g-2">
+                <p-dropdown [options]="alias" [(ngModel)]="modulo.alias" placeholder="Selecione um Alias" optionLabel="name" [showClear]="true"></p-dropdown>
+>>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
             </div>
             <div class="ui-g-2">
                 <label for="esquema">Esquema</label>
@@ -83,6 +91,7 @@
              </div>             
         </div>
         <div class="ui-g-12 ui-fluid">
+<<<<<<< HEAD
             <div class="ui-g-6">
                 <label for="tipoAplicacao">Tipo de Aplicacao</label>
                 <p-dropdown [options]="tipoAplicacao" [(ngModel)]="modulo.tipoModulo.value" optionLabel="label" (onChange)="alteraTipoModulo($event.value)" placeholder="Tipo de aplicação" [showClear]="true"></p-dropdown>             
@@ -91,6 +100,11 @@
         <div class="ui-g-12  ui-fluid">
                 <app-servidor-list [options]="servers" [(ngModel)]="selectedServers" (onChange)="onSelecionarServidor(modulo.sigla)" optionLabel="servers.alias"></app-servidor-list>
         </div>                    
+=======
+            <label for="tipoAplicacao">Tipo de Aplicacao</label>
+            <p-dropdown [options]="tipoAplicacao" [(ngModel)]="modulo.tipoModulo.value" optionLabel="label" (onChange)="alteraTipoModulo($event.value)" placeholder="Tipo de aplicação" [showClear]="true"></p-dropdown>             
+        </div>            
+>>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
