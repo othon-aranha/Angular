@@ -20,7 +20,6 @@ export class ServidorListComponent implements OnInit {
   maquinas: MaquinaServidora[];
   selectedServers: MaquinaPk[];
   selservers: Manutencao[];
-
   sigla: String;
 
   constructor(private servidorService: ServidorService, private manutencaService: ManutencaoService ) { }
@@ -85,12 +84,6 @@ export class ServidorListComponent implements OnInit {
     this.sigla = sigla;
     this.consultarServidoresdoModulo();
     this.onSelecionarServidor.emit(this.sigla);
-  }
-
-  constructor() { }
-
-  ngOnInit() {
-
   }
 
 }
