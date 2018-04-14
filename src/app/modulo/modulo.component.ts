@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {SelectItem} from 'primeng/components/common/selectitem';
-<<<<<<< HEAD
+import { SelectItem } from 'primeng/components/common/selectitem';
 import { ModuloService } from '../service/modulo.service';
-=======
-import { ModuloService } from './../modulo.service';
->>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
 import { MenuItem, Message } from 'primeng/api';
 import { NgModule } from '@angular/core/src/metadata/ng_module';
 import { Modulo } from '../domain/modulo';
 import { TipoAplicacaoMultiComponent } from './../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
-<<<<<<< HEAD
 import { ServidorListComponent } from './../servidor-list/servidor-list.component';
-=======
->>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
 
 @Component({
   selector: 'app-modulo',
@@ -26,10 +19,7 @@ export class ModuloComponent implements OnInit {
   cols: any[];
   modulos = [];
   alias = [];
-<<<<<<< HEAD
   selectedAlias: string;
-=======
->>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
   tipoAplicacao = [];
   modulo: Modulo = null;
   selectedModulo: Modulo = null;
@@ -37,12 +27,9 @@ export class ModuloComponent implements OnInit {
   msgs: Message[];
   displayDialog: boolean;
 
-<<<<<<< HEAD
+
   // tslint:disable-next-line:max-line-length
   constructor(private moduloService: ModuloService, private tipoAplic: TipoAplicacaoMultiComponent, private listServidor: ServidorListComponent ) { }
-=======
-  constructor(private moduloService: ModuloService, private tipoAplic: TipoAplicacaoMultiComponent ) { }
->>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
 
   ngOnInit() {
     this.tipoAplicacao = [
@@ -90,8 +77,6 @@ export class ModuloComponent implements OnInit {
     this.tipo = tipoAplic;
     this.consultarporTipodeAplicacao(this.tipo);
   }
-
-<<<<<<< HEAD
   carregaListaServidores() {
     this.alias = [
     {label: 'TRE-AC', value: 'AC1-ADM'},
@@ -104,9 +89,6 @@ export class ModuloComponent implements OnInit {
     {label: 'TRE-ES', value: 'ES1-ADM'},
     {label: 'TRE-GO', value: 'GO1-ADM'}];
   }
-
-=======
->>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
   alteraTipoModulo(event) {
     const modulos = [...this.modulos];
     modulos[this.modulos.indexOf(this.selectedModulo)] = this.modulo;
@@ -140,12 +122,9 @@ export class ModuloComponent implements OnInit {
   viewModulo(modulo: Modulo) {
     this.displayDialog = true;
     this.modulo = modulo;
-<<<<<<< HEAD
     this.listServidor.sigla = modulo.sigla;
     this.listServidor.consultarTodosServidores();
     this.listServidor.consultarServidoresdoModulo();
-=======
->>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
   }
 
   cloneModulo(m: Modulo): Modulo {
@@ -155,10 +134,5 @@ export class ModuloComponent implements OnInit {
         modulo[prop] = m[prop];
     }
     return modulo;
-<<<<<<< HEAD
    }
-=======
-}
->>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
-
 }
