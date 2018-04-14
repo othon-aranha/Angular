@@ -17,13 +17,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ModuloComponent } from './modulo/modulo.component';
-<<<<<<< HEAD
 import { ModuloService } from './service/modulo.service';
 import { ServidorService } from './service/servidor.service';
 import { ManutencaoService } from './service/manutencao.service';
-=======
-import { ModuloService } from './modulo.service';
->>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
 import { ModuloCadastroComponent } from './modulo-cadastro/modulo-cadastro.component';
 import { ServidorListComponent } from './servidor-list/servidor-list.component';
 import { TipoAplicacaoMultiComponent } from './tipo-aplicacao-multi/tipo-aplicacao-multi.component';
@@ -58,12 +54,9 @@ import { TipoAplicacaoMultiComponent } from './tipo-aplicacao-multi/tipo-aplicac
   ],
   providers: [
     ModuloService,
-<<<<<<< HEAD
     ServidorService,
     ServidorListComponent,
     ManutencaoService,
-=======
->>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
     TipoAplicacaoMultiComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
