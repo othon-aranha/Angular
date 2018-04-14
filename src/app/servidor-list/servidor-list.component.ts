@@ -1,13 +1,11 @@
-<<<<<<< HEAD
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { MaquinaPk } from '../domain/maquina-pk';
 import { ServidorService } from '../service/servidor.service';
 import { ManutencaoService } from '../service/manutencao.service';
 import { MaquinaServidora } from '../domain/maquina-servidora';
 import { Manutencao } from '../domain/manutencao';
-=======
 import { Component, OnInit } from '@angular/core';
->>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
+
 
 @Component({
   selector: 'app-servidor-list',
@@ -15,7 +13,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servidor-list.component.css']
 })
 export class ServidorListComponent implements OnInit {
-<<<<<<< HEAD
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onSelecionarServidor = new EventEmitter<String>();
 
@@ -88,12 +85,12 @@ export class ServidorListComponent implements OnInit {
     this.sigla = sigla;
     this.consultarServidoresdoModulo();
     this.onSelecionarServidor.emit(this.sigla);
-=======
+  }
 
   constructor() { }
 
   ngOnInit() {
->>>>>>> 8698d01a8fb4e36913402b6804d767fe2a9f294a
+
   }
 
 }
