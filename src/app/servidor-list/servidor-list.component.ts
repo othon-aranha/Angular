@@ -4,7 +4,6 @@ import { ServidorService } from '../service/servidor.service';
 import { ManutencaoService } from '../service/manutencao.service';
 import { MaquinaServidora } from '../domain/maquina-servidora';
 import { Manutencao } from '../domain/manutencao';
-import { Component, OnInit } from '@angular/core';
 
 
 @Component({
