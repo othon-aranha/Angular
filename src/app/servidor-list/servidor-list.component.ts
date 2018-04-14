@@ -24,38 +24,60 @@ export class ServidorListComponent implements OnInit {
   constructor(private servidorService: ServidorService, private manutencaService: ManutencaoService ) { }
 
   ngOnInit() {
-    this.consultarTodosServidores();
-    this.consultarServidoresdoModulo();
+    this.servers = [{cdTrib: 1, alias: 'AC1-ADM'},
+                    {cdTrib: 1, alias: 'AL1-ADM'},
+                    {cdTrib: 1, alias: 'AM1-ADM'},
+                    {cdTrib: 1, alias: 'AP1-ADM'},
+                    {cdTrib: 1, alias: 'BA1-ADM'},
+                    {cdTrib: 1, alias: 'CE1-ADM'},
+                    {cdTrib: 1, alias: 'DF1-ADM'},
+                    {cdTrib: 1, alias: 'ES1-ADM'},
+                    {cdTrib: 1, alias: 'GO1-ADM'}];
+    this.selectedServers = [{cdTrib: 1, alias: 'AC1-ADM'},
+                    {cdTrib: 1, alias: 'AL1-ADM'},
+                    {cdTrib: 1, alias: 'AM1-ADM'},
+                    {cdTrib: 1, alias: 'AP1-ADM'},
+                    {cdTrib: 1, alias: 'BA1-ADM'},
+                    {cdTrib: 1, alias: 'CE1-ADM'},
+                    {cdTrib: 1, alias: 'DF1-ADM'}]
+    // this.consultarTodosServidores();
+    // this.consultarServidoresdoModulo();
   }
-
-  consultarTodosServidores() {
-    this.servers = [];
-    this.maquinas = [];
-    return this.servidorService.listarServidores('').subscribe(dados => this.maquinas = dados);
-    this.cloneMaquina(this.maquinas);
-  }
-
-  consultarServidoresdoModulo() {
-    this.selectedServers = [];
-    this.selservers = [];
-    this.manutencaService.listarManutencoesdoModulo('SIGO').subscribe(dados => this.selservers = dados);
-    this.cloneManutencao(this.selservers);
-  }
-
 
   cloneMaquina(m: MaquinaServidora[]) {
     // tslint:disable-next-line:forin
     for (const id in m) {
-      this.servers[id] = m[id].id;
+      this.servers[id].alias = m[id].id.alias;
+      this.servers[id].cdTrib = m[id].id.cdTrib;
     }
    }
 
    cloneManutencao(m: Manutencao[]) {
      // tslint:disable-next-line:forin
     for (const id in m) {
-      this.selectedServers[id] = m[id].id;
+      this.servers[id].alias = m[id].id.alias;
+      this.servers[id].cdTrib = m[id].id.cdTrib;
     }
    }
+
+   consultarTodosServidores() {
+    this.servers = [];
+    this.maquinas = [];
+    this.servidorService.listarServidores().subscribe(dados => this.maquinas = dados);
+    this.cloneMaquina(this.maquinas);
+  }
+
+  consultarServidoresdoModulo() {
+    this.selectedServers = [];
+    this.selservers = [];
+    if ( this.sigla == null ) {
+      this.manutencaService.listarManutencoesdoModulo('SIGO').subscribe(dados => this.selservers = dados);
+    } else {
+      this.manutencaService.listarManutencoesdoModulo(this.sigla).subscribe(dados => this.selservers = dados);
+    }
+    this.cloneManutencao(this.selservers);
+  }
+
 
   SelecionarServidor(sigla: string) {
     this.sigla = sigla;

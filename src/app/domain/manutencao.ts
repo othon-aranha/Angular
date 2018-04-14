@@ -3,7 +3,7 @@ import { MaquinaPk } from './maquina-pk';
 export class Manutencao {
     id: MaquinaPk;
     modulo: Modulo;
-    status: string[1];
+    status: string;
     dataManutencao: Date;
     mensagemErro: string;
     versao: string;

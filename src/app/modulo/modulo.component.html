@@ -49,11 +49,9 @@
             </div>            
         </div>
         <div class="ui-g-12 ui-fluid">
-            <div class="ui-g-1">
+            <div class="ui-g-6">
                 <label for="alias">Alias</label>
-            </div>
-            <div class="ui-g-2">
-                <p-dropdown [options]="alias" [(ngModel)]="modulo.alias" placeholder="Selecione um Alias" optionLabel="name" [showClear]="true"></p-dropdown>
+                <p-dropdown [options]="alias" [(ngModel)]="selectedAlias" placeholder="Selecione um Alias" [showClear]="true" [style]="{'width':'150px'}"></p-dropdown>
             </div>
             <div class="ui-g-2">
                 <label for="esquema">Esquema</label>
@@ -89,10 +87,10 @@
                 <label for="tipoAplicacao">Tipo de Aplicacao</label>
                 <p-dropdown [options]="tipoAplicacao" [(ngModel)]="modulo.tipoModulo.value" optionLabel="label" (onChange)="alteraTipoModulo($event.value)" placeholder="Tipo de aplicação" [showClear]="true"></p-dropdown>             
             </div>
-            <div class="ui-g-4">
+        </div>    
+        <div class="ui-g-12  ui-fluid">
                 <app-servidor-list [options]="servers" [(ngModel)]="selectedServers" (onChange)="onSelecionarServidor(modulo.sigla)" optionLabel="servers.alias"></app-servidor-list>
-            </div>
-    </div>            
+        </div>                    
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">

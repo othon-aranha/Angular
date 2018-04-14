@@ -5,6 +5,7 @@ import { MenuItem, Message } from 'primeng/api';
 import { NgModule } from '@angular/core/src/metadata/ng_module';
 import { Modulo } from '../domain/modulo';
 import { TipoAplicacaoMultiComponent } from './../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
+import { ServidorListComponent } from './../servidor-list/servidor-list.component';
 
 @Component({
   selector: 'app-modulo',
@@ -18,6 +19,7 @@ export class ModuloComponent implements OnInit {
   cols: any[];
   modulos = [];
   alias = [];
+  selectedAlias: string;
   tipoAplicacao = [];
   modulo: Modulo = null;
   selectedModulo: Modulo = null;
@@ -26,7 +28,7 @@ export class ModuloComponent implements OnInit {
   displayDialog: boolean;
 
   // tslint:disable-next-line:max-line-length
-  constructor(private moduloService: ModuloService, private tipoAplic: TipoAplicacaoMultiComponent ) { }
+  constructor(private moduloService: ModuloService, private tipoAplic: TipoAplicacaoMultiComponent, private listServidor: ServidorListComponent ) { }
 
   ngOnInit() {
     this.tipoAplicacao = [
@@ -75,6 +77,19 @@ export class ModuloComponent implements OnInit {
     this.consultarporTipodeAplicacao(this.tipo);
   }
 
+  carregaListaServidores() {
+    this.alias = [
+    {label: 'TRE-AC', value: 'AC1-ADM'},
+    {label: 'TRE-AL', value: 'AL1-ADM'},
+    {label: 'TRE-AM', value: 'AM1-ADM'},
+    {label: 'TRE-AP', value: 'AP1-ADM'},
+    {label: 'TRE-BA', value: 'BA1-ADM'},
+    {label: 'TRE-CE', value: 'CE1-ADM'},
+    {label: 'TRE-DF', value: 'DF1-ADM'},
+    {label: 'TRE-ES', value: 'ES1-ADM'},
+    {label: 'TRE-GO', value: 'GO1-ADM'}];
+  }
+
   alteraTipoModulo(event) {
     const modulos = [...this.modulos];
     modulos[this.modulos.indexOf(this.selectedModulo)] = this.modulo;
@@ -108,6 +123,9 @@ export class ModuloComponent implements OnInit {
   viewModulo(modulo: Modulo) {
     this.displayDialog = true;
     this.modulo = modulo;
+    this.listServidor.sigla = modulo.sigla;
+    this.listServidor.consultarTodosServidores();
+    this.listServidor.consultarServidoresdoModulo();
   }
 
   cloneModulo(m: Modulo): Modulo {
@@ -117,6 +135,6 @@ export class ModuloComponent implements OnInit {
         modulo[prop] = m[prop];
     }
     return modulo;
-}
+   }
 
 }
