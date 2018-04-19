@@ -5,7 +5,6 @@ import { ManutencaoService } from '../service/manutencao.service';
 import { MaquinaServidora } from '../domain/maquina-servidora';
 import { Manutencao } from '../domain/manutencao';
 
-
 @Component({
   selector: 'app-servidor-list',
   templateUrl: './servidor-list.component.html',
@@ -19,6 +18,7 @@ export class ServidorListComponent implements OnInit {
   maquinas: MaquinaServidora[];
   selectedServers: MaquinaPk[];
   selservers: Manutencao[];
+
   sigla: String;
 
   constructor(private servidorService: ServidorService, private manutencaService: ManutencaoService ) { }
@@ -37,9 +37,7 @@ export class ServidorListComponent implements OnInit {
                     {cdTrib: 1, alias: 'AL1-ADM'},
                     {cdTrib: 1, alias: 'AM1-ADM'},
                     {cdTrib: 1, alias: 'AP1-ADM'},
-                    {cdTrib: 1, alias: 'BA1-ADM'},
-                    {cdTrib: 1, alias: 'CE1-ADM'},
-                    {cdTrib: 1, alias: 'DF1-ADM'}]
+                    {cdTrib: 1, alias: 'BA1-ADM'}];
     // this.consultarTodosServidores();
     // this.consultarServidoresdoModulo();
   }
