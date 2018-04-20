@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TabMenuModule } from 'primeng/tabmenu';
+// import { MenubarModule } from 'primeng/menubar';
+import { SlideMenuModule } from 'primeng/slidemenu';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -13,11 +14,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      {label: 'Modulos', icon: 'fa-bar-chart', routerLink: '/modulos'},
+      {label: 'Cadastro',
+       items: [{
+                label: 'Módulos',
+                icon: 'fa-bar-chart',
+                routerLink: '/modulos'
+       }]
+      },
       {label: 'Calendar', icon: 'fa-calendar'},
       {label: 'Documentation', icon: 'fa-book'},
       {label: 'Support', icon: 'fa-support'},
-      {label: 'Social', icon: 'fa-twitter'}
+      {label: 'Social', icon: 'fa-twitter'},
+      {separator: true}
   ];
   }
 

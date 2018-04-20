@@ -18,8 +18,8 @@ export class TipoAplicacaoMultiComponent implements OnInit {
   selectedTipo = ['DESKTOP', 'WEB', 'HIBRIDO'];
   constructor() {
         this.tipoAplic = [
-          {label: 'Aplicação Desktop', value: 'DESKTOP'},
-          {label: 'Aplicação Web', value: 'WEB'},
+          {label: 'Desktop', value: 'DESKTOP'},
+          {label: 'Web', value: 'WEB'},
           {label: 'Híbrida', value: 'HIBRIDO'}
       ];
    }

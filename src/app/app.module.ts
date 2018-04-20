@@ -13,7 +13,8 @@ import { MenuItem } from 'primeng/api';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ContextMenuModule} from 'primeng/contextmenu';
-import { TabMenuModule } from 'primeng/tabmenu';
+// import { MenubarModule } from 'primeng/menubar';
+import { SlideMenuModule } from 'primeng/slidemenu';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -56,8 +57,9 @@ import { HomeComponent } from './home/home.component';
     MultiSelectModule,
     PaginatorModule,
     RadioButtonModule,
+    SlideMenuModule,
     TableModule,
-    TabMenuModule,
+    // MenubarModule,
     AppRoutingModule
   ],
   providers: [
