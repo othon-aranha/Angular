@@ -19,7 +19,7 @@ export class ModuloComponent implements OnInit {
   cols: any[];
   modulos = [];
   alias = [];
-  selectedAlias: string;
+  selectedAlias = [];
   tipoAplicacao = [];
   modulo: Modulo = null;
   selectedModulo: Modulo = null;
@@ -29,7 +29,9 @@ export class ModuloComponent implements OnInit {
 
 
   // tslint:disable-next-line:max-line-length
-  constructor(private moduloService: ModuloService, private tipoAplic: TipoAplicacaoMultiComponent, private listServidor: ServidorListComponent ) { }
+  constructor(private moduloService: ModuloService, private tipoAplic: TipoAplicacaoMultiComponent, private listServidor: ServidorListComponent ) {
+    this.carregaListaServidores();
+   }
 
   ngOnInit() {
     this.tipoAplicacao = [
@@ -77,6 +79,7 @@ export class ModuloComponent implements OnInit {
     this.tipo = tipoAplic;
     this.consultarporTipodeAplicacao(this.tipo);
   }
+
   carregaListaServidores() {
     this.alias = [
     {label: 'TRE-AC', value: 'AC1-ADM'},
@@ -89,6 +92,7 @@ export class ModuloComponent implements OnInit {
     {label: 'TRE-ES', value: 'ES1-ADM'},
     {label: 'TRE-GO', value: 'GO1-ADM'}];
   }
+
   alteraTipoModulo(event) {
     const modulos = [...this.modulos];
     modulos[this.modulos.indexOf(this.selectedModulo)] = this.modulo;
@@ -119,12 +123,23 @@ export class ModuloComponent implements OnInit {
     }
   }
 
+  retornaAlias(alias: string) {
+    this.selectedAlias = [];
+    for (let i = 0; i < this.alias.length; i++) {
+      if ( alias === this.alias[i].value ) {
+        this.selectedAlias = this.alias[i];
+      }
+    }
+  }
+
   viewModulo(modulo: Modulo) {
     this.displayDialog = true;
     this.modulo = modulo;
+    this.retornaAlias(modulo.alias);
     this.listServidor.sigla = modulo.sigla;
-    this.listServidor.consultarTodosServidores();
-    this.listServidor.consultarServidoresdoModulo();
+    // this.selectedAlias = [{label: 'TRE-AC', value: 'AC1-ADM'}];
+    this.listServidor.carregarTodosServidores();
+    this.listServidor.carregarServidoresdoModulo();
   }
 
   cloneModulo(m: Modulo): Modulo {

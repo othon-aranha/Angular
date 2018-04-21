@@ -4,27 +4,30 @@ import { ServidorService } from '../service/servidor.service';
 import { ManutencaoService } from '../service/manutencao.service';
 import { MaquinaServidora } from '../domain/maquina-servidora';
 import { Manutencao } from '../domain/manutencao';
+import { Servidor } from '../domain/servidor';
 
 @Component({
   selector: 'app-servidor-list',
   templateUrl: './servidor-list.component.html',
   styleUrls: ['./servidor-list.component.css']
 })
+
+
 export class ServidorListComponent implements OnInit {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onSelecionarServidor = new EventEmitter<String>();
 
-  servers: MaquinaPk[];
-  maquinas: MaquinaServidora[];
-  selectedServers: MaquinaPk[];
-  selservers: Manutencao[];
+  servers: Servidor[];
+  maquinas = [];
+  selectedServers: Servidor[];
+  selservers = [];
 
   sigla: String;
 
   constructor(private servidorService: ServidorService, private manutencaService: ManutencaoService ) { }
 
   ngOnInit() {
-    this.servers = [{cdTrib: 1, alias: 'AC1-ADM'},
+    /* this.servers = [{cdTrib: 1, alias: 'AC1-ADM'},
                     {cdTrib: 1, alias: 'AL1-ADM'},
                     {cdTrib: 1, alias: 'AM1-ADM'},
                     {cdTrib: 1, alias: 'AP1-ADM'},
@@ -37,12 +40,13 @@ export class ServidorListComponent implements OnInit {
                     {cdTrib: 1, alias: 'AL1-ADM'},
                     {cdTrib: 1, alias: 'AM1-ADM'},
                     {cdTrib: 1, alias: 'AP1-ADM'},
-                    {cdTrib: 1, alias: 'BA1-ADM'}];
-    // this.consultarTodosServidores();
-    // this.consultarServidoresdoModulo();
+                    {cdTrib: 1, alias: 'BA1-ADM'}]; */
+    this.carregarTodosServidores();
+    this.carregarServidoresdoModulo();
   }
 
   cloneMaquina(m: MaquinaServidora[]) {
+    this.servers = [];
     // tslint:disable-next-line:forin
     for (const id in m) {
       this.servers[id].alias = m[id].id.alias;
@@ -51,6 +55,7 @@ export class ServidorListComponent implements OnInit {
    }
 
    cloneManutencao(m: Manutencao[]) {
+     this.maquinas = [];
      // tslint:disable-next-line:forin
     for (const id in m) {
       this.servers[id].alias = m[id].id.alias;
@@ -58,14 +63,14 @@ export class ServidorListComponent implements OnInit {
     }
    }
 
-   consultarTodosServidores() {
+   carregarTodosServidores() {
     this.servers = [];
     this.maquinas = [];
     this.servidorService.listarServidores().subscribe(dados => this.maquinas = dados);
     this.cloneMaquina(this.maquinas);
   }
 
-  consultarServidoresdoModulo() {
+  carregarServidoresdoModulo() {
     this.selectedServers = [];
     this.selservers = [];
     if ( this.sigla == null ) {
@@ -79,7 +84,7 @@ export class ServidorListComponent implements OnInit {
 
   SelecionarServidor(sigla: string) {
     this.sigla = sigla;
-    this.consultarServidoresdoModulo();
+    this.carregarServidoresdoModulo();
     this.onSelecionarServidor.emit(this.sigla);
   }
 
