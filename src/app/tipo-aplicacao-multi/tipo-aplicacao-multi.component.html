@@ -1,7 +1,6 @@
-<div class="ui-g">
+<div class="container-fluid">
   <div class="ui-g-12">
     <h2 class="first">Tipo de Aplicação</h2>                        
-    <p-multiSelect [options]="tipoAplic" (onChange)="selecionarTipoAplicacao()" filter=false defaultLabel="Escolha um Tipo" [(ngModel)]="selectedTipo" [panelStyle]="{minWidth:'15em'}"></p-multiSelect>
+    <p-multiSelect [options]="tipoAplic" (onChange)="onselecionarTipoAplicacao()" filter=false defaultLabel="Escolha um Tipo" [(ngModel)]="selectedTipo" [panelStyle]="{minWidth:'15em'}"></p-multiSelect>
   </div>
-</div>  
-  
+</div>

@@ -31,7 +31,7 @@ export class TipoAplicacaoMultiComponent implements OnInit {
     return this.selectedTipo;
   }
 
-  selecionarTipoAplicacao(tipo: String[]) {
+  onselecionarTipoAplicacao(tipo: String[]) {
     this.onSelecionarTipoAplicacao.emit(this.selectedTipo);
   }
 

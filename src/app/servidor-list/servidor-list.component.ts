@@ -15,19 +15,21 @@ import { Servidor } from '../domain/servidor';
 
 export class ServidorListComponent implements OnInit {
   // tslint:disable-next-line:no-output-on-prefix
-  @Output() onSelecionarServidor = new EventEmitter<String>();
+  @Output() onSelecionarTribunal = new EventEmitter<number>();
+  @Input() cdTrib: number;
 
-  servers: Servidor[];
+  servers = [];
   maquinas = [];
-  selectedServers: Servidor[];
+  selectedServers = [];
   selservers = [];
 
-  sigla: String;
+  siglaModulo: String;
 
   constructor(private servidorService: ServidorService, private manutencaService: ManutencaoService ) { }
 
   ngOnInit() {
-    /* this.servers = [{cdTrib: 1, alias: 'AC1-ADM'},
+    /*
+    this.servers = [{cdTrib: 1, alias: 'AC1-ADM'},
                     {cdTrib: 1, alias: 'AL1-ADM'},
                     {cdTrib: 1, alias: 'AM1-ADM'},
                     {cdTrib: 1, alias: 'AP1-ADM'},
@@ -36,13 +38,14 @@ export class ServidorListComponent implements OnInit {
                     {cdTrib: 1, alias: 'DF1-ADM'},
                     {cdTrib: 1, alias: 'ES1-ADM'},
                     {cdTrib: 1, alias: 'GO1-ADM'}];
-    this.selectedServers = [{cdTrib: 1, alias: 'AC1-ADM'},
+    this.selectedServers = [
+                    {cdTrib: 1, alias: 'AC1-ADM'},
                     {cdTrib: 1, alias: 'AL1-ADM'},
                     {cdTrib: 1, alias: 'AM1-ADM'},
                     {cdTrib: 1, alias: 'AP1-ADM'},
-                    {cdTrib: 1, alias: 'BA1-ADM'}]; */
+                    {cdTrib: 1, alias: 'BA1-ADM'}];
+    */
     this.carregarTodosServidores();
-    this.carregarServidoresdoModulo();
   }
 
   cloneMaquina(m: MaquinaServidora[]) {
@@ -66,26 +69,26 @@ export class ServidorListComponent implements OnInit {
    carregarTodosServidores() {
     this.servers = [];
     this.maquinas = [];
-    this.servidorService.listarServidores().subscribe(dados => this.maquinas = dados);
+    this.servidorService.listarServidoresdoTribunal(1).subscribe(dados => this.maquinas = dados);
     this.cloneMaquina(this.maquinas);
   }
 
   carregarServidoresdoModulo() {
     this.selectedServers = [];
     this.selservers = [];
-    if ( this.sigla == null ) {
+    if ( this.siglaModulo == null ) {
       this.manutencaService.listarManutencoesdoModulo('SIGO').subscribe(dados => this.selservers = dados);
     } else {
-      this.manutencaService.listarManutencoesdoModulo(this.sigla).subscribe(dados => this.selservers = dados);
+      this.manutencaService.listarManutencoesdoModulo(this.siglaModulo).subscribe(dados => this.selservers = dados);
     }
     this.cloneManutencao(this.selservers);
   }
 
 
-  SelecionarServidor(sigla: string) {
-    this.sigla = sigla;
+  onselecionarTribunal(cdTrib: number) {
+    this.cdTrib = cdTrib;
     this.carregarServidoresdoModulo();
-    this.onSelecionarServidor.emit(this.sigla);
+    this.onSelecionarTribunal.emit(this.cdTrib);
   }
 
 }

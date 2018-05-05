@@ -5,4 +5,5 @@ export class MaquinaServidora {
     usuario: string;
     senha: string;
     conexao: string;
+    links: string[];
 }

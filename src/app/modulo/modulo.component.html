@@ -73,17 +73,16 @@
             </div>            
              <div class="ui-g-6">
                 <label for="tabela">Controla Acesso</label>
-                <p-inputSwitch onLabel="Sim" offLabel="Não" [(ngModel)]="modulo.controlaAcesso"></p-inputSwitch>        
+                <p-inputSwitch onLabel="Sim" offLabel="Não" [(ngModel)]="modulo.controlaAcesso"></p-inputSwitch>
              </div>             
         </div>
         <div class="ui-g-12 ui-fluid">
             <div class="ui-g-8 ui-fluid">   
-                <label for="tabela">Tipo de aplicação</label>
-                <p-dropdown [options]="tipoAplicacao" [(ngModel)]="modulo.tipoModulo.value" optionLabel="label" (onChange)="alteraTipoModulo($event.value)" placeholder="Tipo de aplicação" [showClear]="true"></p-dropdown>             
+                <label for="tabela">Tipo de aplicação</label>                
             </div>
         </div>    
         <div class="ui-g-12">
-            <app-servidor-list [options]="servers" [(ngModel)]="selectedServers" (onChange)="onSelecionarServidor(modulo.sigla)" optionLabel="servers.alias"></app-servidor-list>
+            <app-servidor-list [options]="servers" [(ngModel)]="selectedServers" [modulo.tribunal.id]="cdTrib" (onSelecionarTribunal)="onSelecionarTribunal($cdTrib)"  optionLabel="id.alias" ngDefaultControl></app-servidor-list>
         </div> 
     </div>                   
     <p-footer>

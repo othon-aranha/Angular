@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MaquinaServidora } from '../domain/maquina-servidora';
 
 @Injectable()
 export class ServidorService {
@@ -8,8 +7,8 @@ export class ServidorService {
 
   constructor(private http: HttpClient) { }
 
-  listarServidores() {
-    return this.http.get<MaquinaServidora[]>(this.servidorUrl + '/aliases');
+  listarServidoresdoTribunal(cdTrib: number) {
+    return this.http.get<any[]>(this.servidorUrl + '/cdTrib/' + cdTrib);
   }
 
 }

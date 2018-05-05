@@ -5,7 +5,6 @@ import { MenuItem, Message } from 'primeng/api';
 import { NgModule } from '@angular/core/src/metadata/ng_module';
 import { Modulo } from '../domain/modulo';
 import { TipoAplicacaoMultiComponent } from './../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
-import { ServidorListComponent } from './../servidor-list/servidor-list.component';
 
 @Component({
   selector: 'app-modulo',
@@ -29,7 +28,7 @@ export class ModuloComponent implements OnInit {
 
 
   // tslint:disable-next-line:max-line-length
-  constructor(private moduloService: ModuloService, private tipoAplic: TipoAplicacaoMultiComponent, private listServidor: ServidorListComponent ) {
+  constructor(private moduloService: ModuloService, private tipoAplic: TipoAplicacaoMultiComponent) {
     this.carregaListaServidores();
    }
 
@@ -81,8 +80,8 @@ export class ModuloComponent implements OnInit {
   }
 
   carregaListaServidores() {
-    this.alias = [
-    {label: 'TRE-AC', value: 'AC1-ADM'},
+    this.alias =
+    [{label: 'TRE-AC', value: 'AC1-ADM'},
     {label: 'TRE-AL', value: 'AL1-ADM'},
     {label: 'TRE-AM', value: 'AM1-ADM'},
     {label: 'TRE-AP', value: 'AP1-ADM'},
@@ -135,11 +134,13 @@ export class ModuloComponent implements OnInit {
   viewModulo(modulo: Modulo) {
     this.displayDialog = true;
     this.modulo = modulo;
-    this.retornaAlias(modulo.alias);
-    this.listServidor.sigla = modulo.sigla;
+    if ( modulo.alias != null ) {
+      this.retornaAlias(modulo.alias);
+    }
+    // this.listServidor.siglaModulo = modulo.sigla;
     // this.selectedAlias = [{label: 'TRE-AC', value: 'AC1-ADM'}];
-    this.listServidor.carregarTodosServidores();
-    this.listServidor.carregarServidoresdoModulo();
+    // this.listServidor.carregarTodosServidores();
+    // this.listServidor.carregarServidoresdoModulo();
   }
 
   cloneModulo(m: Modulo): Modulo {
