@@ -69,7 +69,7 @@ export class ServidorListComponent implements OnInit {
    carregarTodosServidores() {
     this.servers = [];
     this.maquinas = [];
-    this.servidorService.listarServidoresdoTribunal(1).subscribe(dados => this.maquinas = dados);
+    this.servidorService.listarServidoresdoTribunal(this.cdTrib).subscribe(dados => this.maquinas = dados);
     this.cloneMaquina(this.maquinas);
   }
 

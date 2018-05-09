@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { MenubarModule } from 'primeng/menubar';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { MenuItem } from 'primeng/api';
 
@@ -8,8 +7,11 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
   items: MenuItem[];
+  exibirMenu: Boolean = true;
+
   constructor() { }
 
   ngOnInit() {
@@ -21,10 +23,10 @@ export class HomeComponent implements OnInit {
                 routerLink: '/modulos'
        }]
       },
-      {label: 'Calendar', icon: 'fa-calendar'},
-      {label: 'Documentation', icon: 'fa-book'},
-      {label: 'Support', icon: 'fa-support'},
-      {label: 'Social', icon: 'fa-twitter'},
+      {label: 'Funções', icon: 'fa-calendar'},
+      {label: 'Relatórios', icon: 'fa-book'},
+      {label: 'Ajuda', icon: 'fa-support'},
+      {label: 'Sair', icon: 'fa-twitter'},
       {separator: true}
   ];
   }

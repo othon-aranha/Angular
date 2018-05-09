@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/components/common/selectitem';
-import { ModuloService } from '../service/modulo.service';
+import { ModuloService } from '../../service/modulo.service';
 import { MenuItem, Message } from 'primeng/api';
 import { NgModule } from '@angular/core/src/metadata/ng_module';
-import { Modulo } from '../domain/modulo';
-import { TipoAplicacaoMultiComponent } from './../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
+import { Modulo } from '../../domain/modulo';
+import { TipoAplicacaoMultiComponent } from './../../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 
 @Component({
-  selector: 'app-modulo',
-  templateUrl: './modulo.component.html',
-  styleUrls: ['./modulo.component.css']
+  selector: 'app-modulo-list',
+  templateUrl: './modulo-list.component.html',
+  styleUrls: ['./modulo-list.component.css']
 })
-
-export class ModuloComponent implements OnInit {
+export class ModuloListComponent implements OnInit {
 
   tipo: string[];
   cols: any[];
@@ -154,3 +153,4 @@ export class ModuloComponent implements OnInit {
     return modulo;
    }
 }
+

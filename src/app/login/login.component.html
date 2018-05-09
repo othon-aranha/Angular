@@ -1,0 +1,18 @@
+  <div class="container">
+    <h5>Login</h5>
+    <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-6 ui-fluid">
+        <span class="ui-g-6 ui-float-label">
+          <input id="usuario" type="text" size="30" pInputText [(ngModel)]="usuario.cd-usuario"> 
+          <label for="usuario">Usuário</label>
+        </span>
+      </div>
+      <div class="ui-g-6 ui-fluid">
+        <span class="ui-g-6 ui-float-label">
+          <input id="senha" type="password" size="30" pPassword [(ngModel)]="usuario.senha" />
+          <label for="senha">Senha</label>
+        </span>
+      </div>
+  </div>
+  <p-button (onClick)="fazerLogin()" icon="fa fa-fw fa-check" label="Login"></p-button>
+</div>

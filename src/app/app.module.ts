@@ -19,8 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
+import { AuthService } from './service/auth.service';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ModuloComponent } from './modulo/modulo.component';
+import { ModuloListComponent } from './modulo/modulo-list/modulo-list.component';
 import { ModuloService } from './service/modulo.service';
 import { ServidorService } from './service/servidor.service';
 import { ManutencaoService } from './service/manutencao.service';
@@ -29,16 +30,19 @@ import { ServidorListComponent } from './servidor-list/servidor-list.component';
 import { TipoAplicacaoMultiComponent } from './tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    ModuloComponent,
+    ModuloListComponent,
     ModuloCadastroComponent,
     ServidorListComponent,
-    TipoAplicacaoMultiComponent
+    TipoAplicacaoMultiComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +67,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule
   ],
   providers: [
+    AuthService,
     ModuloService,
     ServidorService,
     ServidorListComponent,
