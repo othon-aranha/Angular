@@ -7,18 +7,18 @@ import { Usuario } from '../domain/usuario';
 export class AuthService {
   private usuarioAutenticado = false;
 
-  exibirMenuEmitter = new EventEmitter<boolean>();
+  exibirMenuEmitter = new EventEmitter();
 
   constructor(private router: Router) { }
 
   fazerLogin(usuario: Usuario) {
     if ( usuario.cd_usuario === 'othon.aranha@tse.jus.br' && usuario.senha === '123456' ) {
       this.usuarioAutenticado = true;
-      this.exibirMenuEmitter.emit(true);
+      this.exibirMenuEmitter.emit('true');
       this.router.navigate(['/']);
     } else {
       this.usuarioAutenticado = false;
-      this.exibirMenuEmitter.emit(false);
+      this.exibirMenuEmitter.emit('false');
     }
   }
 
