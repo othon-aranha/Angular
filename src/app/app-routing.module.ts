@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [] },
   { path: 'login', component: LoginComponent },
   { path: 'modulos', component: ModuloListComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full'}

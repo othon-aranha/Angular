@@ -31,6 +31,7 @@ import { TipoAplicacaoMultiComponent } from './tipo-aplicacao-multi/tipo-aplicac
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     AuthService,
+    AuthGuard,
     ModuloService,
     ServidorService,
     ServidorListComponent,
