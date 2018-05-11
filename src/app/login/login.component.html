@@ -1,0 +1,9 @@
+<div class="ui-inputgroup">
+    <span class="ui-inputgroup-addon"><i class="fa fa-usuario"></i></span>
+    <input ([ngModel])="usuario.cd_usuario" id="usuario" maxlength="30" size="ui-g-2" placeholder="Usuário" pInputText/>    
+    
+    <span class="ui-inputgroup-addon"><i class="fa fa-senha"></i></span>
+    <input type="password" ([ngModel])="usuario.senha" id="senha" maxlength="30" size="ui-g-2" placeholder="Senha" pPassword/>    
+</div>
+
+<button pButton type="button" icon="fa-check" iconPos="right" (click)="fazerLogin()" label="Login"></button>

@@ -8,35 +8,36 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { PaginatorModule } from 'primeng/paginator';
+import { PasswordModule } from 'primeng/password';
 import { ListboxModule } from 'primeng/listbox';
 import { MenuItem } from 'primeng/api';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ContextMenuModule} from 'primeng/contextmenu';
-// import { MenubarModule } from 'primeng/menubar';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ModuloComponent } from './modulo/modulo.component';
+import { ModuloListComponent } from './modulo/modulo-list.component';
 import { ModuloService } from './service/modulo.service';
 import { ServidorService } from './service/servidor.service';
 import { ManutencaoService } from './service/manutencao.service';
-import { ModuloCadastroComponent } from './modulo-cadastro/modulo-cadastro.component';
 import { ServidorListComponent } from './servidor-list/servidor-list.component';
 import { TipoAplicacaoMultiComponent } from './tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './service/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    ModuloComponent,
-    ModuloCadastroComponent,
+    LoginComponent,
+    ModuloListComponent,
     ServidorListComponent,
     TipoAplicacaoMultiComponent
   ],
@@ -56,6 +57,7 @@ import { HomeComponent } from './home/home.component';
     ListboxModule,
     MultiSelectModule,
     PaginatorModule,
+    PasswordModule,
     RadioButtonModule,
     SlideMenuModule,
     TableModule,
@@ -63,6 +65,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule
   ],
   providers: [
+    AuthService,
     ModuloService,
     ServidorService,
     ServidorListComponent,

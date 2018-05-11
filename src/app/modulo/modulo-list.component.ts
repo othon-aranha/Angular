@@ -8,11 +8,11 @@ import { TipoAplicacaoMultiComponent } from './../tipo-aplicacao-multi/tipo-apli
 
 @Component({
   selector: 'app-modulo',
-  templateUrl: './modulo.component.html',
-  styleUrls: ['./modulo.component.css']
+  templateUrl: './modulo-list.component.html',
+  styleUrls: ['./modulo-list.component.css']
 })
 
-export class ModuloComponent implements OnInit {
+export class ModuloListComponent implements OnInit {
 
   tipo: string[];
   cols: any[];
