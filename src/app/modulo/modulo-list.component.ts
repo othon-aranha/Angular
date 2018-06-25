@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/components/common/selectitem';
 import { ModuloService } from '../service/modulo.service';
 import { MenuItem, Message } from 'primeng/api';
-import { NgModule } from '@angular/core/src/metadata/ng_module';
 import { Modulo } from '../domain/modulo';
 import { TipoAplicacaoMultiComponent } from './../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 

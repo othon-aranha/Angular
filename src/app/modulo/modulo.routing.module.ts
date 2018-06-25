@@ -1,13 +1,14 @@
 import { RouterModule } from '@angular/router';
-import { NgModule, Component } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 import { ModuloListComponent } from './modulo-list.component';
 
-const moduloRoutes = [
-    {path: 'modulos', Component: ModuloListComponent}
-];
+const moduloRoutes = [];
 
 @NgModule({
     imports: [RouterModule.forChild(moduloRoutes)],
-    exports: [RouterModule]
+    exports: [],
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+    declarations: []
 })
 export class ModuloRoutingModule {}

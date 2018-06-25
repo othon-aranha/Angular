@@ -11,14 +11,18 @@ import { InputTextModule } from 'primeng/primeng';
 })
 export class LoginComponent implements OnInit {
 
-  private usuario: Usuario = new Usuario();
+  private usuario: Usuario = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+    this.usuario = new Usuario();
+  }
 
   ngOnInit() {
   }
 
-  fazerLogin() {
+  fazerLogin(usuario: string, senha: string) {
+    this.usuario.cd_usuario = usuario;
+    this.usuario.senha      = senha;
     console.log(this.usuario);
   }
 

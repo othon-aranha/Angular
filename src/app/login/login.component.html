@@ -1,9 +1,8 @@
-<div class="ui-inputgroup">
+<div class="ui-g-12 ui-inputgroup" *ngIf="usuario">
     <span class="ui-inputgroup-addon"><i class="fa fa-usuario"></i></span>
-    <input ([ngModel])="usuario.cd_usuario" id="usuario" maxlength="30" size="ui-g-2" placeholder="Usuário" pInputText/>    
+    <input #puser ([ngModel])="usuario.cd_usuario" id="user" maxlength="30" size="ui-g-5" placeholder="Usuário" pInputText/>    
     
     <span class="ui-inputgroup-addon"><i class="fa fa-senha"></i></span>
-    <input type="password" ([ngModel])="usuario.senha" id="senha" maxlength="30" size="ui-g-2" placeholder="Senha" pPassword/>    
+    <input #ppassword type="password" ([ngModel])="usuario.senha" id="password" maxlength="30" size="ui-g-5" placeholder="Senha" pPassword/>
+    <button pButton type="button" icon="fa-check" iconPos="right" (click)="fazerLogin(puser, ppassword)" size="ui-g-5" label="Login"></button>
 </div>
-
-<button pButton type="button" icon="fa-check" iconPos="right" (click)="fazerLogin()" label="Login"></button>

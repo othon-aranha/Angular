@@ -10,7 +10,8 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
-  usuarioEstaAutenticado() {
+  usuarioEstaAutenticado(usuario: string, senha: string) {
+    this.usuarioAutenticado = ( usuario === 'OTHON_ARANHA' ) && ( senha === 'Othon092670' );
     return this.usuarioAutenticado;
   }
 }
