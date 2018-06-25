@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="ui-g-12 ui-inputgroup" *ngIf="usuario">
     <span class="ui-inputgroup-addon"><i class="fa fa-usuario"></i></span>
     <input #puser ([ngModel])="usuario.cd_usuario" id="user" maxlength="30" size="ui-g-5" placeholder="Usuário" pInputText/>    
@@ -5,4 +6,23 @@
     <span class="ui-inputgroup-addon"><i class="fa fa-senha"></i></span>
     <input #ppassword type="password" ([ngModel])="usuario.senha" id="password" maxlength="30" size="ui-g-5" placeholder="Senha" pPassword/>
     <button pButton type="button" icon="fa-check" iconPos="right" (click)="fazerLogin(puser, ppassword)" size="ui-g-5" label="Login"></button>
+=======
+  <div class="container">
+    <h5>Login</h5>
+    <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-6 ui-fluid">
+        <span class="ui-g-6 ui-float-label">
+          <input id="usuario" type="text" size="30" pInputText [(ngModel)]="usuario.cd-usuario"> 
+          <label for="usuario">Usuário</label>
+        </span>
+      </div>
+      <div class="ui-g-6 ui-fluid">
+        <span class="ui-g-6 ui-float-label">
+          <input id="senha" type="password" size="30" pPassword [(ngModel)]="usuario.senha" />
+          <label for="senha">Senha</label>
+        </span>
+      </div>
+  </div>
+  <p-button (onClick)="fazerLogin()" icon="fa fa-fw fa-check" label="Login"></p-button>
+>>>>>>> f628028ff05876d80a1c6d3d5fe2da0352c2ce91
 </div>

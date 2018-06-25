@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
+=======
+import { SlideMenuModule } from 'primeng/slidemenu';
+>>>>>>> f628028ff05876d80a1c6d3d5fe2da0352c2ce91
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -6,8 +10,11 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
   items: MenuItem[];
+  exibirMenu: Boolean = true;
+
   constructor() { }
 
   ngOnInit() {
@@ -19,10 +26,10 @@ export class HomeComponent implements OnInit {
                 routerLink: '/modulos'
        }]
       },
-      {label: 'Calendar', icon: 'fa-calendar'},
-      {label: 'Documentation', icon: 'fa-book'},
-      {label: 'Support', icon: 'fa-support'},
-      {label: 'Social', icon: 'fa-twitter'},
+      {label: 'Funções', icon: 'fa-calendar'},
+      {label: 'Relatórios', icon: 'fa-book'},
+      {label: 'Ajuda', icon: 'fa-support'},
+      {label: 'Sair', icon: 'fa-twitter'},
       {separator: true}
   ];
   }

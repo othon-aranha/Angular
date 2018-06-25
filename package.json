@@ -25,6 +25,7 @@
     "core-js": "^2.4.1",
     "jquery": "^1.12.4",
     "mdi": "^2.2.43",
+<<<<<<< HEAD
     "ng2-bootstrap": "^1.6.3",
     "ngx-bootstrap": "^3.0.0",
     "popper.js": "^1.14.3",
@@ -32,6 +33,12 @@
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.2.0",
     "zone.js": "~0.8.26"
+=======
+    "npm": "^6.0.0",
+    "primeng": "^5.2.0",
+    "rxjs": "^5.5.6",
+    "zone.js": "^0.8.19"
+>>>>>>> f628028ff05876d80a1c6d3d5fe2da0352c2ce91
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.1",

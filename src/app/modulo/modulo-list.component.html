@@ -82,7 +82,7 @@
             </div>
         </div>    
         <div class="ui-g-12">
-            <app-servidor-list [options]="servers" [(ngModel)]="selectedServers" [modulo.tribunal.id]="cdTrib" (onSelecionarTribunal)="onSelecionarTribunal($cdTrib)"  optionLabel="id.alias" ngDefaultControl></app-servidor-list>
+            <app-servidor-list [options]="servers" [(ngModel)]="selectedServers" [cdTrib]="CodTribunal" (onSelecionarTribunal)="onSelecionarTribunal(CodTribunal)"  optionLabel="id.alias" ngDefaultControl></app-servidor-list>
         </div> 
     </div>                   
     <p-footer>

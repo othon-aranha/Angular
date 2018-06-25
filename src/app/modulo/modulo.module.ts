@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -39,5 +40,19 @@ import { ModuloService } from '../service/modulo.service';
   providers: [ModuloService, TipoAplicacaoMultiComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   exports: [ModuloListComponent]
+=======
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ModuloComponent } from './modulo.component';
+import { ModuloListComponent } from './modulo-list/modulo-list.component';
+
+@NgModule({
+    imports: [
+        CommonModule
+    ],
+    exports: [],
+    declarations: [ModuloComponent, ModuloListComponent],
+    providers: []
+>>>>>>> f628028ff05876d80a1c6d3d5fe2da0352c2ce91
 })
 export class ModuloModule { }
