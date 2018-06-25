@@ -10,42 +10,13 @@ import { ListboxModule, MultiSelectModule } from 'primeng/primeng';
 import { AppComponent } from './app.component';
 import { AuthService } from './service/auth.service';
 import { NavbarComponent } from './navbar/navbar.component';
-<<<<<<< HEAD
-=======
-import { ModuloListComponent } from './modulo/modulo-list/modulo-list.component';
-import { ModuloService } from './service/modulo.service';
->>>>>>> f628028ff05876d80a1c6d3d5fe2da0352c2ce91
-import { ServidorService } from './service/servidor.service';
-import { ManutencaoService } from './service/manutencao.service';
 import { ServidorListComponent } from './servidor-list/servidor-list.component';
-// import { TipoAplicacaoMultiComponent } from './tipo-aplicacao-multi/tipo-aplicacao-multi.component';
-import { AppRoutingModule } from './/app-routing.module';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-<<<<<<< HEAD
-import { AuthService } from './service/auth.service';
-import { MenuComponent } from './menu/menu.component';
-=======
-import { AuthGuard } from './guards/auth.guard';
-
->>>>>>> f628028ff05876d80a1c6d3d5fe2da0352c2ce91
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
-<<<<<<< HEAD
-    LoginComponent,
-    MenuComponent,
-    ServidorListComponent
-=======
-    ModuloListComponent,
-    ModuloCadastroComponent,
     ServidorListComponent,
-    TipoAplicacaoMultiComponent,
-    LoginComponent
->>>>>>> f628028ff05876d80a1c6d3d5fe2da0352c2ce91
   ],
   imports: [
     BrowserModule,
@@ -53,18 +24,10 @@ import { AuthGuard } from './guards/auth.guard';
     HttpClientModule,
     ListboxModule,
     MultiSelectModule,
-    SlideMenuModule,
-    AppRoutingModule
+    SlideMenuModule
   ],
   providers: [
-    AuthService,
-<<<<<<< HEAD
-=======
-    AuthGuard,
-    ModuloService,
->>>>>>> f628028ff05876d80a1c6d3d5fe2da0352c2ce91
-    ServidorService,
-    ManutencaoService
+    AuthService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
