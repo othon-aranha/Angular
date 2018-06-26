@@ -3,7 +3,9 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { ModuloListComponent } from './modulo-list.component';
 
-const moduloRoutes = [];
+const moduloRoutes = [
+    { path: 'modulos', component: ModuloListComponent }
+];
 
 @NgModule({
     imports: [RouterModule.forChild(moduloRoutes)],

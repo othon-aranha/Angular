@@ -5,25 +5,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SlideMenuModule } from 'primeng/primeng';
-import { ListboxModule, MultiSelectModule } from 'primeng/primeng';
+// import { ListboxModule, MultiSelectModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { AuthService } from './service/auth.service';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ServidorListComponent } from './servidor-list/servidor-list.component';
+import { ModuloModule } from './modulo/modulo.module';
+import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ServidorListComponent,
+    HomeComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ListboxModule,
-    MultiSelectModule,
+    ModuloModule,
     SlideMenuModule
   ],
   providers: [
