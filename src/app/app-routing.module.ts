@@ -8,6 +8,7 @@ import { ModuloListComponent } from './modulo/modulo-list/modulo-list.component'
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'modulos', component: ModuloListComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

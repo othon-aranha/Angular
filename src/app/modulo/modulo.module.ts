@@ -8,8 +8,6 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputSwitchModule } from 'primeng/inputswitch';
-
-import { ModuloListComponent } from './modulo-list/modulo-list.component';
 import { TipoAplicacaoMultiComponent } from '../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 
 
@@ -24,8 +22,8 @@ import { TipoAplicacaoMultiComponent } from '../tipo-aplicacao-multi/tipo-aplica
         InputSwitchModule,
         TableModule
     ],
-    exports: [ModuloListComponent],
-    declarations: [ModuloListComponent, TipoAplicacaoMultiComponent],
+    exports: [],
+    declarations: [TipoAplicacaoMultiComponent],
     providers: [],
     schemas: [NO_ERRORS_SCHEMA]
 })
