@@ -20,6 +20,6 @@ const appRoutes: Routes = [
   ],
   exports: [RouterModule, ModuloModule],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  declarations: []
+  declarations: [ModuloListComponent]
 })
 export class AppRoutingModule { }
