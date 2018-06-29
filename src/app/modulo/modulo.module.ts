@@ -1,5 +1,9 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { TableModule } from 'primeng/table';
 import { GrowlModule } from 'primeng/primeng';
 import { ContextMenuModule } from 'primeng/contextmenu';
@@ -12,11 +16,14 @@ import { TipoAplicacaoMultiComponent } from '../tipo-aplicacao-multi/tipo-aplica
 
 @NgModule({
     imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
         CommonModule,
         GrowlModule,
         ContextMenuModule,
         DialogModule,
         DropdownModule,
+        HttpClientModule,
         InputTextModule,
         InputSwitchModule,
         TableModule
@@ -24,6 +31,6 @@ import { TipoAplicacaoMultiComponent } from '../tipo-aplicacao-multi/tipo-aplica
     exports: [],
     declarations: [TipoAplicacaoMultiComponent],
     providers: [],
-    schemas: [NO_ERRORS_SCHEMA]
+    schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ModuloModule { }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SlideMenuModule } from 'primeng/slidemenu';
 import { MenuItem } from 'primeng/api';
 
 @Component({
