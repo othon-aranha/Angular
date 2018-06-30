@@ -1,8 +1,11 @@
+import { ModuloListComponent } from './modulo-list/modulo-list.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { TableModule } from 'primeng/table';
 import { GrowlModule } from 'primeng/primeng';
@@ -16,7 +19,7 @@ import { TipoAplicacaoMultiComponent } from '../tipo-aplicacao-multi/tipo-aplica
 
 @NgModule({
     imports: [
-        BrowserModule,
+        Component,
         BrowserAnimationsModule,
         CommonModule,
         GrowlModule,
@@ -26,10 +29,11 @@ import { TipoAplicacaoMultiComponent } from '../tipo-aplicacao-multi/tipo-aplica
         HttpClientModule,
         InputTextModule,
         InputSwitchModule,
+        TipoAplicacaoMultiComponent,
         TableModule
     ],
     exports: [],
-    declarations: [TipoAplicacaoMultiComponent],
+    declarations: [],
     providers: [],
     schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
