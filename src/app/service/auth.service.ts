@@ -6,6 +6,8 @@ import { Usuario } from '../domain/usuario';
 @Injectable()
 export class AuthService {
 
+  private UsuarioService = 'http://localhost:8080/usuario';
+
   private usuarioAutenticado = false;
 
   constructor(private router: Router) { }
@@ -13,7 +15,7 @@ export class AuthService {
   fazerLogin(usuario: Usuario) {
     if ( usuario.cd_usuario === 'OTHON_ARANHA' && usuario.senha === 'Othon092670' ) {
       this.usuarioAutenticado = true;
-      this.router.navigate(['/modulos']);
+      this.router.navigate(['/home']);
     } else {
       this.usuarioAutenticado = false;
     }

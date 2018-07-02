@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 
-import { DataTableModule, ButtonModule, InputTextModule, InputMaskModule, CalendarModule } from 'primeng/primeng';
+import { DataTableModule, ButtonModule, PanelModule, InputTextModule, InputMaskModule, CalendarModule } from 'primeng/primeng';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
@@ -10,7 +9,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { PaginatorModule } from 'primeng/paginator';
 import { PasswordModule } from 'primeng/password';
 import { ListboxModule } from 'primeng/listbox';
-import { MenuItem } from 'primeng/api';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ContextMenuModule} from 'primeng/contextmenu';
@@ -57,11 +55,11 @@ import { AuthService } from './service/auth.service';
     ListboxModule,
     MultiSelectModule,
     PaginatorModule,
+    PanelModule,
     PasswordModule,
     RadioButtonModule,
     SlideMenuModule,
     TableModule,
-    // MenubarModule,
     AppRoutingModule
   ],
   providers: [

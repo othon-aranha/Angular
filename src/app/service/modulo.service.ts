@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class ModuloService {
 
-  moduloUrl = 'http://localhost:8081/modulo';
+  private moduloUrl = 'http://localhost:8081/modulo';
 
   constructor(private http: HttpClient) { }
 
