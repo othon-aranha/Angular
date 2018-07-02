@@ -1,9 +1,19 @@
-<div class="ui-inputgroup">
-    <span class="ui-inputgroup-addon"><i class="fa fa-usuario"></i></span>
-    <input ([ngModel])="usuario.cd_usuario" id="usuario" maxlength="30" size="ui-g-2" placeholder="Usuário" pInputText/>    
-    
-    <span class="ui-inputgroup-addon"><i class="fa fa-senha"></i></span>
-    <input type="password" ([ngModel])="usuario.senha" id="senha" maxlength="30" size="ui-g-2" placeholder="Senha" pPassword/>    
+<div class="ui-g-12">
+<div class="ui-g-5">
+    <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-usuario"></i></span>
+        <input [(ngModel)]="usuario.cd_usuario" id="usuario" maxlength="30" size="ui-g-2" placeholder="Usuário" pInputText/>        
+    </div>
 </div>
 
+<div class="ui-g-5">
+    <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-senha"></i></span>
+        <input type="password" [(ngModel)]="usuario.senha" id="senha" maxlength="30" size="ui-g-2" placeholder="Senha" pPassword/>
+    </div>
+</div>
+
+<div class="ui-g-2">
 <button pButton type="button" icon="fa-check" iconPos="right" (click)="fazerLogin()" label="Login"></button>
+</div>
+</div>
