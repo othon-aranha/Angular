@@ -51,10 +51,5 @@
     "tslint": "~5.9.1",
     "typescript": "2.7.2",
     "@angular-devkit/build-angular": "~0.6.1"
-  },
-  "styles": [
-  "../node_modules/primeicons/primeicons.css",
-  "../node_modules/primeng/resources/themes/omega/theme.css",
-  "../node_modules/primeng/resources/primeng.min.css"
-]
+  }
 }

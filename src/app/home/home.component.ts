@@ -15,16 +15,19 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {label: 'Cadastro',
-       items: [{
-                label: 'Módulos',
-                icon: 'fa-bar-chart',
-                routerLink: '/modulos'
-       }]
+       items: [
+        {label: 'Tribunal', icon: 'fa-bar-chart'},
+        {label: 'Área de Atuação', icon: 'fa-bar-chart'},
+        {label: 'Domínio', icon: 'fa-bar-chart'},
+        {label: 'Módulos', icon: 'fa-bar-chart', routerLink: '/modulos'},
+        {label: 'Funcionalidades', icon: 'fa-puzzle-piece' },
+        {label: 'Perfil', icon: 'fa-bar-chart' },
+        {label: 'Usuário', icon: 'fa-users' }
+      ]
       },
-      {label: 'Calendar', icon: 'fa-calendar'},
-      {label: 'Documentation', icon: 'fa-book'},
-      {label: 'Support', icon: 'fa-support'},
-      {label: 'Social', icon: 'fa-twitter'},
+      {label: 'Funções', icon: 'fa-calendar'},
+      {label: 'Relatórios', icon: 'fa-book'},
+      {label: 'Ajuda', icon: 'fa-twitter'},
       {separator: true}
   ];
   }
