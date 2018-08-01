@@ -15,6 +15,7 @@ import { ContextMenuModule} from 'primeng/contextmenu';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -53,6 +54,7 @@ import { AuthService } from './service/auth.service';
     InputSwitchModule,
     HttpClientModule,
     ListboxModule,
+    MatDialogModule,
     MultiSelectModule,
     PaginatorModule,
     PanelModule,
