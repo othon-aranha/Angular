@@ -2,7 +2,7 @@
 <div class="ui-g-5">
     <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon"><i class="fa fa-usuario"></i></span>
-        <input [(ngModel)]="usuario.cd_usuario" id="usuario" maxlength="30" size="ui-g-2" placeholder="Usuário" pInputText/>        
+        <input [(ngModel)]="usuario.login" id="usuario" maxlength="30" size="ui-g-2" placeholder="Usuário" pInputText/>        
     </div>
 </div>
 
@@ -14,6 +14,6 @@
 </div>
 
 <div class="ui-g-2">
-<button pButton type="button" icon="fa-check" iconPos="right" (click)="fazerLogin()" label="Login"></button>
+<button pButton type="button" icon="fa-check" iconPos="right" (click)="fazerLogin(usuario.login, usuario.senha)" label="Login"></button>
 </div>
 </div>

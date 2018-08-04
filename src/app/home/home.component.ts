@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
         {label: 'Módulos', icon: 'fa-bar-chart', routerLink: '/modulos'},
         {label: 'Funcionalidades', icon: 'fa-puzzle-piece' },
         {label: 'Perfil', icon: 'fa-bar-chart' },
-        {label: 'Usuário', icon: 'fa-users' }
+        {label: 'Usuário', icon: 'fa-users', routerLink: '/usuarios' }
       ]
       },
       {label: 'Funções', icon: 'fa-calendar'},

@@ -28,6 +28,8 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './service/auth.service';
+import { UsuarioListComponent } from './usuario/usuario-list.component';
+import { TipoUsuarioMultiComponent } from './tipo-usuario-multi/tipo-usuario-multi.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { AuthService } from './service/auth.service';
     LoginComponent,
     ModuloListComponent,
     ServidorListComponent,
-    TipoAplicacaoMultiComponent
+    TipoAplicacaoMultiComponent,
+    UsuarioListComponent,
+    TipoUsuarioMultiComponent
   ],
   imports: [
     BrowserModule,

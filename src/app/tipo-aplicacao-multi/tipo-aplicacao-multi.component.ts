@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { SelectItem } from 'primeng/components/common/selectitem';
 
 @Component({
   selector: 'app-tipo-aplicacao-multi',

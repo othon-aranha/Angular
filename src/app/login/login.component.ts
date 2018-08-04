@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   fazerLogin() {
     console.log(this.usuario);
-    this.authService.fazerLogin(this.usuario);
+    this.authService.fazerLogin(this.usuario.login, this.usuario.senha);
   }
 
 }

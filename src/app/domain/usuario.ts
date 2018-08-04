@@ -1,12 +1,15 @@
+import { Unidade } from './unidade';
+
 export class Usuario {
-    // sq_usuario: number;
-    cd_usuario: string;
-    // nom_usuario: string;
-    // mat_servidor: string;
-    // mat_func: string;
-    // email: string;
-    senha: string;
-    // nr_cpf: string;
-    // st_usuario: number;
-    // tp_usuario: number;
+    id: number;
+    login: String;
+    nome: String;
+    matriculaServidor: String;
+    matriculaFuncionario: String;
+    email: String;
+    senha: String;
+    numeroCpf: String;
+    status: String;
+    tipo: String;
+    unidade: Unidade;
  }

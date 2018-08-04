@@ -1,23 +1,25 @@
 import { Injectable } from '@angular/core';
-import { EventEmitter } from 'events';
 import { Router } from '@angular/router';
-import { Usuario } from '../domain/usuario';
+import { UsuarioService } from '../service/usuario.service';
 
 @Injectable()
 export class AuthService {
 
-  private UsuarioService = 'http://localhost:8080/usuario';
-
   private usuarioAutenticado = false;
+  private usuario: any;
+  private senha: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private usuarioService: UsuarioService) { }
 
-  fazerLogin(usuario: Usuario) {
-    if ( usuario.cd_usuario === 'OTHON_ARANHA' && usuario.senha === 'Othon092670' ) {
+  fazerLogin(login: String, senha: String) {
+    this.senha = this.usuarioService.encriptarsenha(senha);
+    this.usuario = this.usuarioService.autenticarUsuario(login, this.senha).subscribe(dados => this.usuario = dados);
+    if ( this.usuario.login !== null ) {
       this.usuarioAutenticado = true;
       this.router.navigate(['/home']);
     } else {
       this.usuarioAutenticado = false;
+      this.router.navigate(['/login']);
     }
   }
 }

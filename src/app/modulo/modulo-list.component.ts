@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/components/common/selectitem';
 import { ModuloService } from '../service/modulo.service';
 import { MenuItem, Message } from 'primeng/api';
-import { NgModule } from '@angular/core/src/metadata/ng_module';
 import { Modulo } from '../domain/modulo';
 import { TipoAplicacaoMultiComponent } from './../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 
@@ -81,7 +79,8 @@ export class ModuloListComponent implements OnInit {
 
   carregaListaServidores() {
     this.alias =
-    [{label: 'TRE-AC', value: 'AC1-ADM'},
+    [
+    {label: 'TRE-AC', value: 'AC1-ADM'},
     {label: 'TRE-AL', value: 'AL1-ADM'},
     {label: 'TRE-AM', value: 'AM1-ADM'},
     {label: 'TRE-AP', value: 'AP1-ADM'},
@@ -89,7 +88,8 @@ export class ModuloListComponent implements OnInit {
     {label: 'TRE-CE', value: 'CE1-ADM'},
     {label: 'TRE-DF', value: 'DF1-ADM'},
     {label: 'TRE-ES', value: 'ES1-ADM'},
-    {label: 'TRE-GO', value: 'GO1-ADM'}];
+    {label: 'TRE-GO', value: 'GO1-ADM'}
+    ];
   }
 
   alteraTipoModulo(event) {
