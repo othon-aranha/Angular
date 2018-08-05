@@ -12,6 +12,10 @@ export class UsuarioService {
     return this.http.get<any[]>(this.usuarioUrl + '/usuarios');
   }
 
+  listarUsuariosporTipo(tipoUsuario: String) {
+    return this.http.get<any>(this.usuarioUrl + '/tipoUsuario/' + tipoUsuario);
+  }
+
   usuarioAutorizado(login: String, senha: String) {
     return this.http.get<any>(this.usuarioUrl + '/login/' + login + '/senha/' + senha);
   }

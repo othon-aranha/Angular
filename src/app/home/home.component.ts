@@ -15,11 +15,18 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {label: 'Cadastro',
-       items: [{
-                label: 'Módulos',
-                icon: 'fa-bar-chart',
-                routerLink: '/modulos'
-       }]
+       items: [
+      {
+        label: 'Módulos',
+        icon: 'fa-bar-chart',
+        routerLink: '/modulos'
+       },
+       {
+        label: 'Usuários',
+        icon: 'fa-bar-chart',
+        routerLink: '/usuarios'
+       }
+      ]
       },
       {label: 'Calendar', icon: 'fa-calendar'},
       {label: 'Documentation', icon: 'fa-book'},

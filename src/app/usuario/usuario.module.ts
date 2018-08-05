@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModuloRoutingModule } from './modulo.routing.module';
+// import { UsuarioListComponent } from './usuario-list/usuario-list.component';
+import { UsuarioRoutingModule } from './usuario.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    ModuloRoutingModule
+    UsuarioRoutingModule
   ],
   exports: [],
   declarations: []
 })
-export class ModuloModule { }
+export class UsuarioModule { }

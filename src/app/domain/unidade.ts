@@ -4,6 +4,6 @@ export class Unidade {
     nome: string;
     status: string;
     bairro: string;
-    pai: Unidade;
+    pai: number;
     filhos: Unidade[];
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModuloService } from '../service/modulo.service';
 import { MenuItem, Message } from 'primeng/api';
 import { Modulo } from '../domain/modulo';
-import { TipoAplicacaoMultiComponent } from './../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
+import { TipoAplicacaoMultiComponent } from '../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 
 @Component({
   selector: 'app-modulo',

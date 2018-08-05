@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
 import { ModuloListComponent } from './modulo/modulo-list.component';
+import { UsuarioListComponent } from './usuario/usuario-list/usuario-list.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+
+import { UsuarioModule } from './usuario/usuario.module';
 import { UsuarioService } from './service/usuario.service';
+
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'modulos', component: ModuloListComponent },
+  { path: 'usuarios', component: UsuarioListComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 
