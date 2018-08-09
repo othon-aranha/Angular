@@ -12,6 +12,7 @@ export class TipoUsuarioMultiComponent implements OnInit {
 
   tipoUsuario = [];
   selectedTipoUsuario = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
+
   constructor() {
     this.tipoUsuario = [
       {label: 'Avulso', value: 'AVULSO'},
@@ -31,7 +32,7 @@ export class TipoUsuarioMultiComponent implements OnInit {
     return this.selectedTipoUsuario;
   }
 
-  onselecionarTipoAplicacao(tipo: String[]) {
+  onselecionarTipoUsuario(tipo: String[]) {
     this.onSelecionarTipoUsuario.emit(this.selectedTipoUsuario);
   }
 

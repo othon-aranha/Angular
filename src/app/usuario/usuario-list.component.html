@@ -1,5 +1,5 @@
-<div class="ui-g">  
-  <app-tipo-usuario-multi (onSelecionarTipoUsuario)="onSelecionarTipoUsuario($event)"></app-tipo-usuario-multi> 
+<div class="painel ui-g">  
+  <app-tipo-usuario-multi (onSelecionarTipoUsuario)="onSelecionarTipoUsuario($event)"></app-tipo-usuario-multi>
 </div>
 <div class="ui-g">    
   <div class="ui-g-12">      
@@ -27,3 +27,23 @@
       <p-contextMenu global="fa-close" #cm [model]="items"></p-contextMenu>
   </div>
 </div>
+
+
+<p-dialog header="Detalhes do Usuário" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
+    <div class="ui-g ui-fluid" *ngIf="usuario">
+        <div class="ui-g-12 ui-fluid">
+            <div class="ui-g-1">
+                <label for="id">Id</label>
+            </div>
+            <div class="ui-g-1">
+                <input pInputText id="id" [(ngModel)]="usuario.id" [disabled]="true"/>
+            </div>            
+        </div>    
+    </div>                   
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="delete()" label="Excluir"></button>
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Salvar"></button>
+        </div>
+    </p-footer>
+</p-dialog>

@@ -1,0 +1,15 @@
+.painel{
+    background-color: aquamarine;
+}
+
+p-dialog{
+    background-color: cadetblue;    
+}
+
+label{
+    color: cadetblue;
+}
+input{
+    font-family: 'Times New Roman', 'Times', 'serif';
+    font-size: 10pt;
+}

@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     this.items = [
       {label: 'Cadastro',
        items: [
-        {label: 'Tribunal', icon: 'fa-bar-chart'},
+        {label: 'Tribunal', icon: 'fa-gavel'},
         {label: 'Área de Atuação', icon: 'fa-bar-chart'},
         {label: 'Domínio', icon: 'fa-bar-chart'},
         {label: 'Módulos', icon: 'fa-bar-chart', routerLink: '/modulos'},

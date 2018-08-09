@@ -1,6 +1,6 @@
+import { Usuario } from './../domain/usuario';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, Message } from 'primeng/api';
-import { Usuario } from '../domain/usuario';
 import { UsuarioService } from '../service/usuario.service';
 
 
@@ -23,6 +23,7 @@ export class UsuarioListComponent implements OnInit {
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
+        this.displayDialog = true;
         // Colunas da Grid //
         this.cols = [
           {header: 'Id', field: 'id', classe: 'ui'},
@@ -37,6 +38,13 @@ export class UsuarioListComponent implements OnInit {
       ];
 
       this.consultarporTipodeUsuario(['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO']);
+
+  // Itens do popup menu //
+  this.items = [
+    { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewUsuario(this.selectedUsuario) },
+    { label: 'Excluir', icon: 'fa-close' }
+    // , command: (event) => this.deleteUsuario(this.selectedUsuario)
+   ];
   }
 
 
@@ -53,5 +61,14 @@ export class UsuarioListComponent implements OnInit {
     }
   }
 
+  onSelecionarTipoUsuario(tipoUsuario: string[]) {
+    this.tipoUsuario = tipoUsuario;
+    this.consultarporTipodeUsuario(this.tipoUsuario);
+  }
+
+  viewUsuario(usuario: Usuario) {
+    this.displayDialog = true;
+    this.usuario = usuario;
+  }
 
 }
