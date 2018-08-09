@@ -34,6 +34,7 @@ import { AuthService } from './service/auth.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { TipoUsuarioMultiComponent } from './tipo-usuario-multi/tipo-usuario-multi.component';
+import { StatusMultiComponent } from './status-multi/status-multi.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { TipoUsuarioMultiComponent } from './tipo-usuario-multi/tipo-usuario-mul
     UsuarioListComponent,
     ServidorListComponent,
     TipoAplicacaoMultiComponent,
-    TipoUsuarioMultiComponent
+    TipoUsuarioMultiComponent,
+    StatusMultiComponent
   ],
   imports: [
     BrowserModule,

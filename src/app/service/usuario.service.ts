@@ -13,8 +13,13 @@ export class UsuarioService {
   }
 
   listarUsuariosporTipo(tipoUsuario: String) {
-    return this.http.get<any>(this.usuarioUrl + '/tipoUsuario/' + tipoUsuario);
+    return this.http.get<any>(this.usuarioUrl + '/usuarios/tipoUsuario/' + tipoUsuario);
   }
+
+  listarUsuariosporTipoEStatus(tipoUsuario: String, status: String) {
+    return this.http.get<any>(this.usuarioUrl + '/usuarios/tipoUsuario/' + tipoUsuario + '/status/' + status);
+  }
+
 
   usuarioAutorizado(login: String, senha: String) {
     return this.http.get<any>(this.usuarioUrl + '/login/' + login + '/senha/' + senha);

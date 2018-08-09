@@ -1,5 +1,6 @@
 import { UsuarioModule } from './usuario.module';
 
+
 describe('UsuarioModule', () => {
   let usuarioModule: UsuarioModule;
 

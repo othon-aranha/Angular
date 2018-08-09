@@ -1,9 +1,9 @@
 export class TipoUsuario  {
-    AVULSO = <string> 'AVULSO';
-    APLICACAO = <string> 'APLICACAO';
-    EXTERNO = <string> 'EXTERNO';
-    INVALIDO = <string> 'INVALIDO';
-    SERVIDOR = <string> 'SERVIDOR';
-    SISTEMA = <string> 'SISTEMA';
-    TERCEIRIZADO = <string> 'TERCEIRIZADO';
+    AVULSO = <any> 'AVULSO';
+    APLICACAO = <any> 'APLICACAO';
+    EXTERNO = <any> 'EXTERNO';
+    INVALIDO = <any> 'INVALIDO';
+    SERVIDOR = <any> 'SERVIDOR';
+    SISTEMA = <any> 'SISTEMA';
+    TERCEIRIZADO = <any> 'TERCEIRIZADO';
 }

@@ -3,17 +3,25 @@ import { MenuItem, Message } from 'primeng/api';
 import { Usuario } from '../../domain/usuario';
 import { UsuarioService } from '../../service/usuario.service';
 
+interface Status {
+  name: string;
+  code: string;
+}
+
 @Component({
   selector: 'app-usuario-list',
   templateUrl: './usuario-list.component.html',
   styleUrls: ['./usuario-list.component.css']
 })
+
 export class UsuarioListComponent implements OnInit {
   cols: any[];
   usuarios = [];
   tipoUsuario = [];
+  tipodeUsuario = [];
   usuario: Usuario = null;
   selectedUsuario: Usuario = null;
+  selectedStatus = [];
   items: MenuItem[];
   msgs: Message[];
   displayDialog: boolean;
@@ -21,9 +29,10 @@ export class UsuarioListComponent implements OnInit {
 
   constructor(private usuarioService: UsuarioService) { }
 
-  tipodeUsuario = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
-
   ngOnInit() {
+
+    this.tipodeUsuario = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
+    this.selectedStatus = ['ATIVO', 'INATIVO'];
 
     this.tipoUsuario = [
       {label: 'Avulso', value: 'AVULSO'},
@@ -35,7 +44,7 @@ export class UsuarioListComponent implements OnInit {
       {label: 'Terceirizado', value: 'TERCEIRIZADO'}
     ];
 
-    this.consultarporTipodeUsuario(this.tipodeUsuario);
+    this.consultarporTipodeUsuario(this.tipodeUsuario, this.selectedStatus);
 
     // Colunas da Grid //
     this.cols = [
@@ -55,22 +64,28 @@ export class UsuarioListComponent implements OnInit {
     { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewUsuario(this.selectedUsuario) },
     { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteUsuario(this.selectedUsuario) }
   ];
+
   }
 
-  consultarporTipodeUsuario(tipo: string[]) {
+  consultarporTipodeUsuario(tipo: string[], status: string[]) {
     this.usuarios = [];
     if ( tipo.length === 0 ) {
       return this.usuarioService.listarUsuariosporTipo('').subscribe(dados => this.usuarios = dados);
     } else {
-      return this.usuarioService.listarUsuariosporTipo(tipo.join()).subscribe(dados => this.usuarios = dados);
+      return this.usuarioService.listarUsuariosporTipoEStatus(tipo.join(), status.join()).subscribe(dados => this.usuarios = dados);
     }
   }
 
   onSelecionarTipoUsuario(tipoUsuario: string[]) {
     this.tipoUsuario = tipoUsuario;
-    this.consultarporTipodeUsuario(this.tipoUsuario);
+    this.consultarporTipodeUsuario(this.tipoUsuario, this.selectedStatus);
   }
 
+
+  onSelecionarStatus(status: string[]) {
+    this.selectedStatus = status;
+    this.consultarporTipodeUsuario(this.tipoUsuario, this.selectedStatus);
+  }
 
   viewUsuario(usuario: Usuario) {
 

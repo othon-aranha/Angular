@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { UsuarioRoutingModule } from './usuario.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StatusMultiComponent } from '../status-multi/status-multi.component';
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    StatusMultiComponent,
     UsuarioRoutingModule
   ],
   exports: [],
