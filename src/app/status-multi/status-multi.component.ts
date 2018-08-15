@@ -23,6 +23,7 @@ export class StatusMultiComponent implements OnInit {
 
   onselecionarStatus(status: string[]) {
     this.selectedStatus = status;
+    console.log(this.selectedStatus);
     this.onSelecionarStatus.emit(this.selectedStatus);
   }
 

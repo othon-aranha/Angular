@@ -1,5 +1,6 @@
 import { Modulo } from './modulo';
 import { Unidade } from './unidade';
+import { Link } from './link';
 
 export class Usuario {
     id: number;
@@ -14,4 +15,5 @@ export class Usuario {
     TipoUsuario: string;
     usuarioModulos: Modulo[];
     unidade: Unidade;
+    links: Link;
  }

@@ -9,11 +9,13 @@ import { HomeComponent } from './home/home.component';
 
 import { UsuarioModule } from './usuario/usuario.module';
 import { UsuarioService } from './service/usuario.service';
+import { DominioComponent } from './dominio/dominio.component';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'dominio', component: DominioComponent },
   { path: 'modulos', component: ModuloListComponent },
   { path: 'usuarios', component: UsuarioListComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full'}

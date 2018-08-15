@@ -35,6 +35,9 @@ import { AuthService } from './service/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { TipoUsuarioMultiComponent } from './tipo-usuario-multi/tipo-usuario-multi.component';
 import { StatusMultiComponent } from './status-multi/status-multi.component';
+import { DominioComponent } from './dominio/dominio.component';
+import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
+import { DominioService } from './service/dominio.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,8 @@ import { StatusMultiComponent } from './status-multi/status-multi.component';
     ServidorListComponent,
     TipoAplicacaoMultiComponent,
     TipoUsuarioMultiComponent,
-    StatusMultiComponent
+    StatusMultiComponent,
+    DominioComponent
   ],
   imports: [
     BrowserModule,
@@ -69,12 +73,14 @@ import { StatusMultiComponent } from './status-multi/status-multi.component';
     PanelModule,
     PasswordModule,
     RadioButtonModule,
+    ReactiveFormsModule,
     SlideMenuModule,
     TableModule,
     AppRoutingModule
   ],
   providers: [
     AuthService,
+    DominioService,
     ModuloService,
     ServidorService,
     ServidorListComponent,

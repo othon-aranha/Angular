@@ -2,6 +2,7 @@ import { TipoAtualizacao } from './tipo-atualizacao';
 import { TipoAplicacao } from './tipo-aplicacao';
 import { StatusModulo } from './status-modulo';
 import { Tribunal } from './tribunal';
+import { Link } from './link';
 
 export class Modulo {
     id: number;
@@ -26,4 +27,5 @@ export class Modulo {
     statusModulo: StatusModulo;
     tribunal: Tribunal;
     versao: string;
+    links: Link;
 }

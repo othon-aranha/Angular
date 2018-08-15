@@ -25,6 +25,11 @@ export class HomeComponent implements OnInit {
         label: 'Usuários',
         icon: 'fa-bar-chart',
         routerLink: '/usuarios'
+       },
+       {
+        label: 'Domínio',
+        icon: 'fa-bar-chart',
+        routerLink: '/dominio'
        }
       ]
       },

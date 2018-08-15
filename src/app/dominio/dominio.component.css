@@ -1,0 +1,11 @@
+label { 
+    text-align: left; float: left; margin-right: 1em; 
+}
+
+input[type="text"] {
+    background: #ccc;
+    height: 35px;
+    font-style: normal;
+    font-size: 14px;
+    border: 0;
+  }
