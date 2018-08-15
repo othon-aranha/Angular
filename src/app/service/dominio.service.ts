@@ -1,10 +1,7 @@
-import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Dominio } from '../domain/dominio';
-import { Observable } from '../../../node_modules/rxjs';
-import { Options } from '../../../node_modules/@types/selenium-webdriver/firefox';
 import { catchError } from 'rxjs/operators';
 
 const httpOptions = {
@@ -18,7 +15,6 @@ const httpOptions = {
 @Injectable()
 export class DominioService {
   private url = 'http://localhost:8081/dominio';
-  private handleError: HandleError;
 
  /*
   constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler ) {
@@ -34,7 +30,11 @@ export class DominioService {
 
 
   getDominios() {
-    return this.http.get(this.url + '/dominios');
+    return this.http.get<any[]>(this.url + '/dominios');
+  }
+
+  getDominioPeloNome(nome: String) {
+    return this.http.get<any[]>(this.url + '/nome/' + nome, {headers: this.headers});
   }
 
   getDominio(id) {
@@ -48,12 +48,12 @@ export class DominioService {
    }
 
    updateDominio(dominio: Dominio) {
-    return this.http.put<Dominio>(this.url, JSON.stringify(dominio))
+    return this.http.put<Dominio>(this.url, JSON.stringify(dominio), {headers: this.headers})
    .subscribe((response) => console.log(response));
   }
 
   deleteDominio(id) {
-    return this.http.delete<Dominio>(this.getDominioUrl(id))
+    return this.http.delete<Dominio>(this.getDominioUrl(id), {headers: this.headers})
     .subscribe((response) => console.log(response));
   }
 

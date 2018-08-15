@@ -38,6 +38,7 @@ import { StatusMultiComponent } from './status-multi/status-multi.component';
 import { DominioComponent } from './dominio/dominio.component';
 import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
 import { DominioService } from './service/dominio.service';
+import { DominioListComponent } from './dominio/dominio-list/dominio-list.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { DominioService } from './service/dominio.service';
     TipoAplicacaoMultiComponent,
     TipoUsuarioMultiComponent,
     StatusMultiComponent,
-    DominioComponent
+    DominioComponent,
+    DominioListComponent
   ],
   imports: [
     BrowserModule,
