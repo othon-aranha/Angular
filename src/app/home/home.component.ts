@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
        {
         label: 'Domínio',
         icon: 'fa-bar-chart',
-        routerLink: '/dominio'
+        routerLink: '/dominio-list'
        }
       ]
       },

@@ -5,7 +5,7 @@ import { Dominio } from '../domain/dominio';
 import { DominioService } from '../service/dominio.service';
 
 interface OptionDominio {
-  nome: string;
+  name: string;
   code: string;
  }
 
@@ -19,7 +19,7 @@ export class DominioComponent implements OnInit {
   form: FormGroup;
   dominio: Dominio;
   dominios = [];
-  optdominios: OptionDominio[];
+  optDominios: OptionDominio[];
   selectedOpt: string;
 
 
@@ -28,21 +28,21 @@ export class DominioComponent implements OnInit {
   ngOnInit() {
     this.dominio = new Dominio();
 
-    this.populaDominio();
-
-    this.form = this.formBuilder.group({
+     this.form = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(6)] ],
       cd: ['', [Validators.required, Validators.minLength(6)] ],
       descricao: ['', [Validators.required, Validators.minLength(2)] ]
     });
+
+    this.populaDominio();
   }
 
   populaDominio() {
    this.dominioService.getDominioPeloNome('DOMINIOS_ACESSO').subscribe(dados => this.dominios = dados);
-   this.optdominios = [];
+   this.optDominios = [];
    for (let i = 0; i < this.dominios.length; i++) {
-    this.optdominios[i].code = this.dominios[i].descricao;
-    this.optdominios[i].nome = this.dominios[i].descricao;
+    this.optDominios[i].code = this.dominios[i].descricao;
+    this.optDominios[i].name = this.dominios[i].descricao;
     }
   }
 
