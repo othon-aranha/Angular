@@ -1,8 +1,5 @@
-import { DominioModule } from './../dominio/dominio.module';
 import { Component, OnInit } from '@angular/core';
-// import { MenubarModule } from 'primeng/menubar';
 
-import { SlideMenuModule } from 'primeng/slidemenu';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -21,12 +18,12 @@ export class HomeComponent implements OnInit {
       {
         label: 'Módulos',
         icon: 'fa-bar-chart',
-        routerLink: '/modulos'
+        routerLink: '/modulo-list'
        },
        {
         label: 'Usuários',
         icon: 'fa-bar-chart',
-        routerLink: '/usuarios'
+        routerLink: '/usuario-list'
        },
        {
         label: 'Domínio',

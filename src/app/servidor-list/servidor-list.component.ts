@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { MaquinaPk } from '../domain/maquina-pk';
+
 import { ServidorService } from '../service/servidor.service';
 import { ManutencaoService } from '../service/manutencao.service';
 import { MaquinaServidora } from '../domain/maquina-servidora';

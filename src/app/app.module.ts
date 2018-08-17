@@ -20,41 +20,25 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ModuloListComponent } from './modulo/modulo-list.component';
-import { UsuarioListComponent } from './usuario/usuario-list/usuario-list.component';
 import { ServidorListComponent } from './servidor-list/servidor-list.component';
-import { TipoAplicacaoMultiComponent } from './tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
-
-import { ModuloService } from './service/modulo.service';
 import { ServidorService } from './service/servidor.service';
 import { ManutencaoService } from './service/manutencao.service';
 import { AuthService } from './service/auth.service';
 
 import { AppRoutingModule } from './app-routing.module';
-import { TipoUsuarioMultiComponent } from './tipo-usuario-multi/tipo-usuario-multi.component';
-import { StatusMultiComponent } from './status-multi/status-multi.component';
-import { DominioComponent } from './dominio/dominio.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DominioService } from './service/dominio.service';
-import { DominioListComponent } from './dominio/dominio-list/dominio-list.component';
+import { ModuloModule } from './modulo/modulo.module';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
     NavbarComponent,
-    // DominioComponent,
-    // DominioListComponent,
     HomeComponent,
     LoginComponent,
-    ModuloListComponent,
-    UsuarioListComponent,
-    ServidorListComponent,
-    TipoAplicacaoMultiComponent,
-    TipoUsuarioMultiComponent,
-    StatusMultiComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -79,17 +63,14 @@ import { DominioListComponent } from './dominio/dominio-list/dominio-list.compon
     ReactiveFormsModule,
     SlideMenuModule,
     TableModule,
+    ModuloModule,
     DominioModule,
+    UsuarioModule,
     AppRoutingModule
   ],
   providers: [
     AuthService,
-    DominioService,
-    ModuloService,
-    ServidorService,
-    ServidorListComponent,
-    ManutencaoService,
-    TipoAplicacaoMultiComponent
+    ManutencaoService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]

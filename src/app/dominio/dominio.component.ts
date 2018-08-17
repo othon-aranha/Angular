@@ -34,13 +34,17 @@ export class DominioComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
-    // this.route.paramMap.pipe(
-    // switchMap( ( params: ParamMap ) => params.get('id')));
+    if ( this.route.snapshot.paramMap.has('id') ) {
+      this.id = this.route.snapshot.paramMap.get('id');
+    } else {
+      this.id = null;
+    }
 
     this.dominio = new Dominio();
 
+    if ( this.id ) {
     this.recuperarDominio(this.id);
+    }
 
     this.populaDominio();
 
@@ -60,9 +64,10 @@ export class DominioComponent implements OnInit {
   }
 
   populaDominio() {
-   this.dominioService.getDominioPeloNome('DOMINIOS_ACESSO').subscribe(dados => this.dominios = dados);
+   // Carregando os dominios do acesso
+   this.dominioService.getDominioPeloNome('DOMINIOS_ACESSO').subscribe(data => this.dominios = data);
    this.optDominios = [];
-   this.optDominios.push({code: 'Selecione um Domínio', name: ''});
+   this.optDominios.push({name: 'Selecione um Domínio', code: ''});
    for (let i = 0; i < this.dominios.length; i++) {
     this.optDominios.push({name: this.optDominios[i].name, code: this.dominios[i].descricao});
     }

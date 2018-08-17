@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ModuloListComponent } from './modulo-list.component';
 
 const moduloRoutes = [
-    {path: 'modulos', Component: ModuloListComponent}
+    {path: 'modulo-list', component: ModuloListComponent}
 ];
 
 @NgModule({

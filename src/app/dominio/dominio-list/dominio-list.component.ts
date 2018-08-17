@@ -30,6 +30,7 @@ export class DominioListComponent implements OnInit {
   // Itens do popup menu //
   this.items = [
     { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewDominio(this.selecteddominio) },
+    { label: 'Novo', icon: 'fa-search', command: (event) => this.newDominio() },
     { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteDominio(this.selecteddominio) }
   ];
 
@@ -40,6 +41,10 @@ export class DominioListComponent implements OnInit {
     this.router.navigate(['/dominio/', dominio.id]);
   }
 
+  newDominio() {
+    this.router.navigate(['/dominio/']);
+  }
+
   deleteDominio(dominio: Dominio) {
     let index = -1;
     for (let i = 0; i < this.dominios.length; i++) {
@@ -48,6 +53,7 @@ export class DominioListComponent implements OnInit {
           break;
       }
     }
+    this.dominioService.deleteDominio(dominio.id);
     this.dominios.splice(index, 1);
 
     this.msgs = [];

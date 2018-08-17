@@ -7,19 +7,13 @@ import { UsuarioListComponent } from './usuario/usuario-list/usuario-list.compon
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
-import { UsuarioModule } from './usuario/usuario.module';
 import { UsuarioService } from './service/usuario.service';
-import { DominioComponent } from './dominio/dominio.component';
-import { DominioListComponent } from './dominio/dominio-list/dominio-list.component';
+import { ModuloModule } from './modulo/modulo.module';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  // { path: 'modulos', component: DominioListComponent},
-  // { path: 'modulo/:id', component: DominioComponent},
-  { path: 'modulos', component: ModuloListComponent },
-  { path: 'usuarios', component: UsuarioListComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 

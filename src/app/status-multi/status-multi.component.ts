@@ -6,6 +6,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   templateUrl: './status-multi.component.html',
   styleUrls: ['./status-multi.component.css']
 })
+
 export class StatusMultiComponent implements OnInit {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onSelecionarStatus = new EventEmitter<String[]>();
@@ -26,6 +27,5 @@ export class StatusMultiComponent implements OnInit {
     console.log(this.selectedStatus);
     this.onSelecionarStatus.emit(this.selectedStatus);
   }
-
 
 }

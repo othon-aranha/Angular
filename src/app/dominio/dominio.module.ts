@@ -8,6 +8,7 @@ import { DropdownModule, GrowlModule, ContextMenuModule } from '../../../node_mo
 import { DominioComponent } from './dominio.component';
 import { DominioRoutingModule } from './dominio.routing.module';
 import { DominioListComponent } from './dominio-list/dominio-list.component';
+import { DominioService } from '../service/dominio.service';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { DominioListComponent } from './dominio-list/dominio-list.component';
     DominioRoutingModule
   ],
   declarations: [DominioComponent, DominioListComponent],
+  providers: [DominioService],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]
 })
 export class DominioModule { }
