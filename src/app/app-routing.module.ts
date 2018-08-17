@@ -16,8 +16,8 @@ import { DominioListComponent } from './dominio/dominio-list/dominio-list.compon
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'dominio', component: DominioComponent },
-  { path: 'dominio-list', component: DominioListComponent },
+  // { path: 'modulos', component: DominioListComponent},
+  // { path: 'modulo/:id', component: DominioComponent},
   { path: 'modulos', component: ModuloListComponent },
   { path: 'usuarios', component: UsuarioListComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full'}

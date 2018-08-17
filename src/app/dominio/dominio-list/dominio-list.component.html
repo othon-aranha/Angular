@@ -1,12 +1,7 @@
-<div class="ui-g">
-  <div class="ui-g-12">
-      <h3 class="first">Filtros</h3>            
-  </div> 
-</div>
 <div class="ui-g">    
-<div class="ui-g-12">      
+    <div class="ui-g-12">      
     <p-growl [value]="msgs"></p-growl>
-    <p-table  [columns]="cols" autoLayout="true" sortMode="multiple" selectionMode="single" [value]="dominios" [(contextMenuSelection)]="selectedDominio" [contextMenu]="cm" [rows]="10"
+    <p-table  [columns]="cols" autoLayout="true" sortMode="multiple" selectionMode="single" [value]="dominios" [(contextMenuSelection)]="selecteddominio" [contextMenu]="cm" [rows]="10"
               [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,20,30,40,50]">
         <ng-template pTemplate="caption">
             Lista de Domínios
@@ -27,5 +22,5 @@
         </ng-template>                
     </p-table>                
     <p-contextMenu global="fa-close" #cm [model]="items"></p-contextMenu>
-</div>
+    </div>
 </div>

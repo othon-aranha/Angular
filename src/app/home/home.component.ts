@@ -1,5 +1,7 @@
+import { DominioModule } from './../dominio/dominio.module';
 import { Component, OnInit } from '@angular/core';
 // import { MenubarModule } from 'primeng/menubar';
+
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { MenuItem } from 'primeng/api';
 

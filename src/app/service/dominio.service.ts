@@ -1,8 +1,9 @@
+import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Dominio } from '../domain/dominio';
-import { catchError } from 'rxjs/operators';
+
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -34,12 +35,11 @@ export class DominioService {
   }
 
   getDominioPeloNome(nome: String) {
-    return this.http.get<any[]>(this.url + '/nome/' + nome, {headers: this.headers});
+    return this.http.get<any[]>(this.url + '/nome/' + nome);
   }
 
-  getDominio(id) {
-    return this.http.get<Dominio>(this.getDominioUrl(id))
-    .subscribe((response) => console.log(response));
+  getDominio(id: string): Observable<Dominio> {
+    return this.http.get<Dominio>(this.getDominioUrl(id));
   }
 
   addDominio(dominio: Dominio) {

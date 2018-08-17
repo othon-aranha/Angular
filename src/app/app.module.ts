@@ -1,3 +1,4 @@
+import { DominioModule } from './dominio/dominio.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
@@ -36,7 +37,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TipoUsuarioMultiComponent } from './tipo-usuario-multi/tipo-usuario-multi.component';
 import { StatusMultiComponent } from './status-multi/status-multi.component';
 import { DominioComponent } from './dominio/dominio.component';
-import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DominioService } from './service/dominio.service';
 import { DominioListComponent } from './dominio/dominio-list/dominio-list.component';
 
@@ -44,6 +45,8 @@ import { DominioListComponent } from './dominio/dominio-list/dominio-list.compon
   declarations: [
     AppComponent,
     NavbarComponent,
+    // DominioComponent,
+    // DominioListComponent,
     HomeComponent,
     LoginComponent,
     ModuloListComponent,
@@ -51,9 +54,7 @@ import { DominioListComponent } from './dominio/dominio-list/dominio-list.compon
     ServidorListComponent,
     TipoAplicacaoMultiComponent,
     TipoUsuarioMultiComponent,
-    StatusMultiComponent,
-    DominioComponent,
-    DominioListComponent
+    StatusMultiComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +79,7 @@ import { DominioListComponent } from './dominio/dominio-list/dominio-list.compon
     ReactiveFormsModule,
     SlideMenuModule,
     TableModule,
+    DominioModule,
     AppRoutingModule
   ],
   providers: [
