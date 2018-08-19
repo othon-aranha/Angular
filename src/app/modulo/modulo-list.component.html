@@ -35,35 +35,25 @@
 <p-dialog header="Detalhes do Módulo" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="600">
     <div class="ui-g ui-fluid" *ngIf="modulo">
         <div class="ui-g-12 ui-fluid">
-            <div class="ui-g-1">
+            <div class="ui-g">
                 <label for="id">Id</label>
+                <input pInputText id="id" [(ngModel)]="modulo.id" [disabled]="true" maxlength="6"/>
             </div>
-            <div class="ui-g-1">
-                <input pInputText id="id" [(ngModel)]="modulo.id" [disabled]="true"/>
-            </div>
-            <div class="ui-g-3">
+            <div class="ui-g">
                 <label for="id">Sigla</label>
-            </div>
-            <div class="ui-g-3">
                 <input pInputText id="id" [(ngModel)]="modulo.sigla" [disabled]="true"/>
             </div>            
-        </div>
-        <div class="ui-g-12 ui-fluid">
-            <div class="ui-g-4">
+            <div class="ui-g">
                 <label for="alias">Alias</label>
                 <p-dropdown [options]="alias" [(ngModel)]="selectedAlias" placeholder="Selecione um Alias" [showClear]="true" [style]="{'width':'150px'}"></p-dropdown>
-			</div>	
-            <div class="ui-g-8">
+		    </div>	
+            <div class="ui-g">
                 <label for="esquema">Esquema</label>
                 <input pInputText id="esquema" [(ngModel)]="modulo.esquema" maxlength="30" size="20"/>
             </div>                        
-        </div>
-        <div class="ui-g-12 ui-fluid">
-            <div class="ui-g-2">
+            <div class="ui-g">
                 <label for="versao">Versão</label>
-            </div>
-            <div class="ui-g-2">
-                <input pInputText id="versao" [(ngModel)]="modulo.versao" [disabled]="true"/>
+                 <input pInputText id="versao" [(ngModel)]="modulo.versao" [disabled]="true"/>
             </div>
         </div>
         <div class="ui-g-12 ui-fluid">
