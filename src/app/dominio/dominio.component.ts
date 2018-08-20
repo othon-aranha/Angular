@@ -30,8 +30,7 @@ export class DominioComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private dominioService: DominioService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     if ( this.route.snapshot.paramMap.has('id') ) {

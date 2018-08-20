@@ -13,11 +13,11 @@ export class UsuarioService {
   }
 
   listarUsuariosporTipo(tipoUsuario: String) {
-    return this.http.get<any>(this.usuarioUrl + '/usuarios/tipoUsuario/' + tipoUsuario);
+    return this.http.get<any>(this.usuarioUrl + '/tipoUsuario/' + tipoUsuario);
   }
 
   listarUsuariosporTipoEStatus(tipoUsuario: String, status: String) {
-    return this.http.get<any>(this.usuarioUrl + '/usuarios/tipoUsuario/' + tipoUsuario + '/status/' + status);
+    return this.http.get<any>(this.usuarioUrl + '/tipoUsuario/' + tipoUsuario + '/status/' + status);
   }
 
 

@@ -36,8 +36,9 @@ export class ModuloListComponent implements OnInit {
       {label: 'Aplicação Web', value: 'WEB'},
       {label: 'Híbrida', value: 'HIBRIDO'}
     ];
+
     this.tipo = this.tipoAplic.selectedTipo;
-    this.consultarporTipodeAplicacao(['WEB', 'DESKTOP', 'HIBRIDO']);
+    this.consultarporTipodeAplicacao(this.tipoAplic.selectedTipo);
 
     // Colunas da Grid //
     this.cols = [
