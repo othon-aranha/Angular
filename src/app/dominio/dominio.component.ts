@@ -115,12 +115,7 @@ export class DominioComponent implements OnInit {
       message: 'Confirma a operação ?',
       header: 'Confirmação',
       icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-          this.msgs = [{severity: 'info', summary: 'Confirmed', detail: 'You have accepted'}];
-      },
-      reject: () => {
-          this.msgs = [{severity: 'info', summary: 'Rejected', detail: 'You have rejected'}];
-      }
+      accept: this.GravarDominio();
   });
     // this.GravarDominio();
     // console.log(form);
