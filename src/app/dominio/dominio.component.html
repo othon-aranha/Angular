@@ -40,10 +40,10 @@
              [(ngModel)]="dominio.descricao"> 
   </div>
 
-  <p-confirmDialog></p-confirmDialog>
-  <button type="button" [disabled]="!form.valid" acceptLabel="Sim" rejectLabel="Não" (click)="onSubmit(form)" pButton icon="pi pi-check" label="Confirmar"></button>   
-  <p-messages [value]="msgs"></p-messages>
-
+  <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" ></p-confirmDialog>
+  <button type="button" [disabled]="!form.valid" (click)="onSubmit(form)" pButton icon="pi pi-check" label="Gravar"></button>
+  <p-messages [value]="msgs"></p-messages>  
+  
   <!-- button class="btn btn-primary" [disabled]="!form.valid" type="submit">Submit</button -->
   
 </form>

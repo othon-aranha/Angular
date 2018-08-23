@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
 import { ButtonModule } from 'primeng/primeng';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, Message } from 'primeng/api';
 
 
 
@@ -26,14 +26,16 @@ export class DominioComponent implements OnInit {
   dominios: Dominio[];
   optDominios: String[];
   text: string;
+  msgs: Message[] = [];
 
 
   constructor(private formBuilder: FormBuilder,
               private dominioService: DominioService,
               private route: ActivatedRoute,
+              private router: RouterModule,
               private confirmationService: ConfirmationService) {
-                this.populaDominio('DOMINIOS_ACESSO', '');
-               }
+              this.populaDominio('DOMINIOS_ACESSO', '');
+  }
 
   ngOnInit() {
     if ( this.route.snapshot.paramMap.has('id') ) {
@@ -102,21 +104,32 @@ export class DominioComponent implements OnInit {
   }
 
   GravarDominio() {
-  if ( this.id ) {
-    return this.dominioService.updateDominio(this.dominio);
-  } else {
-    return this.dominioService.addDominio(this.dominio);
+    if ( this.id ) {
+      return this.dominioService.updateDominio(this.dominio);
+    } else {
+      return this.dominioService.addDominio(this.dominio);
+    }
   }
-  }
+
 
   onSubmit(form): void {
 
-    this.confirmationService.confirm({
-      message: 'Confirma a operação ?',
-      header: 'Confirmação',
-      icon: 'pi pi-exclamation-triangle',
-      accept: this.GravarDominio();
-  });
+    let confirmation = null;
+    confirmation = this.confirmationService.confirm({message: 'Confirma a operação?' , 
+    header: 'Confirmação' ,
+    icon: 'pi pi-exclamation-triangle' ,
+    accept: () => {
+          this.GravarDominio();
+          this.form.reset();
+          this.msgs = [{severity: 'info', summary: 'Confirmado', detail: 'You have accepted'}];
+      }
+    });
+
+    /*
+    if ( this.msgs[0].summary === 'Confirmado' ) {
+      this.GravarDominio();
+    }
+    */
     // this.GravarDominio();
     // console.log(form);
     // console.log(this.dominio);
