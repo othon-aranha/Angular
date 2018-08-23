@@ -48,7 +48,7 @@ export class DominioListComponent implements OnInit {
   deleteDominio(dominio: Dominio) {
     let index = -1;
     for (let i = 0; i < this.dominios.length; i++) {
-      if (this.dominios[i].id === dominio.id) {
+      if ( this.dominios[i].id === dominio.id ) {
           index = i;
           break;
       }

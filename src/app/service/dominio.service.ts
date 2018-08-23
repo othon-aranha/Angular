@@ -1,3 +1,4 @@
+import { HttpErrorHandler } from './http-error-handler.service';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -31,11 +32,15 @@ export class DominioService {
 
 
   getDominios() {
-    return this.http.get<any[]>(this.url + '/dominios');
+    return this.http.get<Dominio[]>(this.url + '/dominios');
   }
 
   getDominioPeloNome(nome: String) {
-    return this.http.get<any[]>(this.url + '/nome/' + nome);
+    return this.http.get<Dominio[]>(this.url + '/nome/' + nome);
+  }
+
+  getDominioPeloNomeeDescricao(nome, descricao: String) {
+    return this.http.get<Dominio[]>(this.url + '/nome/' + nome + '/descricao/' + descricao, {headers: this.headers});
   }
 
   getDominio(id: string): Observable<Dominio> {

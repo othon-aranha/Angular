@@ -3,14 +3,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
+import { ButtonModule } from 'primeng/primeng';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+
+
 
 import { Dominio } from '../domain/dominio';
 import { DominioService } from '../service/dominio.service';
-
-interface OptionDominio {
-  name: string;
-  code: string;
- }
 
 @Component({
   selector: 'app-dominio',
@@ -23,14 +23,17 @@ export class DominioComponent implements OnInit {
   params: ParamMap;
   form: FormGroup;
   dominio: Dominio;
-  dominios = [];
-  optDominios: OptionDominio[];
-  selectedOpt: string;
+  dominios: Dominio[];
+  optDominios: String[];
+  text: string;
 
 
   constructor(private formBuilder: FormBuilder,
               private dominioService: DominioService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private confirmationService: ConfirmationService) {
+                this.populaDominio('DOMINIOS_ACESSO', '');
+               }
 
   ngOnInit() {
     if ( this.route.snapshot.paramMap.has('id') ) {
@@ -45,30 +48,52 @@ export class DominioComponent implements OnInit {
     this.recuperarDominio(this.id);
     }
 
-    this.populaDominio();
+    this.inicializaForm();
 
+  }
+
+  inicializaForm() {
     if ( this.dominio ) {
       this.form = this.formBuilder.group({
         nome: [this.dominio.nome, [Validators.required, Validators.minLength(6)] ],
-        cd: [this.dominio.cd, [Validators.required, Validators.minLength(6)] ],
-        descricao: [this.dominio.descricao, [Validators.required, Validators.minLength(2)] ]
+        cd: [this.dominio.cd, [Validators.required, Validators.minLength(1)] ],
+        descricao: [this.dominio.descricao, [Validators.required, Validators.minLength(1)] ]
       });
     } else {
      this.form = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(6)] ],
-      cd: ['', [Validators.required, Validators.minLength(6)] ],
-      descricao: ['', [Validators.required, Validators.minLength(2)] ]
-    }); }
-
+      cd: ['', [Validators.required, Validators.minLength(1)] ],
+      descricao: ['', [Validators.required, Validators.minLength(1)] ]
+    });
+   }
   }
 
-  populaDominio() {
+
+  populaDominio(nome, descricao: string) {
    // Carregando os dominios do acesso
-   this.dominioService.getDominioPeloNome('DOMINIOS_ACESSO').subscribe(data => this.dominios = data);
-   this.optDominios = [];
-   this.optDominios.push({name: 'Selecione um Domínio', code: ''});
-   for (let i = 0; i < this.dominios.length; i++) {
-    this.optDominios.push({name: this.optDominios[i].name, code: this.dominios[i].descricao});
+   this.dominios = [];
+   if ( descricao === '' ) {
+    this.dominioService.getDominioPeloNome(nome).subscribe(data => {
+      this.dominios = data;
+    });
+   } else {
+    this.dominioService.getDominioPeloNomeeDescricao(nome, descricao).subscribe(data => {
+      this.dominios = data;
+    });
+   }
+  this.populaAutoComplete();
+  }
+
+
+ search(event) {
+  this.optDominios = [];
+  this.populaDominio('DOMINIOS_ACESSO', event.query);
+  this.populaAutoComplete();
+  }
+
+  populaAutoComplete() {
+    for (let i = 0; i < this.dominios.length; i++) {
+      this.optDominios.push(this.dominios[i].descricao);
     }
   }
 
@@ -77,7 +102,7 @@ export class DominioComponent implements OnInit {
   }
 
   GravarDominio() {
-  if (this.dominio.id) {
+  if ( this.id ) {
     return this.dominioService.updateDominio(this.dominio);
   } else {
     return this.dominioService.addDominio(this.dominio);
@@ -85,7 +110,19 @@ export class DominioComponent implements OnInit {
   }
 
   onSubmit(form): void {
-    this.GravarDominio();
+
+    this.confirmationService.confirm({
+      message: 'Confirma a operação ?',
+      header: 'Confirmação',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+          this.msgs = [{severity: 'info', summary: 'Confirmed', detail: 'You have accepted'}];
+      },
+      reject: () => {
+          this.msgs = [{severity: 'info', summary: 'Rejected', detail: 'You have rejected'}];
+      }
+  });
+    // this.GravarDominio();
     // console.log(form);
     // console.log(this.dominio);
   }
