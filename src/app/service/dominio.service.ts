@@ -43,6 +43,10 @@ export class DominioService {
     return this.http.get<Dominio[]>(this.url + '/nome/' + nome + '/descricao/' + descricao, {headers: this.headers});
   }
 
+  getDominioPeloNomeEDescricao(nome: String, descricao: String) {
+    return this.http.get<any[]>(this.url + '/nome/' + nome + '/descricao/' + descricao);
+  }
+
   getDominio(id: string): Observable<Dominio> {
     return this.http.get<Dominio>(this.getDominioUrl(id));
   }
