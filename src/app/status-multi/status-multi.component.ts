@@ -12,7 +12,7 @@ export class StatusMultiComponent implements OnInit {
   @Output() onSelecionarStatus = new EventEmitter<String[]>();
 
   listStatus = [];
-  selectedStatus = [];
+  selectedStatus: String[] = [];
 
   constructor() { }
 
@@ -22,7 +22,7 @@ export class StatusMultiComponent implements OnInit {
       {label: 'Inativo', value: 'INATIVO'}];
   }
 
-  onselecionarStatus(status: string[]) {
+  onselecionarStatus(status: String[]) {
     this.selectedStatus = status;
     console.log(this.selectedStatus);
     this.onSelecionarStatus.emit(this.selectedStatus);

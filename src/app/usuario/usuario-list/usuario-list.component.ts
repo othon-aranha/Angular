@@ -72,7 +72,7 @@ export class UsuarioListComponent implements OnInit {
     if ( tipo.length === 0 ) {
       return this.usuarioService.listarUsuariosporTipo('').subscribe(dados => this.usuarios = dados);
     } else {
-      return this.usuarioService.listarUsuariosporTipo(tipo.join()).subscribe(dados => this.usuarios = dados);
+      return this.usuarioService.listarUsuariosporTipoEStatus(tipo.join(), status.join()).subscribe(dados => this.usuarios = dados);
     }
   }
 

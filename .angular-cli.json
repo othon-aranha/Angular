@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "$schema": "../node_modules/@angular/cli/lib/config/schema.json",
   "project": {
     "name": "acesso-ui"
   },
@@ -56,6 +56,9 @@
     }
   },
   "defaults": {
+    "serve": {
+      "proxyConfig": "./proxy.config.js"
+    },
     "styleExt": "css",
     "component": {}
   }

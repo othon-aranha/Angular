@@ -12,7 +12,7 @@ export class TipoUsuarioMultiComponent implements OnInit {
     @Output() onSelecionarTipoUsuario = new EventEmitter<String[]>();
 
     tipoUsuario = [];
-    selectedTipoUsuario = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
+    selectedTipoUsuario: String[] = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
 
     constructor() {
       this.tipoUsuario = [
@@ -31,6 +31,7 @@ export class TipoUsuarioMultiComponent implements OnInit {
     }
 
     onselecionarTipoUsuario(tipo: String[]) {
+      this.selectedTipoUsuario = tipo;
       this.onSelecionarTipoUsuario.emit(this.selectedTipoUsuario);
     }
 }

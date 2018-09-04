@@ -38,7 +38,7 @@ import { UsuarioModule } from './usuario/usuario.module';
     BrowserAnimationsModule,
     ButtonModule,
     CalendarModule,
-    DataTableModule, 
+    DataTableModule,
     InputMaskModule,
     InputTextModule,
     InputSwitchModule,
