@@ -1,8 +1,7 @@
 <form class="form-vertical" [formGroup]="form" (ngSubmit)="onSubmit(form)">
   <div class="form-group ui-g-12">
     <mat-form-field class="example-full-width">
-      <input matInput
-             [formControl]="form" 
+      <input matInput              
              name="sigla" 
              placeholder="Sigla do Tribunal"
              [class.invalid]="form.controls['sigla'].touched && !form.controls['sigla'].valid">
@@ -11,8 +10,7 @@
 
   <div class="form-group ui-g-12">
     <mat-form-field class="example-full-width">
-      <input matInput 
-             [formControl]="form" 
+      <input matInput              
              name="nome" 
              placeholder="Nome de Tribunal" 
              [class.invalid]="form.controls['nome'].touched && !form.controls['nome'].valid">
@@ -21,8 +19,7 @@
 
   <div class="form-group ui-g-12">
     <mat-form-field class="example-full-width">
-      <input matInput
-             [formControl]="form"
+      <input matInput             
              name="logradouro" 
              placeholder="Logradouro"
              [class.invalid]="form.controls['logradouro'].touched && !form.controls['logradouro'].valid">
@@ -31,8 +28,7 @@
 
   <div class="form-group ui-g-12">
     <mat-form-field class="example-full-width">
-      <input matInput 
-             [formControl]="form"
+      <input matInput             
              name="bairro" 
              placeholder="Bairro"
              [class.invalid]="form.controls['bairro'].touched && !form.controls['bairro'].valid">
@@ -42,7 +38,7 @@
 
   <div class="form-group ui-g-12">
     <mat-form-field>
-      <mat-select   placeholder="UF" [formControl]="form">
+      <mat-select   placeholder="UF" >
         <mat-option *ngFor="let uf of ufs" [value]="uf.value">
           {{uf.viewValue}}
         </mat-option>
