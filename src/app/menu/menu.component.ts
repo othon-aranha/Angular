@@ -16,10 +16,16 @@ export class MenuComponent implements OnInit {
     this.items = [
     {label: 'Cadastro', icon: 'fa-compose',
      items: [{
-              label: 'Módulos',
+              label: 'Tribunal',
               icon: 'fa-bar-chart',
-              routerLink: '/modulos'
-     }]
+              routerLink: '/tribunal'
+     },
+     {
+      label: 'Módulos',
+      icon: 'fa-bar-chart',
+      routerLink: '/modulos'
+    }
+    ]
     },
     {separator: true},
     {label: 'Calendar', icon: 'fa-calendar'},

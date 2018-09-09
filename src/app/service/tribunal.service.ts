@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Tribunal } from '../domain/tribunal';
 
 @Injectable()
 export class TribunalService {
@@ -7,8 +8,12 @@ export class TribunalService {
 
   constructor(private http: HttpClient) { }
 
-  retornaTribunalPadrao() {
-    return this.http.get<any[]>(this.tribunalUrl);
+  listaTribunais() {
+    return this.http.get<Tribunal[]>(this.tribunalUrl + '/tribunais');
+  }
+
+  recuperarTribunal(id: string) {
+    return this.http.get<Tribunal>(this.tribunalUrl + '/' + id);
   }
 
 }

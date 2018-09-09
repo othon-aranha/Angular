@@ -2,6 +2,7 @@ import { TribunalService } from './../../service/tribunal.service';
 import { MenuItem, Message } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 import { Tribunal } from '../../domain/tribunal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tribunal-list',
@@ -10,14 +11,14 @@ import { Tribunal } from '../../domain/tribunal';
 })
 export class TribunalListComponent implements OnInit {
   cols: any[];
-  tribunais = [];
+  tribunais: Tribunal[] = [];
   alias = [];
   tribunal: Tribunal = null;
   selectedTribunal: Tribunal = null;
   items: MenuItem[];
   msgs: Message[];
   displayDialog: boolean;
-  constructor(private tribunalService: TribunalService, , private router: Router) { }
+  constructor(private tribunalService: TribunalService, private router: Router) { }
 
   ngOnInit() {
 
@@ -31,20 +32,25 @@ export class TribunalListComponent implements OnInit {
 
         // Itens do popup menu //
         this.items = [
-          { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewTribunal(this.selectedTribunal) },
-          { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteTribunal(this.selectedTribunal) }
+              { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewTribunal(this.selectedTribunal) },
+              { label: 'Novo', icon: 'fa-search', command: (event) => this.newTribunal() },
+              { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteTribunal(this.selectedTribunal) }
         ];
 
         this.consultar();
   }
 
   public consultar() {
-    return this.tribunalService.retornaTribunalPadrao().subscribe(dados => this.tribunais = dados);
+    return this.tribunalService.listaTribunais().subscribe(dados => this.tribunais = dados);
   }
 
 
   viewTribunal(tribunal: Tribunal) {
     this.router.navigate(['/tribunal/', tribunal.id]);
+  }
+
+  newTribunal() {
+    this.router.navigate(['/tribunal/']);
   }
 
   deleteTribunal(tribunal: Tribunal) {

@@ -32,7 +32,6 @@ export class DominioComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private dominioService: DominioService,
               private route: ActivatedRoute,
-              private router: RouterModule,
               private confirmationService: ConfirmationService) {
               this.populaDominio('DOMINIOS_ACESSO', '');
   }
@@ -115,7 +114,7 @@ export class DominioComponent implements OnInit {
   onSubmit(form): void {
 
     let confirmation = null;
-    confirmation = this.confirmationService.confirm({message: 'Confirma a operação?' , 
+    confirmation = this.confirmationService.confirm({message: 'Confirma a operação?' ,
     header: 'Confirmação' ,
     icon: 'pi pi-exclamation-triangle' ,
     accept: () => {

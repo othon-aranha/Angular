@@ -1,3 +1,5 @@
+import { Link } from './link';
+
 export class Tribunal {
     id: number;
     sigla: string;
@@ -7,7 +9,7 @@ export class Tribunal {
     uf: string;
     cep: string;
     cidade: string;
-    telefone: null;
+    telefone: string;
     cgc: string;
     numeroContrato: string;
     descricaoContrato: string;

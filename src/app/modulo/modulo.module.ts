@@ -13,6 +13,7 @@ import { ModuloRoutingModule } from './modulo.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModuloService } from '../service/modulo.service';
 import { ServidorListComponent } from '../servidor-list/servidor-list.component';
+import { ServidorService } from '../service/servidor.service';
 
 @NgModule({
   imports: [
@@ -30,6 +31,6 @@ import { ServidorListComponent } from '../servidor-list/servidor-list.component'
   declarations: [ModuloListComponent, TipoAplicacaoMultiComponent, ServidorListComponent],
   exports: [TipoAplicacaoMultiComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
-  providers: [ModuloService, TipoAplicacaoMultiComponent]
+  providers: [ModuloService, ServidorService, TipoAplicacaoMultiComponent]
 })
 export class ModuloModule { }

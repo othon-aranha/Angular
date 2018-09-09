@@ -25,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DominioModule } from './dominio/dominio.module';
 import { ModuloModule } from './modulo/modulo.module';
 import { UsuarioModule } from './usuario/usuario.module';
+import { TribunalModule } from './tribunal/tribunal.module';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { UsuarioModule } from './usuario/usuario.module';
     ModuloModule,
     DominioModule,
     UsuarioModule,
+    TribunalModule,
     AppRoutingModule
   ],
   providers: [

@@ -4,9 +4,9 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Component } from '@
 import { CommonModule } from '@angular/common';
 
 import { ButtonModule, DropdownModule, GrowlModule, ContextMenuModule } from '../../../node_modules/primeng/primeng';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
-import {AutoCompleteModule} from 'primeng/autocomplete';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 import { DominioComponent } from './dominio.component';
 import { DominioRoutingModule } from './dominio.routing.module';
