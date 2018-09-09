@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
        {
         label: 'Tribunal',
         icon: 'fa-bar-chart',
-        routerLink: '/tribunal'
+        routerLink: '/tribunal-list'
        },
        {
         label: 'Usuários',
