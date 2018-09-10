@@ -3,7 +3,8 @@ import { ModuloService } from '../service/modulo.service';
 import { MenuItem, Message } from 'primeng/api';
 import { Modulo } from '../domain/modulo';
 import { TipoAplicacaoMultiComponent } from '../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
-import { ManutencaoService } from '../service/maquina.service';
+import { MaquinaServidora } from '../domain/maquina-servidora';
+import { MaquinaService } from '../service/maquina.service';
 
 @Component({
   selector: 'app-modulo',
@@ -27,7 +28,7 @@ export class ModuloListComponent implements OnInit {
 
 
   // tslint:disable-next-line:max-line-length
-  constructor(private moduloService: ModuloService, private manutencaoService: ManutencaoService, private tipoAplic: TipoAplicacaoMultiComponent) {
+  constructor(private moduloService: ModuloService, private maquinaService: MaquinaService, private tipoAplic: TipoAplicacaoMultiComponent) {
    }
 
   ngOnInit() {
@@ -61,7 +62,6 @@ export class ModuloListComponent implements OnInit {
       {header: 'Status do Modulo', field: 'statusModulo', classe: 'ui-p-2'}
   ];
 
-  this.carregaListaServidores();
 
   // Itens do popup menu //
   this.items = [
@@ -80,19 +80,13 @@ export class ModuloListComponent implements OnInit {
     this.consultarporTipodeAplicacao(this.tipo);
   }
 
-  carregaListaServidores() {
-    this.alias =
-    [
-    {label: 'TRE-AC', value: 'AC1-ADM'},
-    {label: 'TRE-AL', value: 'AL1-ADM'},
-    {label: 'TRE-AM', value: 'AM1-ADM'},
-    {label: 'TRE-AP', value: 'AP1-ADM'},
-    {label: 'TRE-BA', value: 'BA1-ADM'},
-    {label: 'TRE-CE', value: 'CE1-ADM'},
-    {label: 'TRE-DF', value: 'DF1-ADM'},
-    {label: 'TRE-ES', value: 'ES1-ADM'},
-    {label: 'TRE-GO', value: 'GO1-ADM'}
-   ];
+  carregaListaServidores(modulo: string) {
+    this.alias = [];
+    let manutencoes: MaquinaServidora[] = [];
+    this.maquinaService.listarMaquinas().subscribe(dados => manutencoes = dados);
+    for (let i = 0; i < manutencoes.length; i++) {
+      this.alias[i] = [{label: manutencoes[i].descricao , value: manutencoes[i].id.alias}];
+    }
   }
 
   alteraTipoModulo(event) {
@@ -138,6 +132,7 @@ export class ModuloListComponent implements OnInit {
     this.displayDialog = true;
     this.modulo = modulo;
     if ( modulo.alias != null ) {
+      this.carregaListaServidores(modulo.sigla);
       this.retornaAlias(modulo.alias);
     }
     // this.listServidor.siglaModulo = modulo.sigla;

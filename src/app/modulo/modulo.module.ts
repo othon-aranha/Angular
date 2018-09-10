@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModuloService } from '../service/modulo.service';
 import { ServidorListComponent } from '../servidor-list/servidor-list.component';
 import { ServidorService } from '../service/servidor.service';
+import { MaquinaService } from '../service/maquina.service';
 
 @NgModule({
   imports: [
@@ -31,6 +32,6 @@ import { ServidorService } from '../service/servidor.service';
   declarations: [ModuloListComponent, TipoAplicacaoMultiComponent, ServidorListComponent],
   exports: [TipoAplicacaoMultiComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
-  providers: [ModuloService, ServidorService, TipoAplicacaoMultiComponent]
+  providers: [ModuloService, ServidorService, MaquinaService, TipoAplicacaoMultiComponent]
 })
 export class ModuloModule { }
