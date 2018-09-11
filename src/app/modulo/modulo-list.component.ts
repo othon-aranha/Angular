@@ -89,6 +89,12 @@ export class ModuloListComponent implements OnInit {
     }
   }
 
+  onRowSelect(event) {
+    this.selectedModulo = this.cloneModulo(event.data);
+    this.carregaListaServidores(this.selectedModulo.id);
+    this.displayDialog = true;
+  }
+
   alteraTipoModulo(event) {
     const modulos = [...this.modulos];
     modulos[this.modulos.indexOf(this.selectedModulo)] = this.modulo;
