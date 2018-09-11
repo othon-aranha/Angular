@@ -80,10 +80,10 @@ export class ModuloListComponent implements OnInit {
     this.consultarporTipodeAplicacao(this.tipo);
   }
 
-  carregaListaServidores(modulo: string) {
+  carregaListaServidores(cdModulo: number) {
     this.alias = [];
     let manutencoes: MaquinaServidora[] = [];
-    this.maquinaService.listarMaquinas().subscribe(dados => manutencoes = dados);
+    this.maquinaService.listarServidoresdoModulo(cdModulo).subscribe(dados => manutencoes = dados);
     for (let i = 0; i < manutencoes.length; i++) {
       this.alias[i] = [{label: manutencoes[i].descricao , value: manutencoes[i].id.alias}];
     }
@@ -132,7 +132,7 @@ export class ModuloListComponent implements OnInit {
     this.displayDialog = true;
     this.modulo = modulo;
     if ( modulo.alias != null ) {
-      this.carregaListaServidores(modulo.sigla);
+      this.carregaListaServidores(modulo.id);
       this.retornaAlias(modulo.alias);
     }
     // this.listServidor.siglaModulo = modulo.sigla;

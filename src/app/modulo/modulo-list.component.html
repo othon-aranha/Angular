@@ -46,7 +46,9 @@
             </div>            
             <div class="ui-g">
                 <label for="alias">Alias</label>
-                <p-dropdown [options]="alias" [(ngModel)]="modulo.alias" placeholder="Selecione um Alias" [showClear]="true" [style]="{'width':'150px'}"></p-dropdown>
+            </div>
+            <div class="ui-g">
+                <p-dropdown [options]="alias" [(ngModel)]="modulo.alias" optionLabel="label" placeholder="Selecione um Alias" [showClear]="true" [style]="{'width':'150px'}"></p-dropdown>
 		    </div>	
             <div class="ui-g">
                 <label for="esquema">Esquema</label>

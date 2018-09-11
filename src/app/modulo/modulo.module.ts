@@ -3,7 +3,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { DialogModule } from 'primeng/dialog';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { TableModule } from 'primeng/table';
-import { InputTextModule, ConfirmDialogModule } from 'primeng/primeng';
+import { InputTextModule, ConfirmDialogModule, DropdownModule } from 'primeng/primeng';
 import { GrowlModule } from 'primeng/primeng';
 
 import { ModuloListComponent } from './modulo-list.component';
@@ -23,6 +23,7 @@ import { MaquinaService } from '../service/maquina.service';
     BrowserAnimationsModule,
     ContextMenuModule,
     DialogModule,
+    DropdownModule,
     GrowlModule,
     InputTextModule,
     MultiSelectModule,

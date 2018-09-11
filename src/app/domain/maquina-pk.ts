@@ -1,4 +1,4 @@
-export class MaquinaPk {
+export interface MaquinaPk {
     cdTrib: number;
     alias: string;
 }

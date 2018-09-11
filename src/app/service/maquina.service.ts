@@ -12,4 +12,8 @@ export class MaquinaService {
     return  this.http.get<MaquinaServidora[]>(this.manutencaoUrl + '/aliases');
   }
 
+  listarServidoresdoModulo(cdModulo: number) {
+    return  this.http.get<MaquinaServidora[]>(this.manutencaoUrl + '/cdModulo/' + cdModulo);
+  }
+
 }
