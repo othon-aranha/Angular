@@ -50,7 +50,6 @@ export class DominioComponent implements OnInit {
     }
 
     this.inicializaForm();
-
   }
 
   inicializaForm() {

@@ -6,7 +6,7 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule, ConfirmDialogModule, DropdownModule } from 'primeng/primeng';
 import { GrowlModule } from 'primeng/primeng';
 
-import { ModuloListComponent } from './modulo-list.component';
+import { ModuloListComponent } from './modulo-list/modulo-list.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModuloRoutingModule } from './modulo.routing.module';
@@ -15,6 +15,7 @@ import { ModuloService } from '../service/modulo.service';
 import { ServidorListComponent } from '../servidor-list/servidor-list.component';
 import { ServidorService } from '../service/servidor.service';
 import { MaquinaService } from '../service/maquina.service';
+import { ModuloComponent } from './modulo.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { MaquinaService } from '../service/maquina.service';
     TableModule,
     ModuloRoutingModule
   ],
-  declarations: [ModuloListComponent, TipoAplicacaoMultiComponent, ServidorListComponent],
+  declarations: [ModuloListComponent, ModuloComponent, TipoAplicacaoMultiComponent, ServidorListComponent],
   exports: [TipoAplicacaoMultiComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
   providers: [ModuloService, ServidorService, MaquinaService, TipoAplicacaoMultiComponent]

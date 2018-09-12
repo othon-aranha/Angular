@@ -8,6 +8,10 @@ export class ModuloService {
 
   constructor(private http: HttpClient) { }
 
+  recuperarModuloPorId(id: string) {
+    return this.http.get<any>(this.moduloUrl + '/' + id);
+  }
+
   listarModulos() {
     return this.http.get<any[]>(this.moduloUrl);
   }

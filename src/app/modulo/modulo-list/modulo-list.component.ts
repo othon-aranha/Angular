@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ModuloService } from '../service/modulo.service';
+import { ModuloService } from '../../service/modulo.service';
 import { MenuItem, Message } from 'primeng/api';
-import { Modulo } from '../domain/modulo';
-import { TipoAplicacaoMultiComponent } from '../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
-import { MaquinaServidora } from '../domain/maquina-servidora';
-import { MaquinaService } from '../service/maquina.service';
+import { Modulo } from '../../domain/modulo';
+import { TipoAplicacaoMultiComponent } from '../../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
+import { MaquinaService } from '../../service/maquina.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modulo',
@@ -28,7 +28,9 @@ export class ModuloListComponent implements OnInit {
 
 
   // tslint:disable-next-line:max-line-length
-  constructor(private moduloService: ModuloService, private maquinaService: MaquinaService, private tipoAplic: TipoAplicacaoMultiComponent) {
+  constructor(private moduloService: ModuloService,
+              private tipoAplic: TipoAplicacaoMultiComponent,
+              private router: Router) {
    }
 
   ngOnInit() {
@@ -71,27 +73,13 @@ export class ModuloListComponent implements OnInit {
 
   }
 
-  public consultar() {
-    return this.moduloService.listarModulos().subscribe(dados => this.modulos = dados);
-  }
-
   onSelecionarTipoAplicacao(tipoAplic: string[]) {
     this.tipo = tipoAplic;
     this.consultarporTipodeAplicacao(this.tipo);
   }
 
-  carregaListaServidores(cdModulo: number) {
-    this.alias = [];
-    let manutencoes: MaquinaServidora[] = [];
-    this.maquinaService.listarServidoresdoModulo(cdModulo).subscribe(dados => manutencoes = dados);
-    for (let i = 0; i < manutencoes.length; i++) {
-      this.alias[i] = [{label: manutencoes[i].descricao , value: manutencoes[i].id.alias}];
-    }
-  }
-
   onRowSelect(event) {
     this.selectedModulo = this.cloneModulo(event.data);
-    this.carregaListaServidores(this.selectedModulo.id);
     this.displayDialog = true;
   }
 
@@ -125,26 +113,8 @@ export class ModuloListComponent implements OnInit {
     }
   }
 
-  retornaAlias(alias: string) {
-    this.selectedAlias = [];
-    for (let i = 0; i < this.alias.length; i++) {
-      if ( alias === this.alias[i].value ) {
-        this.selectedAlias = this.alias[i];
-      }
-    }
-  }
-
   viewModulo(modulo: Modulo) {
-    this.displayDialog = true;
-    this.modulo = modulo;
-    if ( modulo.alias != null ) {
-      this.carregaListaServidores(modulo.id);
-      this.retornaAlias(modulo.alias);
-    }
-    // this.listServidor.siglaModulo = modulo.sigla;
-    // this.selectedAlias = [{label: 'TRE-AC', value: 'AC1-ADM'}];
-    // this.listServidor.carregarTodosServidores();
-    // this.listServidor.carregarServidoresdoModulo();
+    this.router.navigate(['/modulo/', modulo.id]);
   }
 
   cloneModulo(m: Modulo): Modulo {
