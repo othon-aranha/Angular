@@ -61,12 +61,12 @@ export class ModuloComponent implements OnInit {
   inicializaForm() {
     if ( this.modulo ) {
       this.form = this.formBuilder.group({
-        id:   [this.modulo.id, [Validators.required, Validators.minLength(1)] ],
+        id:   [this.id, [Validators.required, Validators.minLength(1)] ],
         sigla: [this.modulo.sigla, [Validators.required, Validators.minLength(3)] ],
-        alias: [this.modulo.alias, [Validators.required, Validators.minLength(1)] ],
+        alias: [this.selectedAlias, [Validators.required, Validators.minLength(1)] ],
         esquema: [this.modulo.esquema, [Validators.required, Validators.minLength(3)] ],
         versao: [this.modulo.versao, [Validators.required, Validators.minLength(7)] ],
-        mensagemCompartilhada: [this.modulo.mensagemCompartilhada, 
+        mensagemCompartilhada: [this.modulo.mensagemCompartilhada,
                               [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ],
         controlaAcesso: [this.modulo.controlaAcesso, [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ]
       });

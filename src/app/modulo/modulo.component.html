@@ -1,41 +1,43 @@
 <form class="form-vertical" [formGroup]="form" (ngSubmit)="onSubmit(form)">
-    <div class="ui-g ui-fluid" *ngIf="modulo">
+    <div class="ui-g ui-fluid">
         <div class="ui-g-12 ui-fluid">
             <div class="ui-g">
                 <label for="id">Id</label>
-                <input pInputText id="id" [(ngModel)]="modulo.id" [disabled]="true" maxlength="6"/>
+                <input pInputText id="id" [(ngModel)]="id" [disabled]="true" maxlength="6"/>
             </div>
             <div class="ui-g">
                 <label for="id">Sigla</label>
                 <input pInputText id="id" [(ngModel)]="modulo.sigla" [disabled]="true"/>
             </div>            
-            <div class="ui-g">
-                <label for="alias">Alias</label>
+            <div class="ui-g ui-fluid">
+                <label for="id">Alias</label>
             </div>
             <div class="ui-g">
-                <p-dropdown [options]="alias" [(ngModel)]="modulo.alias" placeholder="Selecione um Alias" [showClear]="true" [style]="{'width':'150px'}">
-                    <ng-template let-item pTemplate="alias">
-                        <span style="vertical-align:middle">{{item.label}}</span>
-                    </ng-template>             
-                </p-dropdown>
+                <p-dropdown [options]="alias" [(ngModel)]="selectedAlias"  placeholder="Selecione um Alias"></p-dropdown>
 		    </div>	
-            <div class="ui-g">
+            <div class="ui-g-4">
                 <label for="esquema">Esquema</label>
                 <input pInputText id="esquema" [(ngModel)]="modulo.esquema" maxlength="30" size="20"/>
             </div>                        
-            <div class="ui-g">
+            <div class="ui-g-4">
                 <label for="versao">Versão</label>
                  <input pInputText id="versao" [(ngModel)]="modulo.versao" [disabled]="true"/>
             </div>
-        </div>
-        <div class="ui-g-12 ui-fluid">
-            <div class="ui-g-6">
-               <label for="tabela">Tabela Mensagem</label>
-               <p-inputSwitch onLabel="Sim" offLabel="Não" [(ngModel)]="modulo.mensagemCompartilhada"></p-inputSwitch>
+            <div class="ui-g-2">
+                <div class="ui-g"> 
+                    <label for="tabela">Tabela Mensagem</label>
+                </div>
+                <div class="ui-g">
+                    <p-inputSwitch onLabel="Sim" offLabel="Não" [(ngModel)]="modulo.mensagemCompartilhada"></p-inputSwitch>
+                </div>
             </div>            
-             <div class="ui-g-6">
-                <label for="tabela">Controla Acesso</label>
-                <p-inputSwitch onLabel="Sim" offLabel="Não" [(ngModel)]="modulo.controlaAcesso"></p-inputSwitch>
+             <div class="ui-g-2">
+                <div class="ui-g"> 
+                    <label for="tabela">Controla Acesso</label>
+                </div>
+                <div class="ui-g">    
+                    <p-inputSwitch onLabel="Sim" offLabel="Não" [(ngModel)]="modulo.controlaAcesso"></p-inputSwitch>
+                </div>    
              </div>             
         </div>
         <div class="ui-g-12 ui-fluid">
@@ -48,9 +50,13 @@
         </div> 
     </div>                   
     <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="fa-close" (click)="delete()" label="Excluir"></button>
+        <div class="ui-g-12 ui-dialog-buttonpane ui-helper-clearfix">
+            <div class="ui-g-6">
+            <button type="button" pButton icon="fa-close" label="Cancelar"></button>
+            </div>
+            <div class="ui-g-6">
             <button type="button" pButton icon="fa-check" (click)="save()" label="Salvar"></button>
+            </div>
         </div>
     </p-footer>
 </form>
