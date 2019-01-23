@@ -5,8 +5,7 @@ import { TribunalListComponent } from './tribunal-list/tribunal-list.component';
 import { TribunalComponent } from './tribunal.component';
 
 const tribunalRoutes = [
-    {path: 'tribunal-list', component: TribunalListComponent},
-    {path: 'tribunal', component: TribunalComponent},
+    {path: 'tribunal', component: TribunalListComponent},
     {path: 'tribunal/:id', component: TribunalComponent}
 ];
 

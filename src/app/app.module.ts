@@ -1,3 +1,4 @@
+import { BarraNavComponent } from './barra-nav/barra-nav.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,8 +28,10 @@ import { ModuloModule } from './modulo/modulo.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { TribunalModule } from './tribunal/tribunal.module';
 
+
 @NgModule({
   declarations: [
+    BarraNavComponent,
     NavbarComponent,
     HomeComponent,
     LoginComponent,

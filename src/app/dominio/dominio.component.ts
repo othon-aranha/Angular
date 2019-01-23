@@ -1,10 +1,13 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+// import { switchMap } from 'rxjs/operators';
 
-import { ButtonModule } from 'primeng/primeng';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
+// import { ButtonModule, SelectItem } from 'primeng/primeng';
+// import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
+
 import { ConfirmationService, Message } from 'primeng/api';
 
 
@@ -24,7 +27,7 @@ export class DominioComponent implements OnInit {
   form: FormGroup;
   dominio: Dominio;
   dominios: Dominio[];
-  optDominios: String[];
+  optDominios = [];
   text: string;
   msgs: Message[] = [];
 
@@ -92,8 +95,11 @@ export class DominioComponent implements OnInit {
   }
 
   populaAutoComplete() {
-    for (let i = 0; i < this.dominios.length; i++) {
-      this.optDominios.push(this.dominios[i].descricao);
+    // this.optDominios.push({label: 'Informe o domínio', value: -1});
+    this.optDominios = [...this.optDominios, {label: 'Informe o domínio', value: -1}];
+    for (let i = 1; i < this.dominios.length; i++) {
+      this.optDominios = [...this.optDominios, {label: this.dominios[i].descricao, value: this.dominios[i].descricao}];
+      // this.optDominios.push({label: this.dominios[i].descricao, value: this.dominios[i].descricao});
     }
   }
 
@@ -111,7 +117,6 @@ export class DominioComponent implements OnInit {
 
 
   onSubmit(form): void {
-
     let confirmation = null;
     confirmation = this.confirmationService.confirm({message: 'Confirma a operação?' ,
     header: 'Confirmação' ,

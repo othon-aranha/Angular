@@ -18,22 +18,22 @@ export class HomeComponent implements OnInit {
       {
         label: 'Módulos',
         icon: 'fa-bar-chart',
-        routerLink: '/modulo-list'
+        routerLink: '/modulo'
        },
        {
         label: 'Tribunal',
         icon: 'fa-bar-chart',
-        routerLink: '/tribunal-list'
+        routerLink: '/tribunal'
        },
        {
         label: 'Usuários',
         icon: 'fa-bar-chart',
-        routerLink: '/usuario-list'
+        routerLink: '/usuario'
        },
        {
         label: 'Domínio',
         icon: 'fa-bar-chart',
-        routerLink: '/dominio-list'
+        routerLink: '/dominio'
        }
       ]
       },

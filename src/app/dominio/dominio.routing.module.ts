@@ -5,9 +5,9 @@ import { NgModule } from '@angular/core';
 
 
 const dominioRoutes = [
-    {path: 'dominio-list', component: DominioListComponent},
-    {path: 'dominio', component: DominioComponent},
-    {path: 'dominio/:id', component: DominioComponent}
+    {path: 'dominio', component: DominioListComponent},
+    {path: 'dominio/new', component: DominioComponent},
+    {path: 'dominio/:id/edit', component: DominioComponent}
 ];
 
 @NgModule({

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 
 const usuarioRoutes = [
-    {path: 'usuario-list', component: UsuarioListComponent}
+    {path: 'usuario', component: UsuarioListComponent}
 ];
 
 @NgModule({

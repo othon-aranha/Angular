@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ModuloService } from '../service/modulo.service';
 import { Message } from 'primeng/api';
 import { Modulo } from '../domain/modulo';
-import { TipoAplicacaoMultiComponent } from '../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 import { MaquinaServidora } from '../domain/maquina-servidora';
 import { MaquinaService } from '../service/maquina.service';
 import { ActivatedRoute } from '@angular/router';
@@ -30,8 +29,7 @@ export class ModuloComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private moduloService: ModuloService,
               private maquinaService: MaquinaService,
-              private route: ActivatedRoute,
-              private tipoAplic: TipoAplicacaoMultiComponent) {
+              private route: ActivatedRoute) {
     if ( this.route.snapshot.paramMap.has('id') ) {
         this.id = this.route.snapshot.paramMap.get('id');
     } else {
@@ -46,8 +44,6 @@ export class ModuloComponent implements OnInit {
       {label: 'Aplicação Web', value: 'WEB'},
       {label: 'Híbrida', value: 'HIBRIDO'}
     ];
-
-    this.tipo = this.tipoAplic.selectedTipo;
 
     this.modulo = new Modulo();
 
@@ -90,10 +86,11 @@ export class ModuloComponent implements OnInit {
 
   carregaListaServidores(cdModulo: number) {
     this.alias = [];
-    let manutencoes: MaquinaServidora[] = [];
+    this.alias = [...this.alias, {label: 'Selecione o Alias' , value: ''}];
+    let manutencoes: Array<MaquinaServidora> = [];
     this.maquinaService.listarServidoresdoModulo(cdModulo).subscribe(dados => manutencoes = dados);
-    for (let i = 0; i < manutencoes.length; i++) {
-      this.alias[i] = [{label: manutencoes[i].descricao , value: manutencoes[i].id.alias}];
+    for (let i = 1; i < manutencoes.length; i++) {
+      this.alias = [...this.alias, {label: manutencoes[i].descricao , value: manutencoes[i].id.alias}];
     }
   }
 

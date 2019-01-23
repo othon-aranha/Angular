@@ -4,8 +4,7 @@ import { ModuloListComponent } from './modulo-list/modulo-list.component';
 import { ModuloComponent } from './modulo.component';
 
 const moduloRoutes = [
-    {path: 'modulo-list', component: ModuloListComponent},
-    {path: 'modulo', component: ModuloComponent},
+    {path: 'modulo', component: ModuloListComponent},
     {path: 'modulo/:id', component: ModuloComponent}
 ];
 

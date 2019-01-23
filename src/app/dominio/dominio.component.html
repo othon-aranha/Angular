@@ -1,17 +1,20 @@
 <form class="form-vertical" [formGroup]="form" (ngSubmit)="onSubmit(form)">
   <div class="form-group ui-g-12">
-    <label for="nome"
-          [class.active]="dominio.nome"
-          data-error="Nome é obrigatório e precisa conter no mínimo 6 caracteres">
-        Domínio</label>
-    <p-autoComplete 
-        [(ngModel)]="dominio.nome"
+       <p-dropdown
+              formControlName="nome"
+              [options]="optDominios"
+              placeholder="Domínio"
+              optionLabel="label"
+              [class.invalid]="form.controls['nome'].touched && !form.controls['nome'].valid">
+      </p-dropdown>
+    <!--p-autoComplete         
         class="form-control" 
         formControlName="nome"
         [class.invalid]="form.controls['nome'].touched && !form.controls['nome'].valid"
         [suggestions]="dominios" 
         field="descricao"        
-        (completeMethod)="search($event)"></p-autoComplete>
+        (completeMethod)="search($event)">
+    </p-autoComplete-->
   </div>
 
   <div class="form-group ui-g-12">
@@ -23,8 +26,7 @@
              class="form-control" 
              formControlName="cd"  
              [class.invalid]="form.controls['cd'].touched && !form.controls['cd'].valid"
-             placeholder="Código" 
-             [(ngModel)]="dominio.cd"> 
+             placeholder="Código" > 
   </div>
 
   <div class="form-group ui-g-12">
@@ -36,8 +38,7 @@
              class="form-control" 
              formControlName="descricao"
              [class.invalid]="form.controls['descricao'].touched && !form.controls['descricao'].valid" 
-             placeholder="Descrição" 
-             [(ngModel)]="dominio.descricao"> 
+             placeholder="Descrição"> 
   </div>
 
   <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" ></p-confirmDialog>
