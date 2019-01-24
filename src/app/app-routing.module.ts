@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/home/home.component';
 
 import { UsuarioService } from './service/usuario.service';
 
@@ -11,10 +11,10 @@ import { UsuarioService } from './service/usuario.service';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'tribunal', loadChildren: './tribunal/tribunal.module#TribunalModule' },
-  { path: 'modulo', loadChildren: './modulo/modulo.module#ModuloModule' },
-  { path: 'usuario', loadChildren: './usuario/usuario.module#UsuarioModule' },
-  { path: 'dominio', loadChildren: './dominio/dominio.module#DominioModule' },
+  { path: 'tribunal', loadChildren: './pages/tribunal/tribunal.module#TribunalModule' },
+  { path: 'modulo', loadChildren: './pages/modulo/modulo.module#ModuloModule' },
+  { path: 'usuario', loadChildren: './pages/usuario/usuario.module#UsuarioModule' },
+  { path: 'dominio', loadChildren: './pages/dominio/dominio.module#DominioModule' },
   { path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 

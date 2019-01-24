@@ -1,3 +1,10 @@
+<nav class="bd-5">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a routerLink="/home">Cadastro</a></li>
+         <li class="breadcrumb-item"><a routerLink="/dominio">Domínio</a></li>
+         <li class="breadcrumb-item active">{{rota}}</li>
+       </ol>
+   </nav>
 <form class="form-vertical" [formGroup]="form" (ngSubmit)="onSubmit(form)">
   <div class="form-group ui-g-12">
        <p-dropdown

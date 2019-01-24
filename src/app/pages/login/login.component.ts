@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PasswordModule } from 'primeng/password';
-import { Usuario } from '../domain/usuario';
-import { AuthService } from '../service/auth.service';
+import { Usuario } from '../../domain/usuario';
+import { AuthService } from '../../service/auth.service';
 import { InputTextModule } from 'primeng/primeng';
 
 @Component({

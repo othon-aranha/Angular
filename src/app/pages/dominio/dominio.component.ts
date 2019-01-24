@@ -12,8 +12,8 @@ import { ConfirmationService, Message } from 'primeng/api';
 
 
 
-import { Dominio } from '../domain/dominio';
-import { DominioService } from '../service/dominio.service';
+import { Dominio } from '../../domain/dominio';
+import { DominioService } from '../../service/dominio.service';
 
 @Component({
   selector: 'app-dominio',
@@ -30,6 +30,7 @@ export class DominioComponent implements OnInit {
   optDominios = [];
   text: string;
   msgs: Message[] = [];
+  rota: string;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -42,8 +43,10 @@ export class DominioComponent implements OnInit {
   ngOnInit() {
     if ( this.route.snapshot.paramMap.has('id') ) {
       this.id = this.route.snapshot.paramMap.get('id');
+      this.rota = 'Editar';
     } else {
       this.id = null;
+      this.rota = 'Novo';
     }
 
     this.dominio = new Dominio();

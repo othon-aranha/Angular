@@ -2,8 +2,8 @@ import { MenuItem, Message } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 
 
-import { Dominio } from '../../domain/dominio';
-import { DominioService } from '../../service/dominio.service';
+import { Dominio } from '../../../domain/dominio';
+import { DominioService } from '../../../service/dominio.service';
 import { Router } from '@angular/router';
 
 @Component({

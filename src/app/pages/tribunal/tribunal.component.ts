@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Tribunal } from './../domain/tribunal';
-import { TribunalService } from '../service/tribunal.service';
+import { Tribunal } from './../../domain/tribunal';
+import { TribunalService } from '../../service/tribunal.service';
 import { Route, ActivatedRoute } from '@angular/router';
 
 

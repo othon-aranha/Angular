@@ -7,9 +7,10 @@ export class UsuarioService {
   private usuarioUrl = 'http://localhost:8080/usuario';
 
   headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
-  // headers.Headers().set('Access-Control-Allow-Origin', 'localhost');
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+   }
 
   listarUsuarios() {
     return this.http.get<any[]>(this.usuarioUrl + '/usuarios');

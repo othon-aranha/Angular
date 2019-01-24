@@ -6,11 +6,9 @@ export class ModuloDTO {
     id: number;
     sigla: string;
     nome: string;
-    nomeExecutavel: string;
     mensagemCompartilhada: boolean;
     controlaAcesso: string;
-    tipoModulo: TipoAplicacao[];
-    tipoAtualizacao: TipoAtualizacao[];
-    statusModulo: StatusModulo[];
-    versao: string;
+    tipoModulo: string[];
+    tipoAtualizacao: string[];
+    statusModulo: string[];
 }

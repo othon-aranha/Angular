@@ -16,25 +16,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
 
 import { ManutencaoService } from './service/manutencao.service';
 import { AuthService } from './service/auth.service';
 
 import { AppRoutingModule } from './app-routing.module';
-import { DominioModule } from './dominio/dominio.module';
-import { ModuloModule } from './modulo/modulo.module';
-import { UsuarioModule } from './usuario/usuario.module';
-import { TribunalModule } from './tribunal/tribunal.module';
+import { DominioModule } from './pages/dominio/dominio.module';
+import { ModuloModule } from './pages/modulo/modulo.module';
+import { UsuarioModule } from './pages/usuario/usuario.module';
+import { TribunalModule } from './pages/tribunal/tribunal.module';
 
 
 @NgModule({
   declarations: [
-    BarraNavComponent,
     NavbarComponent,
     HomeComponent,
     LoginComponent,
+    BarraNavComponent,
     AppComponent
   ],
   imports: [
