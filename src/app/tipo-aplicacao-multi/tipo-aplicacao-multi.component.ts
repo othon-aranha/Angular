@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Injectable } from '@angular/core';
 
 @Component({
@@ -11,10 +11,11 @@ import { Injectable } from '@angular/core';
 export class TipoAplicacaoMultiComponent implements OnInit {
 
   // tslint:disable-next-line:no-output-on-prefix
-  @Output() onSelecionarTipoAplicacao = new EventEmitter<String[]>();
+  @Output() onSelecionarTipoAplicacao = new EventEmitter<string[]>();
 
   tipoAplic = [];
-  selectedTipo = ['DESKTOP', 'WEB', 'HIBRIDO'];
+  titulo: string;
+  @Input() selectedTipo: Array<string> = [];
   constructor() {
         this.tipoAplic = [
           {label: 'Desktop', value: 'DESKTOP'},
@@ -24,14 +25,11 @@ export class TipoAplicacaoMultiComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.titulo = 'Tipo de Aplicação';
    }
 
-  tiposSelecionados() {
-    return this.selectedTipo;
+   onselecionarTipoAplicacao(tipo: string[]): void {
+    // this.selectedTipo = tipo;
+    this.onSelecionarTipoAplicacao.emit(tipo);
   }
-
-  onselecionarTipoAplicacao(tipo: String[]) {
-    this.onSelecionarTipoAplicacao.emit(this.selectedTipo);
-  }
-
 }

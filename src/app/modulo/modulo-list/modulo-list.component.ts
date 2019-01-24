@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ModuloService } from '../../service/modulo.service';
 import { MenuItem, Message } from 'primeng/api';
 import { Modulo } from '../../domain/modulo';
-import { TipoAplicacaoMultiComponent } from '../../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
-import { MaquinaService } from '../../service/maquina.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,22 +13,21 @@ import { Router } from '@angular/router';
 
 export class ModuloListComponent implements OnInit {
 
-  tipo: string[];
   cols: any[];
-  modulos = [];
+  private modulos: Modulo[];
+  private subjectPesquisa: Subject<Array<string>> = new Subject<Array<string>>();
+  rota: string;
   alias = [];
   selectedAlias = [];
+  selectedTipo: Array<string> = [];
   tipoAplicacao = [];
   modulo: Modulo = null;
   selectedModulo: Modulo = null;
   items: MenuItem[];
   msgs: Message[];
-  displayDialog: boolean;
-
 
   // tslint:disable-next-line:max-line-length
   constructor(private moduloService: ModuloService,
-              private tipoAplic: TipoAplicacaoMultiComponent,
               private router: Router) {
    }
 
@@ -39,9 +37,11 @@ export class ModuloListComponent implements OnInit {
       {label: 'Aplicação Web', value: 'WEB'},
       {label: 'Híbrida', value: 'HIBRIDO'}
     ];
+    this.rota = 'Módulo';
 
-    this.tipo = this.tipoAplic.selectedTipo;
-    this.consultarporTipodeAplicacao(this.tipoAplic.selectedTipo);
+    this.selectedTipo = ['DESKTOP', 'WEB', 'HIBRIDO'];
+
+    this.consultarporTipodeAplicacao(this.selectedTipo);
 
     // Colunas da Grid //
     this.cols = [
@@ -73,14 +73,13 @@ export class ModuloListComponent implements OnInit {
 
   }
 
-  onSelecionarTipoAplicacao(tipoAplic: string[]) {
-    this.tipo = tipoAplic;
-    this.consultarporTipodeAplicacao(this.tipo);
+  onselecionarTipoAplicacao(tipoAplic: string[]) {
+    this.selectedTipo = tipoAplic;
+    this.consultarporTipodeAplicacao(this.selectedTipo);
   }
 
   onRowSelect(event) {
     this.selectedModulo = this.cloneModulo(event.data);
-    this.displayDialog = true;
   }
 
   alteraTipoModulo(event) {
@@ -105,16 +104,18 @@ export class ModuloListComponent implements OnInit {
 
 
   consultarporTipodeAplicacao(tipo: string[]) {
+    this.selectedTipo = tipo;
     this.modulos = [];
     if ( tipo.length === 0 ) {
-      return this.moduloService.listarModulosporTipoModulo('').subscribe(dados => this.modulos = dados);
+      this.moduloService.listarModulosporTipoModulo('').subscribe(dados => this.modulos = dados);
     } else {
-      return this.moduloService.listarModulosporTipoModulo(tipo.join()).subscribe(dados => this.modulos = dados);
+      this.moduloService.listarModulosporTipoModulo(tipo.join()).subscribe(dados => this.modulos = dados);
     }
   }
 
   viewModulo(modulo: Modulo) {
     this.router.navigate(['/modulo/', modulo.id]);
+    this.consultarporTipodeAplicacao(this.selectedTipo);
   }
 
   cloneModulo(m: Modulo): Modulo {

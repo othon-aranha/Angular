@@ -1,6 +1,6 @@
-<div class="container-fluid">
-  <div class="ui-g-12">
-    <h2 class="first">Tipo de Aplicação</h2>                        
-    <p-multiSelect [options]="tipoAplic" (onChange)="onselecionarTipoAplicacao()" filter=false defaultLabel="Escolha um Tipo" [(ngModel)]="selectedTipo" [panelStyle]="{minWidth:'15em'}"></p-multiSelect>
+<div class="container-fluid d-flex justify-content-start">
+  <div class="ui-g-12 d-flex flex-column justify-content-start">
+    <h2 class="first">{{titulo}}</h2>                          
+    <p-multiSelect [options]="tipoAplic" filter=false defaultLabel="Escolha um Tipo" (onChange)="onselecionarTipoAplicacao($event.value)" [panelStyle]="{minWidth:'15em'}"></p-multiSelect>
   </div>
 </div>

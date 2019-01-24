@@ -1,7 +1,11 @@
-h2{
-    
+.container-fluid {
+  background-color: cadetblue  
+}
+
+p-multiSelect{
+    text-align: left; float: left; margin-left: 1em;
 }
 
 .container-fluid{
-    background-color: greenyellow;
+    background: green;
 }
