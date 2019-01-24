@@ -42,7 +42,7 @@ export class DominioListComponent implements OnInit {
   }
 
   viewDominio(dominio: Dominio) {
-    this.router.navigate(['/dominio/', dominio.id]);
+    this.router.navigate(['/dominio/', dominio.id, 'edit']);
   }
 
   newDominio() {

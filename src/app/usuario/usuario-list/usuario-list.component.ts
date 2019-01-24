@@ -24,6 +24,7 @@ export class UsuarioListComponent implements OnInit {
   selectedStatus = [];
   items: MenuItem[];
   msgs: Message[];
+  rota: string;
   displayDialog: boolean;
 
 
@@ -43,6 +44,8 @@ export class UsuarioListComponent implements OnInit {
       {label: 'Sistema', value: 'SISTEMA'},
       {label: 'Terceirizado', value: 'TERCEIRIZADO'}
     ];
+
+    this.rota = 'Usuário';
 
     this.consultarporTipodeUsuario(this.tipodeUsuario, this.selectedStatus);
 

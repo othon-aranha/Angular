@@ -23,6 +23,7 @@ export class ModuloComponent implements OnInit {
   tipoAplicacao = [];
   modulo: any = null;
   msgs: Message[];
+  rota: string;
 
 
   // tslint:disable-next-line:max-line-length
@@ -48,7 +49,10 @@ export class ModuloComponent implements OnInit {
     this.modulo = new Modulo();
 
     if ( this.id ) {
-    this.recuperarModulo(this.id);
+      this.recuperarModulo(this.id);
+      this.rota = 'Editar';
+    } else {
+      this.rota = 'Novo';
     }
 
     this.inicializaForm();

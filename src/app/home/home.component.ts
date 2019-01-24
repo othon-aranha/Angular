@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
       {label: 'Cadastro',
        items: [
       {
-        label: 'Módulos',
+        label: 'Módulo',
         icon: 'fa-bar-chart',
         routerLink: '/modulo'
        },
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
         routerLink: '/tribunal'
        },
        {
-        label: 'Usuários',
+        label: 'Usuário',
         icon: 'fa-bar-chart',
         routerLink: '/usuario'
        },
@@ -37,11 +37,8 @@ export class HomeComponent implements OnInit {
        }
       ]
       },
-      {label: 'Calendar', icon: 'fa-calendar'},
-      {label: 'Documentation', icon: 'fa-book'},
-      {label: 'Support', icon: 'fa-support'},
-      {label: 'Social', icon: 'fa-twitter'},
-      {separator: true}
+      {separator: true},
+      {label: 'Sair', icon: 'fa-twitter', routerLink: '/login'}
   ];
   }
 

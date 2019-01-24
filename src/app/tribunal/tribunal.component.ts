@@ -16,6 +16,7 @@ export class TribunalComponent implements OnInit {
   tribunal: Tribunal;
   form: FormGroup;
   ufs = [];
+  rota: string;
 
   constructor(private formBuilder: FormBuilder, private tribunalService: TribunalService, private route: ActivatedRoute) {
    }
@@ -28,8 +29,10 @@ export class TribunalComponent implements OnInit {
 
     if ( this.route.snapshot.paramMap.has('id') ) {
       this.id = this.route.snapshot.paramMap.get('id');
+      this.rota = 'Editar';
     } else {
       this.id = null;
+      this.rota = 'Novo';
     }
 
     this.tribunal = new Tribunal();

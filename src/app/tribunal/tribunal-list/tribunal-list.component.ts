@@ -17,6 +17,7 @@ export class TribunalListComponent implements OnInit {
   selectedTribunal: Tribunal = null;
   items: MenuItem[];
   msgs: Message[];
+  rota: string;
   displayDialog: boolean;
   constructor(private tribunalService: TribunalService, private router: Router) { }
 
@@ -36,6 +37,8 @@ export class TribunalListComponent implements OnInit {
               { label: 'Novo', icon: 'fa-search', command: (event) => this.newTribunal() },
               { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteTribunal(this.selectedTribunal) }
         ];
+
+        this.rota = 'Tribunal';
 
         this.consultar();
   }

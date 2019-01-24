@@ -1,3 +1,10 @@
+<nav class="bd-5">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/home">Cadastro</a></li>
+      <li class="breadcrumb-item"><a routerLink="/modulo">Módulo</a></li>
+      <li class="breadcrumb-item active">{{rota}}</li>
+    </ol>
+</nav>
 <form class="form-vertical" [formGroup]="form" (ngSubmit)="onSubmit(form)">
     <div class="ui-g ui-fluid">
         <div class="ui-g-12 ui-fluid">
