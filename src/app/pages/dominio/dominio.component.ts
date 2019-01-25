@@ -12,8 +12,8 @@ import { ConfirmationService, Message } from 'primeng/api';
 
 
 
-import { Dominio } from '../domain/dominio';
-import { DominioService } from '../service/dominio.service';
+import { Dominio } from '../../domain/dominio';
+import { DominioService } from '../../service/dominio.service';
 
 @Component({
   selector: 'app-dominio',
@@ -30,6 +30,7 @@ export class DominioComponent implements OnInit {
   optDominios = [];
   text: string;
   msgs: Message[] = [];
+  rota: string;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -42,25 +43,27 @@ export class DominioComponent implements OnInit {
   ngOnInit() {
     if ( this.route.snapshot.paramMap.has('id') ) {
       this.id = this.route.snapshot.paramMap.get('id');
+      this.rota = 'Editar';
     } else {
       this.id = null;
+      this.rota = 'Novo';
     }
 
     this.dominio = new Dominio();
 
-    this.inicializaForm();
-
     if ( this.id ) {
       this.recuperarDominio(this.id);
-      this.form.patchValue(this.dominio);
+      // this.form.patchValue(this.dominio);
     }
+
+    this.inicializaForm();
   }
 
   inicializaForm() {
      this.form = this.formBuilder.group({
-      nome: ['', [Validators.required, Validators.minLength(6)] ],
-      cd: ['', [Validators.required, Validators.minLength(1)] ],
-      descricao: ['', [Validators.required, Validators.minLength(1)] ]
+      nome: [this.dominio.nome, [Validators.required, Validators.minLength(6)] ],
+      cd: [this.dominio.cd, [Validators.required, Validators.minLength(1)] ],
+      descricao: [this.dominio.descricao, [Validators.required, Validators.minLength(1)] ]
     });
   }
 
@@ -95,10 +98,11 @@ export class DominioComponent implements OnInit {
   }
 
   GravarDominio() {
+    const dominio = Object.assign(this.dominio, this.form.value);
     if ( this.id ) {
-      return this.dominioService.updateDominio(this.dominio);
+      return this.dominioService.updateDominio(dominio);
     } else {
-      return this.dominioService.addDominio(this.dominio);
+      return this.dominioService.addDominio(dominio);
     }
   }
 

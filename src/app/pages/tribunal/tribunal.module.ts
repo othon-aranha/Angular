@@ -4,7 +4,7 @@ import { MatInputModule, MatSelectModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { TribunalComponent } from './tribunal.component';
 import { TribunalListComponent } from './tribunal-list/tribunal-list.component';
-import { TribunalService } from '../service/tribunal.service';
+import { TribunalService } from '../../service/tribunal.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { GrowlModule, ContextMenuModule } from 'primeng/primeng';

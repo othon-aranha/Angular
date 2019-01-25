@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, Message } from 'primeng/api';
-import { Usuario } from '../../domain/usuario';
-import { UsuarioService } from '../../service/usuario.service';
+import { Usuario } from '../../../domain/usuario';
+import { UsuarioService } from '../../../service/usuario.service';
 
 interface Status {
   name: string;

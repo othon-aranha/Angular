@@ -1,10 +1,18 @@
+<nav class="bd-5">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a routerLink="/home">Cadastro</a></li>
+         <li class="breadcrumb-item"><a routerLink="/dominio">Domínio</a></li>
+         <li class="breadcrumb-item active">{{rota}}</li>
+       </ol>
+   </nav>
 <form class="form-vertical" [formGroup]="form" (ngSubmit)="onSubmit(form)">
   <div class="form-group ui-g-12">
        <p-dropdown
-              formControlName="nome"
+              id="nome"
               [options]="optDominios"
               placeholder="Domínio"
               optionLabel="label"
+              [showClear]="true"
               [class.invalid]="form.controls['nome'].touched && !form.controls['nome'].valid">
       </p-dropdown>
     <!--p-autoComplete         
@@ -24,7 +32,7 @@
              Valor do Domínio</label>
       <input type="text" 
              class="form-control" 
-             formControlName="cd"  
+             id="cd"  
              [class.invalid]="form.controls['cd'].touched && !form.controls['cd'].valid"
              placeholder="Código" > 
   </div>
@@ -36,7 +44,7 @@
              Descrição do Domínio</label>
       <input type="text" 
              class="form-control" 
-             formControlName="descricao"
+             id="descricao"
              [class.invalid]="form.controls['descricao'].touched && !form.controls['descricao'].valid" 
              placeholder="Descrição"> 
   </div>

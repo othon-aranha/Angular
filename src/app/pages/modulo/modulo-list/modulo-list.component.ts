@@ -1,8 +1,8 @@
 import { Observable, Subject } from 'rxjs';
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ModuloService } from '../../service/modulo.service';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ModuloService } from '../../../service/modulo.service';
 import { MenuItem, Message } from 'primeng/api';
-import { Modulo } from '../../domain/modulo';
+import { Modulo } from '../../../domain/modulo';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +17,7 @@ export class ModuloListComponent implements OnInit {
   private modulos: Modulo[];
   private subjectPesquisa: Subject<Array<string>> = new Subject<Array<string>>();
   rota: string;
+  rotaAtual: any[];
   alias = [];
   selectedAlias = [];
   selectedTipo: Array<string> = [];
@@ -37,7 +38,13 @@ export class ModuloListComponent implements OnInit {
       {label: 'Aplicação Web', value: 'WEB'},
       {label: 'Híbrida', value: 'HIBRIDO'}
     ];
+
     this.rota = 'Módulo';
+
+    this.rotaAtual = [
+      {rota: '/home', descricao: 'Cadastro'},
+      {rota: '/modulo', descricao: 'Módulo'}];
+
 
     this.selectedTipo = ['DESKTOP', 'WEB', 'HIBRIDO'];
 

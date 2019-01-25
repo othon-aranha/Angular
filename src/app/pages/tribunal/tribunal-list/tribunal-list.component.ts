@@ -1,7 +1,7 @@
-import { TribunalService } from './../../service/tribunal.service';
+import { TribunalService } from './../../../service/tribunal.service';
 import { MenuItem, Message } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
-import { Tribunal } from '../../domain/tribunal';
+import { Tribunal } from '../../../domain/tribunal';
 import { Router } from '@angular/router';
 
 @Component({

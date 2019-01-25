@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ModuloService } from '../service/modulo.service';
+import { ModuloService } from '../../service/modulo.service';
 import { Message } from 'primeng/api';
-import { Modulo } from '../domain/modulo';
-import { MaquinaServidora } from '../domain/maquina-servidora';
-import { MaquinaService } from '../service/maquina.service';
+import { Modulo } from '../../domain/modulo';
+import { MaquinaServidora } from '../../domain/maquina-servidora';
+import { MaquinaService } from '../../service/maquina.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 

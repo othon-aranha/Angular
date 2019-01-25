@@ -1,4 +1,4 @@
-import { TipoAplicacaoMultiComponent } from '../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
+import { TipoAplicacaoMultiComponent } from '../../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DialogModule } from 'primeng/dialog';
 import { ContextMenuModule } from 'primeng/contextmenu';
@@ -11,10 +11,10 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { ModuloRoutingModule } from './modulo.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModuloService } from '../service/modulo.service';
-import { ServidorListComponent } from '../servidor-list/servidor-list.component';
-import { ServidorService } from '../service/servidor.service';
-import { MaquinaService } from '../service/maquina.service';
+import { ModuloService } from '../../service/modulo.service';
+import { ServidorListComponent } from '../../servidor-list/servidor-list.component';
+import { ServidorService } from '../../service/servidor.service';
+import { MaquinaService } from '../../service/maquina.service';
 import { ModuloComponent } from './modulo.component';
 import { MatSelectModule, MatInputModule } from '@angular/material';
 import { InputSwitchModule } from 'primeng/inputswitch';
