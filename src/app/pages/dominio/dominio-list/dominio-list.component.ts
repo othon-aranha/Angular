@@ -1,10 +1,11 @@
 import { MenuItem, Message } from 'primeng/api';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 
 import { Dominio } from '../../../domain/dominio';
 import { DominioService } from '../../../service/dominio.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-dominio-list',
@@ -19,7 +20,7 @@ export class DominioListComponent implements OnInit {
   items: MenuItem[];
   msgs: Message[];
 
-  constructor(private dominioService: DominioService, private router: Router) { }
+  constructor(private dominioService: DominioService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   // Colunas da Grid //

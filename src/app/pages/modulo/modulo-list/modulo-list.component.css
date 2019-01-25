@@ -7,6 +7,10 @@ input{
     font-size: 10pt;
 }
 
+.ui-g.d-flex {
+    background-color: cadetblue  
+  }
+
 input[type="text"] {
     background: #ccc;
     height: 35px;

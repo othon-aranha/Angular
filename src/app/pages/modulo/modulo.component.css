@@ -1,5 +1,9 @@
+form.form-vertical {
+    background-color: bisque;
+}
+
 label{
-    color: cadetblue; 
+    color: green; 
     text-align: left; float: left; margin-right: 1em; 
 }
 
@@ -16,6 +20,6 @@ input[type="text"] {
     border: 0;
 }
 
-.p-footer{
-    background-color: red;
+.p-footer.div {
+    background-color: brown
 }

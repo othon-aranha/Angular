@@ -1,4 +1,3 @@
-import { BarraNavComponent } from './barra-nav/barra-nav.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +26,7 @@ import { DominioModule } from './pages/dominio/dominio.module';
 import { ModuloModule } from './pages/modulo/modulo.module';
 import { UsuarioModule } from './pages/usuario/usuario.module';
 import { TribunalModule } from './pages/tribunal/tribunal.module';
+import { BarraNavegacaoComponent } from './pages/shared/barra-navegacao/barra-navegacao.component';
 
 
 @NgModule({
@@ -34,7 +34,7 @@ import { TribunalModule } from './pages/tribunal/tribunal.module';
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    BarraNavComponent,
+    BarraNavegacaoComponent,
     AppComponent
   ],
   imports: [

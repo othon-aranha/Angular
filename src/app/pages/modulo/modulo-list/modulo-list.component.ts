@@ -15,7 +15,7 @@ export class ModuloListComponent implements OnInit {
 
   cols: any[];
   private modulos: Modulo[];
-  private subjectPesquisa: Subject<Array<string>> = new Subject<Array<string>>();
+  // private subjectPesquisa: Subject<Array<string>> = new Subject<Array<string>>();
   rota: string;
   rotaAtual: any[];
   alias = [];

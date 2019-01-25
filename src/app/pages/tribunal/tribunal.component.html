@@ -9,34 +9,34 @@
   <!--div class="form-group ui-g-12"-->
     <mat-form-field class="example-full-width">
       <input matInput              
-             formControlName="sigla" 
+             id="sigla" 
              placeholder="Sigla do Tribunal"
              [class.invalid]="form.controls['sigla'].touched && !form.controls['sigla'].valid">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <input matInput              
-             formControlName="nome" 
+             id="nome" 
              placeholder="Nome de Tribunal" 
              [class.invalid]="form.controls['nome'].touched && !form.controls['nome'].valid">
     </mat-form-field> 
 
     <mat-form-field class="example-full-width">
       <input matInput             
-             formControlName="logradouro" 
+             id="logradouro" 
              placeholder="Logradouro"
              [class.invalid]="form.controls['logradouro'].touched && !form.controls['logradouro'].valid">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <input matInput             
-             formControlName="bairro" 
+             id="bairro" 
              placeholder="Bairro"
              [class.invalid]="form.controls['bairro'].touched && !form.controls['bairro'].valid">
     </mat-form-field> 
 
     <mat-form-field>
-      <mat-select formControlName="uf"  placeholder="UF" >
+      <mat-select id="uf"  placeholder="UF" >
         <mat-option *ngFor="let uf of ufs" [value]="uf.value">
           {{uf.viewValue}}
         </mat-option>
@@ -45,63 +45,63 @@
 
     <mat-form-field >
       <input matInput
-             formControlName="cep" 
+             id="cep" 
              placeholder="CEP"
              [class.invalid]="form.controls['cep'].touched && !form.controls['cep'].valid">
     </mat-form-field> 
 
     <mat-form-field class="example-full-width">
       <input matInput
-             formControlName="cidade" 
+             id="cidade" 
              placeholder="Cidade"
              [class.invalid]="form.controls['cep'].touched && !form.controls['cep'].valid">
     </mat-form-field> 
 
     <mat-form-field >
       <input matInput 
-             formControlName="telefone" 
+             id="telefone" 
              placeholder="Telefone"
              [class.invalid]="form.controls['telefone'].touched && !form.controls['telefone'].valid">
     </mat-form-field> 
 
     <mat-form-field >
       <input matInput 
-             formControlName="cgc" 
+             id="cgc" 
              placeholder="CGC"
              [class.invalid]="form.controls['cgc'].touched && !form.controls['cgc'].valid">
     </mat-form-field> 
 
     <mat-form-field >
       <input matInput 
-             formControlName="numeroContrato" 
+             id="numeroContrato" 
              placeholder="Número do Contrato"
              [class.invalid]="form.controls['numeroContrato'].touched && !form.controls['numeroContrato'].valid">
     </mat-form-field> 
 
     <mat-form-field >
       <input matInput 
-             formControlName="descricaoContrato" 
+             id="descricaoContrato" 
              placeholder="Número do Contrato"
              [class.invalid]="form.controls['descricaoContrato'].touched && !form.controls['descricaoContrato'].valid">
     </mat-form-field> 
 
     <mat-form-field >
       <input matInput 
-             formControlName="codigoMunicipioIBGE" 
+             id="codigoMunicipioIBGE" 
              placeholder="Código do Município"
              [class.invalid]="form.controls['codigoMunicipioIBGE'].touched && !form.controls['codigoMunicipioIBGE'].valid">
     </mat-form-field> 
 
     <mat-form-field >
       <input matInput 
-             formControlName="codigoNaturezaJuridica" 
+             id="codigoNaturezaJuridica" 
              placeholder="Código da Natureza Jurídica"
              [class.invalid]="form.controls['codigoNaturezaJuridica'].touched && !form.controls['codigoNaturezaJuridica'].valid">
     </mat-form-field> 
 
     <mat-form-field class="example-full-width">
       <input matInput 
-             formControlName="email" 
+             id="email" 
              placeholder="Email">
              <mat-hint>Erros serão exibidos instantâneamente</mat-hint>
              <mat-error *ngIf="form.hasError('email') && !form.hasError('required')">

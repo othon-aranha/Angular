@@ -1,10 +1,10 @@
-<nav class="bd-5">
+<nav class="bd-5 mt-1">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/home">Cadastro</a></li>
       <li class="breadcrumb-item active">{{rota}}</li>
     </ol>
 </nav>
-<div class="ui-g">    
+<div class="ui-g mt-1">    
     <app-tipo-usuario-multi (onSelecionarTipoUsuario)="onSelecionarTipoUsuario($event)"></app-tipo-usuario-multi>
     <app-status-multi (onSelecionarStatus)="onSelecionarStatus($event)"></app-status-multi>
 </div>

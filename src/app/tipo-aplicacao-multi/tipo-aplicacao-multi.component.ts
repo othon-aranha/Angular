@@ -14,7 +14,6 @@ export class TipoAplicacaoMultiComponent implements OnInit {
   @Output() onSelecionarTipoAplicacao = new EventEmitter<string[]>();
 
   tipoAplic = [];
-  titulo: string;
   @Input() selectedTipo: Array<string> = [];
   constructor() {
         this.tipoAplic = [
@@ -25,7 +24,7 @@ export class TipoAplicacaoMultiComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.titulo = 'Tipo de Aplicação';
+
    }
 
    onselecionarTipoAplicacao(tipo: string[]): void {

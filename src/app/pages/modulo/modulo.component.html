@@ -47,9 +47,10 @@
                 </div>    
              </div>             
         </div>
-        <div class="ui-g-12 ui-fluid">
-            <div class="ui-g-6 ui-fluid">   
+        <div class="ui-g-10 ui-fluid">
+            <div class="ui-g-4 ui-fluid">   
                 <label for="tabela">Tipo de aplicação</label>                
+                <app-tipo-aplicacao-multi></app-tipo-aplicacao-multi>
             </div>            
             <div class="ui-g-6">
                 <app-servidor-list [options]="servers" [(ngModel)]="selectedServers" [modulo.tribunal.id]="cdTrib" (onSelecionarTribunal)="onSelecionarTribunal($cdTrib)"  optionLabel="id.alias" ngDefaultControl></app-servidor-list>
