@@ -48,27 +48,20 @@ export class DominioComponent implements OnInit {
 
     this.dominio = new Dominio();
 
-    if ( this.id ) {
-    this.recuperarDominio(this.id);
-    }
-
     this.inicializaForm();
+
+    if ( this.id ) {
+      this.recuperarDominio(this.id);
+      this.form.patchValue(this.dominio);
+    }
   }
 
   inicializaForm() {
-    if ( this.dominio ) {
-      this.form = this.formBuilder.group({
-        nome: [this.dominio.nome, [Validators.required, Validators.minLength(6)] ],
-        cd: [this.dominio.cd, [Validators.required, Validators.minLength(1)] ],
-        descricao: [this.dominio.descricao, [Validators.required, Validators.minLength(1)] ]
-      });
-    } else {
      this.form = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(6)] ],
       cd: ['', [Validators.required, Validators.minLength(1)] ],
       descricao: ['', [Validators.required, Validators.minLength(1)] ]
     });
-   }
   }
 
 
@@ -87,12 +80,6 @@ export class DominioComponent implements OnInit {
   this.populaAutoComplete();
   }
 
-
- search(event) {
-  this.optDominios = [];
-  this.populaDominio('DOMINIOS_ACESSO', event.query);
-  this.populaAutoComplete();
-  }
 
   populaAutoComplete() {
     // this.optDominios.push({label: 'Informe o domínio', value: -1});
