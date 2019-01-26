@@ -21,7 +21,7 @@ export class ModuloComponent implements OnInit {
   alias = [];
   selectedAlias = [];
   tipoAplicacao = [];
-  modulo: any = null;
+  modulo: Modulo = null;
   msgs: Message[];
   rota: string;
 
@@ -61,24 +61,14 @@ export class ModuloComponent implements OnInit {
   inicializaForm() {
     if ( this.modulo ) {
       this.form = this.formBuilder.group({
-        id:   [this.id, [Validators.required, Validators.minLength(1)] ],
         sigla: [this.modulo.sigla, [Validators.required, Validators.minLength(3)] ],
         alias: [this.selectedAlias, [Validators.required, Validators.minLength(1)] ],
         esquema: [this.modulo.esquema, [Validators.required, Validators.minLength(3)] ],
         versao: [this.modulo.versao, [Validators.required, Validators.minLength(7)] ],
+        tipoModulo: [this.modulo.tipoModulo, [Validators.required, Validators.minLength(7)] ],
         mensagemCompartilhada: [this.modulo.mensagemCompartilhada,
                               [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ],
         controlaAcesso: [this.modulo.controlaAcesso, [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ]
-      });
-    } else {
-      this.form = this.formBuilder.group({
-        id:   ['', [Validators.required, Validators.minLength(1)] ],
-        sigla: ['', [Validators.required, Validators.minLength(3)] ],
-        alias: ['', [Validators.required, Validators.minLength(1)] ],
-        esquema: ['', [Validators.required, Validators.minLength(3)] ],
-        versao: ['', [Validators.required, Validators.minLength(7)] ],
-        mensagemCompartilhada: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ],
-        controlaAcesso: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ]
       });
    }
   }
@@ -94,7 +84,7 @@ export class ModuloComponent implements OnInit {
     let manutencoes: Array<MaquinaServidora> = [];
     this.maquinaService.listarServidoresdoModulo(cdModulo).subscribe(dados => manutencoes = dados);
     for (let i = 1; i < manutencoes.length; i++) {
-      this.alias = [...this.alias, {label: manutencoes[i].descricao , value: manutencoes[i].id.alias}];
+      this.alias = [...this.alias, {label: manutencoes[i].id.alias , value: manutencoes[i].id.alias}];
     }
   }
 

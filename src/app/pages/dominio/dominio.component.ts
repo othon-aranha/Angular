@@ -59,6 +59,8 @@ export class DominioComponent implements OnInit {
     this.inicializaForm();
   }
 
+  get f() { return this.form.controls; }
+
   inicializaForm() {
      this.form = this.formBuilder.group({
       nome: [this.dominio.nome, [Validators.required, Validators.minLength(6)] ],

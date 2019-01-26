@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Tribunal } from './../../domain/tribunal';
 import { TribunalService } from '../../service/tribunal.service';
 import { Route, ActivatedRoute } from '@angular/router';
+import { ConfirmationService, Message } from 'primeng/api';
 
 
 @Component({
@@ -16,9 +17,11 @@ export class TribunalComponent implements OnInit {
   tribunal: Tribunal;
   form: FormGroup;
   ufs = [];
+  msgs: Message[] = [];
   rota: string;
 
-  constructor(private formBuilder: FormBuilder, private tribunalService: TribunalService, private route: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private tribunalService: TribunalService, private route: ActivatedRoute,
+              private confirmationService: ConfirmationService) {
    }
 
   ngOnInit() {
@@ -67,25 +70,39 @@ export class TribunalComponent implements OnInit {
         codigoNaturezaJuridica: [this.tribunal.codigoNaturezaJuridica, [Validators.required, Validators.minLength(3)] ],
         email: [this.tribunal.email, [Validators.required, Validators.minLength(6), Validators.email] ]
        });
+    }
+  }
+
+  GravarTribunal() {
+    const tribunal = Object.assign(this.tribunal, this.form.value);
+    if ( this.id ) {
+      return this.tribunalService.updateTribunal(tribunal);
     } else {
-     this.form = this.formBuilder.group({
-      id: ['', [Validators.required] ],
-      nome: ['', [Validators.required, Validators.minLength(6)] ],
-      sigla: ['', [Validators.required, Validators.minLength(6)] ],
-      logradouro: ['', [Validators.required, Validators.minLength(10)] ],
-      bairro: ['', [Validators.required, Validators.minLength(10)] ],
-      uf: ['', [Validators.required, Validators.minLength(2)] ],
-      cep: ['', [Validators.required, Validators.minLength(8)] ],
-      cidade: ['', [Validators.required, Validators.minLength(3)] ],
-      telefone: ['', [Validators.required, Validators.minLength(11)] ],
-      cgc: ['', [Validators.required, Validators.minLength(14)] ],
-      numeroContrato: ['', [Validators.required, Validators.minLength(3)] ],
-      descricaoContrato: ['', [Validators.required, Validators.minLength(6)] ],
-      codigoMunicipioIBGE: ['', [Validators.required, Validators.minLength(3)] ],
-      codigoNaturezaJuridica: ['', [Validators.required, Validators.minLength(3)] ],
-      email: ['', [Validators.required, Validators.minLength(6), Validators.email] ]
+      return this.tribunalService.addTribunal(tribunal);
+    }
+  }
+
+
+  onSubmit(form): void {
+    let confirmation = null;
+    confirmation = this.confirmationService.confirm({message: 'Confirma a operação?' ,
+    header: 'Confirmação' ,
+    icon: 'pi pi-exclamation-triangle' ,
+    accept: () => {
+          this.GravarTribunal();
+          this.form.reset();
+          this.msgs = [{severity: 'info', summary: 'Confirmado', detail: 'You have accepted'}];
+      }
     });
-   }
+
+    /*
+    if ( this.msgs[0].summary === 'Confirmado' ) {
+      this.GravarDominio();
+    }
+    */
+    // this.GravarDominio();
+    // console.log(form);
+    // console.log(this.dominio);
   }
 
 

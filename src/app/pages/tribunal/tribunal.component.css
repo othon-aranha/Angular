@@ -1,8 +1,36 @@
+form.form-vertical {
+  background-color: bisque;
+}
+
 .example-full-width {
     display: flex;
     flex-direction: column;
   }
 
-  .example-full-width > * {
+.example-full-width > * {
     width: 100%;
+}
+
+label { 
+    color: cadetblue;
+    text-align: left; float: left; margin-right: 1em; 
+}
+
+p-dropdown {
+    text-align: left;
+    float: left;
+    margin-left: 0px;
+    background: #ccc;
+    height: 35px;
+    font-style: normal;
+    font-size: 14px;
+    border: 0;
+}
+
+input[type="text"] {
+    background: #ccc;
+    height: 35px;
+    font-style: normal;
+    font-size: 14px;
+    border: 0;
   }

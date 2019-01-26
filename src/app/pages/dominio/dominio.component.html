@@ -1,58 +1,39 @@
-<nav class="bd-5">
-       <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a routerLink="/home">Cadastro</a></li>
-         <li class="breadcrumb-item"><a routerLink="/dominio">Domínio</a></li>
-         <li class="breadcrumb-item active">{{rota}}</li>
-       </ol>
-   </nav>
-<form class="form-vertical" [formGroup]="form" (ngSubmit)="onSubmit(form)">
-  <div class="form-group ui-g-12">
-       <p-dropdown
-              id="nome"
-              [options]="optDominios"
-              placeholder="Domínio"
-              optionLabel="label"
-              [showClear]="true"
-              [class.invalid]="form.controls['nome'].touched && !form.controls['nome'].valid">
-      </p-dropdown>
-    <!--p-autoComplete         
-        class="form-control" 
-        formControlName="nome"
-        [class.invalid]="form.controls['nome'].touched && !form.controls['nome'].valid"
-        [suggestions]="dominios" 
-        field="descricao"        
-        (completeMethod)="search($event)">
-    </p-autoComplete-->
-  </div>
+<nav class="bd-1 mt-2">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/home">Cadastro</a></li>
+                <li class="breadcrumb-item"><a routerLink="/dominio">Domínio</a></li>
+                <li class="breadcrumb-item active">{{rota}}</li>
+              </ol>
+</nav>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+       <div class="form-group ui-g-12">
+              <p-dropdown 
+                     formcontrolname="nome"
+                     [options]="optDominios"
+                     placeholder="Domínio"
+                     optionLabel="label"
+                     [showClear]="true"
+                     [ngClass]="{ 'is-invalid': submitted && f.nome.errors }">
+              </p-dropdown>
+       </div>
+       <div class="form-group ui-g-12">
+              <label>Domínio</label>
+              <input type="text" formControlName="cd" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cd.errors }" />
+              <div *ngIf="submitted && f.cd.errors" class="invalid-feedback">
+                     <div *ngIf="f.cd.errors.required">Domínio é obrigatório</div>
+              </div>
+       </div>                            
+       <div class="form-group ui-g-12">
+              <label>Descrição</label>
+              <input type="text" formControlName="descricao" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descricao.errors }" />
+              <div *ngIf="submitted && f.descricao.errors" class="invalid-feedback">
+                     <div *ngIf="f.descricao.errors.required">Descrição é obrigatório</div>
+              </div>
+       </div>
 
-  <div class="form-group ui-g-12">
-      <label for="cd"
-             [class.active]="dominio.cd"
-             data-error="Código é obrigatório">
-             Valor do Domínio</label>
-      <input type="text" 
-             class="form-control" 
-             id="cd"  
-             [class.invalid]="form.controls['cd'].touched && !form.controls['cd'].valid"
-             placeholder="Código" > 
-  </div>
-
-  <div class="form-group ui-g-12">
-      <label for="descricao"
-             [class.active]="dominio.descricao"
-             data-error="Descrição é obrigatório e precisa conter no mínimo 6 caracteres">
-             Descrição do Domínio</label>
-      <input type="text" 
-             class="form-control" 
-             id="descricao"
-             [class.invalid]="form.controls['descricao'].touched && !form.controls['descricao'].valid" 
-             placeholder="Descrição"> 
-  </div>
-
-  <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" ></p-confirmDialog>
-  <button type="button" [disabled]="!form.valid" (click)="onSubmit(form)" pButton icon="pi pi-check" label="Gravar"></button>
-  <p-messages [value]="msgs"></p-messages>  
-  
-  <!-- button class="btn btn-primary" [disabled]="!form.valid" type="submit">Submit</button -->
-  
+       <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" ></p-confirmDialog>
+       <button type="button" pButton icon="pi pi-cancel" label="Cancelar"></button>
+       <button type="button" class="ui-button-success" [disabled]="!form.valid" (click)="onSubmit(form)" pButton icon="pi pi-check" label="Gravar"></button>
+       <p-messages [value]="msgs"></p-messages>  
 </form>
+
