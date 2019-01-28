@@ -11,11 +11,15 @@ export class MaquinaService {
 
   constructor(private http: HttpClient) { }
 
-  listarMaquinas(): Promise<Array<any>> {
+  /* listarMaquinas(): Promise<Array<MaquinaServidora>> {
     // return  this.http.get<any[]>(this.manutencaoUrl + '/aliases', {headers: this.headers}).;
     return new Promise((resolve, reject ) => {
       resolve( this.http.get<Array<MaquinaServidora>>(this.manutencaoUrl + '/aliases', {headers: this.headers}).toPromise() );
     });
+  } */
+
+  listarMaquinas() {
+    return  this.http.get<any[]>(this.manutencaoUrl + '/aliases', {headers: this.headers});
   }
 
   listarServidoresdoModulo(cdModulo: number) {

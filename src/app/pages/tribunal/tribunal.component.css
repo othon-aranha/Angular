@@ -1,19 +1,27 @@
 form.form-vertical {
-  background-color: bisque;
+    background-color: bisque;
 }
 
-.example-full-width {
-    display: flex;
-    flex-direction: column;
-  }
-
-.example-full-width > * {
-    width: 100%;
-}
-
-label { 
-    color: cadetblue;
+label{
+    color: green; 
     text-align: left; float: left; margin-right: 1em; 
+}
+
+input{
+    font-family: 'Times New Roman', 'Times', 'serif';
+    font-size: 10pt;
+}
+
+input[type="text"] {
+    background: #ccc;
+    height: 35px;
+    font-style: normal;
+    font-size: 14px;
+    border: 0;
+}
+
+form.p-footer.div {
+    background-color: brown
 }
 
 p-dropdown {
@@ -26,11 +34,3 @@ p-dropdown {
     font-size: 14px;
     border: 0;
 }
-
-input[type="text"] {
-    background: #ccc;
-    height: 35px;
-    font-style: normal;
-    font-size: 14px;
-    border: 0;
-  }

@@ -12,14 +12,12 @@
                 <label for="id">Id: {{id}}</label>
             </div>
             <div class="ui-g">
-                <label for="id">Sigla</label>
+                <label for="sigla">Sigla</label>
                 <input pInputText  formcontrolname="sigla" [(ngModel)]="modulo.sigla" [disabled]="true"/>
             </div>            
-            <div class="ui-g ui-fluid">
-                <label for="id">Alias</label>
-            </div>
-            <div class="ui-g">
-                <p-dropdown formcontrolname="alias" [options]="alias" [(ngModel)]="modulo.alias"  placeholder="Selecione um Alias" [optionLabel]="value" [scrollHeight]="200"></p-dropdown>
+            <div class="ui-g-4">
+                <label for="alias">Alias</label>
+                <p-dropdown formcontrolname="alias" [options]="alias" [(ngModel)]="modulo.alias"  placeholder="Selecione um Alias" [optionLabel]="value" [scrollHeight]="150"></p-dropdown>
 		    </div>	
             <div class="ui-g-4">
                 <label for="esquema">Esquema</label>
@@ -52,7 +50,7 @@
                 <p-dropdown formcontrolname="tipoModulo" [(ngModel)]="modulo.tipoModulo" placeholder="Tipo de Aplicação" [options]="tipoAplicacao" [optionLabel]="label"></p-dropdown>
             </div>            
             <div class="ui-g-6">
-                <app-servidor-list [options]="servers" [(ngModel)]="selectedServers" [modulo.tribunal.id]="cdTrib" (onSelecionarTribunal)="onSelecionarTribunal($cdTrib)"  optionLabel="id.alias" ngDefaultControl></app-servidor-list>
+                <app-servidor-list [options]="servidores" [(ngModel)]="selectedServers" [modulo.tribunal.id]="cdTrib" (onSelecionarTribunal)="onSelecionarTribunal($cdTrib)"  optionLabel="id.alias" ngDefaultControl></app-servidor-list>
             </div>
         </div>     
     </div>                   

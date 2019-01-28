@@ -19,6 +19,7 @@ export class ModuloComponent implements OnInit {
   id: string;
   tipo: string[];
   alias = [];
+  servidores = [];
   selectedAlias = [];
   tipoAplicacao = [];
   modulo: Modulo = null;
@@ -36,10 +37,11 @@ export class ModuloComponent implements OnInit {
     } else {
         this.id = null;
     }
-    this.carregaListaServidores(Number(this.id));
    }
 
   ngOnInit() {
+    this.carregaListaServidores(Number(this.id));
+    this.carregaTodosServidores();
     this.tipoAplicacao = [
       {label: 'Aplicação Desktop', value: 'DESKTOP'},
       {label: 'Aplicação Web', value: 'WEB'},
@@ -78,9 +80,12 @@ export class ModuloComponent implements OnInit {
     this.moduloService.recuperarModuloPorId(id).subscribe(dados => this.modulo = dados);
   }
 
+  carregaTodosServidores() {
+    this.maquinaService.listarMaquinas().subscribe(dados => this.servidores = dados);
+  }
+
   carregaListaServidores(cdModulo: number) {
     this.alias = [];
-    this.alias = [...this.alias, {label: 'Selecione o Alias' , value: ''}];
     let manutencoes: Array<MaquinaServidora> = [];
     this.maquinaService.listarServidoresdoModulo(cdModulo).subscribe(dados => manutencoes = dados);
     for (let i = 1; i < manutencoes.length; i++) {
@@ -90,7 +95,6 @@ export class ModuloComponent implements OnInit {
 
 
   deleteModulo(modulo: Modulo) {
-
     this.msgs = [];
     this.msgs.push({ severity: 'info', summary: 'Módulo excluído', detail: modulo.id + ' - ' + modulo.sigla });
   }
