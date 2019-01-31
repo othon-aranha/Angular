@@ -118,7 +118,7 @@ export class ModuloListComponent implements OnInit {
   }
 
   viewModulo(modulo: Modulo) {
-    this.router.navigate(['/modulo/', modulo.id]);
+    this.router.navigate(['/modulo/', modulo.id, 'edit']);
     this.consultarporTipodeAplicacao(this.selectedTipo);
   }
 

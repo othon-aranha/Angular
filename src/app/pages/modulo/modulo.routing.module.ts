@@ -1,11 +1,11 @@
+import { ModuloFormComponent } from './modulo-form/modulo-form.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ModuloListComponent } from './modulo-list/modulo-list.component';
-import { ModuloComponent } from './modulo.component';
 
 const moduloRoutes = [
     {path: 'modulo', component: ModuloListComponent},
-    {path: 'modulo/:id', component: ModuloComponent}
+    {path: 'modulo/:id/edit', component: ModuloFormComponent}
 ];
 
 @NgModule({

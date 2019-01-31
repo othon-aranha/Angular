@@ -1,21 +1,23 @@
 import { ModuloDTO } from './../dto/moduloDTO';
 import { Modulo } from '../domain/modulo';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { BaseResourceService } from '../shared/services/base-resource-service';
 
 
 @Injectable()
-export class ModuloService {
+export class ModuloService extends BaseResourceService<Modulo>  {
 
-  private moduloUrl = 'http://localhost:8081/modulo';
+  moduloUrl = 'http://localhost:8081/modulo';
 
-  constructor(private http: HttpClient) { }
+   constructor(protected injector: Injector) {
+    super('http://localhost:8081/modulo', injector, Modulo.fromJson);
+   }
 
-  headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
-  recuperarModuloPorId(id: string) {
+  recuperarModuloPorId(id: string): Observable<Modulo> {
     return this.http.get<Modulo>(this.moduloUrl + '/' + id, {headers: this.headers});
   }
 

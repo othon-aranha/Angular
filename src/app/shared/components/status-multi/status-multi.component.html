@@ -1,0 +1,6 @@
+<div class="container-fluid">
+    <div class="ui-g-12">
+      <h2 class="first">Status</h2>                        
+      <p-multiSelect [options]="listStatus" (onChange)="onselecionarStatus($event)" filter=false defaultLabel="Escolha uma Situação" [(ngModel)]="selectedStatus" [panelStyle]="{minWidth:'15em'}"></p-multiSelect>
+    </div>
+</div>

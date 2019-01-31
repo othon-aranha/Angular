@@ -1,0 +1,6 @@
+<div class="container-fluid">
+  <div class="ui-g-12">
+    <h2 class="first">Tipo de Usuário</h2>                        
+    <p-multiSelect [options]="tipoUsuario" (onChange)="onselecionarTipoUsuario($event)" filter=false defaultLabel="Escolha um Tipo" [(ngModel)]="selectedTipoUsuario" [panelStyle]="{minWidth:'15em'}"></p-multiSelect>
+  </div>
+</div>

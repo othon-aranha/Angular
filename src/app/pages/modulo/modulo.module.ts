@@ -1,3 +1,5 @@
+import { BarraNavegacaoComponent } from './../shared/barra-navegacao/barra-navegacao.component';
+import { ModuloFormComponent } from './modulo-form/modulo-form.component';
 import { TipoAplicacaoMultiComponent } from '../../shared/components/tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DialogModule } from 'primeng/dialog';
@@ -38,7 +40,8 @@ import { ListboxModule } from 'primeng/listbox';
     TableModule,
     ModuloRoutingModule
   ],
-  declarations: [ModuloListComponent, ModuloComponent, TipoAplicacaoMultiComponent, ServidorListComponent],
+  declarations: [ModuloListComponent, ModuloFormComponent, ModuloComponent,
+                 TipoAplicacaoMultiComponent, ServidorListComponent],
   exports: [TipoAplicacaoMultiComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
   providers: [ModuloService, ServidorService, MaquinaService, TipoAplicacaoMultiComponent]
