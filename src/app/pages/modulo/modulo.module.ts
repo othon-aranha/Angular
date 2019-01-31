@@ -1,4 +1,4 @@
-import { TipoAplicacaoMultiComponent } from '../../tipo-aplicacao-multi/tipo-aplicacao-multi.component';
+import { TipoAplicacaoMultiComponent } from '../../shared/components/tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DialogModule } from 'primeng/dialog';
 import { ContextMenuModule } from 'primeng/contextmenu';

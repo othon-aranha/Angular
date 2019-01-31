@@ -2,9 +2,9 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { UsuarioRoutingModule } from './usuario.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StatusMultiComponent } from '../../status-multi/status-multi.component';
+import { StatusMultiComponent } from '../../shared/components/status-multi/status-multi.component';
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
-import { TipoUsuarioMultiComponent } from '../../tipo-usuario-multi/tipo-usuario-multi.component';
+import { TipoUsuarioMultiComponent } from '../../shared/components/tipo-usuario-multi/tipo-usuario-multi.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule, GrowlModule, InputTextModule } from 'primeng/primeng';

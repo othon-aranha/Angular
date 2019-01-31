@@ -8,21 +8,13 @@
 <form class="form-vertical" [formGroup]="form" (ngSubmit)="onSubmit(form)">
   <div class="form-group ui-g-12">
        <p-dropdown
-              id="nome"
+              formControlName="nome"
               [options]="optDominios"
               placeholder="Domínio"
               optionLabel="label"
               [showClear]="true"
               [class.invalid]="form.controls['nome'].touched && !form.controls['nome'].valid">
       </p-dropdown>
-    <!--p-autoComplete         
-        class="form-control" 
-        formControlName="nome"
-        [class.invalid]="form.controls['nome'].touched && !form.controls['nome'].valid"
-        [suggestions]="dominios" 
-        field="descricao"        
-        (completeMethod)="search($event)">
-    </p-autoComplete-->
   </div>
 
   <div class="form-group ui-g-12">
@@ -32,7 +24,7 @@
              Valor do Domínio</label>
       <input type="text" 
              class="form-control" 
-             id="cd"  
+             formControlName="cd"  
              [class.invalid]="form.controls['cd'].touched && !form.controls['cd'].valid"
              placeholder="Código" > 
   </div>
@@ -44,15 +36,16 @@
              Descrição do Domínio</label>
       <input type="text" 
              class="form-control" 
-             id="descricao"
+             formControlName="descricao"
              [class.invalid]="form.controls['descricao'].touched && !form.controls['descricao'].valid" 
              placeholder="Descrição"> 
   </div>
+  <p-footer>
+       <div class="ui-g-12 ui-dialog-buttonpane ui-helper-clearfix">
+              <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" ></p-confirmDialog>
+              <button type="button" [disabled]="!form.valid" (click)="onSubmit(form)" pButton icon="pi pi-check" label="Gravar"></button>
+              <p-messages [value]="msgs"></p-messages>
+       </div>  
+   </p-footer>
 
-  <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" ></p-confirmDialog>
-  <button type="button" [disabled]="!form.valid" (click)="onSubmit(form)" pButton icon="pi pi-check" label="Gravar"></button>
-  <p-messages [value]="msgs"></p-messages>  
-  
-  <!-- button class="btn btn-primary" [disabled]="!form.valid" type="submit">Submit</button -->
-  
 </form>

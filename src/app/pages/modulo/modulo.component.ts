@@ -59,7 +59,7 @@ export class ModuloComponent implements OnInit {
   }
 
   inicializaForm() {
-    if ( this.modulo ) {
+    if ( this.id ) {
       this.form = this.formBuilder.group({
         id:   [this.id, [Validators.required, Validators.minLength(1)] ],
         sigla: [this.modulo.sigla, [Validators.required, Validators.minLength(3)] ],

@@ -9,33 +9,32 @@
     <div class="ui-g ui-fluid">
         <div class="ui-g-12 ui-fluid">
             <div class="ui-g">
-                <label for="id">Id</label>
-                <input pInputText id="id" [(ngModel)]="id" [disabled]="true" maxlength="6"/>
+                <label for="id">Id: {{id}}</label>                
             </div>
             <div class="ui-g">
                 <label for="id">Sigla</label>
-                <input pInputText id="id" [(ngModel)]="modulo.sigla" [disabled]="true"/>
+                <input pInputText id="sigla" formControlName="sigla" [disabled]="true"/>
             </div>            
             <div class="ui-g ui-fluid">
                 <label for="id">Alias</label>
             </div>
             <div class="ui-g">
-                <p-dropdown [options]="alias" [(ngModel)]="selectedAlias"  placeholder="Selecione um Alias"></p-dropdown>
+                <p-dropdown [options]="alias" id="alias" formControlName="alias" showClear="true" optionLabel="value"  placeholder="Selecione um Alias"></p-dropdown>
 		    </div>	
             <div class="ui-g-4">
                 <label for="esquema">Esquema</label>
-                <input pInputText id="esquema" [(ngModel)]="modulo.esquema" maxlength="30" size="20"/>
+                <input pInputText name="esquema" id="esquema" formControlName="esquema" maxlength="30" size="20"/>
             </div>                        
             <div class="ui-g-4">
                 <label for="versao">Versão</label>
-                 <input pInputText id="versao" [(ngModel)]="modulo.versao" [disabled]="true"/>
+                 <input pInputText id="versao" formControlName="versao" [disabled]="true"/>
             </div>
             <div class="ui-g-2">
                 <div class="ui-g"> 
                     <label for="tabela">Tabela Mensagem</label>
                 </div>
                 <div class="ui-g">
-                    <p-inputSwitch onLabel="Sim" offLabel="Não" [(ngModel)]="modulo.mensagemCompartilhada"></p-inputSwitch>
+                    <p-inputSwitch onLabel="Sim" offLabel="Não" id="mensagemCompartilhada" formControlName="mensagemCompartilhada"></p-inputSwitch>
                 </div>
             </div>            
              <div class="ui-g-2">
@@ -43,17 +42,17 @@
                     <label for="tabela">Controla Acesso</label>
                 </div>
                 <div class="ui-g">    
-                    <p-inputSwitch onLabel="Sim" offLabel="Não" [(ngModel)]="modulo.controlaAcesso"></p-inputSwitch>
+                    <p-inputSwitch onLabel="Sim" offLabel="Não" id="controlaAcesso" formControlName="controlaAcesso"></p-inputSwitch>
                 </div>    
              </div>             
         </div>
         <div class="ui-g-10 ui-fluid">
             <div class="ui-g-4 ui-fluid">   
                 <label for="tabela">Tipo de aplicação</label>                
-                <app-tipo-aplicacao-multi></app-tipo-aplicacao-multi>
+                <p-dropdown [options]="tipoAplicacao" formControlName="tipoAplic" showClear="true" optionLabel="label"  placeholder="Tipo de Aplicação"></p-dropdown>
             </div>            
             <div class="ui-g-6">
-                <app-servidor-list [options]="servers" [(ngModel)]="selectedServers" [modulo.tribunal.id]="cdTrib" (onSelecionarTribunal)="onSelecionarTribunal($cdTrib)"  optionLabel="id.alias" ngDefaultControl></app-servidor-list>
+                <app-servidor-list [options]="servers" (onSelecionarTribunal)="onSelecionarTribunal($cdTrib)"  optionLabel="id.alias" ngDefaultControl></app-servidor-list>
             </div>
         </div>     
     </div>                   
@@ -68,3 +67,4 @@
         </div>
     </p-footer>
 </form>
+<pre>{{ form.value | json }} </pre>

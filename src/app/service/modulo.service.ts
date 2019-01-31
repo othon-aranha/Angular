@@ -19,7 +19,7 @@ export class ModuloService {
     return this.http.get<Modulo>(this.moduloUrl + '/' + id, {headers: this.headers});
   }
 
-  listarModulos() {
+  listarModulos(): Observable<Array<Modulo>> {
     return this.http.get<Array<Modulo>>(this.moduloUrl, {headers: this.headers});
   }
 
@@ -27,11 +27,11 @@ export class ModuloService {
     return this.http.get<Array<Modulo>>(this.moduloUrl + '/tipoModulo/' + tipoModulo, {headers: this.headers});
   }
 
-  listarModulosporTipoAtualizacao(tipoAtualizacao: String) {
+  listarModulosporTipoAtualizacao(tipoAtualizacao: String): Observable<Array<Modulo>> {
     return this.http.get<Array<Modulo>>(this.moduloUrl + '/tipoAtualizacao/' + tipoAtualizacao, {headers: this.headers});
   }
 
-  listarModulosDTO(moduloDTO: ModuloDTO) {
+  listarModulosDTO(moduloDTO: ModuloDTO): Observable<Array<Modulo>> {
     return this.http.post<Array<Modulo>>(this.moduloUrl + '/tipoAtualizacao/', moduloDTO, {headers: this.headers});
   }
 

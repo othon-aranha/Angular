@@ -1,12 +1,17 @@
-<nav class="bd-5">
-  <ol class="breadcrumb">
-      <ng-template ngFor let-item [ngForOf]="rota" let-i="index">
-          <li *ngIf="i != rota.length; else ativo" class="breadcrumb-item">
-              <a routerLink="{{item.rota}}">{{item.descricao}}</a>
-          </li>      
-     </ng-template>
-     <ng-template #ativo>
-        <li class="breadcrumb-item"><a routerLink={{item.rota}}>{{item.descricao}}</a></li>     
-     </ng-template> 
-  </ol>
-</nav>
+<nav class="mb-5">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/">Home</a>
+      </li>
+  
+      <li *ngFor="let item of items" class="breadcrumb-item" [class.active]="isTheLastItem(item)">
+        <span *ngIf="isTheLastItem(item)">
+          {{item.text}}
+        </span>
+  
+        <a *ngIf="!isTheLastItem(item)" [routerLink]="item.link">
+          {{item.text}}
+        </a>
+      </li>
+    </ol>
+  </nav>

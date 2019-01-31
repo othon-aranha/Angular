@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+interface BreadCrumbItem {
+  text: string;
+  link?: string;
+}
 
 @Component({
   selector: 'app-barra-navegacao',
@@ -7,16 +12,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarraNavegacaoComponent implements OnInit {
 
-  rota: any[];
+  @Input() items: Array<BreadCrumbItem> = [];
   constructor() { }
 
   ngOnInit() {
 
   }
 
+
+  isTheLastItem(item: BreadCrumbItem): boolean {
+    const index = this.items.indexOf(item);
+    return index + 1 === this.items.length;
+  }
+
   public atualizarRota(rota: any[]): void {
     console.log(rota);
-    this.rota = rota;
+    this.items = rota;
   }
 
 }

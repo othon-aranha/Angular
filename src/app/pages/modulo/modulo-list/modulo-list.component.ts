@@ -20,7 +20,7 @@ export class ModuloListComponent implements OnInit {
   rotaAtual: any[];
   alias = [];
   selectedAlias = [];
-  selectedTipo: Array<string> = [];
+  selectedTipo: Array<string> = ['DESKTOP', 'WEB', 'HIBRIDO'];
   tipoAplicacao = [];
   modulo: Modulo = null;
   selectedModulo: Modulo = null;
@@ -44,9 +44,6 @@ export class ModuloListComponent implements OnInit {
     this.rotaAtual = [
       {rota: '/home', descricao: 'Cadastro'},
       {rota: '/modulo', descricao: 'Módulo'}];
-
-
-    this.selectedTipo = ['DESKTOP', 'WEB', 'HIBRIDO'];
 
     this.consultarporTipodeAplicacao(this.selectedTipo);
 

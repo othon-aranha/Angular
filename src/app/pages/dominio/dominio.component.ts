@@ -25,8 +25,8 @@ export class DominioComponent implements OnInit {
   id: string;
   params: ParamMap;
   form: FormGroup;
-  dominio: Dominio;
-  dominios: Dominio[];
+  dominio: any;
+  dominios: any[];
   optDominios = [];
   text: string;
   msgs: Message[] = [];
@@ -37,10 +37,10 @@ export class DominioComponent implements OnInit {
               private dominioService: DominioService,
               private route: ActivatedRoute,
               private confirmationService: ConfirmationService) {
-              this.populaDominio('DOMINIOS_ACESSO', '');
   }
 
   ngOnInit() {
+    this.populaDominio('DOMINIOS_ACESSO', '');
     if ( this.route.snapshot.paramMap.has('id') ) {
       this.id = this.route.snapshot.paramMap.get('id');
       this.rota = 'Editar';
@@ -72,13 +72,9 @@ export class DominioComponent implements OnInit {
    // Carregando os dominios do acesso
    this.dominios = [];
    if ( descricao === '' ) {
-    this.dominioService.getDominioPeloNome(nome).subscribe(data => {
-      this.dominios = data;
-    });
+    this.dominioService.getDominioPeloNome(nome).subscribe(data => this.dominios = data);
    } else {
-    this.dominioService.getDominioPeloNomeeDescricao(nome, descricao).subscribe(data => {
-      this.dominios = data;
-    });
+    this.dominioService.getDominioPeloNomeeDescricao(nome, descricao).subscribe(data => this.dominios = data);
    }
   this.populaAutoComplete();
   }
@@ -86,7 +82,7 @@ export class DominioComponent implements OnInit {
 
   populaAutoComplete() {
     // this.optDominios.push({label: 'Informe o domínio', value: -1});
-    this.optDominios = [...this.optDominios, {label: 'Informe o domínio', value: -1}];
+    this.optDominios = [...this.optDominios, {label: 'Informe o domínio', value: ''}];
     for (let i = 1; i < this.dominios.length; i++) {
       this.optDominios = [...this.optDominios, {label: this.dominios[i].descricao, value: this.dominios[i].descricao}];
       // this.optDominios.push({label: this.dominios[i].descricao, value: this.dominios[i].descricao});
