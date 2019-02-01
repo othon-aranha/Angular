@@ -28,32 +28,30 @@ export class ServidorListComponent implements OnInit {
   constructor(private servidorService: ServidorService, private manutencaService: ManutencaoService ) { }
 
   ngOnInit() {
-    /*
-    this.servers = [{cdTrib: 1, alias: 'AC1-ADM'},
-                    {cdTrib: 1, alias: 'AL1-ADM'},
-                    {cdTrib: 1, alias: 'AM1-ADM'},
-                    {cdTrib: 1, alias: 'AP1-ADM'},
-                    {cdTrib: 1, alias: 'BA1-ADM'},
-                    {cdTrib: 1, alias: 'CE1-ADM'},
-                    {cdTrib: 1, alias: 'DF1-ADM'},
-                    {cdTrib: 1, alias: 'ES1-ADM'},
-                    {cdTrib: 1, alias: 'GO1-ADM'}];
+
+    this.servers = [{name: 'AC1-ADM', code: 'AC1-ADM'},
+                    {name: 'AL1-ADM', code: 'AL1-ADM'},
+                    {name: 'AM1-ADM', code: 'AM1-ADM'},
+                    {name: 'AP1-ADM', code: 'AP1-ADM'},
+                    {name: 'BA1-ADM', code: 'BA1-ADM'},
+                    {name: 'CE1-ADM', code: 'CE1-ADM'},
+                    {name: 'DF1-ADM', code: 'DF1-ADM'},
+                    {name: 'ES1-ADM', code: 'ES1-ADM'},
+                    {name: 'GO1-ADM', code: 'GO1-ADM'}];
     this.selectedServers = [
-                    {cdTrib: 1, alias: 'AC1-ADM'},
-                    {cdTrib: 1, alias: 'AL1-ADM'},
-                    {cdTrib: 1, alias: 'AM1-ADM'},
-                    {cdTrib: 1, alias: 'AP1-ADM'},
-                    {cdTrib: 1, alias: 'BA1-ADM'}];
-    */
-    this.carregarTodosServidores();
+      {name: 'AC1-ADM', code: 'AC1-ADM'},
+      {name: 'AL1-ADM', code: 'AL1-ADM'},
+      {name: 'AM1-ADM', code: 'AM1-ADM'},
+      {name: 'AP1-ADM', code: 'AP1-ADM'}];
+    // this.carregarTodosServidores();
   }
 
   cloneMaquina(m: MaquinaServidora[]) {
     this.servers = [];
     // tslint:disable-next-line:forin
     for (const id in m) {
-      this.servers[id].alias = m[id].id.alias;
-      this.servers[id].cdTrib = m[id].id.cdTrib;
+      this.servers[id].code = m[id].id.alias;
+      this.servers[id].name = m[id].id.alias;
     }
    }
 
@@ -61,8 +59,8 @@ export class ServidorListComponent implements OnInit {
      this.maquinas = [];
      // tslint:disable-next-line:forin
     for (const id in m) {
-      this.servers[id].alias = m[id].id.alias;
-      this.servers[id].cdTrib = m[id].id.cdTrib;
+      this.servers[id].code = m[id].id.alias;
+      this.servers[id].name = m[id].id.alias;
     }
    }
 
