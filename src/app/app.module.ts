@@ -30,6 +30,7 @@ import { BarraNavegacaoComponent } from './pages/shared/barra-navegacao/barra-na
 import { BaseResourceFormComponent } from './shared/components/base-resource-form/base-resource-form.component';
 import { FormFieldErrorComponent } from './shared/components/form-field-error/form-field-error.component';
 import { ServerErrorMessagesComponent } from './shared/components/server-error-messages/server-error-messages.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -39,7 +40,6 @@ import { ServerErrorMessagesComponent } from './shared/components/server-error-m
     LoginComponent,
     BarraNavegacaoComponent,
     AppComponent,
-    FormFieldErrorComponent,
     ServerErrorMessagesComponent
   ],
   imports: [
@@ -63,6 +63,7 @@ import { ServerErrorMessagesComponent } from './shared/components/server-error-m
     DominioModule,
     UsuarioModule,
     TribunalModule,
+    SharedModule,
     AppRoutingModule
   ],
   providers: [

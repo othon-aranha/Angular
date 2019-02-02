@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { TribunalListComponent } from './tribunal-list/tribunal-list.component';
 import { TribunalComponent } from './tribunal.component';
+import { TribunalFormComponent } from './tribunal-form/tribunal-form.component';
 
 const tribunalRoutes = [
     {path: 'tribunal', component: TribunalListComponent},
-    {path: 'tribunal/:id', component: TribunalComponent}
+    {path: 'tribunal/:id/edit', component: TribunalFormComponent}
 ];
 
 @NgModule({

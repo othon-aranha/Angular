@@ -1,5 +1,5 @@
 import { TribunalRoutingModule } from './tribunal.routing.module';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatInputModule, MatSelectModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { TribunalComponent } from './tribunal.component';
@@ -8,6 +8,8 @@ import { TribunalService } from '../../service/tribunal.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { GrowlModule, ContextMenuModule } from 'primeng/primeng';
+import { TribunalFormComponent } from './tribunal-form/tribunal-form.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -18,10 +20,12 @@ import { GrowlModule, ContextMenuModule } from 'primeng/primeng';
     ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
+    SharedModule,
     TableModule,
     TribunalRoutingModule
   ],
-  declarations: [TribunalComponent, TribunalListComponent],
+  declarations: [TribunalComponent, TribunalFormComponent,  TribunalListComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
   providers: [TribunalService]
 })
 export class TribunalModule { }

@@ -49,11 +49,11 @@ export class TribunalListComponent implements OnInit {
 
 
   viewTribunal(tribunal: Tribunal) {
-    this.router.navigate(['/tribunal/', tribunal.id]);
+    this.router.navigate(['/tribunal/', tribunal.id, 'edit']);
   }
 
   newTribunal() {
-    this.router.navigate(['/tribunal/']);
+    this.router.navigate(['/tribunal/new']);
   }
 
   deleteTribunal(tribunal: Tribunal) {
