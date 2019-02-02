@@ -6,6 +6,14 @@ import { Injectable } from '@angular/core';
 import { Dominio } from '../domain/dominio';
 
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'my-auth-token'
+  })
+};
+
+
 @Injectable()
 export class DominioService {
   private url = 'http://localhost:8081/dominio';
@@ -23,19 +31,19 @@ export class DominioService {
   headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
 
-  getDominios(): Observable<Array<any>> {
+  getDominios() {
     return this.http.get<Dominio[]>(this.url + '/dominios');
   }
 
-  getDominioPeloNome(nome: String): Observable<Array<any>> {
-    return this.http.get<Dominio[]>(this.url + '/nome/' + nome, {headers: this.headers});
+  getDominioPeloNome(nome: String) {
+    return this.http.get<Dominio[]>(this.url + '/nome/' + nome);
   }
 
-  getDominioPeloNomeeDescricao(nome, descricao: String): Observable<Array<any>> {
+  getDominioPeloNomeeDescricao(nome, descricao: String) {
     return this.http.get<Dominio[]>(this.url + '/nome/' + nome + '/descricao/' + descricao, {headers: this.headers});
   }
 
-  getDominioPeloNomeEDescricao(nome: String, descricao: String): Observable<Array<any>> {
+  getDominioPeloNomeEDescricao(nome: String, descricao: String) {
     return this.http.get<Dominio[]>(this.url + '/nome/' + nome + '/descricao/' + descricao, {headers: this.headers});
   }
 

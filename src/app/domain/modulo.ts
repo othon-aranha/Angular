@@ -13,6 +13,7 @@ export class Modulo extends BaseResourceModel {
     public descricao?: string,
     public alias?: string,
     public esquema?: string,
+    public email?: string,
     public caminhoModulo?: string,
     public caminhoHelp?: string,
     public nomeExecutavel?: string,

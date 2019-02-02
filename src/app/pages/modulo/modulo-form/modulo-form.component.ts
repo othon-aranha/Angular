@@ -29,6 +29,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
 
   constructor(protected moduloService: ModuloService, protected injector: Injector, private maquinaService: MaquinaService) {
     super(injector, new Modulo(), moduloService, Modulo.fromJson);
+    this.carregaListaServidores(4);
   }
 
 
@@ -43,14 +44,8 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     }
   }
 
-  private TelaAnterior() {
-    this.router.navigate(['/modulo']);
-  }
-
   ngOnInit() {
     super.ngOnInit();
-    this.carregaListaServidores(4);
-    this.buildResourceForm();
   }
 
   protected buildResourceForm() {
@@ -65,6 +60,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
                             [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ],
       controlaAcesso: [this.resource.controlaAcesso, [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ]
     });
+    this.resourceForm.controls['tipoModulo'].setValue('DESKTOP');
   }
 
 
