@@ -12,6 +12,8 @@ import { Validators } from '@angular/forms';
 export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> implements OnInit {
 
   ufs = [];
+  editing: boolean = false;
+
   constructor(protected tribunalService: TribunalService, protected injector: Injector) {
     super(injector, new Tribunal(), tribunalService, Tribunal.fromJson);
   }
@@ -20,10 +22,10 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
     this.resourceForm = this.formBuilder.group({
       id: [this.resource.id, [Validators.required] ],
       nome: [this.resource.nome, [Validators.required, Validators.minLength(6)] ],
-      sigla: [this.resource.sigla, [Validators.required, Validators.minLength(6)] ],
+      sigla: [this.resource.sigla, [Validators.required, Validators.minLength(3)] ],
       logradouro: [this.resource.logradouro, [Validators.required, Validators.minLength(10)] ],
-      bairro: [this.resource.bairro, [Validators.required, Validators.minLength(10)] ],
-      uf: [this.resource.uf, [Validators.required, Validators.minLength(2)] ],
+      bairro: [this.resource.bairro, [Validators.required, Validators.minLength(3)] ],
+      uf: [this.resource.uf, [Validators.required, Validators.minLength(2), Validators.maxLength(2)] ],
       cep: [this.resource.cep, [Validators.required, Validators.minLength(8)] ],
       cidade: [this.resource.cidade, [Validators.required, Validators.minLength(3)] ],
       telefone: [this.resource.telefone, [Validators.required, Validators.minLength(11)] ],
@@ -31,13 +33,12 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
       numeroContrato: [this.resource.numeroContrato, [Validators.required, Validators.minLength(3)] ],
       descricaoContrato: [this.resource.descricaoContrato, [Validators.required, Validators.minLength(6)] ],
       codigoMunicipioIBGE: [this.resource.codigoMunicipioIBGE, [Validators.required, Validators.minLength(3)] ],
-      codigoNaturezaJuridica: [this.resource.codigoNaturezaJuridica, [Validators.required, Validators.minLength(3)] ],
+      codigoNaturezaJuridica: [this.resource.codigoNaturezaJuridica, [] ],
       email: [this.resource.email, [Validators.required, Validators.minLength(6), Validators.email] ]
      });
   }
 
   ngOnInit() {
-    super.ngOnInit();
     this.ufs = [
     {value: 'AC', viewValue: 'Acre'},
     {value: 'AL', viewValue: 'Alagoas'},
@@ -55,6 +56,8 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
     {value: 'MT', viewValue: 'Mato Grosso'},
     {value: 'PA', viewValue: 'Pará'}
     ];
+    super.ngOnInit();
+    this.editing = ( this.resource.id !== undefined );
   }
 
 }

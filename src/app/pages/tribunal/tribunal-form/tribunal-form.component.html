@@ -2,14 +2,14 @@
 
   <div class="card">
     <div class="card-header">
-      Informações sobre o Módulo      
+      Informações sobre o Tribunal     
     </div>    
 
     <div class="card-body">
       <div class="form-row">
           <div class="form-group col-md-1">
               <label for="name">Sigla</label>
-              <input type="text" class="form-control" id="sigla" formControlName="sigla" [disabled]="( currentAction == 'edit' )" style="float:rigth">
+              <input type="text" class="form-control" id="sigla" formControlName="sigla" [disabled]="editing" style="float:rigth">
     
               <app-form-field-error [form-control]="resourceForm.get('sigla')"></app-form-field-error>
           </div>
@@ -18,7 +18,7 @@
       <div class="form-row">
           <div class="form-group col-md-12">
               <label for="name">Nome do Tribunal</label>
-              <input type="text" class="form-control" id="nome" formControlName="nome" [disabled]="( currentAction == 'edit' )" style="float:rigth">
+              <input type="text" class="form-control" id="nome" formControlName="nome" style="float:rigth">
     
               <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
           </div>
@@ -27,136 +27,106 @@
       <div class="form-row">
           <div class="form-group col-md-7">
               <label for="name">Logradouro</label>
-              <input type="text" class="form-control" id="logradouro" formControlName="logradouro" [disabled]="( currentAction == 'edit' )" style="float:rigth">
+              <input type="text" class="form-control" id="logradouro" formControlName="logradouro" style="float:rigth">
     
               <app-form-field-error [form-control]="resourceForm.get('logradouro')"></app-form-field-error>
           </div>
 
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-5">
               <label for="name">Bairro</label>
-              <input type="text" class="form-control" id="bairro" formControlName="bairro" [disabled]="( currentAction == 'edit' )" style="float:rigth">
+              <input type="text" class="form-control" id="bairro" formControlName="bairro" style="float:rigth">
     
               <app-form-field-error [form-control]="resourceForm.get('bairro')"></app-form-field-error>
           </div>
 
-          <div class="input-group mb-2">
-              <div class="input-group-prepend">
-                  <label class="input-group-text" for="tipoModulo">Tipo de Aplicação</label>
-                  <select class="custom-select my-1 mr-sm-2" id="uf" name="uf" formControlName="uf">
-                      <option *ngFor="let uf of ufs" [value]="uf.value">{{ uf.viewValue }}</option>            
-                  </select>
-              </div>
-          </div>
       </div>   
 
 
       <div class="form-row">
-          <div class="form-group col-md-4">
-              <div class="form-group col-md-3">
-                  <label for="name">CEP</label>
-                  <input type="text" class="form-control" id="cep" formControlName="cep" [disabled]="( currentAction == 'edit' )" style="float:rigth">
-        
-                  <app-form-field-error [form-control]="resourceForm.get('cep')"></app-form-field-error>
-              </div>
-          </div>
-      </div>
+          <div class="form-group col-md-3">
+                <label for="tipoModulo">UF</label>
+                <select class="custom-select my-1 mr-sm-2" id="uf" name="uf" formControlName="uf">
+                    <option *ngFor="let uf of ufs" [value]="uf.value">{{ uf.viewValue }}</option>            
+                </select>
 
-      <div class="form-row">
-          <div class="form-group col-md-4">
-              <div class="form-group col-md-3">
-                  <label for="name">Bairro</label>
-                  <input type="text" class="form-control" id="cidade" formControlName="cidade" [disabled]="( currentAction == 'edit' )" style="float:rigth">
+                <app-form-field-error [form-control]="resourceForm.get('uf')"></app-form-field-error>
+          </div>
+
+          <div class="form-group col-md-1">
+            <label for="name">CEP</label>
+            <input type="text" class="form-control" id="cep" formControlName="cep" style="float:rigth">
+
+            <app-form-field-error [form-control]="resourceForm.get('cep')"></app-form-field-error>
+          </div>
+   
+          <div class="form-group col-md-6">
+                  <label for="name">Cidade</label>
+                  <input type="text" class="form-control" id="cidade" formControlName="cidade" style="float:rigth">
         
                   <app-form-field-error [form-control]="resourceForm.get('cidade')"></app-form-field-error>
-              </div>
           </div>
-      </div>
-
-      <div class="form-row">
-          <div class="form-group col-md-4">
-              <div class="form-group col-md-3">
-                  <label for="name">Bairro</label>
-                  <input type="text" class="form-control" id="telefone" formControlName="telefone" [disabled]="( currentAction == 'edit' )" style="float:rigth">
+          <div class="form-group col-md-2">
+                  <label for="name">Telefone</label>
+                  <input type="text" class="form-control" id="telefone" formControlName="telefone" style="float:rigth">
         
                   <app-form-field-error [form-control]="resourceForm.get('telefone')"></app-form-field-error>
-              </div>
           </div>
       </div>
 
       <div class="form-row">
-          <div class="form-group col-md-4">
-              <div class="form-group col-md-3">
-                  <label for="name">Bairro</label>
-                  <input type="text" class="form-control" id="bairro" formControlName="bairro" [disabled]="( currentAction == 'edit' )" style="float:rigth">
-        
-                  <app-form-field-error [form-control]="resourceForm.get('bairro')"></app-form-field-error>
-              </div>
-          </div>
-      </div>
-
-      <div class="form-row">
-          <div class="form-group col-md-4">
-              <div class="form-group col-md-3">
+          <div class="form-group col-md-2">
                   <label for="name">CGC</label>
-                  <input type="text" class="form-control" id="cgc" formControlName="cgc" [disabled]="( currentAction == 'edit' )" style="float:rigth">
+                  <input type="text" class="form-control" id="cgc" formControlName="cgc" style="float:rigth">
         
                   <app-form-field-error [form-control]="resourceForm.get('cgc')"></app-form-field-error>
-              </div>
+          </div>
+      </div>
+
+      <div class="card" style="width: 100%;">
+        <h6 class="card-header">Dados do Contrato</h6>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="name">Número do Contrato</label>
+                    <input type="text" class="form-control" id="numeroContrato" formControlName="numeroContrato" style="float:rigth">
+
+                    <app-form-field-error [form-control]="resourceForm.get('numeroContrato')"></app-form-field-error>
+                </div>
+
+                <div class="form-group col-md-4">
+                        <label for="name">Descrição do Contrato</label>
+                        <input type="text" class="form-control" id="descricaoContrato" formControlName="descricaoContrato" style="float:rigth">
+                
+                        <app-form-field-error [form-control]="resourceForm.get('descricaoContrato')"></app-form-field-error>
+                </div>
+            </div>
+        </div>
+      </div>    
+
+      <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="name">Código do Município</label>
+            <input type="text" class="form-control" id="codigoMunicipioIBGE" formControlName="codigoMunicipioIBGE" style="float:rigth">
+
+            <app-form-field-error [form-control]="resourceForm.get('codigoMunicipioIBGE')"></app-form-field-error>
           </div>
       </div>
 
       <div class="form-row">
-          <div class="form-group col-md-4">
-              <div class="form-group col-md-3">
-                  <label for="name">Número do Contrato</label>
-                  <input type="text" class="form-control" id="numeroContrato" formControlName="numeroContrato" [disabled]="( currentAction == 'edit' )" style="float:rigth">
-        
-                  <app-form-field-error [form-control]="resourceForm.get('numeroContrato')"></app-form-field-error>
-              </div>
-          </div>
-      </div>
-
-      <div class="form-row">
-          <div class="form-group col-md-4">
-              <div class="form-group col-md-3">
-                  <label for="name">Descrição do Contrato</label>
-                  <input type="text" class="form-control" id="descricaoContrato" formControlName="descricaoContrato" [disabled]="( currentAction == 'edit' )" style="float:rigth">
-        
-                  <app-form-field-error [form-control]="resourceForm.get('descricaoContrato')"></app-form-field-error>
-              </div>
-          </div>
-      </div>
-
-      <div class="form-row">
-          <div class="form-group col-md-4">
-              <div class="form-group col-md-3">
-                  <label for="name">Código do Município</label>
-                  <input type="text" class="form-control" id="codigoMunicipioIBGE" formControlName="codigoMunicipioIBGE" [disabled]="( currentAction == 'edit' )" style="float:rigth">
-        
-                  <app-form-field-error [form-control]="resourceForm.get('codigoMunicipioIBGE')"></app-form-field-error>
-              </div>
-          </div>
-      </div>
-
-      <div class="form-row">
-          <div class="form-group col-md-4">
-              <div class="form-group col-md-3">
-                  <label for="name">Código da Natureza Jurídica</label>
-                  <input type="text" class="form-control" id="codigoNaturezaJuridica" formControlName="codigoNaturezaJuridica" [disabled]="( currentAction == 'edit' )" style="float:rigth">
+          <div class="form-group col-md-2">
+                  <label for="name">Cód. Nat. Jurídica</label>
+                  <input type="text" class="form-control" id="codigoNaturezaJuridica" formControlName="codigoNaturezaJuridica" style="float:rigth">
         
                   <app-form-field-error [form-control]="resourceForm.get('codigoNaturezaJuridica')"></app-form-field-error>
-              </div>
           </div>
       </div>
 
       <div class="form-row">
           <div class="form-group col-md-4">
-              <div class="form-group col-md-3">
                   <label for="name">E-mail</label>
-                  <input type="text" class="form-control" id="email" formControlName="email" [disabled]="( currentAction == 'edit' )" style="float:rigth">
+                  <input type="text" class="form-control" id="email" formControlName="email" style="float:rigth">
         
                   <app-form-field-error [form-control]="resourceForm.get('email')"></app-form-field-error>
-              </div>
           </div>
       </div>
 
