@@ -1,8 +1,10 @@
 import { Component, OnInit, Injector } from '@angular/core';
+import { Validators, FormArray, FormControl, FormGroup, AbstractControl } from '@angular/forms';
+
 import { BaseResourceFormComponent } from '../../../shared/components/base-resource-form/base-resource-form.component';
 import { Tribunal } from '../../../domain/tribunal';
 import { TribunalService } from '../../../service/tribunal.service';
-import { Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-tribunal-form',
@@ -10,7 +12,7 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./tribunal-form.component.css']
 })
 export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> implements OnInit {
-  id: string;
+  id: number = 0;
   ufs = [];
   editing: boolean = false;
 
@@ -20,7 +22,7 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id: [this.id, [Validators.required] ],
+      id: [this.id, [Validators.required, Validators.minLength(1)] ],
       nome: [this.resource.nome, [Validators.required, Validators.minLength(6)] ],
       sigla: [this.resource.sigla, [Validators.required, Validators.minLength(3)] ],
       logradouro: [this.resource.logradouro, [Validators.required, Validators.minLength(10)] ],
@@ -41,9 +43,7 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
   ngOnInit() {
 
     if ( this.route.snapshot.paramMap.has('id') ) {
-      this.id = this.route.snapshot.paramMap.get('id');
-    } else {
-      this.id = null;
+      this.id = +this.route.snapshot.paramMap.get('id');
     }
 
     this.ufs = [
@@ -64,8 +64,9 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
     {value: 'PA', viewValue: 'Pará'}
     ];
     super.ngOnInit();
-    this.resourceForm.controls['id'].patchValue(+this.id);
-    this.editing = ( this.resource.id !== undefined );
+    this.resourceForm.controls['id'].patchValue(this.id);
+    this.resource.id = +this.id;
+    this.editing = ( this.resource.id > 0 );
   }
 
 }

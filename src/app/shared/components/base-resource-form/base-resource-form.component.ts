@@ -45,12 +45,27 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
   submitForm() {
     this.submittingForm = true;
-
-    if ( this.currentAction === 'new' ) {
-      this.createResource();
-    } else { // currentAction == "edit"
-      this.updateResource();
+    if ( this.validForm() ) {
+      if ( this.currentAction === 'new' ) {
+        this.createResource();
+      } else { // currentAction == "edit"
+        this.updateResource();
+      }
     }
+  }
+
+  validForm(): boolean {
+    let retorno = true;
+    if ( this.resourceForm.status === 'INVALID'  ) {
+
+      Object.keys(this.resourceForm.controls).forEach((key) => {
+        if ( this.resourceForm.get(key).status === 'INVALID' ) {
+          toastr.error('O campo ' + key + ' está inválido');
+          retorno = false;
+        }
+       });
+    }
+    return retorno;
   }
 
 
