@@ -10,7 +10,7 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./tribunal-form.component.css']
 })
 export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> implements OnInit {
-
+  id: string;
   ufs = [];
   editing: boolean = false;
 
@@ -20,7 +20,7 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id: [this.resource.id, [Validators.required] ],
+      id: [this.id, [Validators.required] ],
       nome: [this.resource.nome, [Validators.required, Validators.minLength(6)] ],
       sigla: [this.resource.sigla, [Validators.required, Validators.minLength(3)] ],
       logradouro: [this.resource.logradouro, [Validators.required, Validators.minLength(10)] ],
@@ -39,6 +39,13 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
   }
 
   ngOnInit() {
+
+    if ( this.route.snapshot.paramMap.has('id') ) {
+      this.id = this.route.snapshot.paramMap.get('id');
+    } else {
+      this.id = null;
+    }
+
     this.ufs = [
     {value: 'AC', viewValue: 'Acre'},
     {value: 'AL', viewValue: 'Alagoas'},
@@ -57,6 +64,7 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
     {value: 'PA', viewValue: 'Pará'}
     ];
     super.ngOnInit();
+    this.resourceForm.controls['id'].patchValue(+this.id);
     this.editing = ( this.resource.id !== undefined );
   }
 

@@ -2,7 +2,7 @@
 
   <div class="card">
     <div class="card-header">
-      Informações sobre o Tribunal     
+      Informações sobre o Tribunal: {{ id }}  
     </div>    
 
     <div class="card-body">
@@ -82,18 +82,18 @@
           </div>
       </div>
 
-      <div class="card" style="width: 100%;">
+      <div class="card" style="width: 50%;">
         <h6 class="card-header">Dados do Contrato</h6>
         <div class="card-body">
             <div class="form-row">
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-4">
                     <label for="name">Número do Contrato</label>
                     <input type="text" class="form-control" id="numeroContrato" formControlName="numeroContrato" style="float:rigth">
 
                     <app-form-field-error [form-control]="resourceForm.get('numeroContrato')"></app-form-field-error>
                 </div>
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                         <label for="name">Descrição do Contrato</label>
                         <input type="text" class="form-control" id="descricaoContrato" formControlName="descricaoContrato" style="float:rigth">
                 
