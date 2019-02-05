@@ -11,7 +11,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
 
   protected http: HttpClient;
 
-  headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+  protected headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
   constructor(
     protected apiPath: string,
@@ -78,7 +78,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   protected handleError(error: any): Observable<any> {
-    console.log('ERRO NA REQUISIÇÃO => ', error);
+    console.log('Erro na requisiçao => ', error);
     return throwError(error);
   }
 

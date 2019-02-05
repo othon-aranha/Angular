@@ -1,16 +1,15 @@
 import { MaquinaPk} from './maquina-pk';
+import { BaseResourceModel } from '../shared/models/base-resource-model';
 
-export class MaquinaServidora  {
-    constructor (
-    public id?: MaquinaPk,
-    public descricao?: string,
-    public usuario?: string,
-    public senha?: string,
-    public conexao?: string,
-    public links?: string[]) {
-    }
+export class MaquinaServidora extends BaseResourceModel {
+    chave: MaquinaPk;
+    descricao: string;
+    usuario: string;
+    senha: string;
+    conexao: string;
+    links: string[];
 
     static fromJson(jsonData: any): MaquinaServidora {
-        return Object.assign(new MaquinaServidora(), jsonData);
+        return Object.assign(new MaquinaServidora, jsonData);
     }
 }

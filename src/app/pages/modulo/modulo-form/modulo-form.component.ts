@@ -29,7 +29,6 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
 
   constructor(protected moduloService: ModuloService, protected injector: Injector, private maquinaService: MaquinaService) {
     super(injector, new Modulo(), moduloService, Modulo.fromJson);
-    this.carregaListaServidores(4);
   }
 
 
@@ -40,11 +39,12 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     this.maquinaService.listarServidoresdoModulo(cdModulo).subscribe(dados => manutencoes = dados);
 
     for (let i = 1; i < manutencoes.length; i++) {
-      this.alias = [...this.alias, {label: manutencoes[i].descricao , value: manutencoes[i].id.alias}];
+      this.alias = [...this.alias, {label: manutencoes[i].descricao , value: manutencoes[i].chave.alias}];
     }
   }
 
   ngOnInit() {
+    this.carregaListaServidores(this.id);
     super.ngOnInit();
   }
 

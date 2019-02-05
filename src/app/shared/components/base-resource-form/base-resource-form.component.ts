@@ -12,6 +12,7 @@ import toastr from 'toastr';
 
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked {
 
+  id: number;
   currentAction: string;
   resourceForm: FormGroup;
   pageTitle: string;
@@ -33,7 +34,14 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     this.formBuilder = this.injector.get(FormBuilder);
   }
 
+  getParamId() {
+    if ( this.route.snapshot.paramMap.has('id') ) {
+      this.id = +this.route.snapshot.paramMap.get('id');
+    }
+  }
+
   ngOnInit() {
+    this.getParamId();
     this.setCurrentAction();
     this.buildResourceForm();
     this.loadResource();
@@ -89,6 +97,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
         (resource) => {
           this.resource = resource;
           this.resourceForm.patchValue(resource); // binds loaded resource data to resourceForm
+          this.onAfterloadResource();
         },
         (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
       );
@@ -132,6 +141,10 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
         resource => this.actionsForSuccess(resource),
         error => this.actionsForError(error)
       );
+  }
+
+  protected onAfterloadResource() {
+
   }
 
 

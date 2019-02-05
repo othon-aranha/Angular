@@ -50,8 +50,8 @@ export class ServidorListComponent implements OnInit {
     this.servers = [];
     // tslint:disable-next-line:forin
     for (const id in m) {
-      this.servers[id].code = m[id].id.alias;
-      this.servers[id].name = m[id].id.alias;
+      this.servers[id].code = m[id].chave.alias;
+      this.servers[id].name = m[id].chave.alias;
     }
    }
 

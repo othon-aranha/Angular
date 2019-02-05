@@ -12,7 +12,6 @@ import { TribunalService } from '../../../service/tribunal.service';
   styleUrls: ['./tribunal-form.component.css']
 })
 export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> implements OnInit {
-  id: number = 0;
   ufs = [];
   editing: boolean = false;
 
@@ -42,10 +41,6 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
 
   ngOnInit() {
 
-    if ( this.route.snapshot.paramMap.has('id') ) {
-      this.id = +this.route.snapshot.paramMap.get('id');
-    }
-
     this.ufs = [
     {value: 'AC', viewValue: 'Acre'},
     {value: 'AL', viewValue: 'Alagoas'},
@@ -61,11 +56,22 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
     {value: 'MG', viewValue: 'Minas Gerais'},
     {value: 'MS', viewValue: 'Mato Grosso do Sul'},
     {value: 'MT', viewValue: 'Mato Grosso'},
-    {value: 'PA', viewValue: 'Pará'}
+    {value: 'PA', viewValue: 'Pará'},
+    {value: 'PB', viewValue: 'Paraíba'},
+    {value: 'PE', viewValue: 'Pernambuco'},
+    {value: 'PI', viewValue: 'Piauí'},
+    {value: 'PR', viewValue: 'Paraná'},
+    {value: 'RJ', viewValue: 'Rio de Janeiro'},
+    {value: 'RN', viewValue: 'Rio Grande do Norte'},
+    {value: 'RO', viewValue: 'Rondônia'},
+    {value: 'RR', viewValue: 'Roraima'},
+    {value: 'RS', viewValue: 'Rio Grande do Sul'},
+    {value: 'SC', viewValue: 'Santa Catarina'},
+    {value: 'SE', viewValue: 'Sergipe'},
+    {value: 'SP', viewValue: 'São Paulo'},
+    {value: 'TO', viewValue: 'Tocantins'}
     ];
     super.ngOnInit();
-    this.resourceForm.controls['id'].patchValue(this.id);
-    this.resource.id = +this.id;
     this.editing = ( this.resource.id > 0 );
   }
 

@@ -12,6 +12,8 @@ import { DominioComponent } from './dominio.component';
 import { DominioRoutingModule } from './dominio.routing.module';
 import { DominioListComponent } from './dominio-list/dominio-list.component';
 import { DominioService } from '../../service/dominio.service';
+import { DominioFormComponent } from './dominio-form/dominio-form.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -24,10 +26,11 @@ import { DominioService } from '../../service/dominio.service';
     DropdownModule,
     GrowlModule,
     TableModule,
+    SharedModule,
     ReactiveFormsModule,
     DominioRoutingModule
   ],
-  declarations: [DominioComponent, DominioListComponent],
+  declarations: [DominioComponent, DominioFormComponent, DominioListComponent],
   providers: [DominioService, ConfirmationService],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]
 })
