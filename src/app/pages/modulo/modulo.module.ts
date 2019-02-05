@@ -13,9 +13,10 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { ModuloRoutingModule } from './modulo.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AliasService } from './../../service/alias.service';
 import { ModuloService } from '../../service/modulo.service';
 import { ServidorListComponent } from '../../servidor-list/servidor-list.component';
-import { ServidorService } from '../../service/servidor.service';
 import { MaquinaService } from '../../service/maquina.service';
 import { ModuloComponent } from './modulo.component';
 import { MatSelectModule, MatInputModule } from '@angular/material';
@@ -44,6 +45,6 @@ import { ListboxModule } from 'primeng/listbox';
                  TipoAplicacaoMultiComponent, ServidorListComponent],
   exports: [TipoAplicacaoMultiComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
-  providers: [ModuloService, ServidorService, MaquinaService, TipoAplicacaoMultiComponent]
+  providers: [ModuloService, AliasService, MaquinaService, TipoAplicacaoMultiComponent]
 })
 export class ModuloModule { }

@@ -1,3 +1,4 @@
+import { AliasModule } from './pages/alias/alias.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,8 +28,6 @@ import { ModuloModule } from './pages/modulo/modulo.module';
 import { UsuarioModule } from './pages/usuario/usuario.module';
 import { TribunalModule } from './pages/tribunal/tribunal.module';
 import { BarraNavegacaoComponent } from './pages/shared/barra-navegacao/barra-navegacao.component';
-import { BaseResourceFormComponent } from './shared/components/base-resource-form/base-resource-form.component';
-import { FormFieldErrorComponent } from './shared/components/form-field-error/form-field-error.component';
 import { ServerErrorMessagesComponent } from './shared/components/server-error-messages/server-error-messages.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -59,6 +58,7 @@ import { SharedModule } from './shared/shared.module';
     RadioButtonModule,
     ReactiveFormsModule,
     SlideMenuModule,
+    AliasModule,
     ModuloModule,
     DominioModule,
     UsuarioModule,

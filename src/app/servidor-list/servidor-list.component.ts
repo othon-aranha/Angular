@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
-import { ServidorService } from '../service/servidor.service';
+import { AliasService } from '../service/alias.service';
 import { ManutencaoService } from '../service/manutencao.service';
 import { MaquinaServidora } from '../domain/maquina-servidora';
 import { Manutencao } from '../domain/manutencao';
@@ -25,7 +25,7 @@ export class ServidorListComponent implements OnInit {
 
   siglaModulo: String;
 
-  constructor(private servidorService: ServidorService, private manutencaService: ManutencaoService ) { }
+  constructor(private aliasService: AliasService, private manutencaService: ManutencaoService ) { }
 
   ngOnInit() {
 
@@ -50,8 +50,8 @@ export class ServidorListComponent implements OnInit {
     this.servers = [];
     // tslint:disable-next-line:forin
     for (const id in m) {
-      this.servers[id].code = m[id].chave.alias;
-      this.servers[id].name = m[id].chave.alias;
+      this.servers[id].code = m[id].id.alias;
+      this.servers[id].name = m[id].id.alias;
     }
    }
 
@@ -67,7 +67,7 @@ export class ServidorListComponent implements OnInit {
    carregarTodosServidores() {
     this.servers = [];
     this.maquinas = [];
-    this.servidorService.listarServidoresdoTribunal(1).subscribe(dados => this.maquinas = dados);
+    this.aliasService.listarServidoresdoTribunal(1).subscribe(dados => this.maquinas = dados);
     this.cloneMaquina(this.maquinas);
   }
 
