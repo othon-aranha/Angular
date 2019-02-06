@@ -41,11 +41,11 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
   protected getResource() {
     return this.resourceService.getAll().subscribe(dados => this.gridrows = dados);
 
-    this.resourceService.getAll()
+    /* this.resourceService.getAll()
       .subscribe(
         resource => this.actionsForSuccess(resource),
         error => this.actionsForError(error)
-      );
+      ); */
   }
 
 
