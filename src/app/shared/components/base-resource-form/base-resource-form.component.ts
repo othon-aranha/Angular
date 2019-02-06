@@ -143,9 +143,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
       );
   }
 
-  protected onAfterloadResource() {
-
-  }
+  protected abstract onAfterloadResource(): void;
 
 
   protected actionsForSuccess(resource: T) {
