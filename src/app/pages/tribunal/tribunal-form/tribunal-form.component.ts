@@ -35,7 +35,8 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
       descricaoContrato: [this.resource.descricaoContrato, [Validators.required, Validators.minLength(6)] ],
       codigoMunicipioIBGE: [this.resource.codigoMunicipioIBGE, [Validators.required, Validators.minLength(3)] ],
       codigoNaturezaJuridica: [this.resource.codigoNaturezaJuridica, [] ],
-      email: [this.resource.email, [Validators.required, Validators.minLength(6), Validators.email] ]
+      email: [this.resource.email, [Validators.required, Validators.minLength(6), Validators.email] ],
+      acesso: [this.resource.acesso]
      });
   }
 
@@ -75,4 +76,7 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
     this.editing = ( this.resource.id > 0 );
   }
 
+  onAfterloadResource() {
+
+  }
 }

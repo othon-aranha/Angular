@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AliasListComponent } from './alias-list/alias-list.component';
 import { AliasFormComponent } from './alias-form/alias-form.component';
 import { TableModule } from 'primeng/table';
-import { ReactiveFormsModule } from '@angular/forms';
+
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -14,8 +14,6 @@ import { ButtonModule, InputTextModule, DropdownModule, GrowlModule, ContextMenu
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 
-
-import { SharedModule } from '../../shared/shared.module';
 import { AliasRoutingModule } from './alias.routing.module';
 
 

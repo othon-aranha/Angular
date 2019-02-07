@@ -16,7 +16,7 @@ import { MaquinaServidora } from '../../../domain/maquina-servidora';
 })
 export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> implements OnInit {
 
-  alias: any[];
+  aliasList: any[];
   TipoAplicacao: any[] = [{label: 'Escolha', value: ''},
                           {label: 'Desktop', value: 'DESKTOP'},
                           {label: 'Web', value: 'WEB'},
@@ -33,13 +33,13 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
 
 
   private carregaListaServidores(cdModulo: number) {
-    this.alias = [];
-    this.alias = [...this.alias, {label: 'Selecione o Alias' , value: ''}];
+    this.aliasList = [];
+    this.aliasList = [...this.aliasList, {label: 'Selecione o Alias' , value: ''}];
     let manutencoes: Array<MaquinaServidora> = [];
     this.maquinaService.listarServidoresdoModulo(cdModulo).subscribe(dados => manutencoes = dados);
 
     for (let i = 1; i < manutencoes.length; i++) {
-      this.alias = [...this.alias, {label: manutencoes[i].descricao , value: manutencoes[i].id.alias}];
+      this.aliasList = [...this.aliasList, {label: manutencoes[i].descricao , value: manutencoes[i].id.alias}];
     }
   }
 
@@ -63,6 +63,9 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     this.resourceForm.controls['tipoModulo'].setValue(['DESKTOP']);
   }
 
+  onAfterloadResource() {
+
+  }
 
   protected creationPageTitle(): string {
     return 'Cadastro de Novo Módulo';

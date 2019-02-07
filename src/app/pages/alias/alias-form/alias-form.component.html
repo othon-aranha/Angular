@@ -1,3 +1,47 @@
-<p>
-  alias-form works!
-</p>
+<form [formGroup]="resourceForm" (submit)="submitForm()">
+
+  <div class="card">
+    <div class="card-header">
+      Informações sobre o Alias: {{ id }}  
+    </div>    
+
+    <div class="card-body">
+      <div class="form-row">
+            <div class="form-group col-md-1">
+              <label for="name">Alias</label>
+              <input type="text" class="form-control" id="alias" formControlName="alias" style="float:rigth">
+    
+              <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
+            </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <label for="name">Descrição</label>
+          <input type="text" class="form-control" id="descricao" formControlName="descricao" style="float:rigth">
+
+          <app-form-field-error [form-control]="resourceForm.get('descricao')"></app-form-field-error>
+        </div>
+      </div>      
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="name">Usuário</label>
+          <input type="text" class="form-control" id="usuario" formControlName="usuario" style="float:rigth">
+
+          <app-form-field-error [form-control]="resourceForm.get('usuario')"></app-form-field-error>
+        </div>
+      </div>            
+
+    </div>
+  
+  </div>
+
+  <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+
+  <button routerLink="/alias" class="btn btn-primary btn-lg float-left mt-3"><< Voltar
+  </button>
+  <button type="submit" class="btn btn-primary btn-lg float-right mt-3">Salvar
+  </button>
+
+</form>   

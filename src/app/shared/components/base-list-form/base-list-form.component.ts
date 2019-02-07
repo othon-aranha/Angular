@@ -10,6 +10,7 @@ import { BaseResourceService } from '../../services/base-resource-service';
 })
 export abstract class BaseListFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked  {
   id: any;
+  alias: string;
   cols: any[];
   gridrows: Array<T> = [];
   selectedrow: T;
@@ -28,6 +29,16 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
   }
 
   ngOnInit() {
+    this.getResource();
+  }
+
+  getParamId() {
+    if ( this.route.snapshot.paramMap.has('id') ) {
+      this.id = +this.route.snapshot.paramMap.get('id');
+    }
+    if ( this.route.snapshot.paramMap.has('alias') ) {
+      this.alias = this.route.snapshot.paramMap.get('alias');
+    }
   }
 
   ngAfterContentChecked() {
@@ -40,12 +51,6 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
 
   protected getResource() {
     return this.resourceService.getAll().subscribe(dados => this.gridrows = dados);
-
-    /* this.resourceService.getAll()
-      .subscribe(
-        resource => this.actionsForSuccess(resource),
-        error => this.actionsForError(error)
-      ); */
   }
 
 

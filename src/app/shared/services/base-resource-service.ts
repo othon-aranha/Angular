@@ -37,6 +37,17 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
     );
   }
 
+  /*
+  getById(id: number, alias: string): Observable<T> {
+    const url = `${this.apiPath}/cdTrib/${id}/alias/${alias}`;
+
+    return this.http.get(url, {headers: this.headers}).pipe(
+      map(this.jsonDataToResource.bind(this)),
+      catchError(this.handleError)
+    );
+  }
+  */
+
   create(resource: T): Observable<T> {
     return this.http.post(this.apiPath, resource).pipe(
       map(this.jsonDataToResource.bind(this)),

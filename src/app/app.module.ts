@@ -27,7 +27,6 @@ import { DominioModule } from './pages/dominio/dominio.module';
 import { ModuloModule } from './pages/modulo/modulo.module';
 import { UsuarioModule } from './pages/usuario/usuario.module';
 import { TribunalModule } from './pages/tribunal/tribunal.module';
-import { BarraNavegacaoComponent } from './pages/shared/barra-navegacao/barra-navegacao.component';
 import { ServerErrorMessagesComponent } from './shared/components/server-error-messages/server-error-messages.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -37,7 +36,6 @@ import { SharedModule } from './shared/shared.module';
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    BarraNavegacaoComponent,
     AppComponent,
     ServerErrorMessagesComponent
   ],

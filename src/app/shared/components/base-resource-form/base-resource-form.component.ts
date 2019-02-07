@@ -13,6 +13,7 @@ import toastr from 'toastr';
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked {
 
   id: number;
+  alias: string;
   currentAction: string;
   resourceForm: FormGroup;
   pageTitle: string;
@@ -37,6 +38,9 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   getParamId() {
     if ( this.route.snapshot.paramMap.has('id') ) {
       this.id = +this.route.snapshot.paramMap.get('id');
+    }
+    if ( this.route.snapshot.paramMap.has('alias') ) {
+      this.alias = this.route.snapshot.paramMap.get('alias');
     }
   }
 

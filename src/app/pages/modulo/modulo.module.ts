@@ -1,4 +1,3 @@
-import { BarraNavegacaoComponent } from './../shared/barra-navegacao/barra-navegacao.component';
 import { ModuloFormComponent } from './modulo-form/modulo-form.component';
 import { TipoAplicacaoMultiComponent } from '../../shared/components/tipo-aplicacao-multi/tipo-aplicacao-multi.component';
 import { MultiSelectModule } from 'primeng/multiselect';
