@@ -60,7 +60,6 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
                             [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ],
       controlaAcesso: [this.resource.controlaAcesso, [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ]
     });
-    this.resourceForm.controls['tipoModulo'].setValue(['DESKTOP']);
   }
 
   onAfterloadResource() {

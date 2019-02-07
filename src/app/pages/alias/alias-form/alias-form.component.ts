@@ -1,4 +1,4 @@
-import { Validators } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { AliasService } from './../../../service/alias.service';
 import { MaquinaServidora } from './../../../domain/maquina-servidora';
 import { Component, OnInit, Injector } from '@angular/core';
@@ -17,19 +17,25 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
 
   ngOnInit() {
     super.getParamId();
-    this.aliasService.getByCompositeId(this.id, this.alias).subscribe(dados => this.resource = dados);
     this.buildResourceForm();
+    this.aliasService.getByCompositeId(this.id, this.alias).subscribe(
+      (resource) => {
+        this.resource =  resource;
+        this.resourceForm.patchValue();
+        this.onAfterloadResource();
+      },
+      (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
+    );
   }
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id:   [this.resource.id, [Validators.required, Validators.minLength(1)] ],
-      alias: [this.resource.id.alias, [Validators.required, Validators.minLength(1)] ],
-      descricao: [this.resource.descricao, [Validators.required, Validators.minLength(3)] ],
-      usuario: [this.resource.usuario, [Validators.required, Validators.minLength(7)] ],
-      senha: [this.resource.senha, [Validators.required, Validators.minLength(3)]],
-      conexao: [this.resource.conexao,
-                             [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ]
+      id:   [null, [Validators.required, Validators.minLength(1)] ],
+      alias: [null, [Validators.required, Validators.minLength(1)] ],
+      descricao: [null, [Validators.required, Validators.minLength(3)] ],
+      usuario: [null, [Validators.required, Validators.minLength(7)] ],
+      senha: [null, [Validators.required, Validators.minLength(3)]],
+      conexao: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ]
     });
   }
 

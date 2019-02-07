@@ -14,7 +14,7 @@ export class AliasService extends BaseResourceService<MaquinaServidora> {
     public getByCompositeId(id: number, alias: string): Observable<MaquinaServidora> {
     const url = `${this.apiPath}/cdTrib/${id}/alias/${alias}`;
 
-    return this.http.get(url, {headers: this.headers}).pipe(
+    return this.http.get<MaquinaServidora>(url, {headers: this.headers}).pipe(
       map(this.jsonDataToResource.bind(this)),
       catchError(this.handleError)
     );

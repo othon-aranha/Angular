@@ -39,8 +39,8 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     if ( this.route.snapshot.paramMap.has('id') ) {
       this.id = +this.route.snapshot.paramMap.get('id');
     }
-    if ( this.route.snapshot.paramMap.has('alias') ) {
-      this.alias = this.route.snapshot.paramMap.get('alias');
+    if ( this.route.snapshot.paramMap.has('name') ) {
+      this.alias = this.route.snapshot.paramMap.get('name');
     }
   }
 

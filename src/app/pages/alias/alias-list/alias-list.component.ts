@@ -61,7 +61,7 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
    }
 
    viewAlias(alias: MaquinaServidora) {
-    this.router.navigate(['/alias/', alias.id.alias, '/cdTrib/', alias.id.cdTrib, 'edit']);
+    this.router.navigate(['alias', 'id', alias.id.cdTrib, 'name', alias.id.alias, 'edit']);
   }
 
 }
