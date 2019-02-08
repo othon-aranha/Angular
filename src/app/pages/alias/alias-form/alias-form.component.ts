@@ -24,11 +24,11 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
     this.aliasService.getByCompositeId(this.id, this.alias).subscribe(
       (resource) => {
         this.resource = resource;
-        this.resourceForm.setValue({
+        this.resourceForm.patchValue({
           id: {cdTrib: this.id, alias: this.alias},
           descricao: this.resource.descricao,
           usuario: this.resource.usuario, senha: this.resource.senha,
-          conexao: this.resource.conexao},  { onlySelf: false, emitEvent: false });
+          conexao: this.resource.conexao});
           console.log(this.resourceForm.value);
         /* this.resource.conexao =  resource.conexao;
         this.resource.descricao =  resource.descricao;

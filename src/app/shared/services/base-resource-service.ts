@@ -55,7 +55,24 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
     );
   }
 
+  private getKeys(resource: any): any {
+    let AKey = [];
+    for (const prop in resource ) {
+      if ( prop === 'id') {
+        if ( prop.length > 1 ) {
+         AKey = this.getKeys(resource[prop]);
+         break;
+        }
+      } else {
+        AKey.push({keyname: prop, value: resource[prop]});
+      }
+    }
+    return AKey;
+  }
+
   update(resource: T): Observable<T> {
+    console.log(this.getKeys(resource));
+
     const url = `${this.apiPath}/${resource.id}`;
 
     return this.http.put(url, resource).pipe(
