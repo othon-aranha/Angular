@@ -19,7 +19,7 @@ export class UsuarioListComponent extends BaseListFormComponent<Usuario> impleme
   cols: any[];
   usuarios = [];
   tipoUsuario = [];
-  tipodeUsuario = [];
+  selectedTipoUsuario = [];
   usuario: Usuario = null;
   selectedUsuario: Usuario = null;
   selectedStatus = [];
@@ -36,7 +36,7 @@ export class UsuarioListComponent extends BaseListFormComponent<Usuario> impleme
 
   ngOnInit() {
 
-    this.tipodeUsuario = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
+    this.selectedTipoUsuario = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
     this.selectedStatus = ['ATIVO', 'INATIVO'];
 
     this.tipoUsuario = [
@@ -51,7 +51,7 @@ export class UsuarioListComponent extends BaseListFormComponent<Usuario> impleme
 
     this.rota = 'Usuário';
 
-    this.consultarporTipodeUsuario(this.tipodeUsuario, this.selectedStatus);
+    this.consultarporTipodeUsuario();
 
     // Colunas da Grid //
     this.cols = [
@@ -74,24 +74,27 @@ export class UsuarioListComponent extends BaseListFormComponent<Usuario> impleme
 
   }
 
-  consultarporTipodeUsuario(tipo: string[], status: string[]) {
+  consultarporTipodeUsuario() {
     this.gridrows = [];
-    if ( tipo.length === 0 ) {
+    if ( ( this.selectedTipoUsuario.length === 0 ) && ( this.selectedStatus.length === 0 ) ) {
       return this.usuarioService.listarUsuariosporTipo('').subscribe(dados => this.gridrows = dados);
+    } else if ( ( this.selectedTipoUsuario.length === 0 ) && ( this.selectedStatus.length > 0 ) ) {
+      return this.usuarioService.listarUsuariosporTipoEStatus(this.selectedTipoUsuario.join(),
+      this.selectedStatus.join()).subscribe(dados => this.gridrows = dados);
     } else {
-      return this.usuarioService.listarUsuariosporTipoEStatus(tipo.join(), status.join()).subscribe(dados => this.gridrows = dados);
+      return this.usuarioService.listarUsuariosporStatus(this.selectedStatus.join()).subscribe(dados => this.gridrows = dados);
     }
   }
 
   onSelecionarTipoUsuario(tipoUsuario: string[]) {
     this.tipoUsuario = tipoUsuario;
-    this.consultarporTipodeUsuario(this.tipoUsuario, this.selectedStatus);
+    this.consultarporTipodeUsuario();
   }
 
 
   onSelecionarStatus(status: string[]) {
     this.selectedStatus = status;
-    this.consultarporTipodeUsuario(this.tipoUsuario, this.selectedStatus);
+    this.consultarporTipodeUsuario();
   }
 
   viewUsuario(usuario: Usuario) {

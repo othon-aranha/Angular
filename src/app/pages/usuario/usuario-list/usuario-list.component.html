@@ -5,11 +5,11 @@
     </ol>
 </nav>
 <div class="ui-g mt-1">    
-    <app-tipo-usuario-multi (onSelecionarTipoUsuario)="onSelecionarTipoUsuario($event)"></app-tipo-usuario-multi>
+    <app-tipo-usuario-multi [selectedTipoUsuario]="selectedTipoUsuario" (onSelecionarTipoUsuario)="onSelecionarTipoUsuario($event)"></app-tipo-usuario-multi>
     <app-status-multi (onSelecionarStatus)="onSelecionarStatus($event)"></app-status-multi>
 </div>
 <div class="ui-g">    
-  <div class="ui-g-12">      
+  <div class="ui-g-12">       
       <p-growl [value]="msgs"></p-growl>
       <p-table  [columns]="cols" autoLayout="true" sortMode="multiple" selectionMode="single" 
                 [value]="gridrows" (onRowSelect)="onRowSelect($event)"  [(contextMenuSelection)]="selectedrow" [contextMenu]="cm" [rows]="10"
