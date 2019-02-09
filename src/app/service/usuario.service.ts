@@ -17,7 +17,7 @@ export class UsuarioService extends BaseResourceService<Usuario> {
   }
 
   listarUsuariosporTipo(tipoUsuario: String): Observable<Array<Usuario>> {
-    return this.http.get<Array<Usuario>>(this.apiPath + '/tipoUsuario/' + tipoUsuario, {headers: this.headers})
+    return this.http.get<Array<Usuario>>(this.apiPath + '/usuarios' + '/tipoUsuario/' + tipoUsuario, {headers: this.headers})
     .pipe(
       map(this.jsonDataToResources.bind(this)),
       catchError(this.handleError)
@@ -25,7 +25,8 @@ export class UsuarioService extends BaseResourceService<Usuario> {
   }
 
   listarUsuariosporTipoEStatus(tipoUsuario: String, status: String): Observable<Array<Usuario>> {
-    return this.http.get<Array<Usuario>>(this.apiPath + '/tipoUsuario/' + tipoUsuario + '/status/' + status, {headers: this.headers})
+    return this.http.get<Array<Usuario>>(this.apiPath  + '/usuarios' + '/tipoUsuario/' + tipoUsuario
+           + '/status/' + status, {headers: this.headers})
     .pipe(
       map(this.jsonDataToResources.bind(this)),
       catchError(this.handleError)
@@ -34,7 +35,7 @@ export class UsuarioService extends BaseResourceService<Usuario> {
 
 
   listarUsuariosporStatus(status: String): Observable<Array<Usuario>> {
-    return this.http.get<Array<Usuario>>(this.apiPath + '/status/' + status, {headers: this.headers})
+    return this.http.get<Array<Usuario>>(this.apiPath  + '/usuarios' + '/status/' + status, {headers: this.headers})
     .pipe(
       map(this.jsonDataToResources.bind(this)),
       catchError(this.handleError)
