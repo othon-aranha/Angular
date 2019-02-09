@@ -13,7 +13,6 @@ import { TribunalService } from '../../../service/tribunal.service';
 })
 export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> implements OnInit {
   ufs = [];
-  editing: boolean = false;
 
   constructor(protected tribunalService: TribunalService, protected injector: Injector) {
     super(injector, new Tribunal(), tribunalService, Tribunal.fromJson);
@@ -73,7 +72,6 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
     {value: 'TO', viewValue: 'Tocantins'}
     ];
     super.ngOnInit();
-    this.editing = ( this.resource.id > 0 );
   }
 
   onAfterloadResource() {

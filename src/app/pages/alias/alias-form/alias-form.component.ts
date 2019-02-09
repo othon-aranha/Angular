@@ -43,8 +43,8 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id:   {cdTrib: [null, [Validators.required, Validators.minLength(1)] ],
-             alias: [null, [Validators.required, Validators.minLength(1)] ]},
+      id: { cdTrib: [null, [Validators.required, Validators.minLength(1)] ],
+            alias : [null, [Validators.required, Validators.minLength(1)] ] },
       descricao: [null, [Validators.required, Validators.minLength(3)] ],
       usuario: [null, [Validators.required, Validators.minLength(6)] ],
       senha: [null, [Validators.required, Validators.minLength(3)]],

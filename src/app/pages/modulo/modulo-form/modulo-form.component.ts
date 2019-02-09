@@ -17,15 +17,15 @@ import { MaquinaServidora } from '../../../domain/maquina-servidora';
 export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> implements OnInit {
 
   aliasList: any[];
-  TipoAplicacao: any[] = [{label: 'Escolha', value: ''},
+  TipoAplicacao: any[] = [{label: '...', value: ''},
                           {label: 'Desktop', value: 'DESKTOP'},
                           {label: 'Web', value: 'WEB'},
                           {label: 'Híbrida', value: 'HIBRIDA'}];
 
-  TipoAtualizacao: any[] = [{label: 'Escolha', value: ''},
-                          {label: 'Versão', value: 'POR_VERSAO'},
-                          {label: 'Data', value: 'POR_DATA'},
-                          {label: 'Não Atualiza', value: 'NAO_ATUALIZA'}];
+  TipoAtualizacao: any[] = [{label: '...', value: ''},
+                            {label: 'Versão', value: 'POR_VERSAO'},
+                            {label: 'Data', value: 'POR_DATA'},
+                            {label: 'Não Atualiza', value: 'NAO_ATUALIZA'}];
 
   constructor(protected moduloService: ModuloService, protected injector: Injector, private maquinaService: MaquinaService) {
     super(injector, new Modulo(), moduloService, Modulo.fromJson);

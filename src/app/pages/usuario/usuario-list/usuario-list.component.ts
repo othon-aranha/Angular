@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { MenuItem, Message } from 'primeng/api';
 import { Usuario } from '../../../domain/usuario';
 import { UsuarioService } from '../../../service/usuario.service';
+import { BaseListFormComponent } from '../../../shared/components/base-list-form/base-list-form.component';
 
 interface Status {
   name: string;
@@ -14,7 +15,7 @@ interface Status {
   styleUrls: ['./usuario-list.component.css']
 })
 
-export class UsuarioListComponent implements OnInit {
+export class UsuarioListComponent extends BaseListFormComponent<Usuario> implements OnInit {
   cols: any[];
   usuarios = [];
   tipoUsuario = [];
@@ -28,7 +29,10 @@ export class UsuarioListComponent implements OnInit {
   displayDialog: boolean;
 
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(protected usuarioService: UsuarioService, protected injector: Injector) {
+    super(injector, new Usuario(), usuarioService, Usuario.fromJson);
+  }
+
 
   ngOnInit() {
 
@@ -71,11 +75,11 @@ export class UsuarioListComponent implements OnInit {
   }
 
   consultarporTipodeUsuario(tipo: string[], status: string[]) {
-    this.usuarios = [];
+    this.gridrows = [];
     if ( tipo.length === 0 ) {
-      return this.usuarioService.listarUsuariosporTipo('').subscribe(dados => this.usuarios = dados);
+      return this.usuarioService.listarUsuariosporTipo('').subscribe(dados => this.gridrows = dados);
     } else {
-      return this.usuarioService.listarUsuariosporTipoEStatus(tipo.join(), status.join()).subscribe(dados => this.usuarios = dados);
+      return this.usuarioService.listarUsuariosporTipoEStatus(tipo.join(), status.join()).subscribe(dados => this.gridrows = dados);
     }
   }
 

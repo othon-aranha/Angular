@@ -1,5 +1,5 @@
 <div class="container-fluid d-flex justify-content-start">
   <div class="ui-g-12 d-flex flex-column justify-content-start">    
-    <p-multiSelect [options]="tipoAplic" filter=false defaultLabel="Escolha um Tipo" (onChange)="onselecionarTipoAplicacao($event.value)" [panelStyle]="{minWidth:'15em'}"></p-multiSelect>
+    <p-multiSelect [options]="tipoAplic" filter=false [(ngModel)]="selectedTipo" defaultLabel="Escolha um Tipo" (onChange)="onselecionarTipoAplicacao($event.value)" [panelStyle]="{minWidth:'15em'}"></p-multiSelect>
   </div>
 </div>

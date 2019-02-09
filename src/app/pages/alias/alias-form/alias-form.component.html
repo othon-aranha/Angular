@@ -2,7 +2,7 @@
 
   <div class="card">
     <div class="card-header">
-      Informações sobre o Alias: {{ id }}  
+      Informações sobre o Alias: {{ resource.id.alias }}  
     </div>    
 
     <div class="card-body">
@@ -11,7 +11,7 @@
               <label for="name">Alias</label>
               <input type="text" class="form-control" id="id.alias" formControlName="id.alias" style="float:rigth">
     
-              <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
+              <!--app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error-->
             </div>
       </div>
 
@@ -20,7 +20,7 @@
           <label for="name">Descrição</label>
           <input type="text" class="form-control" id="descricao" formControlName="descricao" style="float:rigth">
 
-          <app-form-field-error [form-control]="resourceForm.get('descricao')"></app-form-field-error>
+          <!--app-form-field-error [form-control]="resourceForm.get('descricao')"></app-form-field-error-->
         </div>
       </div>      
 
@@ -29,7 +29,7 @@
           <label for="name">Usuário</label>
           <input type="text" class="form-control" id="usuario" formControlName="usuario" style="float:rigth">
 
-          <app-form-field-error [form-control]="resourceForm.get('usuario')"></app-form-field-error>
+          <!--app-form-field-error [form-control]="resourceForm.get('usuario')"></app-form-field-error-->
         </div>
       </div>            
 
@@ -37,11 +37,12 @@
   
   </div>
 
-  <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+  <!--app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages-->
 
   <button routerLink="/alias" class="btn btn-primary btn-lg float-left mt-3"><< Voltar
   </button>
   <button type="submit" class="btn btn-primary btn-lg float-right mt-3">Salvar
   </button>
+
 
 </form>   

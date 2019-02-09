@@ -13,6 +13,7 @@ import toastr from 'toastr';
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked {
 
   id: number;
+  editing: boolean;
   alias: string;
   currentAction: string;
   resourceForm: FormGroup;
@@ -42,6 +43,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     if ( this.route.snapshot.paramMap.has('name') ) {
       this.alias = this.route.snapshot.paramMap.get('name');
     }
+    this.editing = ( ( this.id !== undefined ) && ( this.id > 0 ) );
   }
 
   ngOnInit() {
