@@ -77,11 +77,11 @@ export class UsuarioListComponent extends BaseListFormComponent<Usuario> impleme
   consultarporTipodeUsuario() {
     this.gridrows = [];
     if ( ( this.selectedTipoUsuario.length >  0 ) && ( this.selectedStatus.length === 0 ) ) {
-      return this.usuarioService.listarUsuariosporTipo(this.selectedTipoUsuario.join()).subscribe(dados => this.gridrows = dados);
+      this.usuarioService.listarUsuariosporTipo(this.selectedTipoUsuario.join()).subscribe(dados => this.gridrows = dados);
     } else if ( ( this.selectedTipoUsuario.length === 0 ) && ( this.selectedStatus.length > 0 ) ) {
-      return this.usuarioService.listarUsuariosporStatus(this.selectedStatus.join()).subscribe(dados => this.gridrows = dados);
+      this.usuarioService.listarUsuariosporStatus(this.selectedStatus.join()).subscribe(dados => this.gridrows = dados);
     } else {
-      return this.usuarioService.listarUsuariosporTipoEStatus(this.selectedTipoUsuario.join(),
+      this.usuarioService.listarUsuariosporTipoEStatus(this.selectedTipoUsuario.join(),
       this.selectedStatus.join()).subscribe(dados => this.gridrows = dados);
     }
   }

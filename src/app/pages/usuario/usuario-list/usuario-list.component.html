@@ -6,7 +6,7 @@
 </nav>
 <div class="ui-g mt-1">    
     <app-tipo-usuario-multi [selectedTipoUsuario]="selectedTipoUsuario" (onSelecionarTipoUsuario)="onSelecionarTipoUsuario($event)"></app-tipo-usuario-multi>
-    <app-status-multi (onSelecionarStatus)="onSelecionarStatus($event)"></app-status-multi>
+    <app-status-multi [selectedStatus]="selectedStatus" (onSelecionarStatus)="onSelecionarStatus($event)"></app-status-multi>
 </div>
 <div class="ui-g">    
   <div class="ui-g-12">       

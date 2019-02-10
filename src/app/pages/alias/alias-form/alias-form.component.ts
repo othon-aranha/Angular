@@ -18,33 +18,37 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
   }
 
   ngOnInit() {
-    this.buildResourceForm();
+    super.ngOnInit();
+    /*
     super.getParamId();
     // this.resourceForm.patchValue({id: this.id, alias: this.alias});
     this.aliasService.getByCompositeId(this.id, this.alias).subscribe(
       (resource) => {
         this.resource = resource;
         this.resourceForm.patchValue({
-          id: {cdTrib: this.id, alias: this.alias},
+          id: this.resource.id,
+          tribunal: this.resource.tribunal,
+          alias: this.resource.alias,
           descricao: this.resource.descricao,
           usuario: this.resource.usuario, senha: this.resource.senha,
           conexao: this.resource.conexao});
           console.log(this.resourceForm.value);
-        /* this.resource.conexao =  resource.conexao;
+        this.resource.conexao =  resource.conexao;
         this.resource.descricao =  resource.descricao;
         this.resource.usuario =  resource.usuario;
-        this.resource.senha =  resource.senha; */
+        this.resource.senha =  resource.senha;
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
     );
     this.onAfterloadResource();
-    console.log(this.resourceForm.value);
+    console.log(this.resourceForm.value); */
   }
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id: { cdTrib: [null, [Validators.required, Validators.minLength(1)] ],
-            alias : [null, [Validators.required, Validators.minLength(1)] ] },
+      id: [null,  [Validators.required, Validators.minLength(1)] ],
+      tribunal: [null, [Validators.required] ],
+      alias : [null, [Validators.required, Validators.minLength(1)] ] ,
       descricao: [null, [Validators.required, Validators.minLength(3)] ],
       usuario: [null, [Validators.required, Validators.minLength(6)] ],
       senha: [null, [Validators.required, Validators.minLength(3)]],

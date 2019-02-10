@@ -1,15 +1,16 @@
 <form [formGroup]="resourceForm" (submit)="submitForm()">
 
   <div class="card">
+    <app-barra-navegacao [items]="[{text: 'Alias', link: '/alias'},  {text: 'Editar', link: ''}]"></app-barra-navegacao>
     <div class="card-header">
-      Informações sobre o Alias: {{ resource.id.alias }}  
+      Informações sobre o Alias: {{ resource.id }}  
     </div>    
 
     <div class="card-body">
       <div class="form-row">
             <div class="form-group col-md-2">
               <label for="name">Alias</label>
-              <input type="text" class="form-control" id="id.alias" formControlName="id.alias" style="float:rigth">
+              <input type="text" class="form-control" id="alias" formControlName="id.alias" style="float:rigth">
     
               <!--app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error-->
             </div>

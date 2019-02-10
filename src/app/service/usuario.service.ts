@@ -17,37 +17,21 @@ export class UsuarioService extends BaseResourceService<Usuario> {
   }
 
   listarUsuariosporTipo(tipoUsuario: String): Observable<Array<Usuario>> {
-    return this.http.get<Array<Usuario>>(this.apiPath + '/usuarios' + '/tipoUsuario/' + tipoUsuario, {headers: this.headers})
-    .pipe(
-      map(this.jsonDataToResources.bind(this)),
-      catchError(this.handleError)
-    );
+    return this.http.get<Array<Usuario>>(this.apiPath + '/usuarios' + '/tipoUsuario/' + tipoUsuario, {headers: this.headers});
   }
 
   listarUsuariosporTipoEStatus(tipoUsuario: String, status: String): Observable<Array<Usuario>> {
     return this.http.get<Array<Usuario>>(this.apiPath  + '/usuarios' + '/tipoUsuario/' + tipoUsuario
-           + '/status/' + status, {headers: this.headers})
-    .pipe(
-      map(this.jsonDataToResources.bind(this)),
-      catchError(this.handleError)
-    );
+           + '/status/' + status, {headers: this.headers});
   }
 
 
   listarUsuariosporStatus(status: String): Observable<Array<Usuario>> {
-    return this.http.get<Array<Usuario>>(this.apiPath  + '/usuarios' + '/status/' + status, {headers: this.headers})
-    .pipe(
-      map(this.jsonDataToResources.bind(this)),
-      catchError(this.handleError)
-    );
+    return this.http.get<Array<Usuario>>(this.apiPath  + '/usuarios' + '/status/' + status, {headers: this.headers});
   }
 
   usuarioAutorizado(login: String, senha: String): Observable<Usuario> {
-    return this.http.get<Usuario>(this.apiPath + '/login/' + login + '/senha/' + senha, {headers: this.headers})
-    .pipe(
-      map(this.jsonDataToResource.bind(this)),
-      catchError(this.handleError)
-    );
+    return this.http.get<Usuario>(this.apiPath + '/login/' + login + '/senha/' + senha, {headers: this.headers});
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 
 
 @Component({
@@ -12,7 +12,7 @@ export class StatusMultiComponent implements OnInit {
   @Output() onSelecionarStatus = new EventEmitter<String[]>();
 
   listStatus = [];
-  selectedStatus: String[] = [];
+  @Input() selectedStatus = [];
 
   constructor() { }
 

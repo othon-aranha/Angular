@@ -39,7 +39,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     this.maquinaService.listarServidoresdoModulo(cdModulo).subscribe(dados => manutencoes = dados);
 
     for (let i = 1; i < manutencoes.length; i++) {
-      this.aliasList = [...this.aliasList, {label: manutencoes[i].descricao , value: manutencoes[i].id.alias}];
+      this.aliasList = [...this.aliasList, {label: manutencoes[i].descricao , value: manutencoes[i].alias}];
     }
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 
 interface BreadCrumbItem {
   text: string;
@@ -12,22 +13,19 @@ interface BreadCrumbItem {
 })
 export class BarraNavegacaoComponent implements OnInit {
 
-  @Input() items: Array<BreadCrumbItem> = [];
+  items: MenuItem[];
+
+  home: MenuItem;
+
   constructor() { }
 
   ngOnInit() {
+    this.items = [
+      {label: 'Home', url: '/home'}
+    ];
 
-  }
+  this.home = {icon: 'pi pi-home'};
 
-
-  isTheLastItem(item: BreadCrumbItem): boolean {
-    const index = this.items.indexOf(item);
-    return index + 1 === this.items.length;
-  }
-
-  public atualizarRota(rota: any[]): void {
-    console.log(rota);
-    this.items = rota;
   }
 
 }
