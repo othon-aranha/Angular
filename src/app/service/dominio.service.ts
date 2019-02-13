@@ -9,7 +9,7 @@ import { BaseResourceService } from '../shared/services/base-resource-service';
 export class DominioService extends BaseResourceService<Dominio> {
 
  constructor(protected injector: Injector) {
-  super('http://localhost:8081/dominio', injector, Dominio.fromJson);
+  super('http://localhost:8081/dominio', 'dominios', injector, Dominio.fromJson);
  }
 
 

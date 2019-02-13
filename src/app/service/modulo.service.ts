@@ -11,7 +11,7 @@ import { BaseResourceService } from '../shared/services/base-resource-service';
 export class ModuloService extends BaseResourceService<Modulo>  {
 
    constructor(protected injector: Injector) {
-    super('http://localhost:8081/modulo', injector, Modulo.fromJson);
+    super('http://localhost:8081/modulo', 'modulos', injector, Modulo.fromJson);
    }
 
 

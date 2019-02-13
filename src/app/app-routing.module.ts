@@ -11,6 +11,7 @@ import { UsuarioService } from './service/usuario.service';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'area', loadChildren: './pages/area/area.module#AreaModule' },
   { path: 'alias', loadChildren: './pages/alias/alias.module#AliasModule' },
   { path: 'tribunal', loadChildren: './pages/tribunal/tribunal.module#TribunalModule' },
   { path: 'modulo', loadChildren: './pages/modulo/modulo.module#ModuloModule' },

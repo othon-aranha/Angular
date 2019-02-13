@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class UsuarioService extends BaseResourceService<Usuario> {
 
   constructor(protected injector: Injector) {
-    super('http://localhost:8080/usuario', injector, Usuario.fromJson);
+    super('http://localhost:8080/usuario', 'usuarios', injector, Usuario.fromJson);
    }
 
   listarUsuarios() {

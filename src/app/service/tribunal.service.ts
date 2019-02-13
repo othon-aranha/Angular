@@ -7,7 +7,7 @@ import { BaseResourceService } from '../shared/services/base-resource-service';
 export class TribunalService extends BaseResourceService<Tribunal> {
 
   constructor(protected injector: Injector) {
-    super('http://localhost:8081/tribunal', injector, Tribunal.fromJson);
+    super('http://localhost:8081/tribunal', 'tribunais', injector, Tribunal.fromJson);
    }
 
   listaTribunais() {

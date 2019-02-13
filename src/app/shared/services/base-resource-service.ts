@@ -15,6 +15,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
 
   constructor(
     protected apiPath: string,
+    protected sufix: string,
     protected injector: Injector,
     protected jsonDataToResourceFn: (jsonData: any) => T
   ) {
@@ -22,7 +23,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   getAll(): Observable<T[]> {
-    return this.http.get<T[]>(this.apiPath, {headers: this.headers}).pipe(
+    return this.http.get<T[]>(this.apiPath + '/' + this.sufix, {headers: this.headers}).pipe(
       map(this.jsonDataToResources.bind(this)),
       catchError(this.handleError)
     );

@@ -29,6 +29,7 @@ import { UsuarioModule } from './pages/usuario/usuario.module';
 import { TribunalModule } from './pages/tribunal/tribunal.module';
 import { ServerErrorMessagesComponent } from './shared/components/server-error-messages/server-error-messages.component';
 import { SharedModule } from './shared/shared.module';
+import { AreaModule } from './pages/area/area.module';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { SharedModule } from './shared/shared.module';
     RadioButtonModule,
     ReactiveFormsModule,
     SlideMenuModule,
+    AreaModule,
     AliasModule,
     ModuloModule,
     DominioModule,

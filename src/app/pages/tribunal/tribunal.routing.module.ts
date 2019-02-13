@@ -2,7 +2,6 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { TribunalListComponent } from './tribunal-list/tribunal-list.component';
-import { TribunalComponent } from './tribunal.component';
 import { TribunalFormComponent } from './tribunal-form/tribunal-form.component';
 
 const tribunalRoutes = [

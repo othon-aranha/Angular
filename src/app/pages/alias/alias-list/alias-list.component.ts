@@ -34,12 +34,6 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
     {header: 'Usuário', field: 'usuario', classe: 'ui-p-2'}
    ];
 
-     // Itens do popup menu //
-  this.items = [
-    { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewAlias(this.selectedrow) },
-    { label: 'Excluir', icon: 'fa-close', command: (event) => this.viewAlias(this.selectedrow) }
-  ];
-
   }
 
   consultarTodosAlias() {
@@ -61,8 +55,12 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
     return alias;
    }
 
-   viewAlias(alias: MaquinaServidora) {
+   viewRegister(tipo: MaquinaServidora) {
     this.router.navigate(['alias/', this.selectedrow.id, 'edit']);
+  }
+
+  deleteRegister(tipo: MaquinaServidora) {
+    // ---
   }
 
 }

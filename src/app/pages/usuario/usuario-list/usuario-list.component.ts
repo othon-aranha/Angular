@@ -23,7 +23,6 @@ export class UsuarioListComponent extends BaseListFormComponent<Usuario> impleme
   usuario: Usuario = null;
   selectedUsuario: Usuario = null;
   selectedStatus = [];
-  items: MenuItem[];
   msgs: Message[];
   rota: string;
   displayDialog: boolean;
@@ -66,12 +65,6 @@ export class UsuarioListComponent extends BaseListFormComponent<Usuario> impleme
       {header: 'Status', field: 'status', classe: 'ui-p-2'}
   ];
 
-  // Itens do popup menu //
-  this.items = [
-    { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewUsuario(this.selectedUsuario) },
-    { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteUsuario(this.selectedUsuario) }
-  ];
-
   }
 
   consultarporTipodeUsuario() {
@@ -101,8 +94,12 @@ export class UsuarioListComponent extends BaseListFormComponent<Usuario> impleme
 
   }
 
-  deleteUsuario(usuario: Usuario) {
+  deleteRegister(tipo: Usuario) {
 
+  }
+
+  viewRegister(tipo: Usuario) {
+    // this.rou
   }
 
 }

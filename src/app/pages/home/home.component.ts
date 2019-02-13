@@ -16,6 +16,11 @@ export class HomeComponent implements OnInit {
       {label: 'Cadastro',
        items: [
         {
+          label: 'Área',
+          icon: 'fa-bar-chart',
+          routerLink: '/area'
+         },
+        {
           label: 'Alias',
           icon: 'fa-bar-chart',
           routerLink: '/alias'

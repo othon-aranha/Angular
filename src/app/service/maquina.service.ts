@@ -8,7 +8,7 @@ import { BaseResourceService } from '../shared/services/base-resource-service';
 export class MaquinaService extends BaseResourceService<MaquinaServidora> {
 
   constructor(protected injector: Injector) {
-    super('http://localhost:8081/alias', injector, MaquinaServidora.fromJson);
+    super('http://localhost:8081/alias', 'aliases', injector, MaquinaServidora.fromJson);
    }
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentChecked, Injector } from '@angular/core'
 import { BaseResourceModel } from '../../models/base-resource-model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseResourceService } from '../../services/base-resource-service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-base-list-form',
@@ -12,6 +13,7 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
   id: any;
   alias: string;
   cols: any[];
+  items: MenuItem[];
   gridrows: Array<T> = [];
   selectedrow: T;
   pageTitle: string;
@@ -30,6 +32,12 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
 
   ngOnInit() {
     this.getResource();
+
+    // Itens do popup menu //
+    this.items = [
+    { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewRegister(this.selectedrow) },
+    { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteRegister(this.selectedrow) }
+    ];
   }
 
   getParamId() {
@@ -52,6 +60,10 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
   protected getResource() {
     return this.resourceService.getAll().subscribe(dados => this.gridrows = dados);
   }
+
+  protected abstract viewRegister(tipo: T);
+
+  protected abstract deleteRegister(tipo: T);
 
 
 }

@@ -15,7 +15,6 @@ import { DialogModule } from 'primeng/dialog';
   imports: [
     CommonModule,
     ConfirmDialogModule,
-    BrowserAnimationsModule,
     ContextMenuModule,
     DialogModule,
     GrowlModule,
