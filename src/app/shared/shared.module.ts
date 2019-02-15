@@ -2,11 +2,12 @@ import { BarraNavegacaoComponent } from './components/shared/barra-navegacao/bar
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormFieldErrorComponent } from './components/form-field-error/form-field-error.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
-  declarations: [FormFieldErrorComponent],
+  declarations: [FormFieldErrorComponent, BarraNavegacaoComponent],
   exports: [FormFieldErrorComponent],
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule]
 })
 export class SharedModule { }

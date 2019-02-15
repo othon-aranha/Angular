@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 
 import { AliasService } from '../service/alias.service';
 import { ManutencaoService } from '../service/manutencao.service';
@@ -13,7 +13,7 @@ import { Servidor } from '../domain/servidor';
 })
 
 
-export class ServidorListComponent implements OnInit {
+export class ServidorListComponent implements OnInit, OnChanges {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onSelecionarTribunal = new EventEmitter<number>();
   @Input() cdTrib: number;
@@ -23,13 +23,14 @@ export class ServidorListComponent implements OnInit {
   selectedServers = [];
   selservers = [];
 
-  siglaModulo: String;
+  @Input() siglaModulo: String;
+  @Input() cdTrig: number;
 
   constructor(private aliasService: AliasService, private manutencaService: ManutencaoService ) { }
 
   ngOnInit() {
 
-    this.servers = [{name: 'AC1-ADM', code: 'AC1-ADM'},
+    /*this.servers = [{name: 'AC1-ADM', code: 'AC1-ADM'},
                     {name: 'AL1-ADM', code: 'AL1-ADM'},
                     {name: 'AM1-ADM', code: 'AM1-ADM'},
                     {name: 'AP1-ADM', code: 'AP1-ADM'},
@@ -42,8 +43,8 @@ export class ServidorListComponent implements OnInit {
       {name: 'AC1-ADM', code: 'AC1-ADM'},
       {name: 'AL1-ADM', code: 'AL1-ADM'},
       {name: 'AM1-ADM', code: 'AM1-ADM'},
-      {name: 'AP1-ADM', code: 'AP1-ADM'}];
-    // this.carregarTodosServidores();
+      {name: 'AP1-ADM', code: 'AP1-ADM'}]; */
+    this.carregarTodosServidores();
   }
 
   cloneMaquina(m: MaquinaServidora[]) {
@@ -64,20 +65,45 @@ export class ServidorListComponent implements OnInit {
     }
    }
 
+   ngOnChanges() {
+      if ( this.cdTrib !== undefined ) {
+        this.carregarTodosServidores();
+      }
+      if ( this.siglaModulo !== undefined ) {
+        this.carregarServidoresdoModulo();
+      }
+   }
+
    carregarTodosServidores() {
     this.servers = [];
     this.maquinas = [];
-    this.aliasService.listarServidoresdoTribunal(1).subscribe(dados => this.maquinas = dados);
-    this.cloneMaquina(this.maquinas);
+    this.aliasService.listarServidoresdoTribunal(this.cdTrib)
+    .subscribe(
+      (resource) => {
+        this.maquinas = resource;
+        for (let i = 0; i < this.maquinas.length; i++) {
+          this.servers = [...this.servers, {label: this.maquinas[i].id.alias , value: this.maquinas[i].id.alias}];
+        }
+      },
+      (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
+    );
+    // this.cloneMaquina(this.maquinas);
   }
 
   carregarServidoresdoModulo() {
     this.selectedServers = [];
     this.selservers = [];
-    if ( this.siglaModulo == null ) {
-      this.manutencaService.listarManutencoesdoModulo('SIGO').subscribe(dados => this.selservers = dados);
-    } else {
-      this.manutencaService.listarManutencoesdoModulo(this.siglaModulo).subscribe(dados => this.selservers = dados);
+    if ( this.siglaModulo !== null ) {
+      this.manutencaService.listarManutencoesdoModulo(this.siglaModulo)
+      .subscribe(
+        (resource) => {
+          this.selservers = resource;
+          for (let i = 0; i < this.selservers.length; i++) {
+            this.selectedServers = [...this.selectedServers, {label: this.maquinas[i].id.alias , value: this.maquinas[i].id.alias}];
+          }
+        },
+        (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
+      );
     }
     this.cloneManutencao(this.selservers);
   }

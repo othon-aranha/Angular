@@ -31,7 +31,11 @@ export class FormFieldErrorComponent implements OnInit {
 
 
   private mustShowErrorMessage(): boolean {
-    return this.formControl.invalid && this.formControl.touched;
+    if ( this.formControl !== null ) {
+      return this.formControl.invalid && this.formControl.touched;
+    } else {
+      return false;
+    }
   }
 
   private getErrorMessage(): string | null {

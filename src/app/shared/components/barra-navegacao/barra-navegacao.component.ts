@@ -25,9 +25,4 @@ export class BarraNavegacaoComponent implements OnInit {
     return index + 1 === this.items.length;
   }
 
-  public atualizarRota(rota: any[]): void {
-    console.log(rota);
-    this.items = rota;
-  }
-
 }

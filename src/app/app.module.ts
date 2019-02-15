@@ -1,4 +1,3 @@
-import { AliasModule } from './pages/alias/alias.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,10 +22,12 @@ import { ManutencaoService } from './service/manutencao.service';
 import { AuthService } from './service/auth.service';
 
 import { AppRoutingModule } from './app-routing.module';
-import { DominioModule } from './pages/dominio/dominio.module';
-import { ModuloModule } from './pages/modulo/modulo.module';
-import { UsuarioModule } from './pages/usuario/usuario.module';
-import { TribunalModule } from './pages/tribunal/tribunal.module';
+
+import { AliasModule } from './pages/cadastro/alias/alias.module';
+import { DominioModule } from './pages/cadastro/dominio/dominio.module';
+import { ModuloModule } from './pages/cadastro/modulo/modulo.module';
+import { UsuarioModule } from './pages/cadastro/usuario/usuario.module';
+import { TribunalModule } from './pages/cadastro/tribunal/tribunal.module';
 import { ServerErrorMessagesComponent } from './shared/components/server-error-messages/server-error-messages.component';
 import { SharedModule } from './shared/shared.module';
 
