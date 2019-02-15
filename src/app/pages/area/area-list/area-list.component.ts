@@ -30,7 +30,8 @@ export class AreaListComponent extends BaseListFormComponent<Area> implements On
   }
 
   viewRegister(tipo: Area) {
-    // this.router.navigate
+    this.router.navigate(['area', this.id, '/edit']);
+  
   }
 
   deleteRegister(tipo: Area) {

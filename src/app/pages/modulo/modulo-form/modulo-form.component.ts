@@ -50,15 +50,15 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id:   [this.resource.id, [Validators.required, Validators.minLength(1)] ],
-      sigla: [this.resource.sigla, [Validators.required, Validators.minLength(3)] ],
-      alias: [this.resource.alias, [Validators.required, Validators.minLength(1)] ],
-      esquema: [this.resource.esquema, [Validators.required, Validators.minLength(3)] ],
-      versao: [this.resource.versao, [Validators.required, Validators.minLength(7)] ],
-      tipoModulo: [this.resource.tipoModulo, [Validators.required, Validators.minLength(3)]],
-      mensagemCompartilhada: [this.resource.mensagemCompartilhada,
+      id:   [null, [Validators.required, Validators.minLength(1)] ],
+      sigla: [null, [Validators.required, Validators.minLength(3)] ],
+      alias: [null, [Validators.required, Validators.minLength(1)] ],
+      esquema: [null, [Validators.required, Validators.minLength(3)] ],
+      versao: [null, [Validators.required, Validators.minLength(7)] ],
+      tipoModulo: [null, [Validators.required, Validators.minLength(3)]],
+      mensagemCompartilhada: [null,
                             [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ],
-      controlaAcesso: [this.resource.controlaAcesso, [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ]
+      controlaAcesso: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ]
     });
   }
 

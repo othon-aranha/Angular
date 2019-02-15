@@ -20,6 +20,7 @@ export class DominioFormComponent extends BaseResourceFormComponent<Dominio> imp
 
   ngOnInit() {
     super.ngOnInit();
+    this.populaDominio('DOMINIOS_ACESSO', '');
   }
 
   buildResourceForm() {
@@ -31,7 +32,7 @@ export class DominioFormComponent extends BaseResourceFormComponent<Dominio> imp
   }
 
   onAfterloadResource() {
-    this.populaDominio(this.resource.nome, '');
+  //
   }
 
   private populaDominio(nome, descricao: string) {
@@ -39,11 +40,24 @@ export class DominioFormComponent extends BaseResourceFormComponent<Dominio> imp
     this.dominios = [];
     if ( ( nome !== '' ) && ( nome !== undefined ) ) {
       if ( ( descricao === '' ) && ( descricao !== undefined ) ) {
-        this.dominioService.getDominioPeloNome(nome).subscribe(data => this.dominios = data);
+        this.dominioService.getDominioPeloNome(nome)
+        .subscribe(
+          (resource) => {
+            this.dominios = resource;
+            this.populaAutoComplete();
+          },
+          (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
+        );
       } else {
-        this.dominioService.getDominioPeloNomeeDescricao(nome, descricao).subscribe(data => this.dominios = data);
+        this.dominioService.getDominioPeloNomeeDescricao(nome, descricao)
+        .subscribe(
+          (resource) => {
+            this.dominios = resource;
+            this.populaAutoComplete();
+          },
+          (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
+        );
       }
-      this.populaAutoComplete();
     }
   }
 

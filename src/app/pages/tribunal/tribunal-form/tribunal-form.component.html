@@ -74,19 +74,31 @@
       </div>
 
       <div class="form-row">
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-3">
                   <label for="name">CGC</label>
                   <input type="text" class="form-control" id="cgc" formControlName="cgc">
         
                   <app-form-field-error [form-control]="resourceForm.get('cgc')"></app-form-field-error>
           </div>
+
+          
+          <div class="form-group col-md-9">
+                  <label for="name">E-mail</label>
+                  <input type="text" class="form-control" id="email" formControlName="email">
+        
+                  <app-form-field-error [form-control]="resourceForm.get('email')"></app-form-field-error>
+          </div>
+    
       </div>
 
-      <div class="card" style="width: 50%;">
-        <h6 class="card-header">Dados do Contrato</h6>
-        <div class="card-body">
-            <div class="form-row">
-                <div class="form-group col-md-4">
+ 
+      <div class="form-row">
+
+        <div class="card" style="width: 50%;">
+          <h6 class="card-header">Dados do Contrato</h6>
+          <div class="card-body">
+              <div class="form-row">
+                <div class="form-group col-md-6">
                     <label for="name">Número do Contrato</label>
                     <input type="text" class="form-control" id="numeroContrato" formControlName="numeroContrato">
 
@@ -99,36 +111,37 @@
                 
                         <app-form-field-error [form-control]="resourceForm.get('descricaoContrato')"></app-form-field-error>
                 </div>
-            </div>
+              </div>  
+          </div>
+
         </div>
+
+        <div class="card" style="width: 50%;">
+          <h6 class="card-header">Outros Dados</h6>
+          <div class="card-body">
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="name">Código do Município</label>
+                    <input type="text" class="form-control" id="codigoMunicipioIBGE" formControlName="codigoMunicipioIBGE">
+
+                    <app-form-field-error [form-control]="resourceForm.get('codigoMunicipioIBGE')"></app-form-field-error>
+                  </div>
+              
+                  <div class="form-group col-md-6">
+                          <label for="name">Cód. Nat. Jurídica</label>
+                          <input type="text" class="form-control" id="codigoNaturezaJuridica" formControlName="codigoNaturezaJuridica">
+                
+                          <app-form-field-error [form-control]="resourceForm.get('codigoNaturezaJuridica')"></app-form-field-error>
+                  </div>
+
+              </div>
+
+          </div>
+
+        </div> 
+
       </div>    
 
-      <div class="form-row">
-          <div class="form-group col-md-2">
-            <label for="name">Código do Município</label>
-            <input type="text" class="form-control" id="codigoMunicipioIBGE" formControlName="codigoMunicipioIBGE">
-
-            <app-form-field-error [form-control]="resourceForm.get('codigoMunicipioIBGE')"></app-form-field-error>
-          </div>
-      </div>
-
-      <div class="form-row">
-          <div class="form-group col-md-2">
-                  <label for="name">Cód. Nat. Jurídica</label>
-                  <input type="text" class="form-control" id="codigoNaturezaJuridica" formControlName="codigoNaturezaJuridica">
-        
-                  <app-form-field-error [form-control]="resourceForm.get('codigoNaturezaJuridica')"></app-form-field-error>
-          </div>
-      </div>
-
-      <div class="form-row">
-          <div class="form-group col-md-4">
-                  <label for="name">E-mail</label>
-                  <input type="text" class="form-control" id="email" formControlName="email">
-        
-                  <app-form-field-error [form-control]="resourceForm.get('email')"></app-form-field-error>
-          </div>
-      </div>
 
     </div>
 

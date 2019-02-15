@@ -14,7 +14,7 @@
     
         <div class="card-body">
           <div class="form-row">
-              <div class="form-group col-md-3">
+              <div class="form-group col-md-5">
                   <label for="tipoModulo">Domínio</label>
                   <select class="custom-select my-1 mr-sm-2" id="nome" name="nome" formControlName="nome">
                       <option *ngFor="let op of optDominios" [value]="op.value">{{ op.label }}</option>            
@@ -49,7 +49,7 @@
     <p-footer>
         <div class="ui-g-12 ui-dialog-buttonpane ui-helper-clearfix">
               <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" ></p-confirmDialog>
-              <button type="button" [disabled]="!resourceForm.valid" (click)="onSubmit(resourceForm)" pButton icon="pi pi-check" label="Gravar"></button>
+              <button type="button" [disabled]="!resourceForm.valid" (click)="submitForm(resourceForm)" pButton icon="pi pi-check" label="Gravar"></button>
               <p-messages [value]="msgs"></p-messages>
         </div>  
     </p-footer>

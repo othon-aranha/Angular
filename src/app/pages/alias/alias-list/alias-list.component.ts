@@ -23,6 +23,8 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
   }
 
   ngOnInit() {
+  super.ngOnInit();
+
    // Consultas Alias //
    this.consultarTodosAlias();
 
@@ -55,12 +57,12 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
     return alias;
    }
 
-   viewRegister(tipo: MaquinaServidora) {
-    this.router.navigate(['alias/', this.selectedrow.id, 'edit']);
+   viewRegister(maquina: MaquinaServidora) {
+    this.router.navigate(['/alias/', maquina.id, 'edit']);
   }
 
-  deleteRegister(tipo: MaquinaServidora) {
-    // ---
+  deleteRegister(maquina: MaquinaServidora) {
+    this.router.navigate(['/alias/', maquina.id, 'edit']);
   }
 
 }

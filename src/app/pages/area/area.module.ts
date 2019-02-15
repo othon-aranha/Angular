@@ -8,10 +8,11 @@ import { DialogModule } from 'primeng/dialog';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
 import { AreaListComponent } from './area-list/area-list.component';
+import { AreaFormComponent } from './area-form/area-form.component';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [AreaListComponent],
+  declarations: [AreaListComponent, AreaFormComponent],
   imports: [
     CommonModule,
     AreaRoutingModule
