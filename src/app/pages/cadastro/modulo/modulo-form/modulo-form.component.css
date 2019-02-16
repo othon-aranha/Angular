@@ -2,7 +2,13 @@
     background-color: bisque;
 }
 
-label{
+p-autoComplete  {
+    color: green; 
+    text-align: left; float: left; 
+}
+
+
+label {
     color: green; 
     text-align: left; float: left; 
 }

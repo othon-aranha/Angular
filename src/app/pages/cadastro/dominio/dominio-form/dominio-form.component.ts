@@ -21,6 +21,8 @@ export class DominioFormComponent extends BaseResourceFormComponent<Dominio> imp
 
   ngOnInit() {
     super.ngOnInit();
+    this.checked = ( this.currentAction === 'edit' );
+    this.mudarChecked(this.checked);
     this.populaDominio('DOMINIOS_ACESSO', '');
   }
 

@@ -21,13 +21,15 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
     this.buildResourceForm();
     super.getParamId();
     // this.resourceForm.patchValue({id: this.id, alias: this.alias});
-    this.aliasService.getByCompositeId(this.id, this.alias).subscribe(
+    this.aliasService.getById(this.id).subscribe(
       (resource) => {
         this.resource = resource;
         this.resourceForm.patchValue({
-          id: {cdTrib: this.id, alias: this.alias},
+          id: this.id,
+          alias: this.resource.alias,
           descricao: this.resource.descricao,
-          usuario: this.resource.usuario, senha: this.resource.senha,
+          usuario: this.resource.usuario,
+          senha: this.resource.senha,
           conexao: this.resource.conexao});
           // console.log(this.resourceForm.value);
         /* this.resource.conexao =  resource.conexao;
@@ -43,8 +45,8 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id:   {cdTrib: [null, [Validators.required, Validators.minLength(1)] ],
-             alias: [null, [Validators.required, Validators.minLength(1)] ]},
+      id:   [null, [Validators.required, Validators.minLength(1)] ],
+      alias: [null, [Validators.required, Validators.minLength(1)] ],
       descricao: [null, [Validators.required, Validators.minLength(3)] ],
       usuario: [null, [Validators.required, Validators.minLength(6)] ],
       senha: [null, [Validators.required, Validators.minLength(3)]],

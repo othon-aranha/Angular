@@ -8,6 +8,7 @@
 
 <form [formGroup]="resourceForm" (submit)="submitForm()">
     <div class="card">
+        <p-growl [value]="msgs"></p-growl>
         <div class="card-header">
           Informações sobre Domínio: {{ id }}  
         </div>    
@@ -15,7 +16,7 @@
         <div class="card-body">
           <div class="form-row">
             <div class="form-group col-md-3">  
-                <p-checkbox label="Domínios Acesso" binary="true" (onChange)="mudarChecked($event)"></p-checkbox>                
+                <p-checkbox [disabled]="( currentAction === 'edit' )"  label="Domínios Acesso" binary="true" (onChange)="mudarChecked($event)"></p-checkbox>                
             </div>
           </div>
 

@@ -18,6 +18,7 @@ import { TribunalService } from '../../../../service/tribunal.service';
 export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> implements OnInit {
 
   aliasList: any[];
+  filteredAlias: any[];
   cdTrib: number;
   siglaModulo: string;
   TipoAplicacao: any[] = [{label: '...', value: ''},
@@ -44,8 +45,8 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     .subscribe(
       (resource) => {
         manutencoes = resource;
-        for (let i = 1; i < manutencoes.length; i++) {
-          this.aliasList = [...this.aliasList, {label: manutencoes[i].id.alias , value: manutencoes[i].id.alias}];
+        for (let i = 0; i < manutencoes.length; i++) {
+          this.aliasList = [...this.aliasList, {label: manutencoes[i].alias , value: manutencoes[i].id}];
         }
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
@@ -64,6 +65,25 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   onSelecionarTribunal(cdTrib: number) {
     this.carregaListaServidores(cdTrib);
   }
+
+  filterAliasSingle(event) {
+    const query = event.query;
+    this.maquinaService.listarMaquinas().subscribe(
+      (resource) => {
+        this.filteredAlias = this.filterAlias(query, resource);
+    });
+  }
+
+  filterAlias(query, aliases: any[]): any[] {
+    const filtered: any[] = [];
+    for (let i = 0; i < aliases.length; i++) {
+        const alias = aliases[i];
+        if ( alias.name.toLowerCase().indexOf(query.toLowerCase()) === 0 ) {
+            filtered.push(alias);
+        }
+    }
+    return filtered;
+}
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({

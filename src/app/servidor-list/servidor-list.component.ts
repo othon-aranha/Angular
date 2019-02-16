@@ -51,8 +51,8 @@ export class ServidorListComponent implements OnInit, OnChanges {
     this.servers = [];
     // tslint:disable-next-line:forin
     for (const id in m) {
-      this.servers[id].code = m[id].id.alias;
-      this.servers[id].name = m[id].id.alias;
+      this.servers[id].code = m[id].id;
+      this.servers[id].name = m[id].alias;
     }
    }
 

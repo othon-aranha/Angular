@@ -4,6 +4,7 @@
 
 p-checkbox {
     color: green;
+    text-align: left; float: left; 
 }
 
 label{

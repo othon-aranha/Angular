@@ -21,10 +21,12 @@ import { ModuloComponent } from './modulo.component';
 import { MatSelectModule, MatInputModule } from '@angular/material';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ListboxModule } from 'primeng/listbox';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   imports: [
     CommonModule,
+    AutoCompleteModule,
     ConfirmDialogModule,
     BrowserAnimationsModule,
     ContextMenuModule,
