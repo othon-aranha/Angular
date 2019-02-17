@@ -12,6 +12,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'alias', loadChildren: './pages/cadastro/alias/alias.module#AliasModule' },
+  { path: 'grupo', loadChildren: './pages/cadastro/grupo/grupo.module#GrupoModule' },
   { path: 'tribunal', loadChildren: './pages/cadastro/tribunal/tribunal.module#TribunalModule' },
   { path: 'modulo', loadChildren: './pages/cadastro/modulo/modulo.module#ModuloModule' },
   { path: 'usuario', loadChildren: './pages/cadastro/usuario/usuario.module#UsuarioModule' },

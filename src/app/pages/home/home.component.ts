@@ -15,10 +15,20 @@ export class HomeComponent implements OnInit {
     this.items = [
       {label: 'Cadastro',
        items: [
-        {
+       {
           label: 'Alias',
           icon: 'fa-bar-chart',
           routerLink: '/alias'
+         },
+       {
+          label: 'Domínio',
+          icon: 'fa-bar-chart',
+          routerLink: '/dominio'
+         },
+       {
+          label: 'Grupo',
+          icon: 'fa-bar-chart',
+          routerLink: '/grupo'
          },
        {
         label: 'Módulo',
@@ -34,11 +44,6 @@ export class HomeComponent implements OnInit {
         label: 'Usuário',
         icon: 'fa-bar-chart',
         routerLink: '/usuario'
-       },
-       {
-        label: 'Domínio',
-        icon: 'fa-bar-chart',
-        routerLink: '/dominio'
        }
       ]
       },

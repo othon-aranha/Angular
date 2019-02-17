@@ -24,25 +24,22 @@ export class GrupoListComponent extends BaseListFormComponent<Grupo> implements 
 
   ngOnInit() {
     // Consultas Alias //
-    this.consultarTodosAlias();
+    super.ngOnInit();
 
     // Colunas da Grid //
     this.cols = [
-     {header: 'Alias', field: 'alias', classe: 'ui-p-4'},
-     {header: 'Descrição', field: 'descricao', classe: 'ui-p-4'},
-     {header: 'Usuário', field: 'usuario', classe: 'ui-p-2'}
+     {header: 'Id', field: 'id', classe: 'ui-p-4'},
+     {header: 'Grupo', field: 'nome', classe: 'ui-p-4'},
+     {header: 'Área', field: 'area.sigla', classe: 'ui-p-2'}
     ];
 
       // Itens do popup menu //
    this.items = [
      { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewGrupo(this.selectedrow) },
+     { label: 'Novo', icon: 'fa-search', command: (event) => this.newGrupo() },
      { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteGrupo(this.selectedrow) }
    ];
 
-   }
-
-   consultarTodosAlias() {
-     // this.grupoService.listarServidoresdoTribunal(1).subscribe(dados => this.gridrows = dados);
    }
 
    onRowSelect(event) {
@@ -51,6 +48,10 @@ export class GrupoListComponent extends BaseListFormComponent<Grupo> implements 
 
    viewGrupo(grupo: Grupo) {
      //
+   }
+
+   newGrupo() {
+    this.router.navigate(['/grupo/new']);
    }
 
    deleteGrupo(grupo: Grupo) {

@@ -7,8 +7,10 @@ import { BaseResourceService } from '../shared/services/base-resource-service';
 })
 export class GrupoService extends BaseResourceService<Grupo> {
 
+
   constructor(protected injector: Injector) {
    super('http://localhost:8081/grupo', injector, Grupo.fromJson);
+   this.getAllsuffix = 'grupos';
   }
 
 }

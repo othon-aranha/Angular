@@ -30,6 +30,7 @@ import { UsuarioModule } from './pages/cadastro/usuario/usuario.module';
 import { TribunalModule } from './pages/cadastro/tribunal/tribunal.module';
 import { ServerErrorMessagesComponent } from './shared/components/server-error-messages/server-error-messages.component';
 import { SharedModule } from './shared/shared.module';
+import { GrupoModule } from './pages/cadastro/grupo/grupo.module';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     SlideMenuModule,
     AliasModule,
+    GrupoModule,
     ModuloModule,
     DominioModule,
     UsuarioModule,

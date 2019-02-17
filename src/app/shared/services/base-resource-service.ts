@@ -9,6 +9,7 @@ import { map, catchError } from 'rxjs/operators';
 
 export abstract class BaseResourceService<T extends BaseResourceModel> {
 
+  protected getAllsuffix: string;
   protected http: HttpClient;
 
   protected headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
@@ -22,7 +23,14 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   getAll(): Observable<T[]> {
-    return this.http.get<T[]>(this.apiPath, {headers: this.headers}).pipe(
+    let url: string;
+    if ( this.getAllsuffix !== undefined ) {
+      url = `${this.apiPath}/${this.getAllsuffix}`;
+    } else {
+      url = `${this.apiPath}`;
+    }
+
+    return this.http.get<T[]>(url, {headers: this.headers}).pipe(
       map(this.jsonDataToResources.bind(this)),
       catchError(this.handleError)
     );
