@@ -53,5 +53,15 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
     return this.resourceService.getAll().subscribe(dados => this.gridrows = dados);
   }
 
+  /*
+  protected   clone(m: T): T {
+    const objeto = new Object(new <T>);
+    // tslint:disable-next-line:forin
+    for (const prop in m) {
+        objeto<T>[prop] = m[prop];
+    }
+    return objeto;
+   }
+   */
 
 }
