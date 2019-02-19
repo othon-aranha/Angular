@@ -14,13 +14,13 @@
     
         <div class="card-body">
           <div class="form-row">
-            <div class="form-group col-md-3">  
-                <p-checkbox label="Domínios Acesso" binary="true" (onChange)="mudarChecked($event)"></p-checkbox>                
+            <div class="form-group col-md">  
+                <p-checkbox [disabled]="( currentAction === 'edit' )" label="Domínios Acesso" binary="true" (onChange)="mudarChecked($event)"></p-checkbox>                
             </div>
           </div>
 
           <div class="form-row">
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-3">
                 <label for="tipoModulo">Domínio</label>
                 <div *ngIf="checked; then thenBlock else elseBlock"></div>
                 <ng-template #thenBlock>                
@@ -39,7 +39,7 @@
 
 
           <div class="form-row">
-              <div class="form-group col-md-9">
+              <div class="form-group col-md-3">
                   <label for="name">Valor do Domínio</label>
                   <input type="text" class="form-control" id="cd" formControlName="cd" style="float:rigth">
         

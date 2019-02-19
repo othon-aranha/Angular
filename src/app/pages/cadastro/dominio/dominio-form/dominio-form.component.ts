@@ -21,24 +21,32 @@ export class DominioFormComponent extends BaseResourceFormComponent<Dominio> imp
 
   ngOnInit() {
     super.ngOnInit();
-    this.populaDominio('DOMINIOS_ACESSO', '');
+
   }
 
   buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id: [this.id],
-      nome: [this.resource.nome, [Validators.required, Validators.minLength(6)] ],
-      cd: [this.resource.cd, [Validators.required, Validators.minLength(1)] ],
-      descricao: [this.resource.descricao, [Validators.required, Validators.minLength(1)] ]
+      id: [null],
+      nome: [null, [Validators.required, Validators.minLength(6)] ],
+      cd: [null, [Validators.required, Validators.minLength(1)] ],
+      descricao: [null, [Validators.required, Validators.minLength(1)] ]
     });
   }
 
   onAfterloadResource() {
-    //
+    if ( this.currentAction === 'edit' ) {
+      this.mudarChecked(true);
+      if ( this.resource.descricao !== 'DOMINIOS_ACESSO'  )  {
+        this.populaDominio('DOMINIOS_ACESSO', '');
+       }
+    }
   }
 
   mudarChecked(checked: boolean) {
     this.checked = checked;
+    if ( ( this.checked ) && ( this.currentAction === 'new' ) ) {
+      this.populaDominio('DOMINIOS_ACESSO', '');
+    }
   }
 
   private populaDominio(nome, descricao: string) {
@@ -69,7 +77,8 @@ export class DominioFormComponent extends BaseResourceFormComponent<Dominio> imp
 
 
    private populaAutoComplete() {
-     for (let i = 0; i < this.dominios.length; i++) {
+    this.optDominios = [{label: 'Informe o domínio', value: ''}];
+    for (let i = 0; i < this.dominios.length; i++) {
        this.optDominios = [...this.optDominios, {label: this.dominios[i].descricao, value: this.dominios[i].descricao}];
      }
    }

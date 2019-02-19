@@ -11,11 +11,13 @@ import { TableModule } from 'primeng/table';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { InputTextModule, DropdownModule, GrowlModule, ContextMenuModule } from '../../../../../node_modules/primeng/primeng';
+import { InputTextModule, DropdownModule } from '../../../../../node_modules/primeng/primeng';
+import { GrowlModule, ContextMenuModule, InputTextareaModule } from '../../../../../node_modules/primeng/primeng';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 
 import { AliasRoutingModule } from './alias.routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { AliasRoutingModule } from './alias.routing.module';
     GrowlModule,
     InputSwitchModule,
     InputTextModule,
+    InputTextareaModule,
     ListboxModule,
+    ReactiveFormsModule,
     TableModule,
     SharedModule,
     AliasRoutingModule

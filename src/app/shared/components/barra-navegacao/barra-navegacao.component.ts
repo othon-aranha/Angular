@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 interface BreadCrumbItem {
   text: string;
@@ -10,13 +10,17 @@ interface BreadCrumbItem {
   templateUrl: './barra-navegacao.component.html',
   styleUrls: ['./barra-navegacao.component.css']
 })
-export class BarraNavegacaoComponent implements OnInit {
+export class BarraNavegacaoComponent implements OnInit, OnChanges {
 
   @Input() items: Array<BreadCrumbItem> = [];
   constructor() { }
 
   ngOnInit() {
 
+  }
+
+  ngOnChanges() {
+    console.log(this.items.toString());
   }
 
 

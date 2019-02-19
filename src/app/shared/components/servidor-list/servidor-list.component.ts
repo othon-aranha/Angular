@@ -1,10 +1,11 @@
+import { TipoAplicacao } from './../../../domain/tipo-aplicacao';
 import { Component, OnInit, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 
-import { AliasService } from '../service/alias.service';
-import { ManutencaoService } from '../service/manutencao.service';
-import { MaquinaServidora } from '../domain/maquina-servidora';
-import { Manutencao } from '../domain/manutencao';
-import { Servidor } from '../domain/servidor';
+import { AliasService } from '../../../service/alias.service';
+import { ManutencaoService } from '../../../service/manutencao.service';
+import { MaquinaServidora } from '../../../domain/maquina-servidora';
+import { Manutencao } from '../../../domain/manutencao';
+import { Servidor } from '../../../domain/servidor';
 
 @Component({
   selector: 'app-servidor-list',
@@ -40,10 +41,10 @@ export class ServidorListComponent implements OnInit, OnChanges {
                     {name: 'ES1-ADM', code: 'ES1-ADM'},
                     {name: 'GO1-ADM', code: 'GO1-ADM'}];
     this.selectedServers = [
-      {name: 'AC1-ADM', code: 'AC1-ADM'},
-      {name: 'AL1-ADM', code: 'AL1-ADM'},
-      {name: 'AM1-ADM', code: 'AM1-ADM'},
-      {name: 'AP1-ADM', code: 'AP1-ADM'}]; */
+      {label: 'AC1-ADM', value: 'AC1-ADM'},
+      {label: 'AL1-ADM', value: 'AL1-ADM'},
+      {labe: 'AM1-ADM', value: 'AM1-ADM'},
+      {label: 'AP1-ADM', value: 'AP1-ADM'}]; */
     this.carregarTodosServidores();
   }
 

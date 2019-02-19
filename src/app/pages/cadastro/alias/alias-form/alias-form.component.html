@@ -1,15 +1,16 @@
+<app-barra-navegacao [items]="[{text: 'Alias', link: '/alias'},{text: 'Editar'}]"></app-barra-navegacao>  
 <form [formGroup]="resourceForm" (submit)="submitForm()">
-
+   
   <div class="card">
     <div class="card-header">
-      Informações sobre o Alias: {{ id }}  
+      Informações sobre o Alias: {{ id || name }}  
     </div>    
 
     <div class="card-body">
       <div class="form-row">
             <div class="form-group col-md-2">
-              <label for="name">Alias</label>
-              <input type="text" class="form-control" id="id.alias" formControlName="id.alias" style="float:rigth">
+              <label for="alias">Alias</label>
+              <input type="text" class="form-control" id="alias" formControlName="alias" style="float:rigth">
     
               <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
             </div>
@@ -17,7 +18,7 @@
 
       <div class="form-row">
         <div class="form-group col-md-8">
-          <label for="name">Descrição</label>
+          <label for="descricao">Descrição</label>
           <input type="text" class="form-control" id="descricao" formControlName="descricao" style="float:rigth">
 
           <app-form-field-error [form-control]="resourceForm.get('descricao')"></app-form-field-error>
@@ -25,13 +26,30 @@
       </div>      
 
       <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="name">Usuário</label>
+        <div class="form-group col-md-3">
+          <label for="usuario">Usuário</label>
           <input type="text" class="form-control" id="usuario" formControlName="usuario" style="float:rigth">
 
           <app-form-field-error [form-control]="resourceForm.get('usuario')"></app-form-field-error>
         </div>
-      </div>            
+
+        <div class="form-group col-md-5">
+            <label for="senha">Senha</label>
+            <input type="password" class="form-control" id="senha" maxlength="30" id="senha" formControlName="senha" pPassword/>            
+  
+            <app-form-field-error [form-control]="resourceForm.get('senha')"></app-form-field-error>
+          </div>        
+      </div>
+      
+      <div class="form-row">
+          <div class="form-group col-md-8">
+              <label for="conexao">Usuário</label>
+              <textarea [rows]="15" [cols]="100" pInputTextarea autoResize="autoResize"
+                        class="form-control" id="conexao" formControlName="conexao"></textarea>
+              
+              <app-form-field-error [form-control]="resourceForm.get('usuario')"></app-form-field-error>
+          </div>   
+      </div>
 
     </div>
   
@@ -45,3 +63,6 @@
   </button>
 
 </form>   
+
+
+{{ resourceForm.value | json }}

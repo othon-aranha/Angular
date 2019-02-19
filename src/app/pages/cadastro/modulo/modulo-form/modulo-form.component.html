@@ -1,26 +1,20 @@
 <app-barra-navegacao
-    [items]="[{text: 'Home', link: '/home'},{text: 'Módulo', link: '/modulo'}, {text: pageTitle}]">
+    [items]="[{text: 'Módulo', link: '/modulo'},{text: 'Editar'}]">
 </app-barra-navegacao> 
 <form [formGroup]="resourceForm" (submit)="submitForm()">
 
+  
+
   <div class="card">
     <div class="card-header">
-      Informações sobre o Módulo      
+      Id do Módulo:  {{ id }} 
     </div>
-    
 
     <div class="card-body">
-      <div class="form-row">
+      <div *ngIf="resource.tipoModulo !== 'WEB'" class="form-row">    
           <div class="form-group col-md-2">
-              <label for="tipoModulo">Tipo de Aplicação</label>
-              <select class="custom-select my-1 mr-sm-2" id="tipoModulo" name="tipoModulo" formControlName="tipoModulo">
-                  <option *ngFor="let option of TipoAplicacao" [value]="option.value">{{ option.label }}</option>            
-              </select>
-              <app-form-field-error [form-control]="resourceForm.get('tipoModulo')"></app-form-field-error>
-          </div>
-          <div class="form-group col-md-3">
               <label for="name">Versão</label>
-              <input type="text" class="form-control" id="versao" name="versao" formControlName="versao" [disabled]="( currentAction == 'edit' )" style="float:rigth">
+              <input type="text" class="form-control" id="versao" name="versao" formControlName="versao" [disabled]="( currentAction === 'edit' )" style="float:rigth">
     
               <app-form-field-error [form-control]="resourceForm.get('versao')"></app-form-field-error>
           </div>
@@ -28,34 +22,47 @@
 
       <div class="form-row">
         <div class="form-group col-md-2">
-          <label for="name">Sigla</label>
-          <input type="text" class="form-control" id="sigla" name="sigla" formControlName="sigla" [disabled]="true">
-
-          <app-form-field-error [form-control]="resourceForm.get('sigla')"></app-form-field-error>
+            <label for="name">Sigla</label>
+            <input type="text" class="form-control" id="sigla" name="sigla" formControlName="sigla" [disabled]="true">
+  
+            <app-form-field-error [form-control]="resourceForm.get('sigla')"></app-form-field-error>
+        </div>        
+        
+        <div class="form-group col-md-2">
+            <label for="tipoModulo">Tipo de Aplicação</label>
+            <select class="custom-select my-1 mr-sm-2" id="tipoModulo" name="tipoModulo" formControlName="tipoModulo">
+                <option *ngFor="let option of TipoAplicacao" [value]="option.value">{{ option.label }}</option>            
+            </select>
+            <app-form-field-error [form-control]="resourceForm.get('tipoModulo')"></app-form-field-error>
         </div>
 
         <!-- name -->
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-8">
           <label for="name">Módulo</label>
           <input type="text" class="form-control" id="nome" name="nome" formControlName="nome">
     
           <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
         </div>
+  
+      </div>
 
-        <!-- titulo -->
-        <div class="form-group col-md-5">
+      <div class="form-row">
+          <!-- titulo -->
+          <div class="form-group col-md-12">
             <label for="name">Título</label>
             <input type="text" class="form-control" id="descricao" name="descricao" formControlName="descricao">
       
             <app-form-field-error [form-control]="resourceForm.get('descricao')"></app-form-field-error>
-          </div>        
+          </div>      
       </div>
 
       <div class="form-row">
         <!-- Alias -->
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-3">
             <label for="type">Alias</label>
-  
+
+            <p-autoComplete [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
+
             <select name="type" id="alias" name="alias" formControlName="alias" class="form-control">
               <option *ngFor="let option of alias" [value]="option.value">{{ option.label }}</option>
             </select>
@@ -64,23 +71,21 @@
         </div>
 
         <!-- Esquema -->
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-4">
             <label for="name">Esquema</label>
             <input type="text" class="form-control" id="esquema" name="esquema" formControlName="esquema">
       
             <app-form-field-error [form-control]="resourceForm.get('esquema')"></app-form-field-error>
         </div>        
 
-      </div>
-
-      <div class="form-row">
         <!-- email -->
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-5">
             <label for="name">Email do Responsável</label>
             <input type="text" class="form-control" id="email" name="email" formControlName="email">
       
             <app-form-field-error [form-control]="resourceForm.get('email')"></app-form-field-error>
-        </div>
+        </div>        
+
       </div>
 
       <div class="form-row">
@@ -88,19 +93,26 @@
           <div class="card" style="width: 75%;">
             <h6 class="card-header">Dados de Atualização</h6>
             <div class="card-body">
-              <div class="form-group col-md-2">
+              <div class="form-group col-md-3">
                   <label class="input-group-text" for="tipoAtualizacao">Tipo</label>
                   <select class="custom-select my-1 mr-sm-2" id="tipoAtualizacao" name="tipoAtualizacao" formControlName="tipoAtualizacao">
                       <option *ngFor="let option of TipoAtualizacao" [value]="option.value">{{ option.label }}</option>            
                   </select>
               </div>
 
-              <div class="form-group col-md-5"> 
+              <div class="form-group col-md-3">
+                  <label class="input-group-text" for="statusModulo">Situação</label>
+                  <select class="custom-select my-1 mr-sm-2" id="statusModulo" name="statusModulo" formControlName="statusModulo">
+                      <option *ngFor="let option of StatusModulo" [value]="option.value">{{ option.label }}</option>            
+                  </select>
+              </div>              
+
+              <div class="form-group col-md-3"> 
                   <label for="tabela">Tabela Mensagem</label>
                   <p-inputSwitch onLabel="Sim" offLabel="Não" id="mensagemCompartilhada" name="mensagemCompartilhada" formControlName="mensagemCompartilhada"></p-inputSwitch>
               </div>
           
-              <div class="form-group col-md-5"> 
+              <div class="form-group col-md-3"> 
                   <label for="tabela">Controla Acesso</label> 
                   <p-inputSwitch onLabel="Sim" offLabel="Não" id="controlaAcesso" name="controlaAcesso" formControlName="controlaAcesso"></p-inputSwitch>
               </div>
@@ -111,7 +123,7 @@
               <h6 class="card-header">Servidores do Módulo</h6>
             <div class="card-body">
                 <div class="form-group col-md">
-                    <app-servidor-list [options]="servers" [siglaModulo]="siglaModulo" [cdTrib]="cdTrib" (onSelecionarTribunal)="onSelecionarTribunal($cdTrib)"  ngDefaultControl></app-servidor-list>
+                    <app-servidor-list [siglaModulo]="siglaModulo" [cdTrib]="cdTrib" ngDefaultControl></app-servidor-list>
                 </div>  
             </div>
           </div>

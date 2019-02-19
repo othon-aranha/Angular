@@ -31,4 +31,12 @@ export class MaquinaService extends BaseResourceService<MaquinaServidora> {
     );
   }
 
+  listarServidoresdoModuloQContenham(cdModulo: number, alias: string): Observable<Array<MaquinaServidora>> {
+    return  this.http.get<Array<MaquinaServidora>>(this.apiPath + '/cdModulo/' + cdModulo + '/alias/' + alias, {headers: this.headers})
+    .pipe(
+      map(this.jsonDataToResources.bind(this)),
+      catchError(this.handleError)
+    );
+  }
+
 }

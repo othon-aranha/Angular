@@ -3,8 +3,7 @@ import { AliasService } from './../../../../service/alias.service';
 import { MaquinaServidora } from './../../../../domain/maquina-servidora';
 import { Component, OnInit, Injector } from '@angular/core';
 import { BaseResourceFormComponent } from '../../../../shared/components/base-resource-form/base-resource-form.component';
-import { Usuario } from '../../../../domain/usuario';
-import { Quote } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-alias-form',
