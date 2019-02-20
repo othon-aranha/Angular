@@ -62,8 +62,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
 
   ngOnInit() {
     // this.cdTrib = this.tribunalService.
-    this.items = [{text: 'Módulo', url: '/modulo'}];
-    super.getParamId();
+    this.items = [{text: 'Módulo', url: 'modulo'}];
     super.ngOnInit();
     // this.carregaListaServidores(this.id);
     this.siglaModulo = this.resource.sigla;
@@ -78,11 +77,11 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
 
 
   buscaAutoComplete(event) {
-    const termo = event.value;
+    const termo = event.query;
     this.aliases = [];
     this.aliases = [...this.aliases, {label: '...' , value: ''}];
     let manutencoes: Array<MaquinaServidora> = [];
-    this.maquinaService.listarServidoresdoModuloQContenham(this.cdTrib, termo)
+    this.maquinaService.listarServidoresdoModuloQContenham(termo)
     .subscribe(
       (resource) => {
         manutencoes = resource;

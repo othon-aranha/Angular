@@ -33,6 +33,7 @@ export class DominioFormComponent extends BaseResourceFormComponent<Dominio> imp
     });
   }
 
+
   onAfterloadResource() {
     if ( this.currentAction === 'edit' ) {
       this.mudarChecked(true);

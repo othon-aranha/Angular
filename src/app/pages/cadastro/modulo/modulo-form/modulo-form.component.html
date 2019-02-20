@@ -6,7 +6,7 @@
 
   <div class="card">
     <div class="card-header">
-      Id do Módulo:  {{ id }} {{ items | json }}
+      Id do Módulo:  {{ id }}
     </div>
 
     <div class="card-body">
@@ -58,14 +58,10 @@
       <div class="form-row">
         <!-- Alias -->
         <div class="form-group col-md-3">
-            <label for="type">Alias</label>
+            <label for="alias">Alias</label>
+            <p-autoComplete class="form-control" id="alias" name="alias" formControlName="alias" 
+                  [field]="label" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
 
-            <p-autoComplete [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
-
-            <select name="type" id="alias" name="alias" formControlName="alias" class="form-control">
-              <option *ngFor="let option of alias" [value]="option.value">{{ option.label }}</option>
-            </select>
-  
             <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
         </div>
 
