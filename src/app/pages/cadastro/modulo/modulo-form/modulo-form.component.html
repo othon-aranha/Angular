@@ -1,12 +1,12 @@
 <app-barra-navegacao [items]="items"></app-barra-navegacao>
- 
+
 <form [formGroup]="resourceForm" (submit)="submitForm()">
 
   
 
   <div class="card">
     <div class="card-header">
-      Id do Módulo:  {{ id }} 
+      Id do Módulo:  {{ id }} {{ items | json }}
     </div>
 
     <div class="card-body">

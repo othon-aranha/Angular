@@ -62,7 +62,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
 
   ngOnInit() {
     // this.cdTrib = this.tribunalService.
-    this.items = [...this.items,{text: 'Módulo', url: '/modulo'}];
+    this.items = [{text: 'Módulo', url: '/modulo'}];
     super.getParamId();
     super.ngOnInit();
     // this.carregaListaServidores(this.id);
