@@ -20,8 +20,8 @@ export class DominioFormComponent extends BaseResourceFormComponent<Dominio> imp
   }
 
   ngOnInit() {
+    this.items = [{text: 'Domínio', link: '/dominio'}];
     super.ngOnInit();
-
   }
 
   buildResourceForm() {

@@ -1,6 +1,5 @@
-<app-barra-navegacao
-    [items]="[{text: 'Módulo', link: '/modulo'},{text: 'Editar'}]">
-</app-barra-navegacao> 
+<app-barra-navegacao [items]="items"></app-barra-navegacao>
+ 
 <form [formGroup]="resourceForm" (submit)="submitForm()">
 
   
@@ -14,7 +13,7 @@
       <div *ngIf="resource.tipoModulo !== 'WEB'" class="form-row">    
           <div class="form-group col-md-2">
               <label for="name">Versão</label>
-              <input type="text" class="form-control" id="versao" name="versao" formControlName="versao" [disabled]="( currentAction === 'edit' )" style="float:rigth">
+              <input type="text" class="form-control" id="versao" name="versao" formControlName="versao" style="float:rigth">
     
               <app-form-field-error [form-control]="resourceForm.get('versao')"></app-form-field-error>
           </div>
@@ -23,7 +22,7 @@
       <div class="form-row">
         <div class="form-group col-md-2">
             <label for="name">Sigla</label>
-            <input type="text" class="form-control" id="sigla" name="sigla" formControlName="sigla" [disabled]="true">
+            <input type="text" class="form-control" id="sigla" name="sigla" formControlName="sigla">
   
             <app-form-field-error [form-control]="resourceForm.get('sigla')"></app-form-field-error>
         </div>        

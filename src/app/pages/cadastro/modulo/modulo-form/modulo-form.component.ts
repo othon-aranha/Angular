@@ -62,6 +62,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
 
   ngOnInit() {
     // this.cdTrib = this.tribunalService.
+    this.items = [...this.items,{text: 'Módulo', url: '/modulo'}];
     super.getParamId();
     super.ngOnInit();
     // this.carregaListaServidores(this.id);
@@ -86,7 +87,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
       (resource) => {
         manutencoes = resource;
         for (let i = 1; i < manutencoes.length; i++) {
-          this.aliases = [...this.aliases, {label: manutencoes[i].id.alias , value: manutencoes[i].id.alias}];
+          this.aliases = [...this.aliases, {label: manutencoes[i].alias , value: manutencoes[i].alias}];
         }
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')

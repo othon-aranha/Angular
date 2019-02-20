@@ -1,7 +1,9 @@
 import { Modulo } from './modulo';
 import { MaquinaPk } from './maquina-pk';
+import { MaquinaServidora } from './maquina-servidora';
 export class Manutencao {
-    id: MaquinaPk;
+    id: number;
+    maquinaServidora: MaquinaServidora;
     modulo: Modulo;
     status: string;
     dataManutencao: Date;

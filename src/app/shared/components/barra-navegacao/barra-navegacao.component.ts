@@ -20,7 +20,7 @@ export class BarraNavegacaoComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.items.toString());
+    // console.log(this.items.toString());
   }
 
 
