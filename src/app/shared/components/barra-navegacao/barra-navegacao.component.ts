@@ -12,7 +12,7 @@ interface BreadCrumbItem {
 })
 export class BarraNavegacaoComponent implements OnInit, OnChanges {
 
-  @Input() items: Array<BreadCrumbItem> = [];
+  @Input() breadcrumbitems: Array<BreadCrumbItem> = [];
   constructor() { }
 
   ngOnInit() {
@@ -20,13 +20,13 @@ export class BarraNavegacaoComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    // console.log(this.items.toString());
+    console.log(this.breadcrumbitems.toString());
   }
 
 
   isTheLastItem(item: BreadCrumbItem): boolean {
-    const index = this.items.indexOf(item);
-    return index + 1 === this.items.length;
+    const index = this.breadcrumbitems.indexOf(item);
+    return index + 1 === this.breadcrumbitems.length;
   }
 
 }

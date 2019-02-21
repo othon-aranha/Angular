@@ -71,7 +71,8 @@ export class ModuloListComponent implements OnInit {
 
   // Itens do popup menu //
   this.items = [
-    { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewModulo(this.selectedModulo) },
+    { label: 'Editar', icon: 'fa-search', command: (event) => this.viewModulo(this.selectedModulo) },
+    { label: 'Novo', icon: 'fa-search', command: (event) => this.newModulo() },
     { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteModulo(this.selectedModulo) }
 ];
 
@@ -120,6 +121,10 @@ export class ModuloListComponent implements OnInit {
   viewModulo(modulo: Modulo) {
     this.router.navigate(['/modulo/', modulo.id, 'edit']);
     this.consultarporTipodeAplicacao(this.selectedTipo);
+  }
+
+  newModulo() {
+    this.router.navigate(['/modulo/', 'new']);
   }
 
   cloneModulo(m: Modulo): Modulo {

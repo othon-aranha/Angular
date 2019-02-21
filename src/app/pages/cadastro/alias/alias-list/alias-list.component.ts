@@ -36,8 +36,9 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
 
      // Itens do popup menu //
   this.items = [
-    { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewAlias(this.selectedrow) },
-    { label: 'Excluir', icon: 'fa-close', command: (event) => this.viewAlias(this.selectedrow) }
+    { label: 'Editar', icon: 'fa-search', command: (event) => this.viewAlias(this.selectedrow) },
+    { label: 'Novo', icon: 'fa-search', command: (event) => this.newAlias(this.selectedrow) },
+    { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteAlias(this.selectedrow) }
   ];
 
   }
@@ -65,4 +66,12 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
     this.router.navigate(['alias', alias.id, 'edit']);
   }
 
+  newAlias(alias: MaquinaServidora) {
+    this.router.navigate(['alias', 'new']);
+  }
+
+
+  deleteAlias(alias: MaquinaServidora) {
+    this.router.navigate(['alias', 'new']);
+  }
 }

@@ -1,4 +1,13 @@
-<app-barra-navegacao [items]="[{text: 'Tribunal', url: '/tribunal'},{text: 'Editar'}]"></app-barra-navegacao>  
+<div *ngIf="( currentAction === 'edit' ); then thenEdit else NewBlock"></div>
+<ng-template #thenEdit>
+    <app-barra-navegacao [breadcrumbitems]="[{text: 'Tribunal', link: '/tribunal'},{text: 'Editar'}]"></app-barra-navegacao>  
+</ng-template>
+<ng-template #NewBlock>
+    <app-barra-navegacao [breadcrumbitems]="[{text: 'Tribunal', link: '/tribunal'},{text: 'Novo'}]"></app-barra-navegacao>  
+</ng-template> 
+
+
+
 <form [formGroup]="resourceForm" (submit)="submitForm()">
 
   <div class="card">

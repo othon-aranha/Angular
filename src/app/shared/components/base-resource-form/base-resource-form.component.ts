@@ -19,7 +19,6 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   pageTitle: string;
   serverErrorMessages: string[] = null;
   submittingForm: boolean = false;
-  items: any[] = [];
 
   protected route: ActivatedRoute;
   protected router: Router;
@@ -87,10 +86,10 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   protected setCurrentAction() {
     if ( this.route.snapshot.url[this.route.snapshot.url.length - 1].path === 'new' ) {
       this.currentAction = 'new';
-      this.items = [...this.items,{text: 'Novo'}];
+      // this.breadcrumbitems = [...this.breadcrumbitems,{text: 'Novo'}];
     } else {
       this.currentAction = 'edit';
-      this.items = [...this.items,{text: 'Editar'}];
+      // this.breadcrumbitems = [...this.breadcrumbitems,{text: 'Editar'}];
     }
   }
 

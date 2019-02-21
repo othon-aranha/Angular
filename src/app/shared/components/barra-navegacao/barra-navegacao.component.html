@@ -4,7 +4,7 @@
         <a routerLink="/home">Cadastro</a>
       </li>
   
-      <li *ngFor="let item of items" class="breadcrumb-item" [class.active]="isTheLastItem(item)">
+      <li *ngFor="let item of breadcrumbitems" class="breadcrumb-item" [class.active]="isTheLastItem(item)">
         <span *ngIf="isTheLastItem(item)">
           {{item.text}}
         </span>

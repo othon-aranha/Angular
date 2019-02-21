@@ -61,12 +61,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   */
 
   ngOnInit() {
-    // this.cdTrib = this.tribunalService.
-    this.items = [{text: 'Módulo', url: 'modulo'}];
     super.ngOnInit();
-    // this.carregaListaServidores(this.id);
-    this.siglaModulo = this.resource.sigla;
-    this.cdTrib = 1;
   }
 
   /*
@@ -114,7 +109,9 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   }
 
   onAfterloadResource() {
-
+    this.resourceForm.get('id').setValue(this.id);
+    this.siglaModulo = this.resource.sigla;
+    this.cdTrib = 1;
   }
 
   protected creationPageTitle(): string {

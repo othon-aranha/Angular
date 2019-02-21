@@ -1,4 +1,12 @@
-<app-barra-navegacao [items]="items"></app-barra-navegacao>
+<div *ngIf="( currentAction === 'edit' ); then thenEdit else NewBlock"></div>
+<ng-template #thenEdit>
+    <app-barra-navegacao [breadcrumbitems]="[{text: 'Módulo', link: '/modulo'},{text: 'Editar'}]"></app-barra-navegacao>
+</ng-template>
+<ng-template #NewBlock>
+    <app-barra-navegacao [breadcrumbitems]="[{text: 'Módulo', link: '/modulo'},{text: 'Novo'}]"></app-barra-navegacao>
+</ng-template> 
+
+
 
 <form [formGroup]="resourceForm" (submit)="submitForm()">
 
@@ -60,7 +68,7 @@
         <div class="form-group col-md-3">
             <label for="alias">Alias</label>
             <p-autoComplete class="form-control" id="alias" name="alias" formControlName="alias" 
-                  [field]="label" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
+                  [field]="value" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
 
             <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
         </div>

@@ -5,6 +5,7 @@ import { ModuloListComponent } from './modulo-list/modulo-list.component';
 
 const moduloRoutes = [
     {path: 'modulo', component: ModuloListComponent},
+    {path: 'modulo/new', component: ModuloFormComponent},
     {path: 'modulo/:id/edit', component: ModuloFormComponent}
 ];
 

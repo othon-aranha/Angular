@@ -6,6 +6,7 @@ import { ManutencaoService } from '../../../service/manutencao.service';
 import { MaquinaServidora } from '../../../domain/maquina-servidora';
 import { Manutencao } from '../../../domain/manutencao';
 import { Servidor } from '../../../domain/servidor';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-servidor-list',
@@ -19,9 +20,9 @@ export class ServidorListComponent implements OnInit, OnChanges {
   @Output() onSelecionarTribunal = new EventEmitter<number>();
   @Input() cdTrib: number;
 
-  servers = [];
+  servers: SelectItem[] = [];
   maquinas = [];
-  selectedServers = [];
+  selectedServers: SelectItem[] = [];
   selservers = [];
 
   @Input() siglaModulo: String;
@@ -31,40 +32,8 @@ export class ServidorListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-    /*this.servers = [{name: 'AC1-ADM', code: 'AC1-ADM'},
-                    {name: 'AL1-ADM', code: 'AL1-ADM'},
-                    {name: 'AM1-ADM', code: 'AM1-ADM'},
-                    {name: 'AP1-ADM', code: 'AP1-ADM'},
-                    {name: 'BA1-ADM', code: 'BA1-ADM'},
-                    {name: 'CE1-ADM', code: 'CE1-ADM'},
-                    {name: 'DF1-ADM', code: 'DF1-ADM'},
-                    {name: 'ES1-ADM', code: 'ES1-ADM'},
-                    {name: 'GO1-ADM', code: 'GO1-ADM'}];
-    this.selectedServers = [
-      {label: 'AC1-ADM', value: 'AC1-ADM'},
-      {label: 'AL1-ADM', value: 'AL1-ADM'},
-      {labe: 'AM1-ADM', value: 'AM1-ADM'},
-      {label: 'AP1-ADM', value: 'AP1-ADM'}]; */
-    this.carregarTodosServidores();
+
   }
-
-  cloneMaquina(m: MaquinaServidora[]) {
-    this.servers = [];
-    // tslint:disable-next-line:forin
-    for (const id in m) {
-      this.servers[id].code = m[id].alias;
-      this.servers[id].name = m[id].alias;
-    }
-   }
-
-   cloneManutencao(m: Manutencao[]) {
-     this.maquinas = [];
-     // tslint:disable-next-line:forin
-    for (const id in m) {
-      this.servers[id].code = m[id].maquinaServidora.alias;
-      this.servers[id].name = m[id].maquinaServidora.alias;
-    }
-   }
 
    ngOnChanges() {
       if ( this.cdTrib !== undefined ) {
@@ -88,7 +57,6 @@ export class ServidorListComponent implements OnInit, OnChanges {
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
     );
-    // this.cloneMaquina(this.maquinas);
   }
 
   carregarServidoresdoModulo() {
@@ -101,19 +69,13 @@ export class ServidorListComponent implements OnInit, OnChanges {
           this.selservers = resource;
           for (let i = 0; i < this.selservers.length; i++) {
             this.selectedServers = [...this.selectedServers, {label: this.maquinas[i].id.alias , value: this.maquinas[i].id.alias}];
+            // this.selectedServers = [...this.selectedServers, this.maquinas[i].id.alias]
           }
         },
         (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
       );
     }
-    this.cloneManutencao(this.selservers);
   }
 
-
-  onselecionarTribunal(cdTrib: number) {
-    this.cdTrib = cdTrib;
-    this.carregarServidoresdoModulo();
-    this.onSelecionarTribunal.emit(this.cdTrib);
-  }
 
 }
