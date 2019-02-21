@@ -59,10 +59,10 @@
         <!-- Alias -->
         <div class="form-group col-md-3">
             <label for="alias">Alias</label>
-            <p-autoComplete class="form-control" id="alias" name="alias" formControlName="alias" 
-                  [field]="label" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
-
-            <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
+            <select class="custom-select my-1 mr-sm-2" id="alias" name="alias" formControlName="alias">
+                <option *ngFor="let option of aliasList" [value]="option.value">{{ option.label }}</option>            
+            </select>                  
+            <!--app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error-->
         </div>
 
         <!-- Esquema -->

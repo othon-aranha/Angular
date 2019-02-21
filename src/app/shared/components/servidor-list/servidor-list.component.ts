@@ -31,7 +31,7 @@ export class ServidorListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-    /*this.servers = [{name: 'AC1-ADM', code: 'AC1-ADM'},
+    this.servers = [{name: 'AC1-ADM', code: 'AC1-ADM'},
                     {name: 'AL1-ADM', code: 'AL1-ADM'},
                     {name: 'AM1-ADM', code: 'AM1-ADM'},
                     {name: 'AP1-ADM', code: 'AP1-ADM'},
@@ -41,11 +41,11 @@ export class ServidorListComponent implements OnInit, OnChanges {
                     {name: 'ES1-ADM', code: 'ES1-ADM'},
                     {name: 'GO1-ADM', code: 'GO1-ADM'}];
     this.selectedServers = [
-      {label: 'AC1-ADM', value: 'AC1-ADM'},
-      {label: 'AL1-ADM', value: 'AL1-ADM'},
-      {labe: 'AM1-ADM', value: 'AM1-ADM'},
-      {label: 'AP1-ADM', value: 'AP1-ADM'}]; */
-    this.carregarTodosServidores();
+      {name: 'AC1-ADM', code: 'AC1-ADM'},
+      {name: 'AL1-ADM', code: 'AL1-ADM'},
+      {name: 'AM1-ADM', code: 'AM1-ADM'},
+      {name: 'AP1-ADM', code: 'AP1-ADM'}];
+    // this.carregarTodosServidores();
   }
 
   cloneMaquina(m: MaquinaServidora[]) {
@@ -67,12 +67,12 @@ export class ServidorListComponent implements OnInit, OnChanges {
    }
 
    ngOnChanges() {
-      if ( this.cdTrib !== undefined ) {
+     /* if ( this.cdTrib !== undefined ) {
         this.carregarTodosServidores();
       }
       if ( this.siglaModulo !== undefined ) {
         this.carregarServidoresdoModulo();
-      }
+      } */
    }
 
    carregarTodosServidores() {

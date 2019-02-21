@@ -19,7 +19,7 @@ import { TribunalService } from '../../../../service/tribunal.service';
 export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> implements OnInit {
 
   aliasList: any[];
-  aliases: any[];
+  aliases: string[];
   cdTrib: number;
   siglaModulo: string;
   TipoAplicacao: any[] = [{label: '...', value: ''},
@@ -43,7 +43,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   }
 
 
-/*  private carregaListaServidores(cdModulo: number) {
+ private carregaListaServidores(cdModulo: number) {
     this.aliasList = [];
     this.aliasList = [...this.aliasList, {label: '...' , value: ''}];
     let manutencoes: Array<MaquinaServidora> = [];
@@ -51,22 +51,20 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     .subscribe(
       (resource) => {
         manutencoes = resource;
-        for (let i = 1; i < manutencoes.length; i++) {
+        for (let i = 0; i < manutencoes.length; i++) {
           this.aliasList = [...this.aliasList, {label: manutencoes[i].id.alias , value: manutencoes[i].id.alias}];
         }
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
     );
   }
-  */
+
 
   ngOnInit() {
     // this.cdTrib = this.tribunalService.
     this.items = [{text: 'Módulo', url: 'modulo'}];
     super.ngOnInit();
-    // this.carregaListaServidores(this.id);
-    this.siglaModulo = this.resource.sigla;
-    this.cdTrib = 1;
+    this.carregaListaServidores(this.id);
   }
 
   /*
@@ -75,23 +73,6 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   }
   */
 
-
-  buscaAutoComplete(event) {
-    const termo = event.query;
-    this.aliases = [];
-    this.aliases = [...this.aliases, {label: '...' , value: ''}];
-    let manutencoes: Array<MaquinaServidora> = [];
-    this.maquinaService.listarServidoresdoModuloQContenham(termo)
-    .subscribe(
-      (resource) => {
-        manutencoes = resource;
-        for (let i = 1; i < manutencoes.length; i++) {
-          this.aliases = [...this.aliases, {label: manutencoes[i].alias , value: manutencoes[i].alias}];
-        }
-      },
-      (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
-    );
-  }
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
@@ -114,7 +95,8 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   }
 
   onAfterloadResource() {
-
+    this.siglaModulo = this.resource.sigla;
+    this.cdTrib = 1;
   }
 
   protected creationPageTitle(): string {
