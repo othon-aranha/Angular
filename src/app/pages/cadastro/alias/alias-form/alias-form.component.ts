@@ -42,7 +42,7 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
         this.resource.conexao =  resource.conexao;
         this.resource.descricao =  resource.descricao;
         this.resource.usuario =  resource.usuario;
-        this.resource.senha =  resource.senha; 
+        this.resource.senha =  resource.senha;
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
     );
@@ -53,7 +53,7 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
       id:        new FormControl('', [Validators.required, Validators.minLength(1)] ),
-      tribunal:  new FormControl('',Validators.required),
+      tribunal:  new FormControl('', Validators.required),
       alias:     new FormControl('', [Validators.required, Validators.minLength(1)] ),
       descricao: new FormControl('', [Validators.required, Validators.minLength(3)] ),
       usuario:   new FormControl('', [Validators.required, Validators.minLength(6)] ),
