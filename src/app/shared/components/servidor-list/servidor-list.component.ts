@@ -6,6 +6,8 @@ import { ManutencaoService } from '../../../service/manutencao.service';
 import { MaquinaServidora } from '../../../domain/maquina-servidora';
 import { Manutencao } from '../../../domain/manutencao';
 import { Servidor } from '../../../domain/servidor';
+import { SelectItem } from 'primeng/api';
+
 
 @Component({
   selector: 'app-servidor-list',
@@ -19,9 +21,9 @@ export class ServidorListComponent implements OnInit, OnChanges {
   @Output() onSelecionarTribunal = new EventEmitter<number>();
   @Input() cdTrib: number;
 
-  servers = [];
+  servers: SelectItem[];
   maquinas = [];
-  selectedServers = [];
+  selectedServers: SelectItem[];
   selservers = [];
 
   @Input() siglaModulo: String;
@@ -31,28 +33,29 @@ export class ServidorListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-    this.servers = [{name: 'AC1-ADM', code: 'AC1-ADM'},
-                    {name: 'AL1-ADM', code: 'AL1-ADM'},
-                    {name: 'AM1-ADM', code: 'AM1-ADM'},
-                    {name: 'AP1-ADM', code: 'AP1-ADM'},
-                    {name: 'BA1-ADM', code: 'BA1-ADM'},
-                    {name: 'CE1-ADM', code: 'CE1-ADM'},
-                    {name: 'DF1-ADM', code: 'DF1-ADM'},
-                    {name: 'ES1-ADM', code: 'ES1-ADM'},
-                    {name: 'GO1-ADM', code: 'GO1-ADM'}];
+    this.servers = [{label: 'AC1-ADM', value: 'AC1-ADM'},
+                    {label: 'AL1-ADM', value: 'AL1-ADM'},
+                    {label: 'AM1-ADM', value: 'AM1-ADM'},
+                    {label: 'AP1-ADM', value: 'AP1-ADM'},
+                    {label: 'BA1-ADM', value: 'BA1-ADM'},
+                    {label: 'CE1-ADM', value: 'CE1-ADM'},
+                    {label: 'DF1-ADM', value: 'DF1-ADM'},
+                    {label: 'ES1-ADM', value: 'ES1-ADM'},
+                    {label: 'GO1-ADM', value: 'GO1-ADM'}];
     this.selectedServers = [
-      {name: 'AC1-ADM', code: 'AC1-ADM'},
-      {name: 'AL1-ADM', code: 'AL1-ADM'},
-      {name: 'AM1-ADM', code: 'AM1-ADM'},
-      {name: 'AP1-ADM', code: 'AP1-ADM'}];
+                    {label: 'AC1-ADM', value: 'AC1-ADM'},
+                    {label: 'AL1-ADM', value: 'AL1-ADM'},
+                    {label: 'AM1-ADM', value: 'AM1-ADM'},
+                    {label: 'AP1-ADM', value: 'AP1-ADM'}];
     // this.carregarTodosServidores();
   }
 
+  /*
   cloneMaquina(m: MaquinaServidora[]) {
     this.servers = [];
     // tslint:disable-next-line:forin
     for (const id in m) {
-      this.servers[id].code = m[id].alias;
+      this.servers[id].value = m[id].alias;
       this.servers[id].name = m[id].alias;
     }
    }
@@ -61,10 +64,11 @@ export class ServidorListComponent implements OnInit, OnChanges {
      this.maquinas = [];
      // tslint:disable-next-line:forin
     for (const id in m) {
-      this.servers[id].code = m[id].maquinaServidora.alias;
+      this.servers[id].value = m[id].maquinaServidora.alias;
       this.servers[id].name = m[id].maquinaServidora.alias;
     }
    }
+   */
 
    ngOnChanges() {
      /* if ( this.cdTrib !== undefined ) {
@@ -73,6 +77,7 @@ export class ServidorListComponent implements OnInit, OnChanges {
       if ( this.siglaModulo !== undefined ) {
         this.carregarServidoresdoModulo();
       } */
+      console.log(this.selectedServers);
    }
 
    carregarTodosServidores() {
@@ -106,14 +111,15 @@ export class ServidorListComponent implements OnInit, OnChanges {
         (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
       );
     }
-    this.cloneManutencao(this.selservers);
+    // this.cloneManutencao(this.selservers);
   }
 
 
+  /*
   onselecionarTribunal(cdTrib: number) {
     this.cdTrib = cdTrib;
     this.carregarServidoresdoModulo();
     this.onSelecionarTribunal.emit(this.cdTrib);
   }
-
+  */
 }

@@ -14,36 +14,37 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {label: 'Cadastro',
+       icon: 'fas fa-file-invoice',
        items: [
         {
           label: 'Alias',
-          icon: 'fa-bar-chart',
+          icon: 'pi pi-fw pi-sitemap',
           routerLink: '/alias'
          },
        {
         label: 'Módulo',
-        icon: 'fa-bar-chart',
+        icon: 'fas fa-cogs',
         routerLink: '/modulo'
        },
        {
         label: 'Tribunal',
-        icon: 'fa-bar-chart',
+        icon: 'fas fa-gavel',
         routerLink: '/tribunal'
        },
        {
         label: 'Usuário',
-        icon: 'fa-bar-chart',
+        icon: 'far fa-address-card',
         routerLink: '/usuario'
        },
        {
         label: 'Domínio',
-        icon: 'fa-bar-chart',
+        icon: 'fas fa-table',
         routerLink: '/dominio'
        }
       ]
       },
       {separator: true},
-      {label: 'Sair', icon: 'fa-twitter', routerLink: '/login'}
+      {label: 'Sair', icon: 'fas fa-twitter', routerLink: '/login'}
   ];
   }
 

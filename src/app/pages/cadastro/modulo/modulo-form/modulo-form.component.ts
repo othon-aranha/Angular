@@ -62,9 +62,16 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
 
   ngOnInit() {
     // this.cdTrib = this.tribunalService.
-    this.items = [{text: 'Módulo', url: 'modulo'}];
     super.ngOnInit();
     this.carregaListaServidores(this.id);
+  }
+
+  GerenciaControles(): void {
+    if ( this.resourceForm !== undefined ) {
+      if ( this.resourceForm.get('tipoModulo').value === 'WEB') {
+        this.formBuilder.control('alias').reset({value: '', disabled: true});
+      }
+    }
   }
 
   /*
@@ -92,6 +99,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
                             [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ),
       controlaAcesso: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] )
     });
+    // this.formBuilder.control('tipoModulo').registerOnChange(this.GerenciaControles);
   }
 
   onAfterloadResource() {
