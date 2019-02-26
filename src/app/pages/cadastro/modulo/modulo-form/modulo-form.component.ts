@@ -1,3 +1,5 @@
+import { ValidatorFn, FormBuilder, ControlValueAccessor } from '@angular/forms';
+import { AbstractControl, ControlContainer } from '@angular/forms';
 import { TipoAtualizacao } from './../../../../domain/tipo-atualizacao';
 import { MaquinaService } from './../../../../service/maquina.service';
 import { ModuloService } from '../../../../service/modulo.service';
@@ -85,7 +87,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     this.resourceForm = this.formBuilder.group({
       id:    new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       sigla: new FormControl({value: '', disabled: ( this.currentAction === 'edit' )}, [Validators.required, Validators.minLength(3)] ),
-      alias: new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      alias: new FormControl( '', [Validators.minLength(1)] ),
       nome:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       descricao:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       esquema:    new FormControl( '', [Validators.required, Validators.minLength(3)] ),
@@ -115,5 +117,23 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     const categoryName = this.resource.id || '';
     return 'Editando Módulo: ' + categoryName;
   }
+
+
+  /*
+  validaAlias():
+    ValidatorFn {
+    return (control: AbstractControl):
+      { [key: string]: any | null } => {
+      const group: control.parent;
+      const tipoModulo = group.get('tipoModulo');
+      const alias = group.get('alias');
+      const retorno =  ( ( tipoModulo.value === 'WEB' ) && ( alias.value !== '' ) )
+                    || ( ( tipoModulo.value === 'WEB' ) && ( alias.ValidatorFn === '' ) );
+      return retorno ? {'alias': { value: alias.value} } : null;
+      }
+      }
+    }
+  }
+*/
 
 }
