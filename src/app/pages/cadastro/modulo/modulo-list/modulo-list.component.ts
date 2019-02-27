@@ -74,7 +74,7 @@ export class ModuloListComponent implements OnInit {
     { label: 'Editar', icon: 'fa-search', command: (event) => this.viewModulo(this.selectedModulo) },
     { label: 'Novo', icon: 'fa-search', command: (event) => this.newModulo() },
     { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteModulo(this.selectedModulo) }
-];
+  ];
 
   }
 

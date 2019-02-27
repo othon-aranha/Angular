@@ -7,8 +7,13 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AliasService extends BaseResourceService<MaquinaServidora> {
+
    constructor(protected injector: Injector) {
     super('http://localhost:8081/alias', injector, MaquinaServidora.fromJson);
+   }
+
+   protected getAllSufix(): string {
+    return '/aliases';
    }
 
     public getByCompositeId(id: number, alias: string): Observable<MaquinaServidora> {

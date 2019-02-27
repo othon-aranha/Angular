@@ -14,6 +14,10 @@ export class ModuloService extends BaseResourceService<Modulo>  {
     super('http://localhost:8081/modulo', injector, Modulo.fromJson);
    }
 
+   protected getAllSufix(): string {
+    return '/modulos';
+  }
+
 
   listarModulos(): Observable<Array<Modulo>> {
     return this.http.get<Array<Modulo>>(this.apiPath, {headers: this.headers})

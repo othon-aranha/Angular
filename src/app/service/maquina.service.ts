@@ -11,6 +11,10 @@ export class MaquinaService extends BaseResourceService<MaquinaServidora> {
     super('http://localhost:8081/alias', injector, MaquinaServidora.fromJson);
    }
 
+   protected getAllSufix(): string {
+    return '/aliases';
+  }
+
 
   listarMaquinas(): Observable<Array<MaquinaServidora>> {
     return  this.http.get<MaquinaServidora[]>(this.apiPath + '/aliases', {headers: this.headers})

@@ -21,14 +21,16 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
     this.http = injector.get(HttpClient);
   }
 
+  protected abstract getAllSufix(): string;
+
   getAll(): Observable<T[]> {
-    return this.http.get<T[]>(this.apiPath, {headers: this.headers}).pipe(
+    return this.http.get<T[]>(this.apiPath + this.getAllSufix(), {headers: this.headers}).pipe(
       map(this.jsonDataToResources.bind(this)),
       catchError(this.handleError)
     );
   }
 
-  getById(id: number): Observable<T> {
+  getById(id: any): Observable<T> {
     const url = `${this.apiPath}/${id}`;
 
     return this.http.get(url, {headers: this.headers}).pipe(

@@ -12,6 +12,10 @@ export class TribunalService extends BaseResourceService<Tribunal> {
     super('http://localhost:8081/tribunal', injector, Tribunal.fromJson);
    }
 
+   protected getAllSufix(): string {
+     return '/tribunais';
+   }
+
   listaTribunais() {
     return this.http.get<Tribunal[]>(this.apiPath + '/tribunais', {headers: this.headers});
   }

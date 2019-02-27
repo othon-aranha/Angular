@@ -26,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AliasModule } from './pages/cadastro/alias/alias.module';
 import { DominioModule } from './pages/cadastro/dominio/dominio.module';
 import { ModuloModule } from './pages/cadastro/modulo/modulo.module';
+import { PerfilModule } from './pages/cadastro/perfil/perfil.module';
 import { UsuarioModule } from './pages/cadastro/usuario/usuario.module';
 import { TribunalModule } from './pages/cadastro/tribunal/tribunal.module';
 import { ServerErrorMessagesComponent } from './shared/components/server-error-messages/server-error-messages.component';
@@ -59,6 +60,7 @@ import { SharedModule } from './shared/shared.module';
     SlideMenuModule,
     AliasModule,
     ModuloModule,
+    PerfilModule,
     DominioModule,
     UsuarioModule,
     TribunalModule,

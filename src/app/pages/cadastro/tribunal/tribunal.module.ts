@@ -17,8 +17,6 @@ import { SharedModule } from '../../../shared/shared.module';
     FormsModule,
     GrowlModule,
     ReactiveFormsModule,
-    MatInputModule,
-    MatSelectModule,
     SharedModule,
     TableModule,
     TribunalRoutingModule

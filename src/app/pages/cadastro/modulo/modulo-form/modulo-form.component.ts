@@ -3,7 +3,7 @@ import { MaquinaService } from './../../../../service/maquina.service';
 import { ModuloService } from '../../../../service/modulo.service';
 import { Component, OnInit, Injector } from '@angular/core';
 
-import { Validators, FormControl } from '@angular/forms';
+import { Validators, FormControl, NgControlStatusGroup, AbstractControl, FormGroup } from '@angular/forms';
 
 import { BaseResourceFormComponent } from '../../../../shared/components/base-resource-form/base-resource-form.component';
 import { Modulo } from '../../../../domain/modulo';
@@ -61,7 +61,16 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   */
 
   ngOnInit() {
+    // this.cdTrib = this.tribunalService.
     super.ngOnInit();
+  }
+
+  GerenciaControles(): void {
+    if ( this.resourceForm !== undefined ) {
+      if ( this.resourceForm.get('tipoModulo').value === 'WEB') {
+        this.formBuilder.control('alias').reset({value: '', disabled: true});
+      }
+    }
   }
 
   /*
@@ -105,7 +114,20 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
       mensagemCompartilhada: new FormControl( '',
                             [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ),
       controlaAcesso: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] )
+    }, {
+      // validator: this.aliasValidadtor.bind(this)
     });
+    // this.formBuilder.control('tipoModulo').registerOnChange(this.GerenciaControles);
+  }
+
+  aliasValidadtor(group: FormGroup) {
+    if ( group.get('tipoModulo').value === 'WEB' ) {
+        group.get('alias').setValue({value: null, disabled: true});
+        group.get('alias').setValidators([]);
+    } else {
+      group.get('alias').setValue({value: null, disabled: false});
+      group.get('alias').setValidators([Validators.required, Validators.minLength(3)]);
+    }
   }
 
   onAfterloadResource() {

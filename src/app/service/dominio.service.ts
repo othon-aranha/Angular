@@ -12,6 +12,10 @@ export class DominioService extends BaseResourceService<Dominio> {
   super('http://localhost:8081/dominio', injector, Dominio.fromJson);
  }
 
+  protected getAllSufix(): string {
+    return '/dominios';
+  }
+
 
   getDominios(): Observable<Array<Dominio>> {
     return this.http.get<Dominio[]>(this.apiPath + '/dominios', {headers: this.headers})

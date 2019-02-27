@@ -2,7 +2,6 @@ import { MaquinaServidora } from './../../../../domain/maquina-servidora';
 import { AliasService } from './../../../../service/alias.service';
 import { Component, OnInit, Injector } from '@angular/core';
 import { MenuItem, Message } from 'primeng/api';
-import { Router } from '@angular/router';
 import { BaseListFormComponent } from '../../../../shared/components/base-list-form/base-list-form.component';
 
 @Component({

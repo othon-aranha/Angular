@@ -8,17 +8,19 @@ import { BaseResourceService } from '../../services/base-resource-service';
 import { switchMap } from 'rxjs/operators';
 
 import toastr from 'toastr';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked {
 
-  id: number;
+  id: any;
   alias: string;
   currentAction: string;
   resourceForm: FormGroup;
   pageTitle: string;
   serverErrorMessages: string[] = null;
   submittingForm: boolean = false;
+  msgs = [];
 
   protected route: ActivatedRoute;
   protected router: Router;
@@ -37,7 +39,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
   getParamId() {
     if ( this.route.snapshot.paramMap.has('id') ) {
-      this.id = +this.route.snapshot.paramMap.get('id');
+      this.id = this.route.snapshot.paramMap.get('id');
     }
     if ( this.route.snapshot.paramMap.has('name') ) {
       this.alias = this.route.snapshot.paramMap.get('name');
@@ -72,7 +74,9 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
       Object.keys(this.resourceForm.controls).forEach((key) => {
         if ( this.resourceForm.get(key).status === 'INVALID' ) {
-          toastr.error('O campo ' + key + ' está inválido');
+          // toastr.error('O campo ' + key + ' está inválido');
+          this.msgs = [];
+          this.msgs.push({ severity: 'info', summary: 'O campo ' + key + ' está inválido'});
           retorno = false;
         }
        });
@@ -97,7 +101,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     if (this.currentAction === 'edit') {
 
       this.route.paramMap.pipe(
-        switchMap(params => this.resourceService.getById(+params.get('id')))
+        switchMap(params => this.resourceService.getById(params.get('id')))
       )
       .subscribe(
         (resource) => {
@@ -153,7 +157,9 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
 
   protected actionsForSuccess(resource: T) {
-    toastr.success('Solicitação processada com sucesso!');
+    // toastr.success('Solicitação processada com sucesso!');
+    this.msgs = [];
+    this.msgs.push({ severity: 'success', summary: 'Solicitação processada com sucesso!'});
 
     const baseComponentPath: string = this.route.snapshot.parent.url[0].path;
 
@@ -165,7 +171,9 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
 
   protected actionsForError(error) {
-    toastr.error('Ocorreu um erro ao processar a sua solicitação!');
+    // toastr.error('Ocorreu um erro ao processar a sua solicitação!');
+    this.msgs = [];
+    this.msgs.push({ severity: 'success', summary: 'Ocorreu um erro ao processar a sua solicitação!'});
 
     this.submittingForm = false;
 

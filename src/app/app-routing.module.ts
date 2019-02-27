@@ -14,6 +14,7 @@ const appRoutes: Routes = [
   { path: 'alias', loadChildren: './pages/cadastro/alias/alias.module#AliasModule' },
   { path: 'tribunal', loadChildren: './pages/cadastro/tribunal/tribunal.module#TribunalModule' },
   { path: 'modulo', loadChildren: './pages/cadastro/modulo/modulo.module#ModuloModule' },
+  { path: 'perfil', loadChildren: './pages/cadastro/perfil/perfil.module#PerfilModule' },
   { path: 'usuario', loadChildren: './pages/cadastro/usuario/usuario.module#UsuarioModule' },
   { path: 'dominio', loadChildren: './pages/cadastro/dominio/dominio.module#DominioModule' },
   { path: '', redirectTo: '/login', pathMatch: 'full'}

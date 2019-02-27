@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentChecked, Injector } from '@angular/core'
 import { BaseResourceModel } from '../../models/base-resource-model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseResourceService } from '../../services/base-resource-service';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-base-list-form',
@@ -16,6 +17,7 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
   selectedrow: T;
   pageTitle: string;
   serverErrorMessages: string[] = null;
+  items: MenuItem[];
 
   protected route: ActivatedRoute;
   protected router: Router;
