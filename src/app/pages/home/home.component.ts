@@ -20,7 +20,17 @@ export class HomeComponent implements OnInit {
           label: 'Alias',
           icon: 'pi pi-fw pi-sitemap',
           routerLink: '/alias'
-         },
+       },
+       {
+        label: 'Área de Atuação',
+        icon: 'pi pi-fw pi-sitemap',
+        routerLink: '/area'
+       },
+       {
+          label: 'Domínio',
+          icon: 'fas fa-table',
+          routerLink: '/dominio'
+       },
        {
         label: 'Módulo',
         icon: 'fas fa-cogs',
@@ -40,16 +50,11 @@ export class HomeComponent implements OnInit {
         label: 'Usuário',
         icon: 'far fa-address-card',
         routerLink: '/usuario'
-       },
-       {
-        label: 'Domínio',
-        icon: 'fas fa-table',
-        routerLink: '/dominio'
        }
       ]
       },
       {separator: true},
-      {label: 'Sair', icon: 'fas fa-twitter', routerLink: '/login'}
+      {label: 'Sair', icon: 'fas fa-sign-out-alt', routerLink: '/login'}
   ];
   }
 

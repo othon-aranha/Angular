@@ -33,9 +33,9 @@ export class TribunalListComponent implements OnInit {
 
         // Itens do popup menu //
         this.items = [
-              { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewTribunal(this.selectedTribunal) },
-              { label: 'Novo', icon: 'fa-search', command: (event) => this.newTribunal() },
-              { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteTribunal(this.selectedTribunal) }
+              { label: 'Editar', icon: 'fas fa-edit', command: (event) => this.viewTribunal(this.selectedTribunal) },
+              { label: 'Novo', icon: 'fas fa-plus-square', command: (event) => this.newTribunal() },
+              { label: 'Excluir', icon: 'fas fa-trash-alt', command: (event) => this.deleteTribunal(this.selectedTribunal) }
         ];
 
         this.rota = 'Tribunal';

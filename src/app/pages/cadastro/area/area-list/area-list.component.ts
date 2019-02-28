@@ -27,11 +27,21 @@ export class AreaListComponent extends BaseListFormComponent<Area> implements On
       {header: 'Número da Zona', field: 'numeroZona', classe: 'ui-p-2'},
       {header: 'Tipo', field: 'tipo', classe: 'ui-p-2'}
   ];
+
+    // Itens do popup menu //
+    this.items = [
+      { label: 'Editar', icon: 'fas fa-edit', command: (event) => this.viewRegister(this.selectedrow) },
+      { label: 'Novo', icon: 'fas fa-plus-square', command: (event) => this.newRegister() },
+      { label: 'Excluir', icon: 'fas fa-trash-alt', command: (event) => this.deleteRegister(this.selectedrow) }
+    ];
+  }
+
+  newRegister() {
+
   }
 
   viewRegister(tipo: Area) {
     this.router.navigate(['area', this.id, '/edit']);
-  
   }
 
   deleteRegister(tipo: Area) {

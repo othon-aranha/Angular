@@ -71,9 +71,9 @@ export class ModuloListComponent implements OnInit {
 
   // Itens do popup menu //
   this.items = [
-    { label: 'Editar', icon: 'fa-search', command: (event) => this.viewModulo(this.selectedModulo) },
-    { label: 'Novo', icon: 'fa-search', command: (event) => this.newModulo() },
-    { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteModulo(this.selectedModulo) }
+    { label: 'Editar', icon: 'fas fa-edit', command: (event) => this.viewModulo(this.selectedModulo) },
+    { label: 'Novo', icon: 'fas fa-plus-square', command: (event) => this.newModulo() },
+    { label: 'Excluir', icon: 'fas fa-trash-alt', command: (event) => this.deleteModulo(this.selectedModulo) }
   ];
 
   }

@@ -1,5 +1,5 @@
-<div *ngIf="( currentAction === 'edit' ); then thenEdit else NewBlock"></div>
-<ng-template #thenEdit>
+<div *ngIf="( currentAction === 'edit' ); then EditBlock else NewBlock"></div>
+<ng-template #EditBlock>
     <app-barra-navegacao [breadcrumbitems]="[{text: 'Perfil', link: '/perfil'},{text: 'Editar'}]"></app-barra-navegacao>  
 </ng-template>
 <ng-template #NewBlock>
@@ -18,7 +18,7 @@
           <div class="form-row">
                 <div class="form-group col-md-3">
                   <label for="perfil">Perfil</label>
-                  <input type="text" class="form-control" id="id" formControlName="nome">
+                  <input type="text" class="form-control" id="id" formControlName="id">
         
                   <app-form-field-error [form-control]="resourceForm.get('id')"></app-form-field-error>
                 </div>

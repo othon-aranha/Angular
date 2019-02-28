@@ -12,6 +12,6 @@ export class AreaService extends BaseResourceService<Area> {
   }
 
   protected getAllSufix(): string {
-    return '/aliases';
+    return '/areas';
    }
 }

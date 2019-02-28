@@ -34,9 +34,9 @@ export class DominioListComponent implements OnInit {
 
   // Itens do popup menu //
   this.items = [
-    { label: 'Editar', icon: 'fa-search', command: (event) => this.viewDominio(this.selecteddominio) },
-    { label: 'Novo', icon: 'fa-search', command: (event) => this.newDominio() },
-    { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteDominio(this.selecteddominio) }
+    { label: 'Editar', icon: 'fas fa-edit', command: (event) => this.viewDominio(this.selecteddominio) },
+    { label: 'Novo', icon: 'fas fa-plus-square', command: (event) => this.newDominio() },
+    { label: 'Excluir', icon: 'fas fa-trash-alt', command: (event) => this.deleteDominio(this.selecteddominio) }
   ];
 
   this.consultarDominios();

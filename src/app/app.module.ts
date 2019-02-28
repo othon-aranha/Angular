@@ -1,3 +1,4 @@
+import { AreaModule } from './pages/cadastro/area/area.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -59,6 +60,7 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     SlideMenuModule,
     AliasModule,
+    AreaModule,
     ModuloModule,
     PerfilModule,
     DominioModule,
