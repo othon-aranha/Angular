@@ -1,4 +1,3 @@
-import { MaquinaPk } from './../domain/maquina-pk';
 import { map, catchError } from 'rxjs/operators';
 import { MaquinaServidora } from './../domain/maquina-servidora';
 import { Injectable, Injector } from '@angular/core';

@@ -9,7 +9,7 @@ export class Area {
     zona: boolean;
     numeroZona: number;
     tipo: TipoArea;
-    gerentes: [];
+    gerentes: any[];
 
     static fromJson(jsonData: any): Area {
         return Object.assign(new Area(), jsonData);

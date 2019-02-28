@@ -10,7 +10,7 @@ interface BreadCrumbItem {
   templateUrl: './barra-navegacao.component.html',
   styleUrls: ['./barra-navegacao.component.css']
 })
-export class BarraNavegacaoComponent implements OnInit, OnChanges {
+export class BarraNavegacaoComponent implements OnInit {
 
   @Input() breadcrumbitems: Array<BreadCrumbItem> = [];
   constructor() { }
@@ -18,11 +18,6 @@ export class BarraNavegacaoComponent implements OnInit, OnChanges {
   ngOnInit() {
 
   }
-
-  ngOnChanges() {
-    console.log(this.breadcrumbitems.toString());
-  }
-
 
   isTheLastItem(item: BreadCrumbItem): boolean {
     const index = this.breadcrumbitems.indexOf(item);

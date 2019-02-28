@@ -52,7 +52,13 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
   }
 
   protected getResource() {
-    return this.resourceService.getAll().subscribe(dados => this.gridrows = dados);
+    return this.resourceService.getAll()
+    .subscribe(
+      (resource) => {
+        this.gridrows = resource;
+      },
+      (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
+    );
   }
 
 
