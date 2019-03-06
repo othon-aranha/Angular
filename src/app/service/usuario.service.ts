@@ -1,5 +1,4 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../domain/usuario';
 import { Observable } from 'rxjs';
 import { BaseResourceService } from '../shared/services/base-resource-service';
@@ -28,7 +27,7 @@ export class UsuarioService extends BaseResourceService<Usuario> {
     return this.http.get<any>(this.apiPath + this.getAllSufix() + '/tipoUsuario/' + tipoUsuario, {headers: this.headers}).pipe(
       map(this.jsonDataToResources.bind(this)),
       catchError(this.handleError)
-    );;
+    );
   }
 
   listarUsuariosporTipoEStatus(tipoUsuario: String, status: String): Observable<Array<Usuario>> {
