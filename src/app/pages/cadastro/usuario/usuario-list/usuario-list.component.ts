@@ -64,7 +64,8 @@ export class UsuarioListComponent implements OnInit {
 
   // Itens do popup menu //
   this.items = [
-    { label: 'Visualizar', icon: 'fa-search', command: (event) => this.viewUsuario(this.selectedUsuario) },
+    { label: 'Editar', icon: 'fas fa-edit', command: (event) => this.viewUsuario(this.selectedUsuario) },
+    { label: 'Novo', icon: 'fas fa-plus-square', command: (event) => this.newUsuario() },
     { label: 'Excluir', icon: 'fa-close', command: (event) => this.deleteUsuario(this.selectedUsuario) }
   ];
 
@@ -72,7 +73,7 @@ export class UsuarioListComponent implements OnInit {
 
   consultarporTipodeUsuario(tipo: string[], status: string[]) {
     this.usuarios = [];
-    if ( tipo.length === 0 ) {
+    if ( ( tipo.length !== 0 ) && ( status.length === 0 ) ) {
       return this.usuarioService.listarUsuariosporTipo('').subscribe(dados => this.usuarios = dados);
     } else {
       return this.usuarioService.listarUsuariosporTipoEStatus(tipo.join(), status.join()).subscribe(dados => this.usuarios = dados);
@@ -96,6 +97,10 @@ export class UsuarioListComponent implements OnInit {
 
   deleteUsuario(usuario: Usuario) {
 
+  }
+
+  newUsuario() {
+    //
   }
 
 }

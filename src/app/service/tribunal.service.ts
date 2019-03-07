@@ -16,17 +16,25 @@ export class TribunalService extends BaseResourceService<Tribunal> {
      return '/tribunais';
    }
 
-  listaTribunais() {
-    return this.http.get<Tribunal[]>(this.apiPath + '/tribunais', {headers: this.headers});
+  listaTribunais(): Observable<Array<Tribunal>> {
+    return this.http.get<Tribunal[]>(this.apiPath + '/tribunais', {headers: this.headers})
+    .pipe(
+      map(this.jsonDataToResources.bind(this)),
+      catchError(this.handleError)
+    );
   }
 
-  recuperarTribunal(id: string) {
-    return this.http.get<Tribunal>(this.apiPath + '/' + id, {headers: this.headers});
+  recuperarTribunal(id: string): Observable<Tribunal> {
+    return this.http.get<Tribunal>(this.apiPath + '/' + id, {headers: this.headers})
+    .pipe(
+      map(this.jsonDataToResources.bind(this)),
+      catchError(this.handleError)
+    );
   }
 
   recuperarTribunalLocal(): Observable<Tribunal> {
-    // return this.http.get<Tribunal>(this.apiPath + '/local' , {headers: this.headers});
-    return this.http.get(this.apiPath + '/local' , {headers: this.headers}).pipe(
+    return this.http.get(this.apiPath + '/local' , {headers: this.headers})
+    .pipe(
       map(this.jsonDataToResource.bind(this)),
       catchError(this.handleError)
     );

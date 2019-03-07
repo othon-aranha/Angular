@@ -24,8 +24,10 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
     super.ngOnInit();
     this.resourceForm.get('id').setValue(this.id);
     this.tribunalService.recuperarTribunalLocal().subscribe(
-      (data) => this.tribunalLocal = data
-     );
+      (data) => {
+        this.tribunalLocal = data;
+        this.resourceForm.get('tribunal').setValue(this.tribunalLocal);
+       });
     /*
     this.buildResourceForm();
     super.getParamId();

@@ -10,6 +10,7 @@ import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule, GrowlModule, InputTextModule } from 'primeng/primeng';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { DialogModule } from 'primeng/dialog';
+import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { DialogModule } from 'primeng/dialog';
     InputTextModule,
     MultiSelectModule,
     TableModule,
+    SharedModule,
     UsuarioRoutingModule
   ],
   exports: [],

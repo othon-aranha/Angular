@@ -16,4 +16,8 @@ export class Usuario {
     usuarioModulos: Modulo[];
     unidade: Unidade;
     links: Link;
+
+    static fromJson(jsonData: any): Usuario {
+        return Object.assign(new Usuario, jsonData);
+    }
  }
