@@ -1,0 +1,46 @@
+<app-barra-navegacao
+    [items]="[{text: 'Home', link: '/home'},{text: 'Módulo', link: '/modulo'}, {text: pageTitle}]">
+</app-barra-navegacao> 
+<form [formGroup]="resourceForm" (submit)="submitForm()">
+
+  <div class="card">
+    <div class="card-header">
+      Informações sobre o Grupo    
+    </div>
+    
+
+    <div class="card-body">
+        <div class="form-row">
+          <div class="form-group col-md-3">
+              <label for="grupo">Grupo</label>
+              <input type="text" class="form-control" id="nome" name="nome" formControlName="nome" [disabled]="( currentAction == 'edit' )" style="float:rigth">
+    
+              <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
+          </div>
+        </div>
+
+        
+        <div class="form-row">
+          <div class="form-group col-md-3">
+              <label for="area">Area</label>
+              <p-autoComplete [(ngModel)]="area" [suggestions]="filteredArea" (completeMethod)="filterAreaSingle($event)" field="label" [size]="20"
+                              placeholder="Escolha a Unidade" [minLength]="1"
+                              id="area" name="area" formControlName="area"></p-autoComplete>
+
+              <app-form-field-error [form-control]="resourceForm.get('area')"></app-form-field-error>
+          </div>
+        </div>
+    </div>
+
+  </div>
+
+  <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+
+  <button routerLink="/grupo" class="btn btn-primary btn-lg float-left mt-3"><< Voltar</button>
+  <button [disabled]="submittingForm || resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
+    Salvar
+  </button>
+
+</form>
+
+{{ resourceForm.value | json }}
