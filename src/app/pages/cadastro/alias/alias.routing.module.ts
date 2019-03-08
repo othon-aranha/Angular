@@ -7,7 +7,7 @@ import { AliasFormComponent } from './alias-form/alias-form.component';
 const aliasRoutes = [
     {path: 'alias', component: AliasListComponent},
     {path: 'alias/new', component: AliasFormComponent},
-    {path: 'alias/:id/edit', component: AliasFormComponent}
+    {path: 'alias/:id/tribunal/:idtribunal/edit', component: AliasFormComponent}
 ];
 
 @NgModule({

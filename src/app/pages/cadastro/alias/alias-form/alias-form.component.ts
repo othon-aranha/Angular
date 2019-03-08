@@ -1,4 +1,4 @@
-import { Validators, FormBuilder, FormControl } from '@angular/forms';
+import { Validators, FormControl } from '@angular/forms';
 import { AliasService } from './../../../../service/alias.service';
 import { MaquinaServidora } from './../../../../domain/maquina-servidora';
 import { Component, OnInit, Injector } from '@angular/core';
@@ -26,6 +26,9 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
     this.tribunalService.recuperarTribunalLocal().subscribe(
       (data) => {
         this.tribunalLocal = data;
+        if ( this.route.snapshot.paramMap.has('idtribunal') ) {
+          this.tribunalLocal.id = +this.route.snapshot.paramMap.get('idtribunal');
+        }
         this.resourceForm.get('tribunal').setValue(this.tribunalLocal);
        });
     /*

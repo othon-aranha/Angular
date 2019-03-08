@@ -13,6 +13,7 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
   gridrows: Array<MaquinaServidora>  = [];
   selectedrow: MaquinaServidora;
   cols: any[];
+  idTribunal: number;
 
   items: MenuItem[];
   msgs: Message[];
@@ -22,6 +23,7 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
   }
 
   ngOnInit() {
+   this.idTribunal = 1; 
    // Consultas Alias //
    this.consultarTodosAlias();
 
@@ -43,7 +45,7 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
   }
 
   consultarTodosAlias() {
-    this.aliasService.listarServidoresdoTribunal(1).subscribe(dados => this.gridrows = dados);
+    this.aliasService.listarServidoresdoTribunal(this.idTribunal).subscribe(dados => this.gridrows = dados);
   }
 
   onRowSelect(event) {
@@ -62,7 +64,7 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
    }
 
    viewAlias(alias: MaquinaServidora) {
-    this.router.navigate(['alias', alias.id, 'edit']);
+    this.router.navigate(['alias', alias.id, 'tribunal', this.idTribunal, 'edit']);
   }
 
   newAlias(alias: MaquinaServidora) {
