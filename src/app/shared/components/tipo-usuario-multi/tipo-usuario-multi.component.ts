@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Injectable } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Injectable, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tipo-usuario-multi',
@@ -12,7 +12,7 @@ export class TipoUsuarioMultiComponent implements OnInit {
     @Output() onSelecionarTipoUsuario = new EventEmitter<String[]>();
 
     tipoUsuario = [];
-    selectedTipoUsuario: String[] = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
+    @Input() selectedTipoUsuario: String[] = [];
 
     constructor() {
       this.tipoUsuario = [

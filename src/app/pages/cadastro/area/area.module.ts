@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/cor
 import { CommonModule } from '@angular/common';
 
 import { AreaRoutingModule } from './area-routing.module';
+import { AccordionModule } from 'primeng/accordion';
 import { ConfirmDialogModule, GrowlModule, InputTextModule } from 'primeng/primeng';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { DialogModule } from 'primeng/dialog';
@@ -14,6 +15,7 @@ import { SharedModule } from '../../../shared/shared.module';
 @NgModule({
   declarations: [AreaListComponent, AreaFormComponent],
   imports: [
+    AccordionModule,
     CommonModule,
     ConfirmDialogModule,
     ContextMenuModule,

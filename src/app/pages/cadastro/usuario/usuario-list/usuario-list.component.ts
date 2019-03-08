@@ -18,7 +18,7 @@ export class UsuarioListComponent implements OnInit {
   cols: any[];
   usuarios = [];
   tipoUsuario = [];
-  tipodeUsuario = [];
+  selectedTipoUsuario = [];
   usuario: Usuario = null;
   selectedUsuario: Usuario = null;
   selectedStatus = [];
@@ -32,7 +32,7 @@ export class UsuarioListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.tipodeUsuario = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
+    this.selectedTipoUsuario = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
     this.selectedStatus = ['ATIVO', 'INATIVO'];
 
     this.tipoUsuario = [
@@ -47,7 +47,7 @@ export class UsuarioListComponent implements OnInit {
 
     this.rota = 'Usuário';
 
-    this.consultarporTipodeUsuario(this.tipodeUsuario, this.selectedStatus);
+    this.consultarporTipodeUsuario(this.selectedTipoUsuario, this.selectedStatus);
 
     // Colunas da Grid //
     this.cols = [

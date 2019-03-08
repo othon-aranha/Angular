@@ -17,6 +17,12 @@
 
     <div class="card-body">
       <div class="form-row">
+          <div class="form-group col-md-2"> 
+              <p-inputSwitch onLabel="Sim" offLabel="Não" id="acesso" name="acesso" formControlName="acesso"></p-inputSwitch>
+              <label for="acesso">Tribunal Local</label>
+          </div>
+      </div>
+      <div class="form-row">
             <div class="form-group col-md-1">
               <label for="name">Sigla</label>
               <input type="text" class="form-control" id="sigla" formControlName="sigla">
@@ -153,3 +159,5 @@
   </button>
   
 </form>
+
+{{ resourceForm.value | json }}

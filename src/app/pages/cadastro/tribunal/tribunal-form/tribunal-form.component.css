@@ -14,7 +14,11 @@ h5.card-header {
 
 input.ng-invalid.ng-touched {
     border: 1px solid red;
-    float:rigth
+    float:rigth 
+}
+
+p-inputSwitch {
+  float: inline-start;  
 }
 
 select.ng-invalid.ng-touched {

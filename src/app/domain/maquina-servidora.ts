@@ -3,8 +3,8 @@ import { BaseResourceModel } from '../shared/models/base-resource-model';
 import { Tribunal } from './tribunal';
 
 export class MaquinaServidora extends BaseResourceModel {
-    id?: MaquinaPk;
-    // tribunal: Tribunal;
+    id?: number;
+    tribunal: Tribunal;
     alias: string;
     descricao: string;
     usuario: string;
