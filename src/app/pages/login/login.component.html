@@ -1,19 +1,35 @@
-<div class="ui-g-12">
-<div class="ui-g-5">
-    <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="fa fa-usuario"></i></span>
-        <input [(ngModel)]="usuario.login" id="usuario" maxlength="30" size="ui-g-2" placeholder="Usuário" pInputText/>        
-    </div>
-</div>
 
-<div class="ui-g-5">
-    <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="fa fa-senha"></i></span>
-        <input type="password" [(ngModel)]="usuario.senha" id="senha" maxlength="30" size="ui-g-2" placeholder="Senha" pPassword/>
-    </div>
-</div>
+<!--form [formGroup]="resourceForm" (submit)="submitForm()"-->
 
-<div class="ui-g-2">
-<button pButton type="button" icon="fas fa-sign-in-alt" iconPos="right" (click)="fazerLogin()" label="Login"></button>
-</div>
-</div>
+    <div class="card">
+            <div class="card-header">
+                Autenticação 
+            </div>    
+        
+            <div class="card-body">
+                <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="usuario">Usuário</label>                    
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-usuario"></i></span>
+                                <input [(ngModel)]="usuario.login" maxlength="30" size="ui-g-2" placeholder="Usuário" pInputText/>        
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="senha">Senha</label>                    
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-senha"></i></span>
+                                <input type="password" [(ngModel)]="usuario.senha" maxlength="30" size="ui-g-2" placeholder="Senha" pPassword/>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <button pButton type="button" icon="fas fa-sign-in-alt" iconPos="right" (click)="fazerLogin()" label="Login"></button>                            
+                        </div>
+
+                </div>
+            </div>
+    </div>   
+
+<!--/form-->
