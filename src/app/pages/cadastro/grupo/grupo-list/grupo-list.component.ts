@@ -9,6 +9,8 @@ import { GrupoService } from '../../../../service/grupo.service';
   styleUrls: ['./grupo-list.component.css']
 })
 export class GrupoListComponent  extends BaseListFormComponent<Grupo> implements OnInit {
+  gridrows: Array<Grupo>  = [];
+  selectedrow: Grupo;
 
    constructor(protected grupoService: GrupoService, protected injector: Injector ) {
       super(injector, new Grupo(), grupoService, Grupo.fromJson);
@@ -30,16 +32,36 @@ export class GrupoListComponent  extends BaseListFormComponent<Grupo> implements
   ];
   }
 
+  cloneRow(m: Grupo): Grupo {
+    const grupo = new Grupo();
+    // tslint:disable-next-line:forin
+    for (const prop in m) {
+        grupo[prop] = m[prop];
+    }
+    return grupo;
+   }
+
   viewGrupo(grupo: Grupo) {
-  //
+    this.router.navigate(['/grupo/', grupo.id, 'edit']);
   }
 
   newGrupo() {
-
+    this.router.navigate(['/grupo/', 'new']);
   }
 
   deleteGrupo(grupo: Grupo) {
-  //
+    let index = -1;
+    for (let i = 0; i < this.gridrows.length; i++) {
+      if ( this.gridrows[i].id === grupo.id ) {
+          index = i;
+          break;
+      }
+    }
+    this.grupoService.delete(grupo.id);
+    this.gridrows.splice(index, 1);
+
+    this.msgs = [];
+    this.msgs.push({ severity: 'info', summary: 'Grupo excluído', detail: grupo.id + ' - ' + grupo.nome });
   }
 
 }

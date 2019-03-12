@@ -36,6 +36,15 @@ export class AreaListComponent extends BaseListFormComponent<Area> implements On
     ];
   }
 
+  cloneRow(m: Area): Area {
+    const area = new Area();
+    // tslint:disable-next-line:forin
+    for (const prop in m) {
+        area[prop] = m[prop];
+    }
+    return area;
+   }
+
   newRegister() {
 
   }

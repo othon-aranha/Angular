@@ -1,0 +1,26 @@
+#area {
+    display:inline;
+}
+
+div.card-body {
+    background-color: bisque;
+}
+  
+div.card.rodape {
+    background-color: cadetblue;  
+}
+  
+div.card.rodape.card-body {
+    background-color: rgb(141, 93, 20);
+    height: 5rem;
+}
+
+label{
+      color: green; 
+      text-align: left; float: left; 
+}
+  
+h6{
+      color: green; 
+      text-align: left; float: left;     
+} 

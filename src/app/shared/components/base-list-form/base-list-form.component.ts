@@ -19,6 +19,7 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
   pageTitle: string;
   serverErrorMessages: string[] = null;
   items: MenuItem[];
+  msgs = [];
 
   protected route: ActivatedRoute;
   protected router: Router;
@@ -43,6 +44,12 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
       this.alias = this.route.snapshot.paramMap.get('alias');
     }
   }
+
+  onRowSelect(event) {
+    this.selectedrow = this.cloneRow(event.data);
+  }
+
+  protected abstract cloneRow(m: T): T;
 
   ngAfterContentChecked() {
     this.setPageTitle();

@@ -48,13 +48,7 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
     this.aliasService.listarServidoresdoTribunal(this.idTribunal).subscribe(dados => this.gridrows = dados);
   }
 
-  onRowSelect(event) {
-    this.selectedrow = this.cloneAlias(event.data);
-  }
-
-
-
-  cloneAlias(m: MaquinaServidora): MaquinaServidora {
+    cloneRow(m: MaquinaServidora): MaquinaServidora {
     const alias = new MaquinaServidora();
     // tslint:disable-next-line:forin
     for (const prop in m) {
@@ -64,7 +58,7 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
    }
 
    viewAlias(alias: MaquinaServidora) {
-    this.router.navigate(['alias', alias.id, 'tribunal', this.idTribunal, 'edit']);
+    this.router.navigate(['alias', alias.id.alias, 'tribunal', this.idTribunal, 'edit']);
   }
 
   newAlias(alias: MaquinaServidora) {

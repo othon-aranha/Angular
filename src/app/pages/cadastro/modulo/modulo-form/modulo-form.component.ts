@@ -97,7 +97,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
       (resource) => {
         manutencoes = resource;
         for (let i = 1; i < manutencoes.length; i++) {
-          this.aliases = [...this.aliases, {label: manutencoes[i].alias , value: manutencoes[i].alias}];
+          this.aliases = [...this.aliases, {label: manutencoes[i].id.alias , value: manutencoes[i].id.alias}];
         }
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
