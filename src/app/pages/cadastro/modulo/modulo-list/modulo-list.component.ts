@@ -1,9 +1,10 @@
 import { Observable, Subject } from 'rxjs';
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Injector } from '@angular/core';
 import { ModuloService } from '../../../../service/modulo.service';
 import { MenuItem, Message } from 'primeng/api';
 import { Modulo } from '../../../../domain/modulo';
 import { Router } from '@angular/router';
+import { BaseListFormComponent } from '../../../../shared/components/base-list-form/base-list-form.component';
 
 @Component({
   selector: 'app-modulo',
@@ -11,14 +12,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./modulo-list.component.css']
 })
 
-export class ModuloListComponent implements OnInit {
+export class ModuloListComponent extends BaseListFormComponent<Modulo> implements OnInit {
 
   cols: any[];
   private modulos: Modulo[];
   // private subjectPesquisa: Subject<Array<string>> = new Subject<Array<string>>();
   rota: string;
   rotaAtual: any[];
-  alias = [];
+  // alias = [];
   selectedAlias = [];
   selectedTipo: Array<string> = ['DESKTOP', 'WEB', 'HIBRIDO'];
   tipoAplicacao = [];
@@ -28,9 +29,10 @@ export class ModuloListComponent implements OnInit {
   msgs: Message[];
 
   // tslint:disable-next-line:max-line-length
-  constructor(private moduloService: ModuloService,
-              private router: Router) {
-   }
+  constructor(protected moduloService: ModuloService, protected injector: Injector) {
+    super(injector, new Modulo(), moduloService, Modulo.fromJson);
+  }
+
 
   ngOnInit() {
     this.tipoAplicacao = [

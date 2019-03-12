@@ -6,14 +6,20 @@ import { BaseResourceFormComponent } from '../../../../shared/components/base-re
 import { Tribunal } from '../../../../domain/tribunal';
 import { TribunalService } from '../../../../service/tribunal.service';
 
-
 @Component({
   selector: 'app-alias-form',
   templateUrl: './alias-form.component.html',
   styleUrls: ['./alias-form.component.css']
 })
 export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServidora> implements OnInit {
-
+  conexaoPadrao: string = '(DESCRIPTION=\n ' +
+                          '(ADDRESS_LIST =\n ' +
+                          '    (ADDRESS= (PROTOCOL = TCP)(HOST = %s)(PORT = 1521) )\n' +
+                          '    (ADDRESS= (PROTOCOL = TCP)(HOST = %s)(PORT = 1526) )\n' +
+                          '  )\n' +
+                          '  (CONNECT_DATA =(SID = %s)\n' +
+                          ')\n' +
+                          ')\n';
   tribunalLocal: Tribunal;
 
   constructor(protected aliasService: AliasService, protected injector: Injector, private tribunalService: TribunalService) {
@@ -22,15 +28,20 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
 
   ngOnInit() {
     super.ngOnInit();
-    this.resourceForm.get('id').setValue(this.id);
-    this.tribunalService.recuperarTribunalLocal().subscribe(
-      (data) => {
-        this.tribunalLocal = data;
-        if ( this.route.snapshot.paramMap.has('idtribunal') ) {
-          this.tribunalLocal.id = +this.route.snapshot.paramMap.get('idtribunal');
+    if ( this.currentAction === 'new' ) {
+      this.resourceForm.get('conexao').setValue(this.conexaoPadrao);
+    } else {
+      this.resourceForm.get('id').setValue(this.id);
+      this.tribunalService.recuperarTribunalLocal().subscribe(
+        (data) => {
+          this.tribunalLocal = data;
+          if ( this.route.snapshot.paramMap.has('idtribunal') ) {
+            this.tribunalLocal.id = +this.route.snapshot.paramMap.get('idtribunal');
+          }
+          this.resourceForm.get('tribunal').setValue(this.tribunalLocal);
         }
-        this.resourceForm.get('tribunal').setValue(this.tribunalLocal);
-       });
+      );
+    }
     /*
     this.buildResourceForm();
     super.getParamId();

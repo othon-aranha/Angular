@@ -19,23 +19,24 @@
       <div *ngIf="resource.tipoModulo !== 'WEB'" class="form-row">    
           <div class="form-group col-md-2">
               <label for="name">Versão</label>
-              <input type="text" class="form-control" id="versao" name="versao" formControlName="versao" style="float:rigth">
+              <input type="text" class="form-control" readonly="( this.currentAction === 'edit' )" id="versao" name="versao" formControlName="versao" style="float:rigth">
     
               <app-form-field-error [form-control]="resourceForm.get('versao')"></app-form-field-error>
           </div>
       </div>
 
+       <!-- Sigla -->
       <div class="form-row">
         <div class="form-group col-md-2">
             <label for="name">Sigla</label>
-            <input type="text" class="form-control" id="sigla" name="sigla" formControlName="sigla">
-  
+            <input type="text" class="form-control" readonly="( this.currentAction === 'edit' )" id="sigla" name="sigla" formControlName="sigla">
+
             <app-form-field-error [form-control]="resourceForm.get('sigla')"></app-form-field-error>
         </div>        
         
         <!-- Tipo de Aplicação -->
         <div class="form-group col-md-2">
-            <label for="tipoModulo">Tipo de Aplicação</label>
+            <label>Tipo de Aplicação</label>
             <select class="custom-select my-1 mr-sm-2" id="tipoModulo" name="tipoModulo" formControlName="tipoModulo" (change)="GerenciaControles()">
                 <option *ngFor="let option of TipoAplicacao" [value]="option.value">{{ option.label }}</option>            
             </select>
@@ -66,7 +67,7 @@
         <!-- Alias -->
         <div class="form-group col-md-3">
             <label for="alias">Alias</label>
-            <p-autoComplete class="form-control" id="alias" name="alias" formControlName="alias" 
+            <p-autoComplete class="form-control" [disabled]="controlaAtualizacao" id="alias" name="alias" formControlName="alias" 
                   [field]="value" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
 
             <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
@@ -97,7 +98,7 @@
             <div class="card-body">
               <div class="form-group col-md-3">
                   <label class="input-group-text" for="tipoAtualizacao">Tipo</label>
-                  <select class="custom-select my-1 mr-sm-2" id="tipoAtualizacao" name="tipoAtualizacao" formControlName="tipoAtualizacao">
+                  <select class="custom-select my-1 mr-sm-2" [disabled]="controlaAtualizacao" id="tipoAtualizacao" name="tipoAtualizacao" formControlName="tipoAtualizacao">
                       <option *ngFor="let option of TipoAtualizacao" [value]="option.value">{{ option.label }}</option>            
                   </select>
               </div>
@@ -138,10 +139,11 @@
   <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
 
   <button routerLink="/modulo" class="btn btn-primary btn-lg float-left mt-3"><< Voltar</button>
-  <button [disabled]="submittingForm || resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
+  <button [disabled]="resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
     Salvar
   </button>
 
 </form>
 
 {{ resourceForm.value | json }}
+{{ resourceForm.status }}

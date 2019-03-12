@@ -9,6 +9,7 @@ import { BaseResourceFormComponent } from '../../../../shared/components/base-re
 import { Modulo } from '../../../../domain/modulo';
 import { MaquinaServidora } from '../../../../domain/maquina-servidora';
 import { TribunalService } from '../../../../service/tribunal.service';
+import { TipoAplicacao } from '../../../../domain/tipo-aplicacao';
 
 
 @Component({
@@ -22,6 +23,8 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   aliases: any[];
   cdTrib: number;
   siglaModulo: string;
+  controlaVersao: boolean;
+  controlaAtualizacao: boolean;
   TipoAplicacao: any[] = [{label: '...', value: ''},
                           {label: 'Desktop', value: 'DESKTOP'},
                           {label: 'Web', value: 'WEB'},
@@ -68,8 +71,18 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   GerenciaControles(): void {
     if ( this.resourceForm !== undefined ) {
       if ( this.resourceForm.get('tipoModulo').value === 'WEB') {
-        this.formBuilder.control('alias').reset({value: '', disabled: true});
+        this.controlaAtualizacao = true;
+        this.controlaVersao = true;
+        this.resourceForm.get('alias').clearValidators();
+        // this.resourceForm.get('alias').disable();
+        this.resourceForm.get('alias').setValue(null);
+        // this.resourceForm.get('tipoAtualizacao').disable();
+        this.resourceForm.get('tipoAtualizacao').setValue('NAO_ATUALIZA')
+      } else {
+        this.controlaAtualizacao = false;
+        this.resourceForm.get('alias').setValidators([Validators.required, Validators.minLength(1)]);
       }
+      this.resourceForm.get('alias').updateValueAndValidity();
     }
   }
 
@@ -100,39 +113,27 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
       id:    new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      sigla: new FormControl({value: '', disabled: ( this.currentAction === 'edit' )}, [Validators.required, Validators.minLength(3)] ),
+      sigla: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       alias: new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       nome:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       descricao:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       esquema:    new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       email:      new FormControl( '', Validators.email ),
-      versao:     new FormControl( {value: '', disabled: ( this.currentAction === 'edit' )},
-                                  [Validators.required, Validators.minLength(7)] ),
+      versao:     new FormControl( '', [Validators.required, Validators.minLength(7)] ),
       tipoModulo: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       tipoAtualizacao:  new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       statusModulo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
-      mensagemCompartilhada: new FormControl( '',
-                            [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ),
+      mensagemCompartilhada: new FormControl( '', [Validators.required] ),
       controlaAcesso: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] )
-    }, {
-      // validator: this.aliasValidadtor.bind(this)
     });
     // this.formBuilder.control('tipoModulo').registerOnChange(this.GerenciaControles);
   }
 
-  aliasValidadtor(group: FormGroup) {
-    if ( group.get('tipoModulo').value === 'WEB' ) {
-        group.get('alias').setValue({value: null, disabled: true});
-        group.get('alias').setValidators([]);
-    } else {
-      group.get('alias').setValue({value: null, disabled: false});
-      group.get('alias').setValidators([Validators.required, Validators.minLength(3)]);
-    }
-  }
-
   onAfterloadResource() {
     this.resourceForm.get('id').setValue(this.id);
+    this.GerenciaControles();
     this.siglaModulo = this.resource.sigla;
+    this.resourceForm.get('tribunal').setValue(this.tribunalService.recuperarTribunalLocal());
     this.cdTrib = 1;
   }
 

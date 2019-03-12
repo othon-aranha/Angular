@@ -2,7 +2,12 @@
     background-color: bisque;
 }
 
+.form-control {
+    margin-left: 10rem;
+}
+
 label{
+    margin-left: 10rem;
     color: green; 
     text-align: left; float: left; 
 }
