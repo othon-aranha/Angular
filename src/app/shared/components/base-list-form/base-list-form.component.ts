@@ -9,6 +9,7 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './base-list-form.component.html',
   styleUrls: ['./base-list-form.component.css']
 })
+
 export abstract class BaseListFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked  {
   id: any;
   alias: string;
@@ -21,7 +22,7 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
 
   protected route: ActivatedRoute;
   protected router: Router;
-  constructor(    protected injector: Injector,
+  constructor( protected injector: Injector,
     public resource: T,
     protected resourceService: BaseResourceService<T>,
     protected jsonDataToResourceFn: (jsonData) => T

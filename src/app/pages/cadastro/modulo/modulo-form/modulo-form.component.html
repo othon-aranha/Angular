@@ -15,20 +15,22 @@
       Id do Módulo:  {{ id }}
     </div>
 
+    <!-- Versão -->
     <div class="card-body">
       <div *ngIf="resource.tipoModulo !== 'WEB'" class="form-row">    
           <div class="form-group col-md-2">
               <label for="name">Versão</label>
-              <input type="text" class="form-control" id="versao" name="versao" formControlName="versao" style="float:rigth">
+              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="versao" name="versao" formControlName="versao" style="float:rigth">
     
               <app-form-field-error [form-control]="resourceForm.get('versao')"></app-form-field-error>
           </div>
       </div>
 
+      <!-- Sigla -->
       <div class="form-row">
         <div class="form-group col-md-2">
             <label for="name">Sigla</label>
-            <input type="text" class="form-control" id="sigla" name="sigla" formControlName="sigla">
+            <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="sigla" name="sigla" formControlName="sigla">
   
             <app-form-field-error [form-control]="resourceForm.get('sigla')"></app-form-field-error>
         </div>        
@@ -52,8 +54,8 @@
   
       </div>
 
+      <!-- titulo -->
       <div class="form-row">
-          <!-- titulo -->
           <div class="form-group col-md-12">
             <label for="name">Título</label>
             <input type="text" class="form-control" id="descricao" name="descricao" formControlName="descricao">
@@ -66,7 +68,7 @@
         <!-- Alias -->
         <div class="form-group col-md-3">
             <label for="alias">Alias</label>
-            <p-autoComplete class="form-control" id="alias" name="alias" formControlName="alias" 
+            <p-autoComplete class="form-control" [readonly]="ctrlsAtualizacao" id="alias" name="alias" formControlName="alias" 
                   [field]="value" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
 
             <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
@@ -111,12 +113,12 @@
 
               <div class="form-group col-md-3"> 
                   <label for="tabela">Tabela Mensagem</label>
-                  <p-inputSwitch onLabel="Sim" offLabel="Não" id="mensagemCompartilhada" name="mensagemCompartilhada" formControlName="mensagemCompartilhada"></p-inputSwitch>
+                  <p-inputSwitch onLabel=true offLabel=false id="mensagemCompartilhada" name="mensagemCompartilhada" formControlName="mensagemCompartilhada"></p-inputSwitch>
               </div>
           
               <div class="form-group col-md-3"> 
                   <label for="tabela">Controla Acesso</label> 
-                  <p-inputSwitch onLabel="Sim" offLabel="Não" id="controlaAcesso" name="controlaAcesso" formControlName="controlaAcesso"></p-inputSwitch>
+                  <p-inputSwitch onLabel=true offLabel=false id="controlaAcesso" name="controlaAcesso" formControlName="controlaAcesso"></p-inputSwitch>
               </div>
             </div>
           </div>
@@ -138,7 +140,7 @@
   <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
 
   <button routerLink="/modulo" class="btn btn-primary btn-lg float-left mt-3"><< Voltar</button>
-  <button [disabled]="submittingForm || resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
+  <button [disabled]="resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
     Salvar
   </button>
 

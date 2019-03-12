@@ -1,4 +1,5 @@
-import { AreaModule } from './pages/cadastro/area/area.module';
+import { Grupo } from './domain/grupo';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,8 +25,10 @@ import { AuthService } from './service/auth.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { AreaModule } from './pages/cadastro/area/area.module';
 import { AliasModule } from './pages/cadastro/alias/alias.module';
 import { DominioModule } from './pages/cadastro/dominio/dominio.module';
+import { GrupoModule } from './pages/cadastro/grupo/grupo.module';
 import { ModuloModule } from './pages/cadastro/modulo/modulo.module';
 import { PerfilModule } from './pages/cadastro/perfil/perfil.module';
 import { UsuarioModule } from './pages/cadastro/usuario/usuario.module';
@@ -61,6 +64,7 @@ import { SharedModule } from './shared/shared.module';
     SlideMenuModule,
     AliasModule,
     AreaModule,
+    GrupoModule,
     ModuloModule,
     PerfilModule,
     DominioModule,

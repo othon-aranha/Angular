@@ -22,6 +22,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   aliases: any[];
   cdTrib: number;
   siglaModulo: string;
+  ctrlsAtualizacao: boolean;
   TipoAplicacao: any[] = [{label: '...', value: ''},
                           {label: 'Desktop', value: 'DESKTOP'},
                           {label: 'Web', value: 'WEB'},
@@ -68,8 +69,14 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   GerenciaControles(): void {
     if ( this.resourceForm !== undefined ) {
       if ( this.resourceForm.get('tipoModulo').value === 'WEB') {
-        this.formBuilder.control('alias').reset({value: '', disabled: true});
+        this.resourceForm.get('alias').setValue(null);
+        this.resourceForm.get('alias').clearValidators();
+        this.ctrlsAtualizacao = true;
+      } else {
+        this.resourceForm.get('alias').setValidators([Validators.required, Validators.minLength(1)]);
+        this.ctrlsAtualizacao = false;
       }
+      this.resourceForm.get('alias').updateValueAndValidity();
     }
   }
 
@@ -100,19 +107,17 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
       id:    new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      sigla: new FormControl({value: '', disabled: ( this.currentAction === 'edit' )}, [Validators.required, Validators.minLength(3)] ),
+      sigla: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       alias: new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       nome:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       descricao:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       esquema:    new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       email:      new FormControl( '', Validators.email ),
-      versao:     new FormControl( {value: '', disabled: ( this.currentAction === 'edit' )},
-                                  [Validators.required, Validators.minLength(7)] ),
+      versao:     new FormControl('',  [Validators.required, Validators.minLength(7)] ),
       tipoModulo: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       tipoAtualizacao:  new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       statusModulo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
-      mensagemCompartilhada: new FormControl( '',
-                            [Validators.required, Validators.minLength(1), Validators.maxLength(1)] ),
+      mensagemCompartilhada: new FormControl( '', [Validators.required] ),
       controlaAcesso: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] )
     }, {
       // validator: this.aliasValidadtor.bind(this)

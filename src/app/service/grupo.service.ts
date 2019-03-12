@@ -9,11 +9,11 @@ export class GrupoService extends BaseResourceService<Grupo> {
 
 
   constructor(protected injector: Injector) {
-   super('http://localhost:8081/grupo', injector, Grupo.fromJson);   
+   super('http://localhost:8081/grupo', injector, Grupo.fromJson);
   }
 
   protected getAllSufix(): string {
-    return 'grupos';
+    return '/grupos';
   }
 
 }
