@@ -22,7 +22,7 @@
         <div class="form-group col-md-3">
             <label for="area">Área</label>
             <p-autoComplete class="form-control" id="area" name="area" formControlName="area" 
-                  [field]="value" [suggestions]="areas" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
+                            [suggestions]="areas" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
 
             <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
         </div>

@@ -37,14 +37,13 @@ export class GrupoFormComponent extends BaseResourceFormComponent<Grupo> impleme
   buscaAutoComplete(event) {
     const termo = event.query;
     this.areas = [];
-    this.areas = [...this.areas, {label: '...' , value: ''}];
     let manutencoes: Array<Area> = [];
     this.areaService.getAll()
     .subscribe(
       (resource) => {
         manutencoes = resource;
         for (let i = 1; i < manutencoes.length; i++) {
-          this.areas = [...this.areas, {label: manutencoes[i].sigla, value: manutencoes[i].id}];
+          this.areas = [...this.areas, manutencoes[i].sigla];
         }
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')

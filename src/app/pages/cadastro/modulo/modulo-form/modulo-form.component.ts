@@ -19,10 +19,11 @@ import { TribunalService } from '../../../../service/tribunal.service';
 export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> implements OnInit {
 
   aliasList: any[];
-  aliases: any[];
+  aliases: string[];
   cdTrib: number;
   siglaModulo: string;
   ctrlsAtualizacao: boolean;
+  bcontrolaAcesso: boolean;
   TipoAplicacao: any[] = [{label: '...', value: ''},
                           {label: 'Desktop', value: 'DESKTOP'},
                           {label: 'Web', value: 'WEB'},
@@ -90,14 +91,13 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   buscaAutoComplete(event) {
     const termo = event.query;
     this.aliases = [];
-    this.aliases = [...this.aliases, {label: '...' , value: ''}];
     let manutencoes: Array<MaquinaServidora> = [];
     this.maquinaService.listarServidoresdoModuloQContenham(termo)
     .subscribe(
       (resource) => {
         manutencoes = resource;
-        for (let i = 1; i < manutencoes.length; i++) {
-          this.aliases = [...this.aliases, {label: manutencoes[i].id.alias , value: manutencoes[i].id.alias}];
+        for (let i = 0; i < manutencoes.length; i++) {
+          this.aliases = [...this.aliases, manutencoes[i].id.alias];
         }
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
@@ -135,8 +135,17 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     }
   }
 
+  alteracontrolaAcesso(e) {
+    if ( e.checked ) {
+      this.resourceForm.get('controlaAcesso').setValue('S')
+    } else {
+      this.resourceForm.get('controlaAcesso').setValue('N')
+    }
+  }
+
   onAfterloadResource() {
     this.resourceForm.get('id').setValue(this.id);
+    this.bcontrolaAcesso = ( this.resourceForm.get('controlaAcesso').value === 'S' );
     this.siglaModulo = this.resource.sigla;
     this.cdTrib = 1;
   }

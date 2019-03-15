@@ -68,8 +68,9 @@
         <!-- Alias -->
         <div class="form-group col-md-3">
             <label for="alias">Alias</label>
-            <p-autoComplete class="form-control" [readonly]="ctrlsAtualizacao" id="alias" name="alias" formControlName="alias" 
-                  [field]="value" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
+            <p-autoComplete class="form-control" id="alias" name="alias" formControlName="alias" 
+                            [inputid]="alias" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)">
+            </p-autoComplete>
 
             <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
         </div>
@@ -84,7 +85,7 @@
 
         <!-- email -->
         <div class="form-group col-md-5">
-            <label for="name">Email do Responsável</label>
+            <label for="email">Email do Responsável</label>
             <input type="text" class="form-control" id="email" name="email" formControlName="email">
       
             <app-form-field-error [form-control]="resourceForm.get('email')"></app-form-field-error>
@@ -112,13 +113,13 @@
               </div>              
 
               <div class="form-group col-md-3"> 
-                  <label for="tabela">Tabela Mensagem</label>
+                  <label for="mensagemCompartilhada">Tabela Mensagem</label>
                   <p-inputSwitch onLabel=true offLabel=false id="mensagemCompartilhada" name="mensagemCompartilhada" formControlName="mensagemCompartilhada"></p-inputSwitch>
               </div>
           
               <div class="form-group col-md-3"> 
-                  <label for="tabela">Controla Acesso</label> 
-                  <p-inputSwitch onLabel=true offLabel=false id="controlaAcesso" name="controlaAcesso" formControlName="controlaAcesso"></p-inputSwitch>
+                  <label for="controlaAcesso">Controla Acesso</label> 
+                  <p-inputSwitch ([ngModel])="bcontrolaAcesso" id="controlaAcesso" (onChange)="alteracontrolaAcesso($event)"></p-inputSwitch>
               </div>
             </div>
           </div>
