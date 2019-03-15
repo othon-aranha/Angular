@@ -2,6 +2,15 @@
   display:inline;
 }
 
+.form-control {
+    display: inline;
+    background-color: none;
+}
+
+.form-control.p_autocomplete {
+    float: left;
+}
+
 .card-body {
     background-color: bisque;
 }
