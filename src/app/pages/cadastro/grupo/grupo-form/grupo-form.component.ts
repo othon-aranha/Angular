@@ -12,7 +12,7 @@ import { Area } from '../../../../domain/area';
   styleUrls: ['./grupo-form.component.css']
 })
 export class GrupoFormComponent extends BaseResourceFormComponent<Grupo> implements OnInit {
-  areas: Array<any> = [];
+  areas: Array<string> = [];
   constructor(protected grupoService: GrupoService, protected injector: Injector, private areaService: AreaService) {
     super(injector, new Grupo(), grupoService, Grupo.fromJson);
   }
@@ -38,11 +38,11 @@ export class GrupoFormComponent extends BaseResourceFormComponent<Grupo> impleme
     const termo = event.query;
     this.areas = [];
     let manutencoes: Array<Area> = [];
-    this.areaService.getAll()
+    this.areaService.listarUnidadesIniciadasCom(event.query)
     .subscribe(
       (resource) => {
         manutencoes = resource;
-        for (let i = 1; i < manutencoes.length; i++) {
+        for (let i = 0; i < manutencoes.length; i++) {
           this.areas = [...this.areas, manutencoes[i].sigla];
         }
       },

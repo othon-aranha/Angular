@@ -22,7 +22,8 @@
         <div class="form-group col-md-3">
             <label for="area">Área</label>
             <p-autoComplete class="form-control" id="area" name="area" formControlName="area" 
-                            [suggestions]="areas" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
+                            [suggestions]="areas" (completeMethod)="buscaAutoComplete($event)" 
+                            [minLength]="3" [forceSelection]="true"></p-autoComplete>
 
             <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
         </div>
@@ -30,7 +31,7 @@
       </div>
 
       <div class="form-row">
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-4">
             <label for="nome">Grupo</label>
             <input type="text" class="form-control" id="nome" formControlName="nome" style="float:rigth">
   
@@ -57,5 +58,7 @@
 </div>
 
 {{ resourceForm.value | json }}
+
+{{ areas }}
 
     

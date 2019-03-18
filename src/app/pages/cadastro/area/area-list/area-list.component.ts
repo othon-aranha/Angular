@@ -20,8 +20,8 @@ export class AreaListComponent extends BaseListFormComponent<Area> implements On
     // Colunas da Grid //
     this.cols = [
       {header: 'Id', field: 'id', classe: 'ui'},
+      {header: 'Sigla', field: 'sigla', classe: 'ui-p-8'},
       {header: 'Nome', field: 'nome', classe: 'ui-p-8'},
-      {header: 'Email', field: 'email', classe: 'ui-p-1'},
       {header: 'Status', field: 'status', classe: 'ui-p-1'},
       {header: 'Zona', field: 'zona', classe: 'ui-p-2'},
       {header: 'Número da Zona', field: 'numeroZona', classe: 'ui-p-2'},
@@ -50,7 +50,7 @@ export class AreaListComponent extends BaseListFormComponent<Area> implements On
   }
 
   viewRegister(tipo: Area) {
-    this.router.navigate(['area', this.id, '/edit']);
+    this.router.navigate(['/area/', tipo.id, 'edit']);
   }
 
   deleteRegister(tipo: Area) {

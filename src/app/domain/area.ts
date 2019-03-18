@@ -5,6 +5,7 @@ export class Area {
     sigla: string;
     nome: string;
     email: string;
+    id_secao_sup: number;
     status: boolean;
     zona: boolean;
     numeroZona: number;

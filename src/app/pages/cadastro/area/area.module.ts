@@ -6,11 +6,11 @@ import { AccordionModule } from 'primeng/accordion';
 import { ConfirmDialogModule, GrowlModule, InputTextModule } from 'primeng/primeng';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { DialogModule } from 'primeng/dialog';
-import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
 import { AreaListComponent } from './area-list/area-list.component';
 import { AreaFormComponent } from './area-form/area-form.component';
 import { SharedModule } from '../../../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AreaListComponent, AreaFormComponent],
@@ -20,6 +20,7 @@ import { SharedModule } from '../../../shared/shared.module';
     ConfirmDialogModule,
     ContextMenuModule,
     DialogModule,
+    ReactiveFormsModule,
     GrowlModule,
     InputTextModule,
     TableModule,
