@@ -6,6 +6,11 @@
     margin-left: 10rem;
 }
 
+p.text-danger {
+    margin-left: 10rem;
+    width: max-content;
+}
+
 label{
     margin-left: 10rem;
     color: green; 

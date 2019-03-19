@@ -5,6 +5,7 @@ import { AreaFormComponent } from './area-form/area-form.component';
 
 const routes: Routes = [
   {path: 'area', component: AreaListComponent},
+  {path: 'area/new', component: AreaFormComponent},
   {path: 'area/:id/edit', component: AreaFormComponent}
 ];
 

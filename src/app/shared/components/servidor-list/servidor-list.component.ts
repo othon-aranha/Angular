@@ -77,7 +77,7 @@ export class ServidorListComponent implements OnInit, OnChanges {
       if ( this.siglaModulo !== undefined ) {
         this.carregarServidoresdoModulo();
       } */
-      console.log(this.selectedServers);
+      // console.log(this.selectedServers);
    }
 
    carregarTodosServidores() {

@@ -15,6 +15,7 @@
       Id do Módulo:  {{ id }}
     </div>
 
+    <!-- Versão -->
     <div class="card-body">
       <div *ngIf="resource.tipoModulo !== 'WEB'" class="form-row">    
           <div class="form-group col-md-2">
@@ -53,8 +54,8 @@
   
       </div>
 
+      <!-- titulo -->
       <div class="form-row">
-          <!-- titulo -->
           <div class="form-group col-md-12">
             <label for="name">Título</label>
             <input type="text" class="form-control" id="descricao" name="descricao" formControlName="descricao">
@@ -63,12 +64,12 @@
           </div>      
       </div>
 
+      <!-- Alias -->
       <div class="form-row">
-        <!-- Alias -->
         <div class="form-group col-md-3">
             <label for="alias">Alias</label>
-            <p-autoComplete class="form-control" [disabled]="controlaAtualizacao" id="alias" name="alias" formControlName="alias" 
-                  [field]="value" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
+            <p-autoComplete class="form-control" id="alias" name="alias" formControlName="alias" 
+                            [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"></p-autoComplete>
 
             <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
         </div>
@@ -94,15 +95,17 @@
       <div class="form-row">
 
           <div class="card" style="width: 75%;">
+            <!-- Dados de Atualização -->
             <h6 class="card-header">Dados de Atualização</h6>
             <div class="card-body">
               <div class="form-group col-md-3">
                   <label class="input-group-text" for="tipoAtualizacao">Tipo</label>
-                  <select class="custom-select my-1 mr-sm-2" [disabled]="controlaAtualizacao" id="tipoAtualizacao" name="tipoAtualizacao" formControlName="tipoAtualizacao">
+                  <select class="custom-select my-1 mr-sm-2" id="tipoAtualizacao" name="tipoAtualizacao" formControlName="tipoAtualizacao">
                       <option *ngFor="let option of TipoAtualizacao" [value]="option.value">{{ option.label }}</option>            
                   </select>
               </div>
 
+              <!-- Situação -->
               <div class="form-group col-md-3">
                   <label class="input-group-text" for="statusModulo">Situação</label>
                   <select class="custom-select my-1 mr-sm-2" id="statusModulo" name="statusModulo" formControlName="statusModulo">
@@ -110,20 +113,25 @@
                   </select>
               </div>              
 
+              <!-- Tabela Mensagem -->
               <div class="form-group col-md-3"> 
                   <label for="tabela">Tabela Mensagem</label>
                   <p-inputSwitch onLabel="Sim" offLabel="Não" id="mensagemCompartilhada" name="mensagemCompartilhada" formControlName="mensagemCompartilhada"></p-inputSwitch>
               </div>
           
+              <!-- Controla Acesso -->
               <div class="form-group col-md-3"> 
                   <label for="tabela">Controla Acesso</label> 
-                  <p-inputSwitch onLabel="Sim" offLabel="Não" id="controlaAcesso" name="controlaAcesso" formControlName="controlaAcesso"></p-inputSwitch>
+                  <p-inputSwitch (onChange)="alteraControlaAcesso($event)" ([checked])="checked"></p-inputSwitch>
               </div>
+
             </div>
+
           </div>
 
+          <!-- Servidores do Módulo -->
           <div class="card" style="width: 25%;">
-              <h6 class="card-header">Servidores do Módulo</h6>
+            <h6 class="card-header">Servidores do Módulo</h6>
             <div class="card-body">
                 <div class="form-group col-md">
                     <app-servidor-list [siglaModulo]="siglaModulo" [cdTrib]="cdTrib" ngDefaultControl></app-servidor-list>
@@ -136,14 +144,13 @@
     </div>
   </div>
 
-  <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
-
-  <button routerLink="/modulo" class="btn btn-primary btn-lg float-left mt-3"><< Voltar</button>
-  <button [disabled]="resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
-    Salvar
-  </button>
-
 </form>
 
+<app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+
+<button routerLink="/modulo" class="btn btn-primary btn-lg float-left mt-3"><< Voltar</button>
+<button [disabled]="resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
+  Salvar
+</button>
+
 {{ resourceForm.value | json }}
-{{ resourceForm.status }}

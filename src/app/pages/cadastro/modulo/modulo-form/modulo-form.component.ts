@@ -20,11 +20,12 @@ import { TipoAplicacao } from '../../../../domain/tipo-aplicacao';
 export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> implements OnInit {
 
   aliasList: any[];
-  aliases: any[];
+  aliases: string[];
   cdTrib: number;
   siglaModulo: string;
   controlaVersao: boolean;
   controlaAtualizacao: boolean;
+  checked: boolean;
   TipoAplicacao: any[] = [{label: '...', value: ''},
                           {label: 'Desktop', value: 'DESKTOP'},
                           {label: 'Web', value: 'WEB'},
@@ -77,7 +78,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
         // this.resourceForm.get('alias').disable();
         this.resourceForm.get('alias').setValue(null);
         // this.resourceForm.get('tipoAtualizacao').disable();
-        this.resourceForm.get('tipoAtualizacao').setValue('NAO_ATUALIZA')
+        this.resourceForm.get('tipoAtualizacao').setValue('NAO_ATUALIZA');
       } else {
         this.controlaAtualizacao = false;
         this.resourceForm.get('alias').setValidators([Validators.required, Validators.minLength(1)]);
@@ -96,14 +97,14 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   buscaAutoComplete(event) {
     const termo = event.query;
     this.aliases = [];
-    this.aliases = [...this.aliases, {label: '...' , value: ''}];
     let manutencoes: Array<MaquinaServidora> = [];
     this.maquinaService.listarServidoresdoModuloQContenham(termo)
     .subscribe(
       (resource) => {
         manutencoes = resource;
-        for (let i = 1; i < manutencoes.length; i++) {
-          this.aliases = [...this.aliases, {label: manutencoes[i].alias , value: manutencoes[i].alias}];
+        for (let i = 0; i < manutencoes.length; i++) {
+          // this.aliases = [...this.aliases, {label: manutencoes[i].alias , value: manutencoes[i].alias}];
+          this.aliases = [...this.aliases, manutencoes[i].alias];
         }
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
@@ -113,13 +114,15 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
       id:    new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      sigla: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      sigla: new FormControl( {value: '', disabled: ( this.currentAction === 'edit' ) }, [Validators.required, Validators.minLength(3)] ),
       alias: new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       nome:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       descricao:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       esquema:    new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       email:      new FormControl( '', Validators.email ),
-      versao:     new FormControl( '', [Validators.required, Validators.minLength(7)] ),
+      versao:     new FormControl( {value: '', disabled: ( this.currentAction === 'edit' ) },
+                                  [Validators.required, Validators.minLength(7)] ),
+      // tribunal:   new FormControl( '', [Validators.required] ),
       tipoModulo: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       tipoAtualizacao:  new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       statusModulo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
@@ -129,11 +132,26 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     // this.formBuilder.control('tipoModulo').registerOnChange(this.GerenciaControles);
   }
 
+  alteraControlaAcesso(e: any) {
+    this.checked = e.checked;
+    this.setControlaAcesso(e.checked);
+  }
+
+  setControlaAcesso(value: boolean) {
+    if ( value ) {
+      this.resourceForm.get('controlaAcesso').setValue('S');
+    } else {
+      this.resourceForm.get('controlaAcesso').setValue('N');
+    }
+  }
+
   onAfterloadResource() {
     this.resourceForm.get('id').setValue(this.id);
+    this.checked = ( this.resourceForm.get('controlaAcesso').value === 'S' );
+    this.setControlaAcesso(this.checked);
     this.GerenciaControles();
     this.siglaModulo = this.resource.sigla;
-    this.resourceForm.get('tribunal').setValue(this.tribunalService.recuperarTribunalLocal());
+    // this.resourceForm.get('tribunal').setValue(this.tribunalService.recuperarTribunalLocal());
     this.cdTrib = 1;
   }
 

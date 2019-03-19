@@ -21,6 +21,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   serverErrorMessages: string[] = null;
   submittingForm: boolean = false;
   msgs = [];
+  FieldKeyReadOnly: boolean;
 
   protected route: ActivatedRoute;
   protected router: Router;
@@ -61,8 +62,10 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     this.submittingForm = true;
     if ( this.validForm() ) {
       if ( this.currentAction === 'new' ) {
+        this.FieldKeyReadOnly = false;
         this.createResource();
       } else { // currentAction == "edit"
+      this.FieldKeyReadOnly = true;
         this.updateResource();
       }
     }

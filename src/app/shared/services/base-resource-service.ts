@@ -66,7 +66,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
          break;
         }
       } else {
-        AKey.push({keyname: prop, value: resource[prop]});
+        AKey = [...AKey, {keyname: prop, value: resource[prop]}];
       }
     }
     return AKey;

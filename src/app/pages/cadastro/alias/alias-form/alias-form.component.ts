@@ -28,19 +28,20 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
 
   ngOnInit() {
     super.ngOnInit();
+    this.tribunalService.recuperarTribunalLocal().subscribe(
+      (data) => {
+        this.tribunalLocal = data;
+        if ( this.route.snapshot.paramMap.has('idtribunal') ) {
+          this.tribunalLocal.id = +this.route.snapshot.paramMap.get('idtribunal');
+        }
+        this.resourceForm.get('tribunal').setValue(this.tribunalLocal);
+      }
+    );
+
     if ( this.currentAction === 'new' ) {
       this.resourceForm.get('conexao').setValue(this.conexaoPadrao);
     } else {
       this.resourceForm.get('id').setValue(this.id);
-      this.tribunalService.recuperarTribunalLocal().subscribe(
-        (data) => {
-          this.tribunalLocal = data;
-          if ( this.route.snapshot.paramMap.has('idtribunal') ) {
-            this.tribunalLocal.id = +this.route.snapshot.paramMap.get('idtribunal');
-          }
-          this.resourceForm.get('tribunal').setValue(this.tribunalLocal);
-        }
-      );
     }
     /*
     this.buildResourceForm();
