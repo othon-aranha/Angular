@@ -1,0 +1,48 @@
+<div *ngIf="( currentAction === 'edit' ); then thenEdit else NewBlock"></div>
+<ng-template #thenEdit>
+    <app-barra-navegacao [breadcrumbitems]="[{text: 'Usuário', link: '/usuario'},{text: 'Editar'}]"></app-barra-navegacao>
+</ng-template>
+<ng-template #NewBlock>
+    <app-barra-navegacao [breadcrumbitems]="[{text: 'Usuário', link: '/usuario'},{text: 'Novo'}]"></app-barra-navegacao>
+</ng-template> 
+
+
+<p-growl [value]="msgs"></p-growl>
+<form [formGroup]="resourceForm" (submit)="submitForm()">  
+
+  <div class="card">
+    <div class="card-header">
+      Id do Usuário:  {{ id }}
+    </div>
+
+    <div class="card-header">
+      <div  *ngFor="let tipo of tipousuario" class="ui-g" style="width:250px;margin-bottom:10px">
+          <div class="ui-g-12"><p-checkbox name="tipousuario" value="tipo" ></p-checkbox></div>
+      </div>    
+    </div>
+
+
+    <!-- Versão -->
+    <div class="card-body">
+
+      <!-- Login e Nome -->
+      <div class="form-row">
+          <div class="form-group col-md-3">
+              <label for="login">Login</label>
+              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="login" name="login" formControlName="login">
+    
+              <app-form-field-error [form-control]="resourceForm.get('login')"></app-form-field-error>
+          </div>             
+
+          <div class="form-group col-md-9">
+              <label for="nome">Nome</label>
+              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="nome" name="nome" formControlName="nome">
+    
+              <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
+          </div>                       
+    </div>
+
+  </div>
+
+  </div>
+</form>

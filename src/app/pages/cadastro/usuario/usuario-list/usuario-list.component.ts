@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem, Message } from 'primeng/api';
 import { Usuario } from '../../../../domain/usuario';
 import { UsuarioService } from '../../../../service/usuario.service';
+import { Router } from '@angular/router';
 
 interface Status {
   name: string;
@@ -18,7 +19,7 @@ export class UsuarioListComponent implements OnInit {
   cols: any[];
   usuarios = [];
   tipoUsuario = [];
-  selectedTipoUsuario = [];
+  selectedTipoUsuario: string[] = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
   usuario: Usuario = null;
   selectedUsuario: Usuario = null;
   selectedStatus = [];
@@ -28,11 +29,10 @@ export class UsuarioListComponent implements OnInit {
   displayDialog: boolean;
 
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService, private router: Router) { }
 
   ngOnInit() {
 
-    this.selectedTipoUsuario = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
     this.selectedStatus = ['ATIVO', 'INATIVO'];
 
     this.tipoUsuario = [
@@ -92,7 +92,7 @@ export class UsuarioListComponent implements OnInit {
   }
 
   viewUsuario(usuario: Usuario) {
-
+    this.router.navigate(['/usuario/', usuario.id, 'edit']);
   }
 
   deleteUsuario(usuario: Usuario) {
