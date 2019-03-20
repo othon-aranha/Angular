@@ -72,7 +72,8 @@
             <label for="alias">Alias</label>
 
             <p-autoComplete class="form-control" id="alias" name="alias" formControlName="alias" 
-                            [inputid]="alias" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)">
+                            [inputid]="alias" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"
+                            [minLength]="3" [forceSelection]="true">
             </p-autoComplete>
 
             <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>

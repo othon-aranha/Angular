@@ -17,7 +17,7 @@ export class PerfilListComponent extends BaseListFormComponent<Perfil> implement
   ngOnInit() {
     // Colunas da Grid //
     this.cols = [
-        {header: 'Módulo', field: 'modulo', classe: 'ui'},
+        {header: 'Módulo', field: 'modulo.sigla', classe: 'ui'},
         {header: 'Id', field: 'id', classe: 'ui'},
         {header: 'Nome', field: 'nome', classe: 'ui-p-2'}
     ];

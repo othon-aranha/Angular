@@ -1,0 +1,27 @@
+
+  .form-control {
+      display: inline;
+      background-color: none;
+  }
+  
+  .form-control.p_autocomplete {
+      float: left;
+  }
+  
+  .card-body {
+      background-color: bisque;
+  }
+  
+  label{
+      color: green; 
+      text-align: left; float: left; 
+  }
+
+  .p-checkbox {
+      float: left;
+  }
+  
+  h6{
+      color: green; 
+      text-align: left; float: left;     
+  } 
