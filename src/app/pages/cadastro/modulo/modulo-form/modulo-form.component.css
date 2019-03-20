@@ -1,3 +1,7 @@
+#alias {
+  display:inline;
+}
+
 .form-control {
     display: inline;
     background-color: none;

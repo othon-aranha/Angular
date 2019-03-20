@@ -32,6 +32,11 @@ export class HomeComponent implements OnInit {
           routerLink: '/dominio'
        },
        {
+        label: 'Grupo',
+        icon: 'fas fa-layer-group', 
+        routerLink: '/grupo'
+       },
+       {
         label: 'Módulo',
         icon: 'fas fa-cogs',
         routerLink: '/modulo'

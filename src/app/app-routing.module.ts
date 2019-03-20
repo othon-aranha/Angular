@@ -19,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'perfil', loadChildren: './pages/cadastro/perfil/perfil.module#PerfilModule' },
   { path: 'usuario', loadChildren: './pages/cadastro/usuario/usuario.module#UsuarioModule' },
   { path: 'dominio', loadChildren: './pages/cadastro/dominio/dominio.module#DominioModule' },
+  { path: 'grupo', loadChildren: './pages/cadastro/grupo/grupo.module#GrupoModule' },
   { path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 

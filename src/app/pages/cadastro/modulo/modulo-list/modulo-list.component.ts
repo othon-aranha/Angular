@@ -86,7 +86,7 @@ export class ModuloListComponent extends BaseListFormComponent<Modulo> implement
   }
 
   onRowSelect(event) {
-    this.selectedModulo = this.cloneModulo(event.data);
+    this.selectedModulo = this.cloneRow(event.data);
   }
 
   alteraTipoModulo(event) {
@@ -129,7 +129,7 @@ export class ModuloListComponent extends BaseListFormComponent<Modulo> implement
     this.router.navigate(['/modulo/', 'new']);
   }
 
-  cloneModulo(m: Modulo): Modulo {
+  cloneRow(m: Modulo): Modulo {
     const modulo = new Modulo();
     // tslint:disable-next-line:forin
     for (const prop in m) {

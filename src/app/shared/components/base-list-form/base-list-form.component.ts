@@ -9,6 +9,7 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './base-list-form.component.html',
   styleUrls: ['./base-list-form.component.css']
 })
+
 export abstract class BaseListFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked  {
   id: any;
   alias: string;
@@ -18,10 +19,11 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
   pageTitle: string;
   serverErrorMessages: string[] = null;
   items: MenuItem[];
+  msgs = [];
 
   protected route: ActivatedRoute;
   protected router: Router;
-  constructor(    protected injector: Injector,
+  constructor( protected injector: Injector,
     public resource: T,
     protected resourceService: BaseResourceService<T>,
     protected jsonDataToResourceFn: (jsonData) => T
@@ -42,6 +44,12 @@ export abstract class BaseListFormComponent<T extends BaseResourceModel> impleme
       this.alias = this.route.snapshot.paramMap.get('alias');
     }
   }
+
+  onRowSelect(event) {
+    this.selectedrow = this.cloneRow(event.data);
+  }
+
+  protected abstract cloneRow(m: T): T;
 
   ngAfterContentChecked() {
     this.setPageTitle();

@@ -32,6 +32,18 @@ export class PerfilListComponent extends BaseListFormComponent<Perfil> implement
     super.ngOnInit();
   }
 
+  onRowSelect(event) {
+    this.selectedrow = this.cloneRow(event.data);
+  }
+
+  cloneRow(m: Perfil): Perfil {
+    const perfil = new Perfil();
+    // tslint:disable-next-line:forin
+    for (const prop in m) {
+        perfil[prop] = m[prop];
+    }
+    return perfil;
+   }
   viewPerfil(perfil: Perfil) {
     this.router.navigate(['/perfil/', perfil.id, 'edit']);
   }
