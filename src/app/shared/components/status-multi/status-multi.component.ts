@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 
 
 @Component({
@@ -9,10 +9,10 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 export class StatusMultiComponent implements OnInit {
   // tslint:disable-next-line:no-output-on-prefix
-  @Output() onSelecionarStatus = new EventEmitter<String[]>();
+  @Output() onSelecionarStatus = new EventEmitter<string[]>();
 
   listStatus = [];
-  selectedStatus: String[] = [];
+  @Input() selectedStatus: string[] = [];
 
   constructor() { }
 
@@ -22,7 +22,7 @@ export class StatusMultiComponent implements OnInit {
       {label: 'Inativo', value: 'INATIVO'}];
   }
 
-  onselecionarStatus(status: String[]) {
+  onselecionarStatus(status: string[]) {
     this.selectedStatus = status;
     console.log(this.selectedStatus);
     this.onSelecionarStatus.emit(this.selectedStatus);

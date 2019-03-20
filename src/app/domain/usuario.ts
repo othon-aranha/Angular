@@ -11,8 +11,8 @@ export class Usuario {
     email: string;
     senha: string;
     numeroCpf: string;
-    StatusUsuario: string;
-    TipoUsuario: string;
+    status: string;
+    tipo: string;
     usuarioModulos: Modulo[];
     unidade: Unidade;
     links: Link;

@@ -16,9 +16,22 @@
     </div>
 
     <div class="card-header">
-      <div  *ngFor="let prop of tipousuario" class="ui-g" style="width:250px;margin-bottom:10px">
-          <div class="ui-g-12"><p-checkbox name="tipousuario" value="prop" ></p-checkbox></div>
-      </div>    
+        <div class="form-row">
+          <div class="form-group col-md-3">
+              <label for="login">Login</label>
+              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="login" name="login" formControlName="login">
+    
+              <app-form-field-error [form-control]="resourceForm.get('login')"></app-form-field-error>
+          </div>
+
+          <div class="form-group col-md-2">
+            <label for="tipo">Tipo de Usuário</label>
+            <select class="custom-select my-1 mr-sm-2" id="tipo" name="tipo" formControlName="tipo">
+                <option *ngFor="let group of tipoUsuario | enumToArray" [value]="group.key">{{ group.value }}</option>            
+            </select>
+            <app-form-field-error [form-control]="resourceForm.get('tipo')"></app-form-field-error>
+          </div>  
+        </div>  
     </div>
 
 
@@ -27,22 +40,42 @@
 
       <!-- Login e Nome -->
       <div class="form-row">
-          <div class="form-group col-md-3">
-              <label for="login">Login</label>
-              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="login" name="login" formControlName="login">
+        
+          <div class="form-group col-md-2">
+              <label for="matriculaServidor">Matrícula</label>
+              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="matriculaServidor" name="matriculaServidor" formControlName="matriculaServidor">
     
-              <app-form-field-error [form-control]="resourceForm.get('login')"></app-form-field-error>
+              <app-form-field-error [form-control]="resourceForm.get('matriculaServidor')"></app-form-field-error>
           </div>             
 
-          <div class="form-group col-md-9">
+          <div class="form-group col-md-10">
               <label for="nome">Nome</label>
               <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="nome" name="nome" formControlName="nome">
     
               <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
           </div>                       
+      </div>
+
+      <!-- Email e CPF -->
+      <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" formControlName="email">
+  
+            <app-form-field-error [form-control]="resourceForm.get('email')"></app-form-field-error>
+        </div>             
+
+        <div class="form-group col-md-3">
+            <label for="cpf">CPF</label>
+            <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="numeroCpf" name="numeroCpf" formControlName="numeroCpf">
+  
+            <app-form-field-error [form-control]="resourceForm.get('cpf')"></app-form-field-error>
+        </div>                       
     </div>
 
   </div>
 
   </div>
 </form>
+
+{{ resourceForm.value | json }}

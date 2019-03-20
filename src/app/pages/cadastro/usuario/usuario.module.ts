@@ -12,6 +12,7 @@ import { ConfirmDialogModule, GrowlModule, InputTextModule, CheckboxModule } fro
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { DialogModule } from 'primeng/dialog';
 import { SharedModule } from '../../../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -24,12 +25,13 @@ import { SharedModule } from '../../../shared/shared.module';
     GrowlModule,
     InputTextModule,
     MultiSelectModule,
+    ReactiveFormsModule,
     TableModule,
     SharedModule,
     UsuarioRoutingModule
   ],
   exports: [],
-  declarations: [TipoUsuarioMultiComponent, StatusMultiComponent, UsuarioFormComponent, UsuarioListComponent],
+  declarations: [UsuarioFormComponent, UsuarioListComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]
 })
 export class UsuarioModule { }

@@ -9,10 +9,10 @@ import { Component, OnInit, EventEmitter, Output, Injectable, Input } from '@ang
 @Injectable()
 export class TipoUsuarioMultiComponent implements OnInit {
     // tslint:disable-next-line:no-output-on-prefix
-    @Output() onSelecionarTipoUsuario = new EventEmitter<String[]>();
+    @Output() onSelecionarTipoUsuario = new EventEmitter<string[]>();
 
     tipoUsuario = [];
-    @Input() selectedTipoUsuario: String[] = [];
+    @Input() selectedTipoUsuario: string[] = [];
 
     constructor() {
       this.tipoUsuario = [
@@ -30,7 +30,7 @@ export class TipoUsuarioMultiComponent implements OnInit {
     ngOnInit() {
     }
 
-    onselecionarTipoUsuario(tipo: String[]) {
+    onselecionarTipoUsuario(tipo: string[]) {
       this.selectedTipoUsuario = tipo;
       this.onSelecionarTipoUsuario.emit(this.selectedTipoUsuario);
     }

@@ -12,7 +12,7 @@ import { UsuarioService } from '../../../../service/usuario.service';
 })
 export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> implements OnInit {
 
-  tipoUsuario: TipoUsuario;
+  tipoUsuario = TipoUsuario;
   constructor(protected usuarioService: UsuarioService, protected injector: Injector) {
     super(injector, new Usuario(), usuarioService, Usuario.fromJson);
   }
@@ -32,8 +32,8 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
       email:      new FormControl( '', Validators.email ),
       senha:     new FormControl('',  [Validators.required, Validators.minLength(7)] ),
       numeroCpf: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
-      StatusUsuario:  new FormControl( '', [Validators.required, Validators.minLength(3)] ),
-      TipoUsuario:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      status:  new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      tipo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       // usuarioModulos: new FormControl( '', [Validators.required] ),
       unidade: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] )
     });
@@ -43,6 +43,6 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
 
   onAfterloadResource() {
 
-  }  
+  }
 
 }

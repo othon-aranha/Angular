@@ -22,7 +22,7 @@ export class UsuarioListComponent implements OnInit {
   selectedTipoUsuario: string[] = ['AVULSO', 'APLICACAO', 'EXTERNO', 'INVALIDO', 'SERVIDOR', 'SISTEMA', 'TERCEIRIZADO'];
   usuario: Usuario = null;
   selectedUsuario: Usuario = null;
-  selectedStatus = [];
+  selectedStatus: string[] = [];
   items: MenuItem[];
   msgs: Message[];
   rota: string;
@@ -73,22 +73,24 @@ export class UsuarioListComponent implements OnInit {
 
   consultarporTipodeUsuario(tipo: string[], status: string[]) {
     this.usuarios = [];
-    if ( ( tipo.length !== 0 ) && ( status.length === 0 ) ) {
+    if ( ( tipo.length !== 0 ) && ( ( status === undefined ) || ( status.length === 0 ) ) ) {
       return this.usuarioService.listarUsuariosporTipo('').subscribe(dados => this.usuarios = dados);
+    } else if ( ( tipo.length === 0 ) && ( ( status !== undefined ) || ( status.length !== 0 ) ) ) {
+      return this.usuarioService.listarUsuariosporStatus(status.join()).subscribe(dados => this.usuarios = dados);
     } else {
       return this.usuarioService.listarUsuariosporTipoEStatus(tipo.join(), status.join()).subscribe(dados => this.usuarios = dados);
     }
   }
 
   onSelecionarTipoUsuario(tipoUsuario: string[]) {
-    this.tipoUsuario = tipoUsuario;
-    this.consultarporTipodeUsuario(this.tipoUsuario, this.selectedStatus);
+    this.selectedTipoUsuario = tipoUsuario;
+    this.consultarporTipodeUsuario(this.selectedTipoUsuario, this.selectedStatus);
   }
 
 
   onSelecionarStatus(status: string[]) {
     this.selectedStatus = status;
-    this.consultarporTipodeUsuario(this.tipoUsuario, this.selectedStatus);
+    this.consultarporTipodeUsuario(this.selectedTipoUsuario, this.selectedStatus);
   }
 
   viewUsuario(usuario: Usuario) {
@@ -100,7 +102,7 @@ export class UsuarioListComponent implements OnInit {
   }
 
   newUsuario() {
-    //
+    this.router.navigate(['/usuario/', 'new']);
   }
 
 }

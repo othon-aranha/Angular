@@ -1,6 +1,6 @@
 import { TableModule } from 'primeng/table';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Component } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ButtonModule, DropdownModule, GrowlModule, ContextMenuModule, CheckboxModule } from '../../../../../node_modules/primeng/primeng';

@@ -39,6 +39,14 @@ export class UsuarioService extends BaseResourceService<Usuario> {
   }
 
 
+  listarUsuariosporStatus(status: String): Observable<Array<Usuario>> {
+    return this.http.get<any>(this.apiPath + this.getAllSufix() + '/status/' + status,
+    {headers: this.headers}).pipe(
+      map(this.jsonDataToResources.bind(this)),
+      catchError(this.handleError)
+    );
+  }
+
   usuarioAutorizado(login: String, senha: String): Observable<Array<Usuario>> {
     return this.http.get<any>(this.apiPath + '/login/' + login + '/senha/' + senha, {headers: this.headers}).pipe(
       map(this.jsonDataToResources.bind(this)),

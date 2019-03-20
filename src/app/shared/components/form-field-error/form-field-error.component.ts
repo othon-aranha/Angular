@@ -5,9 +5,9 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-form-field-error',
   template: `
-    <p class="text-danger">
+    <div *ngIf="( mustShowErrorMessage() )" class="alert alert-danger" role="alert">
       {{errorMessage}}
-    </p>
+    </div>
   `,
   styleUrls: ['./form-field-error.component.css']
 })
@@ -40,15 +40,15 @@ export class FormFieldErrorComponent implements OnInit {
 
   private getErrorMessage(): string | null {
     if ( this.formControl.errors.required ) {
-      return 'dado obrigatório';
+      return 'Dado obrigatório';
     } else if ( this.formControl.errors.email) {
-      return 'formato de email inválido';
+      return 'Formato de email inválido';
     } else if ( this.formControl.errors.minlength ) {
       const requiredLength = this.formControl.errors.minlength.requiredLength;
-      return `deve ter no mínimo ${requiredLength} caracteres`;
+      return `Campo deve possuir no mínimo ${requiredLength} caracteres`;
     } else if ( this.formControl.errors.maxlength ) {
       const requiredLength = this.formControl.errors.maxlength.requiredLength;
-      return `deve ter no máximo ${requiredLength} caracteres`;
+      return `Campo deve possuir no máximo ${requiredLength} caracteres`;
     }
   }
 }
