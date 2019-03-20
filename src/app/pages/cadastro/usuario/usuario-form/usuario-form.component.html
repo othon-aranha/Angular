@@ -40,13 +40,32 @@
 
       <!-- Login e Nome -->
       <div class="form-row">
+
+          <container-element [ngSwitch]="resourceForm.get('tipo').value">
+              <some-element *ngSwitchCase="SERVIDOR">Servidor do Quadro</some-element>
+              <some-element *ngSwitchCase="TERCEIRIZADO">Terceirizado</some-element>
+              <some-element *ngSwitchCase="AVULSO">Avulson</some-element>
+              <some-element *ngSwitchDefault>Outro</some-element>
+          </container-element>
         
+          
+        <div *ngIf="( resourceForm.get('tipo') === 'SERVIDOR' ); then thenServidor else thenTerceirizado"></div>
+        <ng-template #thenServidor>            
           <div class="form-group col-md-2">
               <label for="matriculaServidor">Matrícula</label>
-              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="matriculaServidor" name="matriculaServidor" formControlName="matriculaServidor">
+              <input type="text" class="form-control" id="matriculaServidor" name="matriculaServidor" formControlName="matriculaServidor">
     
               <app-form-field-error [form-control]="resourceForm.get('matriculaServidor')"></app-form-field-error>
-          </div>             
+          </div>
+        </ng-template>  
+        <ng-template #thenTerceirizado>     
+          <div class="form-group col-md-2">
+            <label for="matriculaFuncionario">Matrícula</label>
+            <input type="text" class="form-control" id="matriculaFuncionario" name="matriculaFuncionario" formControlName="matriculaFuncionario">
+  
+            <app-form-field-error [form-control]="resourceForm.get('matriculaFuncionario')"></app-form-field-error>
+          </div>
+        </ng-template>      
 
           <div class="form-group col-md-10">
               <label for="nome">Nome</label>
