@@ -93,7 +93,9 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
     this.resourceForm.get('email').setValue(null);
     if ( ( this.resourceForm.get('tipo').value === 'TERCEIRIZADO') || ( this.resourceForm.get('tipo').value === 'AVULSO') ) {
       this.resourceForm.get('matriculaFuncionario').setValue(null);
-    } else if( ( this.resourceForm.get('tipo').value === 'SERVIDOR') || ( this.resourceForm.get('tipo').value === 'AVULSO') ) {
+    }
+
+    if ( ( this.resourceForm.get('tipo').value === 'SERVIDOR') || ( this.resourceForm.get('tipo').value === 'AVULSO') ) {
       this.resourceForm.get('matriculaServidor').setValue(null);
     }
   }
