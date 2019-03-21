@@ -4,6 +4,8 @@ import { Component, OnInit, Injector } from '@angular/core';
 import { Usuario } from '../../../../domain/usuario';
 import { BaseResourceFormComponent } from '../../../../shared/components/base-resource-form/base-resource-form.component';
 import { UsuarioService } from '../../../../service/usuario.service';
+import { ServidorService } from '../../../../service/servidor.service';
+import { Servidor } from '../../../../domain/servidor';
 
 @Component({
   selector: 'app-usuario-form',
@@ -13,7 +15,8 @@ import { UsuarioService } from '../../../../service/usuario.service';
 export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> implements OnInit {
 
   tipoUsuario = TipoUsuario;
-  constructor(protected usuarioService: UsuarioService, protected injector: Injector) {
+  servidor: Servidor = new Servidor();
+  constructor(protected usuarioService: UsuarioService, protected injector: Injector, private servidorService: ServidorService) {
     super(injector, new Usuario(), usuarioService, Usuario.fromJson);
   }
 
@@ -27,7 +30,7 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
       id:    new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       login: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       nome: new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      matriculaServidor:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      matriculaServidor:  new FormControl( '', [Validators.required, Validators.minLength(8)] ),
       matriculaFuncionario:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       email:      new FormControl( '', Validators.email ),
       senha:     new FormControl('',  [Validators.required, Validators.minLength(7)] ),
@@ -40,8 +43,43 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
     // this.formBuilder.control('tipoModulo').registerOnChange(this.GerenciaControles);
   }
 
-
   onAfterloadResource() {
+
+  }
+
+  GerenciaControles(): void {
+    if ( this.resourceForm !== undefined ) {
+      if ( this.resourceForm.get('tipo').value === 'TERCEIRIZADO') {
+        this.resourceForm.get('matriculaFuncionario').setValidators([Validators.required, Validators.minLength(2)]);
+        this.resourceForm.get('matriculaServidor').clearValidators();
+        this.resourceForm.get('matriculaServidor').setValue(null);
+        this.resourceForm.get('nome').setValue(null);
+      } else if ( this.resourceForm.get('tipo').value === 'SERVIDOR') {
+        this.resourceForm.get('matriculaServidor').setValidators([Validators.required, Validators.minLength(8)]);
+        this.resourceForm.get('matriculaFuncionario').clearValidators();
+        this.resourceForm.get('matriculaFuncionario').setValue(null);
+        this.resourceForm.get('nome').setValue(null);
+      } else if ( this.resourceForm.get('tipo').value === 'AVULSO') {
+        this.resourceForm.get('matriculaServidor').clearValidators();
+        this.resourceForm.get('matriculaFuncionario').clearValidators();
+        this.resourceForm.get('matriculaServidor').setValue(null);
+        this.resourceForm.get('matriculaFuncionario').setValue(null);
+        this.resourceForm.get('nome').setValue(null);
+      }
+      this.resourceForm.get('alias').updateValueAndValidity();
+    }
+  }
+
+  CarregaDadosServidor(matricula: string) {
+    this.servidorService.getById(matricula).subscribe(
+      (resource) => {
+        this.servidor = resource;
+        this.resourceForm.get('nome').setValue(this.servidor.nome);
+        this.resourceForm.get('numeroCpf').setValue(this.servidor.numeroCpf);
+        this.resourceForm.get('email').setValue(this.servidor.email);
+      },
+      (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
+    );
 
   }
 

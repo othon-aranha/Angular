@@ -87,7 +87,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
         // this.resourceForm.get('alias').disable();
         this.resourceForm.get('alias').setValue(null);
         // this.resourceForm.get('tipoAtualizacao').disable();
-        this.resourceForm.get('tipoAtualizacao').setValue('NAO_ATUALIZA')
+        this.resourceForm.get('tipoAtualizacao').setValue('NAO_ATUALIZA');
       }
       this.resourceForm.get('alias').updateValueAndValidity();
     }
@@ -147,9 +147,9 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
 
   alteracontrolaAcesso(e) {
     if ( e.checked ) {
-      this.resourceForm.get('controlaAcesso').setValue('S')
+      this.resourceForm.get('controlaAcesso').setValue('S');
     } else {
-      this.resourceForm.get('controlaAcesso').setValue('N')
+      this.resourceForm.get('controlaAcesso').setValue('N');
     }
   }
 

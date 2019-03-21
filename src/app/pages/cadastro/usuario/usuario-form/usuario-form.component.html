@@ -26,7 +26,7 @@
 
           <div class="form-group col-md-2">
             <label for="tipo">Tipo de Usuário</label>
-            <select class="custom-select my-1 mr-sm-2" id="tipo" name="tipo" formControlName="tipo">
+            <select class="custom-select my-1 mr-sm-2" id="tipo" name="tipo" formControlName="tipo" (change)="GerenciaControles()">
                 <option *ngFor="let group of tipoUsuario | enumToArray" [value]="group.key">{{ group.value }}</option>            
             </select>
             <app-form-field-error [form-control]="resourceForm.get('tipo')"></app-form-field-error>
@@ -40,39 +40,43 @@
 
       <!-- Login e Nome -->
       <div class="form-row">
+            
+        <div *ngIf="( resourceForm.get('tipo').value === 'SERVIDOR' )" class="form-group col-md-2">
+            <label for="matriculaServidor">Matrícula Servidor</label>
+            <input type="text" class="form-control" ng-change="CarregaDadosServidor($event.value)" id="matriculaServidor" name="matriculaServidor" formControlName="matriculaServidor">
+  
+            <app-form-field-error [form-control]="resourceForm.get('matriculaServidor')"></app-form-field-error>
+        </div>
+          
+        
+        <div  *ngIf="( resourceForm.get('tipo').value === 'TERCEIRIZADO' )" class="form-group col-md-2">
+          <label for="matriculaFuncionario">Matrícula Funcionário</label>
+          <input type="text" class="form-control" id="matriculaFuncionario" name="matriculaFuncionario" formControlName="matriculaFuncionario">
 
-          <container-element [ngSwitch]="resourceForm.get('tipo').value">
-              <some-element *ngSwitchCase="SERVIDOR">Servidor do Quadro</some-element>
-              <some-element *ngSwitchCase="TERCEIRIZADO">Terceirizado</some-element>
-              <some-element *ngSwitchCase="AVULSO">Avulson</some-element>
-              <some-element *ngSwitchDefault>Outro</some-element>
-          </container-element>
+          <app-form-field-error [form-control]="resourceForm.get('matriculaFuncionario')"></app-form-field-error>
+        </div>
         
           
-        <div *ngIf="( resourceForm.get('tipo') === 'SERVIDOR' ); then thenServidor else thenTerceirizado"></div>
-        <ng-template #thenServidor>            
-          <div class="form-group col-md-2">
-              <label for="matriculaServidor">Matrícula</label>
-              <input type="text" class="form-control" id="matriculaServidor" name="matriculaServidor" formControlName="matriculaServidor">
-    
-              <app-form-field-error [form-control]="resourceForm.get('matriculaServidor')"></app-form-field-error>
-          </div>
-        </ng-template>  
-        <ng-template #thenTerceirizado>     
-          <div class="form-group col-md-2">
-            <label for="matriculaFuncionario">Matrícula</label>
-            <input type="text" class="form-control" id="matriculaFuncionario" name="matriculaFuncionario" formControlName="matriculaFuncionario">
-  
-            <app-form-field-error [form-control]="resourceForm.get('matriculaFuncionario')"></app-form-field-error>
-          </div>
-        </ng-template>      
-
-          <div class="form-group col-md-10">
+        <div *ngIf="( resourceForm.get('tipo').value === 'AVULSO' ); else OthersBlock" class="form-group col-md-12">
               <label for="nome">Nome</label>
-              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="nome" name="nome" formControlName="nome">
+              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) && ( resourceForm.get('tipo').value !== 'AVULSO'  ) " 
+                      id="nome" name="nome" formControlName="nome">
     
               <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
-          </div>                       
+        </div>
+
+        <ng-template #OthersBlock>
+            
+          <div class="form-group col-md-10">
+              <label for="nome">Nome</label>
+              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) && ( resourceForm.get('tipo').value !== 'AVULSO'  ) " 
+                      id="nome" name="nome" formControlName="nome">
+    
+              <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
+          </div>          
+
+        </ng-template>
+
       </div>
 
       <!-- Email e CPF -->
@@ -86,7 +90,8 @@
 
         <div class="form-group col-md-3">
             <label for="cpf">CPF</label>
-            <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="numeroCpf" name="numeroCpf" formControlName="numeroCpf">
+            <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) && ( resourceForm.get('tipo').value !== 'AVULSO'  ) " 
+                   id="numeroCpf" name="numeroCpf" formControlName="numeroCpf">
   
             <app-form-field-error [form-control]="resourceForm.get('cpf')"></app-form-field-error>
         </div>                       
