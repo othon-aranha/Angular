@@ -71,6 +71,7 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
   }
 
   CarregaDadosServidor(matricula: string) {
+    if ( ( matricula !== undefined ) && ( matricula !== '' ) ) {
     this.servidorService.getById(matricula).subscribe(
       (resource) => {
         this.servidor = resource;
@@ -81,6 +82,20 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
     );
 
+    } else if ( ( matricula !== undefined ) && ( matricula === '' ) ) {
+      this.limpaDadosServidor();
+    }
+  }
+
+  limpaDadosServidor() {
+    this.resourceForm.get('nome').setValue(null);
+    this.resourceForm.get('numeroCpf').setValue(null);
+    this.resourceForm.get('email').setValue(null);
+    if ( this.resourceForm.get('tipo').value === 'TERCEIRIZADO') {
+      this.resourceForm.get('matriculaFuncionario').setValue(null);
+    } else if ( this.resourceForm.get('tipo').value === 'SERVIDOR') {
+      this.resourceForm.get('matriculaServidor').setValue(null);
+    }  
   }
 
 }

@@ -43,7 +43,7 @@
             
         <div *ngIf="( resourceForm.get('tipo').value === 'SERVIDOR' )" class="form-group col-md-2">
             <label for="matriculaServidor">Matrícula Servidor</label>
-            <input type="text" class="form-control" ng-change="CarregaDadosServidor($event.value)" id="matriculaServidor" name="matriculaServidor" formControlName="matriculaServidor">
+            <input type="text" class="form-control" (input)="CarregaDadosServidor($event.target.value)" id="matriculaServidor" name="matriculaServidor" formControlName="matriculaServidor">
   
             <app-form-field-error [form-control]="resourceForm.get('matriculaServidor')"></app-form-field-error>
         </div>
