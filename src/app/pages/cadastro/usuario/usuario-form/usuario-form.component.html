@@ -90,12 +90,27 @@
 
         <div class="form-group col-md-3">
             <label for="cpf">CPF</label>
-            <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) && ( resourceForm.get('tipo').value !== 'AVULSO'  ) " 
+            <input type="text" class="form-control" [readonly]="( ( currentAction === 'edit' ) && ( resourceForm.get('tipo').value !== 'AVULSO'  ) )" 
                    id="numeroCpf" name="numeroCpf" formControlName="numeroCpf">
   
             <app-form-field-error [form-control]="resourceForm.get('cpf')"></app-form-field-error>
         </div>                       
-    </div>
+      </div>
+
+      <div class="form-row">
+
+          <div class="form-group col-md-3">
+              <label for="siglaUnidade">Sigla Unidade</label>
+              <input type="text" class="form-control" [value]="unidade.sigla" (input)="CarregaDadosUnidade($event.target.value)" id="siglaUnidade">
+    
+              <app-form-field-error [form-control]="resourceForm.get('unidade')"></app-form-field-error>
+          </div>        
+            
+        <div class="form-group col-md-9">
+            <label for="descunidade">Unidade</label>
+            <input type="text" class="form-control" [value]="unidade.nome" readonly=true id="descunidade">            
+        </div>
+     </div>         
 
   </div>
 

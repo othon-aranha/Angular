@@ -13,6 +13,14 @@ export class AreaService extends BaseResourceService<Area> {
    super('http://localhost:8081/area', injector, Area.fromJson);
   }
 
+  public recuperarUnidadepelaSigla(sigla: string): Observable<Area> {
+    return this.http.get<Array<Area>>(this.apiPath + '/sigla/' + sigla, {headers: this.headers})
+    .pipe(
+      map(this.jsonDataToResource.bind(this)),
+      catchError(this.handleError)
+    );
+  }
+
   public listarUnidadesIniciadasCom(sigla: string): Observable<Array<Area>> {
       return this.http.get<Array<Area>>(this.apiPath + this.getAllSufix() + '/sigla/' + sigla, {headers: this.headers})
       .pipe(

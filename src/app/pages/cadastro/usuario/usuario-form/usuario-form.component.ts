@@ -1,3 +1,6 @@
+import { Unidade } from './../../../../domain/unidade';
+import { Area } from './../../../../domain/area';
+import { AreaService } from './../../../../service/area.service';
 import { TipoUsuario } from './../../../../domain/tipo-usuario';
 import { FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Injector } from '@angular/core';
@@ -16,11 +19,16 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
 
   tipoUsuario = TipoUsuario;
   servidor: Servidor = new Servidor();
-  constructor(protected usuarioService: UsuarioService, protected injector: Injector, private servidorService: ServidorService) {
+  unidade: Area;
+  constructor(protected usuarioService: UsuarioService, protected injector: Injector, private servidorService: ServidorService
+              ,private areaService: AreaService) {
     super(injector, new Usuario(), usuarioService, Usuario.fromJson);
   }
 
   ngOnInit() {
+    this.unidade = new Area();
+    this.unidade.sigla = '';
+    this.unidade.nome = '';
     super.ngOnInit();
   }
 
@@ -33,7 +41,7 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
       matriculaServidor:  new FormControl( '', [Validators.required, Validators.minLength(8)] ),
       matriculaFuncionario:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       email:      new FormControl( '', Validators.email ),
-      senha:     new FormControl('',  [Validators.required, Validators.minLength(7)] ),
+      // senha:     new FormControl('',  [Validators.required, Validators.minLength(7)] ),
       numeroCpf: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       status:  new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       tipo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
@@ -44,7 +52,9 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
   }
 
   onAfterloadResource() {
-
+    if ( this.resourceForm.get('unidade').value !== undefined ) {
+      this.unidade = this.resourceForm.get('unidade').value;
+    }
   }
 
   GerenciaControles(): void {
@@ -64,6 +74,8 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
         this.resourceForm.get('matriculaFuncionario').clearValidators();
         this.resourceForm.get('matriculaServidor').setValue(null);
         this.resourceForm.get('matriculaFuncionario').setValue(null);
+        this.resourceForm.get('numeroCpf').setValue(null);
+        this.resourceForm.get('email').setValue(null);
         this.resourceForm.get('nome').setValue(null);
       }
       this.resourceForm.get('alias').updateValueAndValidity();
@@ -78,13 +90,34 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
         this.resourceForm.get('nome').setValue(this.servidor.nome);
         this.resourceForm.get('numeroCpf').setValue(this.servidor.numeroCpf);
         this.resourceForm.get('email').setValue(this.servidor.email);
-      },
-      (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
+      }
     );
 
     } else if ( ( matricula !== undefined ) && ( matricula === '' ) ) {
       this.limpaDadosServidor();
     }
+  }
+
+
+  CarregaDadosUnidade(siglaUnidade: string) {
+    this.unidade = new Area();
+    this.resourceForm.get('unidade').setValue(null);
+    this.unidade.nome = '';
+    if ( ( siglaUnidade !== undefined ) && ( siglaUnidade !== '' ) ) {
+      this.areaService.recuperarUnidadepelaSigla(siglaUnidade).subscribe(
+        (resource) => {
+          this.unidade = resource;
+          this.resourceForm.get('unidade').setValue(resource);
+        }
+      )
+      }
+      if ( this.unidade.sigla === '' ) {
+        this.limpaDadosUnidadeServidor();
+      }
+  }
+
+  limpaDadosUnidadeServidor() {
+    this.unidade.nome = '';
   }
 
   limpaDadosServidor() {
