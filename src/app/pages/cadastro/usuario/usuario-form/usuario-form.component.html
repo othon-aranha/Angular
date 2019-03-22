@@ -57,7 +57,7 @@
         </div>
         
           
-        <div *ngIf="( resourceForm.get('tipo').value === 'AVULSO' ); else OthersBlock" class="form-group col-md-12">
+        <div *ngIf="( resourceForm.get('tipo').value === 'AVULSO' ) ; else OthersBlock" class="form-group col-md-12">
               <label for="nome">Nome</label>
               <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) && ( resourceForm.get('tipo').value !== 'AVULSO'  ) " 
                       id="nome" name="nome" formControlName="nome">
@@ -66,10 +66,10 @@
         </div>
 
         <ng-template #OthersBlock>
-            
-          <div class="form-group col-md-10">
+ 
+          <div *ngIf=" ( resourceForm.get('tipo').value !== 'APLICACAO' )" class="form-group col-md-10">
               <label for="nome">Nome</label>
-              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) && ( resourceForm.get('tipo').value !== 'AVULSO'  ) " 
+              <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) && ( ( resourceForm.get('tipo').value !== 'AVULSO'  ) || ( resourceForm.get('tipo').value !== 'APLICACAO' ) ) " 
                       id="nome" name="nome" formControlName="nome">
     
               <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
@@ -80,7 +80,7 @@
       </div>
 
       <!-- Email e CPF -->
-      <div class="form-row">
+      <div *ngIf=" ( resourceForm.get('tipo').value !== 'APLICACAO' )" class="form-row">
         <div class="form-group col-md-4">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" name="email" formControlName="email">
@@ -115,6 +115,14 @@
   </div>
 
   </div>
+
+  <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
+
+  <button routerLink="/usuario" class="btn btn-primary btn-lg float-left mt-3"><< Voltar</button>
+  <button [disabled]="resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
+    Salvar
+  </button>
+
 </form>
 
 {{ resourceForm.value | json }}

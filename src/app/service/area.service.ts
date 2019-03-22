@@ -14,7 +14,7 @@ export class AreaService extends BaseResourceService<Area> {
   }
 
   public recuperarUnidadepelaSigla(sigla: string): Observable<Area> {
-    return this.http.get<Array<Area>>(this.apiPath + '/sigla/' + sigla, {headers: this.headers})
+    return this.http.get<Area>(this.apiPath + '/sigla/' + sigla, {headers: this.headers})
     .pipe(
       map(this.jsonDataToResource.bind(this)),
       catchError(this.handleError)

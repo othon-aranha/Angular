@@ -21,7 +21,7 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
   servidor: Servidor = new Servidor();
   unidade: Area;
   constructor(protected usuarioService: UsuarioService, protected injector: Injector, private servidorService: ServidorService
-              ,private areaService: AreaService) {
+              , private areaService: AreaService) {
     super(injector, new Usuario(), usuarioService, Usuario.fromJson);
   }
 
@@ -39,10 +39,10 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
       login: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       nome: new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       matriculaServidor:  new FormControl( '', [Validators.required, Validators.minLength(8)] ),
-      matriculaFuncionario:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      matriculaFuncionario:  new FormControl( '', [Validators.minLength(1)] ),
       email:      new FormControl( '', Validators.email ),
       // senha:     new FormControl('',  [Validators.required, Validators.minLength(7)] ),
-      numeroCpf: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      numeroCpf: new FormControl( '', [Validators.minLength(3)] ),
       status:  new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       tipo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       // usuarioModulos: new FormControl( '', [Validators.required] ),
@@ -52,9 +52,11 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
   }
 
   onAfterloadResource() {
+    this.resourceForm.get('id').setValue(this.id);
     if ( this.resourceForm.get('unidade').value !== undefined ) {
       this.unidade = this.resourceForm.get('unidade').value;
     }
+    this.GerenciaControles();
   }
 
   GerenciaControles(): void {
@@ -74,11 +76,15 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
         this.resourceForm.get('matriculaFuncionario').clearValidators();
         this.resourceForm.get('matriculaServidor').setValue(null);
         this.resourceForm.get('matriculaFuncionario').setValue(null);
-        this.resourceForm.get('numeroCpf').setValue(null);
-        this.resourceForm.get('email').setValue(null);
+      }  else if ( this.resourceForm.get('tipo').value === 'APLICACAO') {
+        this.resourceForm.get('matriculaServidor').clearValidators();
+        this.resourceForm.get('matriculaFuncionario').clearValidators();
+        this.resourceForm.get('nome').clearValidators();
+        this.resourceForm.get('matriculaServidor').setValue(null);
+        this.resourceForm.get('matriculaFuncionario').setValue(null);
         this.resourceForm.get('nome').setValue(null);
       }
-      this.resourceForm.get('alias').updateValueAndValidity();
+      this.resourceForm.updateValueAndValidity();
     }
   }
 
@@ -109,7 +115,7 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
           this.unidade = resource;
           this.resourceForm.get('unidade').setValue(resource);
         }
-      )
+      );
       }
       if ( this.unidade.sigla === '' ) {
         this.limpaDadosUnidadeServidor();
