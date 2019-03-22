@@ -56,37 +56,63 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
     if ( this.resourceForm.get('unidade').value !== undefined ) {
       this.unidade = this.resourceForm.get('unidade').value;
     }
-    this.GerenciaControles();
+    this.DefineRegraseValidadores(this.resourceForm.get('tipo').value);
   }
 
-  GerenciaControles(): void {
-    if ( this.resourceForm !== undefined ) {
-      if ( this.resourceForm.get('tipo').value === 'TERCEIRIZADO') {
+  AtribuiValoresDefault(): void {
+      if ( this.resourceForm !== undefined ) {
+      const pTipoUsuario: string = this.resourceForm.get('tipo').value;
+      this.DefineRegraseValidadores(pTipoUsuario);
+      switch(pTipoUsuario){
+        case 'TERCEIRIZADO': {
+          this.resourceForm.get('matriculaServidor').setValue(null);
+          this.resourceForm.get('nome').setValue(null);
+          break;
+        }
+        case 'SERVIDOR': {
+          this.resourceForm.get('matriculaFuncionario').setValue(null);
+          this.resourceForm.get('nome').setValue(null);
+          break;
+        }
+        case 'AVULSO': {
+          this.resourceForm.get('matriculaServidor').setValue(null);
+          this.resourceForm.get('matriculaFuncionario').setValue(null);
+          break;
+        }
+        case 'APLICACAO': {
+          this.resourceForm.get('matriculaServidor').setValue(null);
+          this.resourceForm.get('matriculaFuncionario').setValue(null);
+          this.resourceForm.get('nome').setValue(null);
+          break;
+        }
+      }
+    }
+  }
+
+  DefineRegraseValidadores(pTipoUsuario: String): void {
+    switch(pTipoUsuario) {
+      case 'TERCEIRIZADO': {
         this.resourceForm.get('matriculaFuncionario').setValidators([Validators.required, Validators.minLength(2)]);
         this.resourceForm.get('matriculaServidor').clearValidators();
-        this.resourceForm.get('matriculaServidor').setValue(null);
-        this.resourceForm.get('nome').setValue(null);
-      } else if ( this.resourceForm.get('tipo').value === 'SERVIDOR') {
+        break;
+      } case 'SERVIDOR': {
         this.resourceForm.get('matriculaServidor').setValidators([Validators.required, Validators.minLength(8)]);
         this.resourceForm.get('matriculaFuncionario').clearValidators();
-        this.resourceForm.get('matriculaFuncionario').setValue(null);
-        this.resourceForm.get('nome').setValue(null);
-      } else if ( this.resourceForm.get('tipo').value === 'AVULSO') {
+        break;
+      } case 'AVULSO': {
         this.resourceForm.get('matriculaServidor').clearValidators();
         this.resourceForm.get('matriculaFuncionario').clearValidators();
-        this.resourceForm.get('matriculaServidor').setValue(null);
-        this.resourceForm.get('matriculaFuncionario').setValue(null);
-      }  else if ( this.resourceForm.get('tipo').value === 'APLICACAO') {
+        break;
+      }  case 'APLICACAO': {
         this.resourceForm.get('matriculaServidor').clearValidators();
         this.resourceForm.get('matriculaFuncionario').clearValidators();
         this.resourceForm.get('nome').clearValidators();
-        this.resourceForm.get('matriculaServidor').setValue(null);
-        this.resourceForm.get('matriculaFuncionario').setValue(null);
-        this.resourceForm.get('nome').setValue(null);
+        break;
       }
-      this.resourceForm.updateValueAndValidity();
     }
+    this.resourceForm.updateValueAndValidity();
   }
+
 
   CarregaDadosServidor(matricula: string) {
     if ( ( matricula !== undefined ) && ( matricula !== '' ) ) {
