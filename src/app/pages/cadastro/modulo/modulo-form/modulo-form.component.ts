@@ -1,15 +1,16 @@
-import { TipoAtualizacao } from './../../../../domain/tipo-atualizacao';
+
 import { MaquinaService } from './../../../../service/maquina.service';
 import { ModuloService } from '../../../../service/modulo.service';
 import { Component, OnInit, Injector } from '@angular/core';
 
-import { Validators, FormControl, NgControlStatusGroup, AbstractControl, FormGroup } from '@angular/forms';
+import { Validators, FormControl, FormGroup } from '@angular/forms';
 
 import { BaseResourceFormComponent } from '../../../../shared/components/base-resource-form/base-resource-form.component';
 import { Modulo } from '../../../../domain/modulo';
 import { MaquinaServidora } from '../../../../domain/maquina-servidora';
 import { TribunalService } from '../../../../service/tribunal.service';
-import { TipoAplicacao } from '../../../../domain/tipo-aplicacao';
+
+import { Tribunal } from '../../../../domain/tribunal';
 
 
 @Component({
@@ -28,18 +29,15 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   controlaVersao: boolean;
   controlaAtualizacao: boolean;
 
-  TipoAplicacao: any[] = [{label: '...', value: ''},
-                          {label: 'Desktop', value: 'DESKTOP'},
+  TipoAplicacao: any[] = [{label: 'Desktop', value: 'DESKTOP'},
                           {label: 'Web', value: 'WEB'},
                           {label: 'Híbrida', value: 'HIBRIDA'}];
 
-  TipoAtualizacao: any[] = [{label: '...', value: ''},
-                          {label: 'Versão', value: 'POR_VERSAO'},
-                          {label: 'Data', value: 'POR_DATA'},
-                          {label: 'Não Atualiza', value: 'NAO_ATUALIZA'}];
+  TipoAtualizacao: any[] = [{label: 'Versão', value: 'POR_VERSAO'},
+                            {label: 'Data', value: 'POR_DATA'},
+                            {label: 'Não Atualiza', value: 'NAO_ATUALIZA'}];
 
-  StatusModulo: any[] = [{label: '...', value: ''},
-                         {label: 'Desenvolvimento', value: 'DESENVOLVIMENT'},
+  StatusModulo: any[] = [{label: 'Desenvolvimento', value: 'DESENVOLVIMENT'},
                          {label: 'Homologação', value: 'HOMOLOGACAO'},
                          {label: 'Produção', value: 'PRODUCAO'}];
 
@@ -77,7 +75,10 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
         this.resourceForm.get('alias').setValue(null);
         this.resourceForm.get('alias').clearValidators();
         this.ctrlsAtualizacao = true;
-      } else {
+      } else if ( this.resourceForm.get('tipoModulo').value in ['DESKTOP', 'HIBRIDA'] ) {
+        this.TipoAtualizacao = [];
+        this.TipoAtualizacao = [{label: 'Versão', value: 'POR_VERSAO'},
+                                {label: 'Data', value: 'POR_DATA'}];
         this.resourceForm.get('alias').setValidators([Validators.required, Validators.minLength(1)]);
         this.ctrlsAtualizacao = false;
 
@@ -87,9 +88,9 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
         // this.resourceForm.get('alias').disable();
         this.resourceForm.get('alias').setValue(null);
         // this.resourceForm.get('tipoAtualizacao').disable();
-        this.resourceForm.get('tipoAtualizacao').setValue('NAO_ATUALIZA');
+        this.resourceForm.get('tipoAtualizacao').setValue('POR_VERSAO');
       }
-      this.resourceForm.get('alias').updateValueAndValidity();
+      this.resourceForm.updateValueAndValidity();
     }
   }
 
@@ -125,6 +126,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
       descricao:    new FormControl( '', [Validators.required, Validators.minLength(1)] ),
       esquema:      new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       email:        new FormControl( '', Validators.email ),
+      nomeExecutavel: new FormControl( '', ),
       majorVersion: new FormControl( '', ),
       minorVersion: new FormControl( '', ),
       release:      new FormControl( '', ),
@@ -150,7 +152,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   }
 
   alteracontrolaAcesso(e) {
-    if ( e.checked ) {
+    if ( e ) {
       this.resourceForm.get('controlaAcesso').setValue('S');
     } else {
       this.resourceForm.get('controlaAcesso').setValue('N');
@@ -158,12 +160,16 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   }
 
   onAfterloadResource() {
+    let tribunal: Tribunal;
     this.resourceForm.get('id').setValue(this.id);
     this.bcontrolaAcesso = ( this.resourceForm.get('controlaAcesso').value === 'S' );
     this.GerenciaControles();
     this.siglaModulo = this.resource.sigla;
-    this.resourceForm.get('tribunal').setValue(this.tribunalService.recuperarTribunalLocal());
+    this.tribunalService.recuperarTribunalLocal().subscribe(dados => tribunal = dados);
+    if ( tribunal !== undefined ) {
+    this.resourceForm.get('tribunal').setValue(tribunal); }
     this.cdTrib = 1;
+    this.alteracontrolaAcesso(this.bcontrolaAcesso);
   }
 
   protected creationPageTitle(): string {

@@ -19,7 +19,7 @@
     <div class="card-body">
       <div *ngIf="resource.tipoModulo !== 'WEB'" class="form-row">    
           <div class="form-group col-md-2">
-              <label for="name">Versão</label>
+              <label for="versao">Versão</label>
 
               <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="versao" name="versao" formControlName="versao" style="float:rigth">
     
@@ -28,10 +28,11 @@
       </div>
 
 
-      <!-- Sigla -->
+      
       <div class="form-row">
+        <!-- Sigla -->
         <div class="form-group col-md-2">
-            <label for="name">Sigla</label>
+            <label for="sigla">Sigla</label>
             <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="sigla" name="sigla" formControlName="sigla">
   
             <app-form-field-error [form-control]="resourceForm.get('sigla')"></app-form-field-error>
@@ -46,24 +47,33 @@
             <app-form-field-error [form-control]="resourceForm.get('tipoModulo')"></app-form-field-error>
         </div>
 
+        <div class="form-group col-md-2">
+          <label for="nomeExecutavel">Nome Executável</label>
+          <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="nomeExecutavel" name="nomeExecutavel" formControlName="nomeExecutavel">
+
+          <app-form-field-error [form-control]="resourceForm.get('nomeExecutavel')"></app-form-field-error>
+        </div>              
+
+      </div>
+
+      
+      <div class="form-row">
         <!-- name -->
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-3">
           <label for="name">Módulo</label>
           <input type="text" class="form-control" id="nome" name="nome" formControlName="nome">
     
           <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
-        </div>
-  
-      </div>
+        </div>            
 
-      <!-- titulo -->
-      <div class="form-row">
-          <div class="form-group col-md-12">
+        <!-- titulo -->
+      
+        <div class="form-group col-md-9">
             <label for="name">Título</label>
             <input type="text" class="form-control" id="descricao" name="descricao" formControlName="descricao">
       
             <app-form-field-error [form-control]="resourceForm.get('descricao')"></app-form-field-error>
-          </div>      
+        </div>      
       </div>
 
       <div class="form-row">
@@ -123,7 +133,7 @@
           
               <div class="form-group col-md-3"> 
                   <label for="controlaAcesso">Controla Acesso</label> 
-                  <p-inputSwitch ([ngModel])="bcontrolaAcesso" id="controlaAcesso" (onChange)="alteracontrolaAcesso($event)"></p-inputSwitch>
+                  <p-inputSwitch [(checked)]="bcontrolaAcesso" id="controlaAcesso" (onChange)="alteracontrolaAcesso($event.checked)"></p-inputSwitch>
               </div>
             </div>
           </div>
