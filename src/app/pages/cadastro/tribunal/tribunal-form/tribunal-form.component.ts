@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { Validators, FormArray, FormControl, FormGroup, AbstractControl } from '@angular/forms';
+import { Validators, FormControl } from '@angular/forms';
 
 import { BaseResourceFormComponent } from '../../../../shared/components/base-resource-form/base-resource-form.component';
 import { Tribunal } from '../../../../domain/tribunal';
@@ -14,6 +14,7 @@ import { TribunalService } from '../../../../service/tribunal.service';
 export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> implements OnInit {
   ufs = [];
   editing: boolean = false;
+  checked: boolean = false;
 
   constructor(protected tribunalService: TribunalService, protected injector: Injector) {
     super(injector, new Tribunal(), tribunalService, Tribunal.fromJson);
@@ -77,6 +78,14 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
   }
 
   onAfterloadResource() {
+    this.checked = ( this.resourceForm.get('acesso').value === '*' );
+  }
 
+  marcaTribunalLocal(value: boolean): void {
+    if ( value ) {
+      this.resourceForm.get('acesso').setValue('*');
+    } else {
+      this.resourceForm.get('acesso').setValue(null);
+    }
   }
 }

@@ -63,7 +63,7 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
       if ( this.resourceForm !== undefined ) {
       const pTipoUsuario: string = this.resourceForm.get('tipo').value;
       this.DefineRegraseValidadores(pTipoUsuario);
-      switch(pTipoUsuario){
+      switch (pTipoUsuario) {
         case 'TERCEIRIZADO': {
           this.resourceForm.get('matriculaServidor').setValue(null);
           this.resourceForm.get('nome').setValue(null);
@@ -90,18 +90,21 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
   }
 
   DefineRegraseValidadores(pTipoUsuario: String): void {
-    switch(pTipoUsuario) {
+    switch (pTipoUsuario) {
       case 'TERCEIRIZADO': {
         this.resourceForm.get('matriculaFuncionario').setValidators([Validators.required, Validators.minLength(2)]);
         this.resourceForm.get('matriculaServidor').clearValidators();
+        this.resourceForm.get('nome').setValidators([Validators.required, Validators.minLength(1)]);
         break;
       } case 'SERVIDOR': {
         this.resourceForm.get('matriculaServidor').setValidators([Validators.required, Validators.minLength(8)]);
         this.resourceForm.get('matriculaFuncionario').clearValidators();
+        this.resourceForm.get('nome').setValidators([Validators.required, Validators.minLength(1)]);
         break;
       } case 'AVULSO': {
         this.resourceForm.get('matriculaServidor').clearValidators();
         this.resourceForm.get('matriculaFuncionario').clearValidators();
+        this.resourceForm.get('nome').setValidators([Validators.required, Validators.minLength(1)]);
         break;
       }  case 'APLICACAO': {
         this.resourceForm.get('matriculaServidor').clearValidators();

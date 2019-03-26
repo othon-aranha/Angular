@@ -118,19 +118,23 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id:    new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      sigla: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
-      alias: new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      nome:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      descricao:  new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      esquema:    new FormControl( '', [Validators.required, Validators.minLength(3)] ),
-      email:      new FormControl( '', Validators.email ),
-      versao:     new FormControl('',  [Validators.required, Validators.minLength(7)] ),
-      tipoModulo: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      id:           new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      sigla:        new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      alias:        new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      nome:         new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      descricao:    new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      esquema:      new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      email:        new FormControl( '', Validators.email ),
+      majorVersion: new FormControl( '', ),
+      minorVersion: new FormControl( '', ),
+      release:      new FormControl( '', ),
+      build:        new FormControl( '', ),
+      versao:       new FormControl('',  [Validators.required, Validators.minLength(7)] ),
+      tipoModulo:   new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       tipoAtualizacao:  new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       statusModulo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       mensagemCompartilhada: new FormControl( '', [Validators.required] ),
-      controlaAcesso: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] )
+      controlaAcesso:        new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] )
     });
     // this.formBuilder.control('tipoModulo').registerOnChange(this.GerenciaControles);
   }

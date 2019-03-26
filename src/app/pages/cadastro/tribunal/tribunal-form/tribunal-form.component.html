@@ -18,7 +18,7 @@
     <div class="card-body">
       <div class="form-row">
           <div class="form-group col-md-2"> 
-              <p-inputSwitch onLabel="Sim" offLabel="Não" id="acesso" name="acesso" formControlName="acesso"></p-inputSwitch>
+              <p-inputSwitch  (onChange)="marcaTribunalLocal($event.checked)"></p-inputSwitch>
               <label for="acesso">Tribunal Local</label>
           </div>
       </div>

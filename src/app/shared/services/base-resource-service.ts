@@ -73,7 +73,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   update(resource: T): Observable<T> {
-    console.log(this.getKeys(resource));
+    // console.log(this.getKeys(resource));
 
     const url = `${this.apiPath}/${resource.id}`;
 
