@@ -9,6 +9,11 @@ import { Servidor } from '../../../domain/servidor';
 import { SelectItem } from 'primeng/api';
 
 
+interface Server {
+  name: string;
+  code: number;
+}
+
 @Component({
   selector: 'app-servidor-list',
   templateUrl: './servidor-list.component.html',
@@ -21,10 +26,10 @@ export class ServidorListComponent implements OnInit, OnChanges {
   @Output() onSelecionarTribunal = new EventEmitter<number>();
   @Input() cdTrib: number;
 
-  servers: SelectItem[];
-  maquinas = [];
-  selectedServers: SelectItem[];
-  selservers = [];
+  servers: Server[];
+  maquinas: Array<MaquinaServidora> = [];
+  selectedServers: Server[];
+  selservers: Array<Manutencao> = [];
 
   @Input() siglaModulo: String;
   @Input() cdTrig: number;
@@ -33,7 +38,7 @@ export class ServidorListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-    this.servers = [{label: 'AC1-ADM', value: 'AC1-ADM'},
+    /* this.servers = [{label: 'AC1-ADM', value: 'AC1-ADM'},
                     {label: 'AL1-ADM', value: 'AL1-ADM'},
                     {label: 'AM1-ADM', value: 'AM1-ADM'},
                     {label: 'AP1-ADM', value: 'AP1-ADM'},
@@ -46,7 +51,7 @@ export class ServidorListComponent implements OnInit, OnChanges {
                     {label: 'AC1-ADM', value: 'AC1-ADM'},
                     {label: 'AL1-ADM', value: 'AL1-ADM'},
                     {label: 'AM1-ADM', value: 'AM1-ADM'},
-                    {label: 'AP1-ADM', value: 'AP1-ADM'}];
+                    {label: 'AP1-ADM', value: 'AP1-ADM'}]; */
     // this.carregarTodosServidores();
   }
 
@@ -71,12 +76,12 @@ export class ServidorListComponent implements OnInit, OnChanges {
    */
 
    ngOnChanges() {
-     /* if ( this.cdTrib !== undefined ) {
+      if ( this.cdTrib !== undefined ) {
         this.carregarTodosServidores();
       }
-      if ( this.siglaModulo !== undefined ) {
+      if ( ( this.siglaModulo !== undefined ) && ( this.siglaModulo !== '' ) ) {
         this.carregarServidoresdoModulo();
-      } */
+      }
       // console.log(this.selectedServers);
    }
 
@@ -87,9 +92,11 @@ export class ServidorListComponent implements OnInit, OnChanges {
     .subscribe(
       (resource) => {
         this.maquinas = resource;
-        for (let i = 0; i < this.maquinas.length; i++) {
-          this.servers = [...this.servers, {label: this.maquinas[i].id.alias , value: this.maquinas[i].id.alias}];
-        }
+        this.maquinas.map((item) => { this.servers =
+          [...this.servers, { name: item.alias , code: item.id }]; } );
+        /* for (let i = 0; i < this.maquinas.length; i++) {
+
+        } */
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
     );
@@ -104,9 +111,12 @@ export class ServidorListComponent implements OnInit, OnChanges {
       .subscribe(
         (resource) => {
           this.selservers = resource;
-          for (let i = 0; i < this.selservers.length; i++) {
+          this.selservers.map((item) => { this.selectedServers =
+            // [...this.selectedServers, item['maquinaservidora'].alias]; });
+           [...this.selectedServers, { name: item['maquinaservidora'].alias , code: item['maquinaservidora'].id }]; });
+          /* for (let i = 0; i < this.selservers.length; i++) {
             this.selectedServers = [...this.selectedServers, {label: this.maquinas[i].id.alias , value: this.maquinas[i].id.alias}];
-          }
+          } */
         },
         (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
       );

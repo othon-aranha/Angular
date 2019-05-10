@@ -11,6 +11,8 @@ import { MaquinaServidora } from '../../../../domain/maquina-servidora';
 import { TribunalService } from '../../../../service/tribunal.service';
 
 import { Tribunal } from '../../../../domain/tribunal';
+import { Observable } from 'rxjs';
+import { map, startWith, toArray } from 'rxjs/operators';
 
 
 @Component({
@@ -21,13 +23,15 @@ import { Tribunal } from '../../../../domain/tribunal';
 export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> implements OnInit {
 
   aliasList: any[];
-  aliases: string[];
+  aliases: string[] = [];
   cdTrib: number;
   siglaModulo: string;
   ctrlsAtualizacao: boolean;
   bcontrolaAcesso: boolean;
   controlaVersao: boolean;
   controlaAtualizacao: boolean;
+  autoControl = new FormControl();
+
 
   TipoAplicacao: any[] = [{label: 'Desktop', value: 'DESKTOP'},
                           {label: 'Web', value: 'WEB'},
@@ -67,31 +71,61 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   ngOnInit() {
     // this.cdTrib = this.tribunalService.
     super.ngOnInit();
+    this.carregaAliases();
+  }
+
+  buscaAutoComplete(termo: string) {
+    this.aliasList = [];
+    for (let i = 0; i < this.aliases.length; i++) {
+      const alias = this.aliases[i];
+      if (alias.toLowerCase().indexOf(termo.toLowerCase()) === 0) {
+          this.aliasList.push(alias);
+      }
+    }
+  }
+
+  carregaAliases() {
+    let manutencoes: Array<MaquinaServidora> = [];
+    // let stermo: string;
+
+    // this.maquinaService.listarServidoresdoModuloQContenham(stermo)
+    this.maquinaService.listarMaquinas()
+    .subscribe(
+      (resource) => {
+        manutencoes = resource;
+       manutencoes.forEach((el) => { this.aliases = [...this.aliases, el.alias]; });
+       /* for (let i = 0; i < manutencoes.length; i++) {
+          this.aliases = [...this.aliases,manutencoes[i].alias]; } */
+      },
+      (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
+    );
   }
 
   GerenciaControles(): void {
     if ( this.resourceForm !== undefined ) {
+      this.TipoAtualizacao = [];
       if ( this.resourceForm.get('tipoModulo').value === 'WEB') {
-        this.resourceForm.get('alias').setValue(null);
         this.resourceForm.get('alias').clearValidators();
+        this.resourceForm.get('alias').setValue(null);
+        this.resourceForm.get('tipoAtualizacao').clearValidators();
+        this.resourceForm.get('tipoAtualizacao').setValue(null);
         this.ctrlsAtualizacao = true;
-      } else if ( this.resourceForm.get('tipoModulo').value in ['DESKTOP', 'HIBRIDA'] ) {
-        this.TipoAtualizacao = [];
+      } else {
         this.TipoAtualizacao = [{label: 'Versão', value: 'POR_VERSAO'},
                                 {label: 'Data', value: 'POR_DATA'}];
-        this.resourceForm.get('alias').setValidators([Validators.required, Validators.minLength(1)]);
+        this.resourceForm.get('alias').setValidators([Validators.required, Validators.minLength(3)]);
+        this.resourceForm.get('tipoAtualizacao').setValidators([Validators.required, Validators.minLength(3)]);
         this.ctrlsAtualizacao = false;
 
-        this.controlaAtualizacao = true;
-        this.controlaVersao = true;
-        this.resourceForm.get('alias').clearValidators();
-        // this.resourceForm.get('alias').disable();
-        this.resourceForm.get('alias').setValue(null);
         // this.resourceForm.get('tipoAtualizacao').disable();
         this.resourceForm.get('tipoAtualizacao').setValue('POR_VERSAO');
       }
       this.resourceForm.updateValueAndValidity();
     }
+  }
+
+  alterastatusModulo(status: string) {
+    this.resourceForm.get('statusModulo').setValue(status);
   }
 
   /*
@@ -100,44 +134,28 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   }
   */
 
-
-  buscaAutoComplete(event) {
-    const termo = event.query;
-    this.aliases = [];
-    let manutencoes: Array<MaquinaServidora> = [];
-    this.maquinaService.listarServidoresdoModuloQContenham(termo)
-    .subscribe(
-      (resource) => {
-        manutencoes = resource;
-        for (let i = 0; i < manutencoes.length; i++) {
-          this.aliases = [...this.aliases, manutencoes[i].id.alias];
-        }
-      },
-      (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
-    );
-  }
-
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id:           new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      sigla:        new FormControl( '', [Validators.required, Validators.minLength(3)] ),
-      alias:        new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      nome:         new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      descricao:    new FormControl( '', [Validators.required, Validators.minLength(1)] ),
-      esquema:      new FormControl( '', [Validators.required, Validators.minLength(3)] ),
-      email:        new FormControl( '', Validators.email ),
+      id:             new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      sigla:          new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      alias:          new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      nome:           new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      descricao:      new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      esquema:        new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      email:          new FormControl( '', Validators.email ),
       nomeExecutavel: new FormControl( '', ),
-      majorVersion: new FormControl( '', ),
-      minorVersion: new FormControl( '', ),
-      release:      new FormControl( '', ),
-      build:        new FormControl( '', ),
-      versao:       new FormControl('',  [Validators.required, Validators.minLength(7)] ),
-      tipoModulo:   new FormControl( '', [Validators.required, Validators.minLength(3)] ),
-      tipoAtualizacao:  new FormControl( '', [Validators.required, Validators.minLength(3)] ),
-      statusModulo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      majorVersion:   new FormControl( '', ),
+      minorVersion:   new FormControl( '', ),
+      release:        new FormControl( '', ),
+      build:          new FormControl( '', ),
+      versao:         new FormControl('',  [Validators.required, Validators.minLength(7)] ),
+      tipoModulo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      tipoAtualizacao:       new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      statusModulo:          new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       mensagemCompartilhada: new FormControl( '', [Validators.required] ),
       controlaAcesso:        new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] )
     });
+
     // this.formBuilder.control('tipoModulo').registerOnChange(this.GerenciaControles);
   }
 
@@ -167,7 +185,8 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     this.siglaModulo = this.resource.sigla;
     this.tribunalService.recuperarTribunalLocal().subscribe(dados => tribunal = dados);
     if ( tribunal !== undefined ) {
-    this.resourceForm.get('tribunal').setValue(tribunal); }
+      this.resourceForm.get('tribunal').setValue(tribunal);
+    }
     this.cdTrib = 1;
     this.alteracontrolaAcesso(this.bcontrolaAcesso);
   }

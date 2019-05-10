@@ -3,8 +3,6 @@ import { MaquinaPk } from './maquina-pk';
 import { MaquinaServidora } from './maquina-servidora';
 export class Manutencao {
     id: number;
-    maquinaServidora: MaquinaServidora;
-    modulo: Modulo;
     status: string;
     dataManutencao: Date;
     mensagemErro: string;
@@ -12,4 +10,6 @@ export class Manutencao {
     conexao: String;
     maquina: string;
     instancia: String;
+    maquinaServidora: MaquinaServidora;
+    modulo: Modulo;
 }

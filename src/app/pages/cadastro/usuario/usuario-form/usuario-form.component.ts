@@ -20,6 +20,7 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
   tipoUsuario = TipoUsuario;
   servidor: Servidor = new Servidor();
   unidade: Area;
+  situacao: boolean;
   constructor(protected usuarioService: UsuarioService, protected injector: Injector, private servidorService: ServidorService
               , private areaService: AreaService) {
     super(injector, new Usuario(), usuarioService, Usuario.fromJson);
@@ -56,6 +57,8 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
     if ( this.resourceForm.get('unidade').value !== undefined ) {
       this.unidade = this.resourceForm.get('unidade').value;
     }
+    this.situacao = ( this.resourceForm.get('status').value === 'ATIVO' );
+    this.marcaSituacao(this.situacao);
     this.DefineRegraseValidadores(this.resourceForm.get('tipo').value);
   }
 
@@ -103,7 +106,9 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
         break;
       } case 'AVULSO': {
         this.resourceForm.get('matriculaServidor').clearValidators();
+        this.resourceForm.get('matriculaServidor').setValue(null);
         this.resourceForm.get('matriculaFuncionario').clearValidators();
+        this.resourceForm.get('matriculaFuncionario').setValue(null);
         this.resourceForm.get('nome').setValidators([Validators.required, Validators.minLength(1)]);
         break;
       }  case 'APLICACAO': {
@@ -113,6 +118,9 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
         break;
       }
     }
+    this.resourceForm.get('matriculaServidor').updateValueAndValidity();
+    this.resourceForm.get('matriculaFuncionario').updateValueAndValidity();
+    this.resourceForm.get('nome').updateValueAndValidity();
     this.resourceForm.updateValueAndValidity();
   }
 
@@ -165,6 +173,14 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
 
     if ( ( this.resourceForm.get('tipo').value === 'SERVIDOR') || ( this.resourceForm.get('tipo').value === 'AVULSO') ) {
       this.resourceForm.get('matriculaServidor').setValue(null);
+    }
+  }
+
+  marcaSituacao(value: boolean): void {
+    if ( value ) {
+      this.resourceForm.get('status').setValue('ATIVO');
+    } else {
+      this.resourceForm.get('status').setValue('INATIVO');
     }
   }
 

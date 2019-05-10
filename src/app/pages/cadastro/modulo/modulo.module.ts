@@ -22,6 +22,7 @@ import { MaquinaService } from '../../../service/maquina.service';
 import { ModuloComponent } from './modulo.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ListboxModule } from 'primeng/listbox';
+import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -36,6 +37,8 @@ import { ListboxModule } from 'primeng/listbox';
     InputSwitchModule,
     InputTextModule,
     ListboxModule,
+    MatInputModule,
+    MatAutocompleteModule,
     MultiSelectModule,
     ReactiveFormsModule,
     TableModule,

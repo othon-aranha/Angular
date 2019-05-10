@@ -20,7 +20,21 @@ label{
     text-align: left; float: left; 
 }
 
+p-autoComplete {
+    text-align: left; float: left;   
+}
+
 h6{
     color: green; 
     text-align: left; float: left;     
 } 
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }

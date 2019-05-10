@@ -78,15 +78,28 @@
 
       <div class="form-row">
         <!-- Alias -->
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-2" *ngIf="resourceForm.get('tipoModulo').value !== 'WEB'">
+            <!-- <mat-form-field class="example-full-width">
+              <input type="text" placeholder="Alias" aria-label="Number" matInput 
+                [displayWith]="displayFn" [formControl]="autoControl" id="alias" name="alias" formControlName="alias" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of aliases | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field> -->
+            
             <label for="alias">Alias</label>
-
-            <p-autoComplete class="form-control" id="alias" name="alias" formControlName="alias" 
-                            [inputid]="alias" [suggestions]="aliases" (completeMethod)="buscaAutoComplete($event)"
-                            [minLength]="3" [forceSelection]="true">
+            <p-autoComplete id="alias" name="alias" formControlName="alias" 
+                            [inputid]="alias" [suggestions]="aliasList" (completeMethod)="buscaAutoComplete($event.query)"
+                            [size]="20" [minLength]="1" [forceSelection]="true">
             </p-autoComplete>
 
             <app-form-field-error [form-control]="resourceForm.get('alias')"></app-form-field-error>
+        </div>
+
+        <div class="form-group col-md-2">
+
         </div>
 
         <!-- Esquema -->
@@ -98,7 +111,7 @@
         </div>        
 
         <!-- email -->
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-4">
             <label for="email">Email do Responsável</label>
             <input type="text" class="form-control" id="email" name="email" formControlName="email">
       
@@ -109,21 +122,19 @@
 
       <div class="form-row">
 
-          <div class="card" style="width: 75%;">
+          <div class="card" style="width: 40%;">
             <h6 class="card-header">Dados de Atualização</h6>
             <div class="card-body">
-              <div class="form-group col-md-3">
-                  <label class="input-group-text" for="tipoAtualizacao">Tipo</label>
-                  <select class="custom-select my-1 mr-sm-2" [disabled]="controlaAtualizacao" id="tipoAtualizacao" name="tipoAtualizacao" formControlName="tipoAtualizacao">
-                      <option *ngFor="let option of TipoAtualizacao" [value]="option.value">{{ option.label }}</option>            
-                  </select>
-              </div>
+                <div class="form-group col-md-3">
+                    <div *ngIf="resourceForm.get('tipoModulo').value !== 'WEB'">  
+                      <label class="input-group-text" for="tipoAtualizacao">Tipo</label>
+                      <p-dropdown id="tipoAtualizacao" name="tipoAtualizacao" [options]="TipoAtualizacao" optionLabel="label"></p-dropdown>
+                  </div>
+                </div>
 
               <div class="form-group col-md-3">
                   <label class="input-group-text" for="statusModulo">Situação</label>
-                  <select class="custom-select my-1 mr-sm-2" id="statusModulo" name="statusModulo" formControlName="statusModulo">
-                      <option *ngFor="let option of StatusModulo" [value]="option.value">{{ option.label }}</option>            
-                  </select>
+                  <p-dropdown id="statusModulo" name="statusModulo" [options]="StatusModulo" optionLabel="label" onChange="alterastatusModulo($event.value)" ></p-dropdown>
               </div>              
 
               <div class="form-group col-md-3"> 
@@ -138,7 +149,7 @@
             </div>
           </div>
 
-          <div class="card" style="width: 25%;">
+          <div class="card" style="width: 30%;">
               <h6 class="card-header">Servidores do Módulo</h6>
             <div class="card-body">
                 <div class="form-group col-md">
@@ -146,6 +157,15 @@
                 </div>  
             </div>
           </div>
+
+          <div class="card" style="width: 30%;">
+            <h6 class="card-header">Funcionalidades do Módulo</h6>
+          <div class="card-body">
+              <div class="form-group col-md">
+                  <app-servidor-list [siglaModulo]="siglaModulo" [cdTrib]="cdTrib" ngDefaultControl></app-servidor-list>
+              </div>  
+          </div>
+        </div>          
 
     </div>      
 
@@ -162,4 +182,4 @@
 </form>
 
 {{ resourceForm.value | json }}
-{{ resourceForm.status }}
+{{ resourceForm.get('alias').required }}

@@ -8,7 +8,7 @@ import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { TipoUsuarioMultiComponent } from '../../../shared/components/tipo-usuario-multi/tipo-usuario-multi.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
-import { ConfirmDialogModule, GrowlModule, InputTextModule, CheckboxModule } from 'primeng/primeng';
+import { ConfirmDialogModule, GrowlModule, InputTextModule, CheckboxModule, InputSwitchModule } from 'primeng/primeng';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { DialogModule } from 'primeng/dialog';
 import { SharedModule } from '../../../shared/shared.module';
@@ -23,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ContextMenuModule,
     DialogModule,
     GrowlModule,
+    InputSwitchModule,
     InputTextModule,
     MultiSelectModule,
     ReactiveFormsModule,

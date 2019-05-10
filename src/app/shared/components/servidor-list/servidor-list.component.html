@@ -1,5 +1,9 @@
 <p-listbox [options]="servers" [(ngModel)]="selectedServers" multiple="multiple" 
-           checkbox="checkbox" filter="filter" optionLabel="label" 
-           [style]="{'width':'100%'}" [listStyle]="{'max-height':'250px'}">
+           checkbox="checkbox" filter="filter" dataKey="code" optionLabel="name" 
+           [style]="{'width':'100%'}" [listStyle]="{'max-height':'250px','margin':'5px 0 0 5px'}">
+           <p-header>
+            <i class="fas fa-server"></i>
+            Servidores
+          </p-header>
 </p-listbox>
-<p>Selected Cities: <span *ngFor="let c of selectedServers" style="margin-right: 10px">{{c.value}}</span></p>
+<p>Selected Cities: <span *ngFor="let c of selectedServers" style="margin-right: 10px">{{c.name}}</span></p>
