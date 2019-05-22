@@ -24,7 +24,6 @@ interface Server {
 export class ServidorListComponent implements OnInit, OnChanges {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onSelecionarTribunal = new EventEmitter<number>();
-  @Input() cdTrib: number;
 
   servers: Server[];
   maquinas: Array<MaquinaServidora> = [];
@@ -32,7 +31,7 @@ export class ServidorListComponent implements OnInit, OnChanges {
   selservers: Array<Manutencao> = [];
 
   @Input() siglaModulo: String;
-  @Input() cdTrig: number;
+  @Input() cdTrib: number;
 
   constructor(private aliasService: AliasService, private manutencaService: ManutencaoService ) { }
 
@@ -94,9 +93,6 @@ export class ServidorListComponent implements OnInit, OnChanges {
         this.maquinas = resource;
         this.maquinas.map((item) => { this.servers =
           [...this.servers, { name: item.alias , code: item.id }]; } );
-        /* for (let i = 0; i < this.maquinas.length; i++) {
-
-        } */
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
     );
@@ -113,10 +109,7 @@ export class ServidorListComponent implements OnInit, OnChanges {
           this.selservers = resource;
           this.selservers.map((item) => { this.selectedServers =
             // [...this.selectedServers, item['maquinaservidora'].alias]; });
-           [...this.selectedServers, { name: item['maquinaservidora'].alias , code: item['maquinaservidora'].id }]; });
-          /* for (let i = 0; i < this.selservers.length; i++) {
-            this.selectedServers = [...this.selectedServers, {label: this.maquinas[i].id.alias , value: this.maquinas[i].id.alias}];
-          } */
+           [...this.selectedServers, {name: item['maquinaservidora'].alias , code: item['maquinaservidora'].id} ]; });
         },
         (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
       );

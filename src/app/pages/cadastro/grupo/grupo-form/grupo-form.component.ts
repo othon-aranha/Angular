@@ -5,6 +5,8 @@ import { Grupo } from './../../../../domain/grupo';
 import { Component, OnInit, Injector } from '@angular/core';
 import { BaseResourceFormComponent } from '../../../../shared/components/base-resource-form/base-resource-form.component';
 import { Area } from '../../../../domain/area';
+import { SelectItem } from 'primeng/api';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-grupo-form',
@@ -12,7 +14,9 @@ import { Area } from '../../../../domain/area';
   styleUrls: ['./grupo-form.component.css']
 })
 export class GrupoFormComponent extends BaseResourceFormComponent<Grupo> implements OnInit {
-  areas: Array<string> = [];
+  areasList: any[]; // Lista filtrada
+  areas: Area[] = [];
+
   constructor(protected grupoService: GrupoService, protected injector: Injector, private areaService: AreaService) {
     super(injector, new Grupo(), grupoService, Grupo.fromJson);
   }
@@ -20,6 +24,7 @@ export class GrupoFormComponent extends BaseResourceFormComponent<Grupo> impleme
 
   ngOnInit() {
     super.ngOnInit();
+    this.carregaAreas();
   }
 
   protected buildResourceForm() {
@@ -34,20 +39,27 @@ export class GrupoFormComponent extends BaseResourceFormComponent<Grupo> impleme
 
   }
 
-  buscaAutoComplete(event) {
-    const termo = event.query;
+  carregaAreas() {
     this.areas = [];
-    let manutencoes: Array<Area> = [];
-    this.areaService.listarUnidadesIniciadasCom(event.query)
+    this.areaService.getAll()
     .subscribe(
       (resource) => {
-        manutencoes = resource;
-        for (let i = 0; i < manutencoes.length; i++) {
-          this.areas = [...this.areas, manutencoes[i].sigla];
-        }
+        this.areas = resource;
+        // areasList.forEach((el) => { this.areas = [...this.areas, { value: el.id, label: el.sigla + ' - ' + el.nome}]; });
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
     );
+  }
+
+
+  buscaAutoComplete(termo: string) {
+    this.areasList = [];
+    for (let i = 0; i < this.areas.length; i++) {
+      const area = this.areas[i];
+      if (area.sigla.toLowerCase().indexOf(termo.toLowerCase()) === 0) {
+          this.areasList.push(area.sigla);
+      }
+    }
   }
 
 }

@@ -1,9 +1,22 @@
+
 <p-listbox [options]="servers" [(ngModel)]="selectedServers" multiple="multiple" 
            checkbox="checkbox" filter="filter" dataKey="code" optionLabel="name" 
+           metaKeySelection="true"
            [style]="{'width':'100%'}" [listStyle]="{'max-height':'250px','margin':'5px 0 0 5px'}">
-           <p-header>
+          <p-header>
             <i class="fas fa-server"></i>
             Servidores
           </p-header>
 </p-listbox>
+
+<!--
+<p-scrollPanel [style]="{width: '100%', height: '200px'}" styleClass="custom">
+  <div class="ui-g" style="width:200px;margin-bottom:10px">
+    <ng-template ngFor let-server [ngForOf]="servers"> 
+      <div class="ui-g-12"><p-checkbox name="servidores" checked="true" [value]="server.code" [label]="server.name" [(ngModel)]="selectedServers"></p-checkbox></div>
+    </ng-template>
+  </div>
+</p-scrollPanel>
+
 <p>Selected Cities: <span *ngFor="let c of selectedServers" style="margin-right: 10px">{{c.name}}</span></p>
+-->

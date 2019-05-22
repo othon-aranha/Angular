@@ -11,6 +11,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ListboxModule } from 'primeng/listbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SlideMenuModule } from 'primeng/slidemenu';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -61,6 +62,7 @@ import { SharedModule } from './shared/shared.module';
     PasswordModule,
     RadioButtonModule,
     ReactiveFormsModule,
+    ScrollPanelModule,
     SlideMenuModule,
     AliasModule,
     AreaModule,

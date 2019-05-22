@@ -93,7 +93,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     .subscribe(
       (resource) => {
         manutencoes = resource;
-       manutencoes.forEach((el) => { this.aliases = [...this.aliases, el.alias]; });
+        manutencoes.forEach((el) => { this.aliases = [...this.aliases, el.alias]; });
        /* for (let i = 0; i < manutencoes.length; i++) {
           this.aliases = [...this.aliases,manutencoes[i].alias]; } */
       },

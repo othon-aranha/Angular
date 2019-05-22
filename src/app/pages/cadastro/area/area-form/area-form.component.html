@@ -20,7 +20,7 @@
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <label for="name">Sigla</label>
-                    <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="sigla" name="sigla" formControlName="sigla">
+                    <input type="text" [readonly]="( currentAction === 'edit' ) " id="sigla" name="sigla" formControlName="sigla">
         
                     <app-form-field-error [form-control]="resourceForm.get('sigla')"></app-form-field-error>
                 </div>                  
