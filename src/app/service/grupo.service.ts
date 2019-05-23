@@ -19,7 +19,7 @@ export class GrupoService extends BaseResourceService<Grupo> {
   }
 
   listarGruposporSiglaUnidade(sigla: string): Observable<Array<Grupo>> {
-    return this.http.get<Array<Grupo>>(this.apiPath + this.getAllSufix() + '/' + sigla, {headers: this.headers})
+    return this.http.get<Array<Grupo>>(this.apiPath + this.getAllSufix() + '/sigla/' + sigla, {headers: this.headers})
     .pipe(
       map(this.jsonDataToResources.bind(this)),
       catchError(this.handleError)

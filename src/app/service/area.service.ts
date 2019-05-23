@@ -21,6 +21,14 @@ export class AreaService extends BaseResourceService<Area> {
     );
   }
 
+  public listarUnidadesAtivas(status: boolean): Observable<Array<Area>> {
+    return this.http.get<Array<Area>>(this.apiPath + this.getAllSufix() + '/status/' + status, {headers: this.headers})
+    .pipe(
+      map(this.jsonDataToResources.bind(this)),
+      catchError(this.handleError)
+    );
+  }
+
   public listarUnidadesIniciadasCom(sigla: string): Observable<Array<Area>> {
       return this.http.get<Array<Area>>(this.apiPath + this.getAllSufix() + '/sigla/' + sigla, {headers: this.headers})
       .pipe(

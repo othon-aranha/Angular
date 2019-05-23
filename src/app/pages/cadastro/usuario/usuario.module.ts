@@ -11,6 +11,7 @@ import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule, GrowlModule, InputTextModule, CheckboxModule, InputSwitchModule } from 'primeng/primeng';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { DialogModule } from 'primeng/dialog';
+import { TabViewModule } from 'primeng/tabview';
 import { SharedModule } from '../../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -28,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MultiSelectModule,
     ReactiveFormsModule,
     TableModule,
+    TabViewModule,
     SharedModule,
     UsuarioRoutingModule
   ],

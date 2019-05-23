@@ -10,130 +10,142 @@
   <article>
 
     <p-growl [value]="msgs"></p-growl>
-    <form [formGroup]="resourceForm" (submit)="submitForm()">  
-
-      <div class="card">
-        <div class="card-header">
-            <div class="form-row">
-                <div class="form-group col-md-2"> 
-                    <p-inputSwitch [(Model)]="situacao"(onChange)="marcaSituacao($event.checked)"></p-inputSwitch>
-                    <label for="situacao">{{ resourceForm.get('status').value }}</label>
-                </div>
-                <div   class="form-group col-md-6">
-                Id do Usuário:  {{ id }}
-                </div>
-            </div>  
-        </div>
-
-        <div class="card-header">
-            <div class="form-row">
-              <div class="form-group col-md-3">
-                  <label for="login">Login</label>
-                  <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="login" name="login" formControlName="login">
+    <p-tabView>
         
-                  <app-form-field-error [form-control]="resourceForm.get('login')"></app-form-field-error>
-              </div>
+      <p-tabPanel header="Dados do Usuário" leftIcon="fas fa-user" tooltip={{id}}>
 
-              <div class="form-group col-md-2">
-                <label for="tipo">Tipo de Usuário</label>
-                <select class="custom-select my-1 mr-sm-2" id="tipo" name="tipo" formControlName="tipo" (change)="AtribuiValoresDefault()">
-                    <option *ngFor="let group of tipoUsuario | enumToArray" [value]="group.key">{{ group.value }}</option>            
-                </select>
-                <app-form-field-error [form-control]="resourceForm.get('tipo')"></app-form-field-error>
-              </div>
-            </div>  
-        </div>
+        <form [formGroup]="resourceForm" (submit)="submitForm()">  
+
+          <div class="card">
+            <div class="card-header">
+                <div class="form-row">
+                    <div class="form-group col-md-2"> 
+                        <p-inputSwitch [(Model)]="situacao"(onChange)="marcaSituacao($event.checked)"></p-inputSwitch>
+                        <label for="situacao">{{ resourceForm.get('status').value }}</label>
+                    </div>
+                    <div   class="form-group col-md-6">
+                    Id do Usuário:  {{ id }}
+                    </div>
+                </div>  
+            </div>
+
+            <div class="card-header">
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                      <label for="login">Login</label>
+                      <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) " id="login" name="login" formControlName="login">
+            
+                      <app-form-field-error [form-control]="resourceForm.get('login')"></app-form-field-error>
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label for="tipo">Tipo de Usuário</label>
+                    <select class="custom-select my-1 mr-sm-2" id="tipo" name="tipo" formControlName="tipo" (change)="AtribuiValoresDefault()">
+                        <option *ngFor="let group of tipoUsuario | enumToArray" [value]="group.key">{{ group.value }}</option>            
+                    </select>
+                    <app-form-field-error [form-control]="resourceForm.get('tipo')"></app-form-field-error>
+                  </div>
+                </div>  
+            </div>
 
 
-        <!-- Versão -->
-        <div class="card-body">
+            <!-- Versão -->
+            <div class="card-body">
 
-          <!-- Login e Nome -->
-          <div class="form-row">
+              <!-- Login e Nome -->
+              <div class="form-row">
+                    
+                <div *ngIf="( resourceForm.get('tipo').value === 'SERVIDOR' )" class="form-group col-md-2">
+                    <label for="matriculaServidor">Matrícula Servidor</label>
+                    <input type="text" class="form-control" (input)="CarregaDadosServidor($event.target.value)" id="matriculaServidor" name="matriculaServidor" formControlName="matriculaServidor">
+          
+                    <app-form-field-error [form-control]="resourceForm.get('matriculaServidor')"></app-form-field-error>
+                </div>
+                  
                 
-            <div *ngIf="( resourceForm.get('tipo').value === 'SERVIDOR' )" class="form-group col-md-2">
-                <label for="matriculaServidor">Matrícula Servidor</label>
-                <input type="text" class="form-control" (input)="CarregaDadosServidor($event.target.value)" id="matriculaServidor" name="matriculaServidor" formControlName="matriculaServidor">
-      
-                <app-form-field-error [form-control]="resourceForm.get('matriculaServidor')"></app-form-field-error>
-            </div>
-              
+                <div  *ngIf="( resourceForm.get('tipo').value === 'TERCEIRIZADO' )" class="form-group col-md-2">
+                  <label for="matriculaFuncionario">Matrícula Funcionário</label>
+                  <input type="text" class="form-control" id="matriculaFuncionario" name="matriculaFuncionario" formControlName="matriculaFuncionario">
+
+                  <app-form-field-error [form-control]="resourceForm.get('matriculaFuncionario')"></app-form-field-error>
+                </div>
+                
+                  
+                <div *ngIf="( resourceForm.get('tipo').value === 'AVULSO' ) ; else OthersBlock" class="form-group col-md-12">
+                      <label for="nome">Nome</label>
+                      <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) && ( resourceForm.get('tipo').value !== 'AVULSO'  ) " 
+                              id="nome" name="nome" formControlName="nome">
             
-            <div  *ngIf="( resourceForm.get('tipo').value === 'TERCEIRIZADO' )" class="form-group col-md-2">
-              <label for="matriculaFuncionario">Matrícula Funcionário</label>
-              <input type="text" class="form-control" id="matriculaFuncionario" name="matriculaFuncionario" formControlName="matriculaFuncionario">
+                      <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
+                </div>
 
-              <app-form-field-error [form-control]="resourceForm.get('matriculaFuncionario')"></app-form-field-error>
-            </div>
+                <ng-template #OthersBlock>
+        
+                  <div *ngIf=" ( resourceForm.get('tipo').value !== 'APLICACAO' )" class="form-group col-md-10">
+                      <label for="nome">Nome</label>
+                      <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) && ( ( resourceForm.get('tipo').value !== 'AVULSO'  ) || ( resourceForm.get('tipo').value !== 'APLICACAO' ) ) " 
+                              id="nome" name="nome" formControlName="nome">
             
-              
-            <div *ngIf="( resourceForm.get('tipo').value === 'AVULSO' ) ; else OthersBlock" class="form-group col-md-12">
-                  <label for="nome">Nome</label>
-                  <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) && ( resourceForm.get('tipo').value !== 'AVULSO'  ) " 
-                          id="nome" name="nome" formControlName="nome">
-        
-                  <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
-            </div>
+                      <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
+                  </div>          
 
-            <ng-template #OthersBlock>
-    
-              <div *ngIf=" ( resourceForm.get('tipo').value !== 'APLICACAO' )" class="form-group col-md-10">
-                  <label for="nome">Nome</label>
-                  <input type="text" class="form-control" [readonly]="( currentAction === 'edit' ) && ( ( resourceForm.get('tipo').value !== 'AVULSO'  ) || ( resourceForm.get('tipo').value !== 'APLICACAO' ) ) " 
-                          id="nome" name="nome" formControlName="nome">
-        
-                  <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
-              </div>          
+                </ng-template>
 
-            </ng-template>
+              </div>
+
+              <!-- Email e CPF -->
+              <div *ngIf=" ( resourceForm.get('tipo').value !== 'APLICACAO' )" class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" formControlName="email">
+          
+                    <app-form-field-error [form-control]="resourceForm.get('email')"></app-form-field-error>
+                </div>             
+
+                <div class="form-group col-md-3">
+                    <label for="cpf">CPF</label>
+                    <input type="text" class="form-control" [readonly]="( ( currentAction === 'edit' ) && ( resourceForm.get('tipo').value !== 'AVULSO'  ) )" 
+                          id="numeroCpf" name="numeroCpf" formControlName="numeroCpf">
+          
+                    <app-form-field-error [form-control]="resourceForm.get('cpf')"></app-form-field-error>
+                </div>                       
+              </div>
+
+              <div class="form-row">
+
+                  <div class="form-group col-md-3">
+                      <label for="siglaUnidade">Sigla Unidade</label>
+                      <input type="text" class="form-control" [value]="unidade.sigla" (input)="CarregaDadosUnidade($event.target.value)" id="siglaUnidade">
+            
+                      <app-form-field-error [form-control]="resourceForm.get('unidade')"></app-form-field-error>
+                  </div>        
+                    
+                <div class="form-group col-md-9">
+                    <label for="descunidade">Unidade</label>
+                    <input type="text" class="form-control" [value]="unidade.nome" readonly=true id="descunidade">            
+                </div>
+            </div>         
 
           </div>
 
-          <!-- Email e CPF -->
-          <div *ngIf=" ( resourceForm.get('tipo').value !== 'APLICACAO' )" class="form-row">
-            <div class="form-group col-md-4">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" formControlName="email">
-      
-                <app-form-field-error [form-control]="resourceForm.get('email')"></app-form-field-error>
-            </div>             
-
-            <div class="form-group col-md-3">
-                <label for="cpf">CPF</label>
-                <input type="text" class="form-control" [readonly]="( ( currentAction === 'edit' ) && ( resourceForm.get('tipo').value !== 'AVULSO'  ) )" 
-                      id="numeroCpf" name="numeroCpf" formControlName="numeroCpf">
-      
-                <app-form-field-error [form-control]="resourceForm.get('cpf')"></app-form-field-error>
-            </div>                       
           </div>
 
-          <div class="form-row">
+          <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
 
-              <div class="form-group col-md-3">
-                  <label for="siglaUnidade">Sigla Unidade</label>
-                  <input type="text" class="form-control" [value]="unidade.sigla" (input)="CarregaDadosUnidade($event.target.value)" id="siglaUnidade">
+          <button routerLink="/usuario" class="btn btn-primary btn-lg float-left mt-3"><< Voltar</button>
+          <button [disabled]="resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
+            Salvar
+          </button>
+
+        </form>
+
+      </p-tabPanel>
+
+      <p-tabPanel header="Áreas de Atuação" leftIcon="fas fa-sitemap">
         
-                  <app-form-field-error [form-control]="resourceForm.get('unidade')"></app-form-field-error>
-              </div>        
-                
-            <div class="form-group col-md-9">
-                <label for="descunidade">Unidade</label>
-                <input type="text" class="form-control" [value]="unidade.nome" readonly=true id="descunidade">            
-            </div>
-        </div>         
+      </p-tabPanel>
 
-      </div>
-
-      </div>
-
-      <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
-
-      <button routerLink="/usuario" class="btn btn-primary btn-lg float-left mt-3"><< Voltar</button>
-      <button [disabled]="resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
-        Salvar
-      </button>
-
-    </form>
+    </p-tabView>
 
 </article>
 
