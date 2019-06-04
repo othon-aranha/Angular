@@ -28,3 +28,7 @@ input.ng-valid.ng-touched {
 select.ng-valid.ng-touched {
     border: 1px solid green;
 }
+
+.form.card.card-body.form-row.form-group.p-autoComplete {
+    float: left;
+}

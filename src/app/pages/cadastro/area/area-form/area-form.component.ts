@@ -20,6 +20,7 @@ export class AreaFormComponent extends BaseResourceFormComponent<Area> implement
 
 
   ngOnInit() {
+    this.urlBack = '/area';
     super.ngOnInit();
   }
 

@@ -33,6 +33,7 @@ import { GrupoModule } from './pages/cadastro/grupo/grupo.module';
 import { ModuloModule } from './pages/cadastro/modulo/modulo.module';
 import { PerfilModule } from './pages/cadastro/perfil/perfil.module';
 import { UsuarioModule } from './pages/cadastro/usuario/usuario.module';
+import { UsuarioAreaModule } from './pages/cadastro/usuario-area/usuario-area.module';
 import { TribunalModule } from './pages/cadastro/tribunal/tribunal.module';
 import { ServerErrorMessagesComponent } from './shared/components/server-error-messages/server-error-messages.component';
 import { SharedModule } from './shared/shared.module';
@@ -43,8 +44,7 @@ import { SharedModule } from './shared/shared.module';
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    AppComponent,
-    ServerErrorMessagesComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +71,7 @@ import { SharedModule } from './shared/shared.module';
     PerfilModule,
     DominioModule,
     UsuarioModule,
+    UsuarioAreaModule,
     TribunalModule,
     SharedModule,
     AppRoutingModule

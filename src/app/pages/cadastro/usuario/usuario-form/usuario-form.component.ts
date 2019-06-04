@@ -1,4 +1,3 @@
-import { Unidade } from './../../../../domain/unidade';
 import { Area } from './../../../../domain/area';
 import { AreaService } from './../../../../service/area.service';
 import { TipoUsuario } from './../../../../domain/tipo-usuario';
@@ -9,6 +8,7 @@ import { BaseResourceFormComponent } from '../../../../shared/components/base-re
 import { UsuarioService } from '../../../../service/usuario.service';
 import { ServidorService } from '../../../../service/servidor.service';
 import { Servidor } from '../../../../domain/servidor';
+import { Unidade } from '../../../../domain/unidade';
 
 @Component({
   selector: 'app-usuario-form',
@@ -18,18 +18,23 @@ import { Servidor } from '../../../../domain/servidor';
 export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> implements OnInit {
 
   tipoUsuario = TipoUsuario;
+  unidadeList: any[];
+  unidades: Array<Area> = [];
   servidor: Servidor = new Servidor();
   unidade: Area;
   situacao: boolean;
+  login: string;
   constructor(protected usuarioService: UsuarioService, protected injector: Injector, private servidorService: ServidorService
               , private areaService: AreaService) {
     super(injector, new Usuario(), usuarioService, Usuario.fromJson);
   }
 
   ngOnInit() {
+    this.urlBack = 'usuario';
     this.unidade = new Area();
     this.unidade.sigla = '';
     this.unidade.nome = '';
+    this.CarregaDadosUnidade();
     super.ngOnInit();
   }
 
@@ -47,16 +52,20 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
       status:  new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       tipo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       // usuarioModulos: new FormControl( '', [Validators.required] ),
-      unidade: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] )
+      unidade: new FormControl( '', [Validators.required] ),
+      sigla_unidade: new FormControl( {value: '', disabled: true}, [Validators.required, Validators.minLength(1)] ),
+      nome_unidade: new FormControl(  {value: '', disabled: true}, [Validators.required, Validators.minLength(1)] )
     });
     // this.formBuilder.control('tipoModulo').registerOnChange(this.GerenciaControles);
   }
 
   onAfterloadResource() {
+    this.login = this.resource.login;
     this.resourceForm.get('id').setValue(this.id);
     if ( this.resourceForm.get('unidade').value !== undefined ) {
       this.unidade = this.resourceForm.get('unidade').value;
     }
+    this.CarregaNomeUnidade(this.unidade.sigla);
     this.situacao = ( this.resourceForm.get('status').value === 'ATIVO' );
     this.marcaSituacao(this.situacao);
     this.DefineRegraseValidadores(this.resourceForm.get('tipo').value);
@@ -141,26 +150,42 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
     }
   }
 
-
-  CarregaDadosUnidade(siglaUnidade: string) {
-    this.unidade = new Area();
-    this.resourceForm.get('unidade').setValue(null);
-    this.unidade.nome = '';
-    if ( ( siglaUnidade !== undefined ) && ( siglaUnidade !== '' ) ) {
-      this.areaService.recuperarUnidadepelaSigla(siglaUnidade).subscribe(
-        (resource) => {
-          this.unidade = resource;
-          this.resourceForm.get('unidade').setValue(resource);
+  buscaAutoComplete(termo, campo: string) {
+    this.unidadeList = [];
+    for (let i = 0; i < this.unidades.length; i++) {
+      const unidade = this.unidades[i];
+      for (const prop in unidade ) {
+        if ( ( prop === campo ) && ( unidade[prop].toLowerCase().indexOf(termo.toLowerCase()) === 0 ) ) {
+          this.unidadeList.push(unidade[prop]);
         }
-      );
       }
-      if ( this.unidade.sigla === '' ) {
-        this.limpaDadosUnidadeServidor();
+    }
+  }
+
+  CarregaNomeUnidade(value: string) {
+    if ( ( value !== undefined ) && ( value !== '' ) ) {
+      this.unidades.forEach((el) => {
+        if ( ( el.sigla !== '' ) && ( el.sigla.toLowerCase() === value.toLowerCase() ) ) {
+          this.resourceForm.get('nome_unidade').setValue(el.nome);
+        }
+      });
+    }
+  }
+
+  CarregaDadosUnidade() {
+    this.unidadeList = [];
+    this.areaService.getAll().subscribe(
+      (resource) => {
+        this.unidades = resource;
+        if ( resource !== undefined ) {
+          this.unidades.forEach((el) => { this.unidadeList = [...this.unidadeList, el.sigla]; });
+        }
       }
+    );
   }
 
   limpaDadosUnidadeServidor() {
-    this.unidade.nome = '';
+    this.resourceForm.get('nome_unidade').setValue('');
   }
 
   limpaDadosServidor() {
@@ -183,5 +208,11 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
       this.resourceForm.get('status').setValue('INATIVO');
     }
   }
+
+  tabChange(e) {
+    const index = e.index;
+    console.log(e.index + this.resource.login.toString());
+    this.login = this.resource.login.toString();
+}
 
 }

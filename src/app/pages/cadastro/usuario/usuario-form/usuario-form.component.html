@@ -10,9 +10,9 @@
   <article>
 
     <p-growl [value]="msgs"></p-growl>
-    <p-tabView>
+    <p-tabView (onChange)="tabChange($event)">
         
-      <p-tabPanel header="Dados do Usuário" leftIcon="fas fa-user" tooltip={{id}}>
+      <p-tabPanel header="Dados do Usuário" leftIcon="fas fa-user" tooltip="Id do Usuário: {{id}}">
 
         <form [formGroup]="resourceForm" (submit)="submitForm()">  
 
@@ -24,7 +24,6 @@
                         <label for="situacao">{{ resourceForm.get('status').value }}</label>
                     </div>
                     <div   class="form-group col-md-6">
-                    Id do Usuário:  {{ id }}
                     </div>
                 </div>  
             </div>
@@ -114,35 +113,41 @@
               <div class="form-row">
 
                   <div class="form-group col-md-3">
-                      <label for="siglaUnidade">Sigla Unidade</label>
-                      <input type="text" class="form-control" [value]="unidade.sigla" (input)="CarregaDadosUnidade($event.target.value)" id="siglaUnidade">
+                      <label for="sigla_unidade">Sigla Unidade</label>
+                      <p-autoComplete id="sigla_unidade" name="sigla_unidade" formControlName="sigla_unidade" 
+                                      [(ngModel)]="unidade.sigla" [suggestions]="unidadeList" (completeMethod)="buscaAutoComplete($event.query,'sigla')"
+                                      (onSelect)="CarregaNomeUnidade($event)" (onClear)="limpaDadosUnidadeServidor()"  
+                                      [size]="20" [minLength]="1" [forceSelection]="true">
+                      </p-autoComplete>
+                      <!--<input type="text" class="form-control" [value]="unidade.sigla" (input)="CarregaDadosUnidade($event.target.value)" id="siglaUnidade">-->
             
-                      <app-form-field-error [form-control]="resourceForm.get('unidade')"></app-form-field-error>
+                      <app-form-field-error [form-control]="resourceForm.get('sigla_unidade')"></app-form-field-error>
                   </div>        
                     
                 <div class="form-group col-md-9">
                     <label for="descunidade">Unidade</label>
-                    <input type="text" class="form-control" [value]="unidade.nome" readonly=true id="descunidade">            
+                    <input type="text" class="form-control" [value]="unidade.nome" readonly=true id="nome_unidade" name="nome_unidade" formControlName="nome_unidade">            
                 </div>
             </div>         
 
           </div>
 
           </div>
-
-          <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
-
-          <button routerLink="/usuario" class="btn btn-primary btn-lg float-left mt-3"><< Voltar</button>
-          <button [disabled]="resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
-            Salvar
-          </button>
+          
+          <app-feader-resource-form [urlBack]="urlBack"></app-feader-resource-form>
 
         </form>
 
       </p-tabPanel>
 
       <p-tabPanel header="Áreas de Atuação" leftIcon="fas fa-sitemap">
-        
+
+         <div class="card">
+               <div class="card-body">
+                  <app-usuario-area-list [loginUsuario]="login"></app-usuario-area-list>
+              </div>
+         </div>     
+
       </p-tabPanel>
 
     </p-tabView>

@@ -20,9 +20,18 @@
           </ng-template>
           <ng-template pTemplate="body" let-rowData let-columns="columns">
               <tr [pContextMenuRow]="rowData">
-                  <td *ngFor="let col of columns" [class]="col.classe">                      
+                  <td>{{rowData.id}}</td>
+                  <td>{{rowData.login}}</td>
+                  <td>{{rowData.nome}}</td>
+                  <td>{{rowData.matriculaServidor}}</td>
+                  <td>{{rowData.matriculaFuncionario}}</td>
+                  <td>{{rowData.email}}</td>
+                  <td>{{rowData.tipo}}</td>
+                  <td>{{rowData.unidade.sigla}}</td>
+                  <td>{{rowData.status}}</td>
+                  <!--<td *ngFor="let col of columns" [class]="col.classe">                      
                     {{rowData[col.field]}}
-                  </td>
+                  </td>-->
               </tr>
           </ng-template>                
       </p-table>                

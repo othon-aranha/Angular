@@ -1,0 +1,20 @@
+<table class="table table-hover">
+  <thead>
+    <tr class="bg-primary text-light">
+      <th>Áreas de Atuação</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let AreaAtuacao of AreasAtuacao">
+      <td>
+        <strong>{{AreaAtuacao.area.sigla}}</strong><br>
+        <small>{{AreaAtuacao.area.nome}}</small>
+      </td>
+      <td>
+        <a class="btn btn-outline-info btn-sm mr-2">Editar</a>
+        <button class="btn btn-outline-danger btn-sm">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

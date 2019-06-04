@@ -23,14 +23,14 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
   }
 
   ngOnInit() {
-   this.idTribunal = 1; 
+   this.idTribunal = 1;
    // Consultas Alias //
    this.consultarTodosAlias();
 
    // Colunas da Grid //
    this.cols = [
-    {header: 'Id', field: 'id.cdTrib', classe: 'ui-p-4'},
-    {header: 'Alias', field: 'id.alias', classe: 'ui-p-4'},
+    {header: 'Id', field: 'id', classe: 'ui-p-4'},
+    {header: 'Alias', field: 'alias', classe: 'ui-p-4'},
     {header: 'Descrição', field: 'descricao', classe: 'ui-p-4'},
     {header: 'Usuário', field: 'usuario', classe: 'ui-p-2'}
    ];

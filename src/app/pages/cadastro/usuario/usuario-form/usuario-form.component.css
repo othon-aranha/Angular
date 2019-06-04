@@ -1,17 +1,17 @@
 
-  .form-control {
+  .form-group {
       display: inline;
       background-color: none;
   }
   
-  .form-control.p_autocomplete {
+  .form-group.p-autocomplete {
       float: left;
   }
   
   .card-body {
       background-color: bisque;
   }
-  
+
   label{
       color: green; 
       text-align: left; float: left; 

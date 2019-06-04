@@ -15,11 +15,13 @@ export class DominioFormComponent extends BaseResourceFormComponent<Dominio> imp
   checked: boolean = false;
   dominios: any[];
   optDominios: any[] = [{label: 'Informe o domínio', value: ''}];
+
   constructor(protected dominioService: DominioService, protected injector: Injector) {
     super(injector, new Dominio(), dominioService, Dominio.fromJson);
   }
 
   ngOnInit() {
+    this.urlBack = '/dominio';
     // this.breadcrumbitems = [...this.breadcrumbitems, {text: 'Domínio', link: '/dominio'}];
     super.ngOnInit();
   }
@@ -36,6 +38,7 @@ export class DominioFormComponent extends BaseResourceFormComponent<Dominio> imp
 
   onAfterloadResource() {
     if ( this.currentAction === 'edit' ) {
+      this.resourceForm.get('id').setValue(this.id);
       this.mudarChecked(true);
       if ( this.resource.descricao !== 'DOMINIOS_ACESSO'  )  {
         this.populaDominio('DOMINIOS_ACESSO', '');

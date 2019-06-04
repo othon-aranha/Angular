@@ -69,6 +69,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
   */
 
   ngOnInit() {
+    this.urlBack = '/modulo';
     // this.cdTrib = this.tribunalService.
     super.ngOnInit();
     this.carregaAliases();
