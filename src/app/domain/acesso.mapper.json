@@ -1,0 +1,16 @@
+ {
+    "AcessoMapperVer": "0.1.0",
+    "usuario": {
+        "id": 125,
+        "nome": "FABIO_DOURADO",
+        "nome_completo": "Fábio Aragão Dourado",
+        "tp_usuario": "servidor",
+        "matricula": "30900781",
+        "email": "fabio.dourado@tse.jus.br",
+        "cpf": 11111111111
+    },
+    "sistema": {
+        "id": 6,
+        "nome": "SJUR V3"
+    }
+}

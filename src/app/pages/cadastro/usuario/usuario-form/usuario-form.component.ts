@@ -20,6 +20,8 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
   tipoUsuario = TipoUsuario;
   servidor: Servidor = new Servidor();
   unidade: Area;
+  unidadeList: any[];
+  unidades: Area[] = [];
   situacao: boolean;
   constructor(protected usuarioService: UsuarioService, protected injector: Injector, private servidorService: ServidorService
               , private areaService: AreaService) {
@@ -44,10 +46,12 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
       email:      new FormControl( '', Validators.email ),
       // senha:     new FormControl('',  [Validators.required, Validators.minLength(7)] ),
       numeroCpf: new FormControl( '', [Validators.minLength(3)] ),
+      num_tit_eleitor: new FormControl( '', [Validators.minLength(11), Validators.maxLength(11)] ),
       status:  new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       tipo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       // usuarioModulos: new FormControl( '', [Validators.required] ),
-      unidade: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(1)] )
+      unidade: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]),
+      desc_unidade: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(130)] )
     });
     // this.formBuilder.control('tipoModulo').registerOnChange(this.GerenciaControles);
   }
@@ -60,6 +64,7 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
     this.situacao = ( this.resourceForm.get('status').value === 'ATIVO' );
     this.marcaSituacao(this.situacao);
     this.DefineRegraseValidadores(this.resourceForm.get('tipo').value);
+    this.CarregaDadosUnidade();
   }
 
   AtribuiValoresDefault(): void {
@@ -141,26 +146,52 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
     }
   }
 
+ buscaAutoCompleteUnidade(termo: string) {
+    this.unidadeList = [];
+    for (let i = 0; i < this.unidades.length; i++) {
+      const alias = this.unidades[i].sigla;
+      if ( alias.toLowerCase().indexOf(termo.toLowerCase()) === 0) {
+          this.unidadeList.push(alias);
+      }
+    }
+  }
 
-  CarregaDadosUnidade(siglaUnidade: string) {
+
+  CarregaDadosUnidade() {
     this.unidade = new Area();
     this.resourceForm.get('unidade').setValue(null);
     this.unidade.nome = '';
-    if ( ( siglaUnidade !== undefined ) && ( siglaUnidade !== '' ) ) {
-      this.areaService.recuperarUnidadepelaSigla(siglaUnidade).subscribe(
+    // if ( ( siglaUnidade !== undefined ) && ( siglaUnidade !== '' ) ) {
+      this.areaService.getAll().subscribe(
         (resource) => {
-          this.unidade = resource;
-          this.resourceForm.get('unidade').setValue(resource);
+          this.unidades = resource;
+          // this.resourceForm.get('unidade').setValue(resource);
         }
       );
-      }
+      // }
       if ( this.unidade.sigla === '' ) {
         this.limpaDadosUnidadeServidor();
       }
   }
 
+  preencheDescUnidade(unidade: string) {
+    let index = -1;
+    this.resourceForm.get('desc_unidade').setValue('');
+    for (let i = 0; i < this.unidades.length; i++) {
+      const alias = this.unidades[i].sigla;
+      if ( alias.toLowerCase().indexOf(unidade.toLowerCase()) === 0) {
+        index = i;
+        this.resourceForm.get('desc_unidade').setValue(this.unidades[i].nome);
+      }
+    }
+    if ( index === -1 ) {
+      this.limpaDadosUnidadeServidor();
+    }
+  }
+
   limpaDadosUnidadeServidor() {
     this.unidade.nome = '';
+    this.resourceForm.get('desc_unidade').setValue('');
   }
 
   limpaDadosServidor() {

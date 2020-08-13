@@ -1,0 +1,25 @@
+{
+    "AcessoMapperVer": "0.1.0",
+    "objetos": [
+      {
+        "id": 12,
+        "objeto": "registrar_despacho_judiciario",
+        "tp_objeto": "1",
+        "funcionalidade": "Registrar Despacho Judiciario",
+        "id_objeto_pai": 35,
+        "funcionalidade_pai": "Funções",        
+        "classe": "",        
+        "url": "registrarDespachoJudiciario"
+      },
+      {
+        "id": 13,
+        "objeto": "registrar_decisao",
+        "tp_objeto": "1",
+        "funcionalidade": "Registrar Decisão",
+        "id_objeto_pai": 36,
+        "funcionalidade_pai": "Funções",        
+        "classe": "",        
+        "url": "registrarDecisao"
+      }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "AcessoMapperVer": "0.1.0",
+    "permissoes": [
+    {
+      "tribunal": "TSE",
+      "permissao": [
+        {
+           "area_atuacao": "SEDJUR",
+           "perfis": [
+               { "perfil": "ADMINISTRADOR_INDEXACAO" },
+               { "perfil": "INDEXADOR"}
+           ]
+       }   
+      ]
+    },
+    {
+      "tribunal": "TRE-GO",
+      "permissao": [
+        {
+           "area_atuacao": "SEDJUR",
+           "perfis": [
+               { "perfil": "INDEXADOR"}
+           ]
+       }   
+      ]
+    }          
+  ]
+}

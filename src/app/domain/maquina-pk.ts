@@ -1,4 +1,6 @@
+import { Tribunal } from './tribunal';
+
 export interface MaquinaPk {
-    cdTrib: number;
+    tribunal: Tribunal;
     alias: string;
 }

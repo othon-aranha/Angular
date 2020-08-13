@@ -23,13 +23,13 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
   }
 
   ngOnInit() {
-   this.idTribunal = 1; 
+   this.idTribunal = 1;
    // Consultas Alias //
    this.consultarTodosAlias();
 
    // Colunas da Grid //
    this.cols = [
-    {header: 'Id', field: 'id.cdTrib', classe: 'ui-p-4'},
+    {header: 'Id', field: 'id.tribunal.cdTrib', classe: 'ui-p-4'},
     {header: 'Alias', field: 'id.alias', classe: 'ui-p-4'},
     {header: 'Descrição', field: 'descricao', classe: 'ui-p-4'},
     {header: 'Usuário', field: 'usuario', classe: 'ui-p-2'}
@@ -45,10 +45,10 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
   }
 
   consultarTodosAlias() {
-    this.aliasService.listarServidoresdoTribunal(this.idTribunal).subscribe(dados => this.gridrows = dados);
+    this.aliasService.listarMaquinasServidorasdoTribunal(this.idTribunal).subscribe(dados => this.gridrows = dados);
   }
 
-    cloneRow(m: MaquinaServidora): MaquinaServidora {
+  cloneRow(m: MaquinaServidora): MaquinaServidora {
     const alias = new MaquinaServidora();
     // tslint:disable-next-line:forin
     for (const prop in m) {
@@ -58,7 +58,7 @@ export class AliasListComponent extends BaseListFormComponent<MaquinaServidora> 
    }
 
    viewAlias(alias: MaquinaServidora) {
-    this.router.navigate(['alias', alias.alias, 'tribunal', this.idTribunal, 'edit']);
+    this.router.navigate(['alias', alias.id.alias, 'tribunal', alias.id.tribunal.id , 'edit']);
   }
 
   newAlias(alias: MaquinaServidora) {

@@ -101,7 +101,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     );
   }
 
-  GerenciaControles(): void {
+  ValidaControles(): void {
     if ( this.resourceForm !== undefined ) {
       this.TipoAtualizacao = [];
       if ( this.resourceForm.get('tipoModulo').value === 'WEB') {
@@ -159,14 +159,15 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     // this.formBuilder.control('tipoModulo').registerOnChange(this.GerenciaControles);
   }
 
-  aliasValidadtor(group: FormGroup) {
+  aliasValidator(group: FormGroup) {
     if ( group.get('tipoModulo').value === 'WEB' ) {
-        group.get('alias').setValue({value: null, disabled: true});
         group.get('alias').setValidators([]);
+        group.get('alias').setValue(null);
     } else {
-      group.get('alias').setValue({value: null, disabled: false});
+      group.get('alias').setValue(null);
       group.get('alias').setValidators([Validators.required, Validators.minLength(3)]);
     }
+    group.updateValueAndValidity();
   }
 
   alteracontrolaAcesso(e) {
@@ -181,7 +182,7 @@ export class ModuloFormComponent extends BaseResourceFormComponent<Modulo> imple
     let tribunal: Tribunal;
     this.resourceForm.get('id').setValue(this.id);
     this.bcontrolaAcesso = ( this.resourceForm.get('controlaAcesso').value === 'S' );
-    this.GerenciaControles();
+    this.ValidaControles();
     this.siglaModulo = this.resource.sigla;
     this.tribunalService.recuperarTribunalLocal().subscribe(dados => tribunal = dados);
     if ( tribunal !== undefined ) {

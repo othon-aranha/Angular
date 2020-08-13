@@ -18,9 +18,12 @@
           </ng-template>
           <ng-template pTemplate="body" let-rowData let-columns="columns">
               <tr [pContextMenuRow]="rowData"> 
-                  <td *ngFor="let col of columns" [class]="col.classe">                      
+                  <!--<td *ngFor="let col of columns" [class]="col.classe">                      
                     {{rowData[col.field]}}
-                  </td>
+                  </td>-->
+                 <td [class]="ui">{{rowData.modulo.sigla}}</td>
+                 <td [class]="ui">{{rowData.id}}</td>  
+                 <td [class]="ui-p-2">{{rowData.nome}}</td> 
               </tr>
           </ng-template>                
       </p-table>                

@@ -41,7 +41,7 @@
         <!-- Tipo de Aplicação -->
         <div class="form-group col-md-2">
             <label>Tipo de Aplicação</label>
-            <select class="custom-select my-1 mr-sm-2" id="tipoModulo" name="tipoModulo" formControlName="tipoModulo" (change)="GerenciaControles()">
+            <select class="custom-select my-1 mr-sm-2" id="tipoModulo" name="tipoModulo" formControlName="tipoModulo" (change)="ValidaControles()">
                 <option *ngFor="let option of TipoAplicacao" [value]="option.value">{{ option.label }}</option>            
             </select>
             <app-form-field-error [form-control]="resourceForm.get('tipoModulo')"></app-form-field-error>

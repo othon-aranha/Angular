@@ -17,11 +17,17 @@
               </tr>
           </ng-template>
           <ng-template pTemplate="body" let-rowData let-columns="columns">
-              <tr [pContextMenuRow]="rowData"> 
+              <tr [pContextMenuRow]="rowData">
+                  <td [class]="'rowData.id.tribunal.id'">{{rowData.id.tribunal.id}}</td>
+                  <td [class]="'rowData.id.alias'">{{rowData.id.alias}}</td>
+                  <td [class]="'rowData.descricao'">{{rowData.descricao}}</td>
+                  <td [class]="'rowData.usuario'">{{rowData.usuario}}</td>
+              </tr>
+              <!--<tr [pContextMenuRow]="rowData"> 
                   <td *ngFor="let col of columns" [class]="col.classe">                      
                     {{rowData[col.field]}}
                   </td>
-              </tr>
+              </tr>-->
           </ng-template>                
       </p-table>                
       <p-contextMenu global="fa-close" #cm [model]="items"></p-contextMenu>      

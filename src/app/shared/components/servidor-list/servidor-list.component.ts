@@ -1,5 +1,5 @@
 import { TipoAplicacao } from './../../../domain/tipo-aplicacao';
-import { Component, OnInit, EventEmitter, Input, Output, OnChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output, OnChanges, ViewChild } from '@angular/core';
 
 import { AliasService } from '../../../service/alias.service';
 import { ManutencaoService } from '../../../service/manutencao.service';
@@ -7,12 +7,9 @@ import { MaquinaServidora } from '../../../domain/maquina-servidora';
 import { Manutencao } from '../../../domain/manutencao';
 import { Servidor } from '../../../domain/servidor';
 import { SelectItem } from 'primeng/api';
+import { Listbox } from 'primeng/primeng';
+import { NgModel } from '@angular/forms';
 
-
-interface Server {
-  name: string;
-  code: number;
-}
 
 @Component({
   selector: 'app-servidor-list',
@@ -25,10 +22,13 @@ export class ServidorListComponent implements OnInit, OnChanges {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onSelecionarTribunal = new EventEmitter<number>();
 
-  servers: Server[];
+  servers: SelectItem[];
   maquinas: Array<MaquinaServidora> = [];
-  selectedServers: Server[];
+  selectedServers: SelectItem[];
   selservers: Array<Manutencao> = [];
+
+  @ViewChild('listBox') accessor: Listbox;
+  // @ViewChild('listBox', { read: NgModel }) model: NgModel;
 
   @Input() siglaModulo: String;
   @Input() cdTrib: number;
@@ -46,6 +46,7 @@ export class ServidorListComponent implements OnInit, OnChanges {
                     {label: 'DF1-ADM', value: 'DF1-ADM'},
                     {label: 'ES1-ADM', value: 'ES1-ADM'},
                     {label: 'GO1-ADM', value: 'GO1-ADM'}];
+
     this.selectedServers = [
                     {label: 'AC1-ADM', value: 'AC1-ADM'},
                     {label: 'AL1-ADM', value: 'AL1-ADM'},
@@ -74,6 +75,14 @@ export class ServidorListComponent implements OnInit, OnChanges {
    }
    */
 
+   marcaDesmarcaAlias(event: Event) {
+     const item: any = event.returnValue;
+     console.log(this.selectedServers);
+     if ( this.selectedServers.indexOf(item[item.value.length - 1].value) !== 0 ) {
+      this.selectedServers = [...this.selectedServers, {value: item[item.length - 1].value }];
+     }
+   }
+
    ngOnChanges() {
       if ( this.cdTrib !== undefined ) {
         this.carregarTodosServidores();
@@ -87,12 +96,12 @@ export class ServidorListComponent implements OnInit, OnChanges {
    carregarTodosServidores() {
     this.servers = [];
     this.maquinas = [];
-    this.aliasService.listarServidoresdoTribunal(this.cdTrib)
+    this.aliasService.listarMaquinasServidorasdoTribunal(this.cdTrib)
     .subscribe(
       (resource) => {
         this.maquinas = resource;
         this.maquinas.map((item) => { this.servers =
-          [...this.servers, { name: item.alias , code: item.id }]; } );
+          [...this.servers, { label: item.alias , value: item.id }]; } );
       },
       (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
     );
@@ -109,7 +118,7 @@ export class ServidorListComponent implements OnInit, OnChanges {
           this.selservers = resource;
           this.selservers.map((item) => { this.selectedServers =
             // [...this.selectedServers, item['maquinaservidora'].alias]; });
-           [...this.selectedServers, {name: item['maquinaservidora'].alias , code: item['maquinaservidora'].id} ]; });
+           [...this.selectedServers, {label: item['maquinaservidora'].alias , value: item['maquinaservidora'].id} ]; });
         },
         (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
       );

@@ -24,7 +24,7 @@ export class AliasService extends BaseResourceService<MaquinaServidora> {
     );
   }
 
-  listarServidoresdoTribunal(cdTrib: number): Observable<Array<MaquinaServidora>> {
+  listarMaquinasServidorasdoTribunal(cdTrib: number): Observable<Array<MaquinaServidora>> {
     return this.http.get<Array<MaquinaServidora>>(this.apiPath + '/cdTrib/' + cdTrib, {headers: this.headers})
     .pipe(
       map(this.jsonDataToResources.bind(this)),
