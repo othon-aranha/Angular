@@ -124,6 +124,7 @@
 
                   <div class="form-group col-md-3">
 <<<<<<< HEAD
+<<<<<<< HEAD
                       <label for="siglaUnidade">Sigla Unidade</label>
                       <!-- input type="text" class="form-control" [value]="unidade.sigla" (input)="CarregaDadosUnidade($event.target.value)" id="siglaUnidade"> -->
                       <p-autoComplete id="unidade" name="unidade" formControlName="unidade" 
@@ -132,6 +133,8 @@
                                       [size]="20" [minLength]="1" [forceSelection]="true">
                       </p-autoComplete>                      
 =======
+=======
+>>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8
                       <label for="sigla_unidade">Sigla Unidade</label>
                       <p-autoComplete id="sigla_unidade" name="sigla_unidade" formControlName="sigla_unidade" 
                                       [(ngModel)]="unidade.sigla" [suggestions]="unidadeList" (completeMethod)="buscaAutoComplete($event.query,'sigla')"
@@ -139,6 +142,9 @@
                                       [size]="20" [minLength]="1" [forceSelection]="true">
                       </p-autoComplete>
                       <!--<input type="text" class="form-control" [value]="unidade.sigla" (input)="CarregaDadosUnidade($event.target.value)" id="siglaUnidade">-->
+<<<<<<< HEAD
+>>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8
+=======
 >>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8
             
                       <app-form-field-error [form-control]="resourceForm.get('sigla_unidade')"></app-form-field-error>
@@ -147,7 +153,11 @@
                 <div class="form-group col-md-9">
                     <label for="descunidade">Unidade</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <input type="text" class="form-control" name="desc_unidade" formControlName="desc_unidade" readonly=true id="descunidade">            
+=======
+                    <input type="text" class="form-control" [value]="unidade.nome" readonly=true id="nome_unidade" name="nome_unidade" formControlName="nome_unidade">            
+>>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8
 =======
                     <input type="text" class="form-control" [value]="unidade.nome" readonly=true id="nome_unidade" name="nome_unidade" formControlName="nome_unidade">            
 >>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8

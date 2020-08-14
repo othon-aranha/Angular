@@ -56,8 +56,14 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
       tipo:     new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       // usuarioModulos: new FormControl( '', [Validators.required] ),
 <<<<<<< HEAD
+<<<<<<< HEAD
       unidade: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]),
       desc_unidade: new FormControl( '', [Validators.required, Validators.minLength(1), Validators.maxLength(130)] )
+=======
+      unidade: new FormControl( '', [Validators.required] ),
+      sigla_unidade: new FormControl( {value: '', disabled: true}, [Validators.required, Validators.minLength(1)] ),
+      nome_unidade: new FormControl(  {value: '', disabled: true}, [Validators.required, Validators.minLength(1)] )
+>>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8
 =======
       unidade: new FormControl( '', [Validators.required] ),
       sigla_unidade: new FormControl( {value: '', disabled: true}, [Validators.required, Validators.minLength(1)] ),
@@ -160,6 +166,7 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  buscaAutoCompleteUnidade(termo: string) {
     this.unidadeList = [];
     for (let i = 0; i < this.unidades.length; i++) {
@@ -194,6 +201,16 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
         if ( ( prop === campo ) && ( unidade[prop].toLowerCase().indexOf(termo.toLowerCase()) === 0 ) ) {
           this.unidadeList.push(unidade[prop]);
         }
+=======
+  buscaAutoComplete(termo, campo: string) {
+    this.unidadeList = [];
+    for (let i = 0; i < this.unidades.length; i++) {
+      const unidade = this.unidades[i];
+      for (const prop in unidade ) {
+        if ( ( prop === campo ) && ( unidade[prop].toLowerCase().indexOf(termo.toLowerCase()) === 0 ) ) {
+          this.unidadeList.push(unidade[prop]);
+        }
+>>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8
       }
     }
   }
@@ -216,6 +233,7 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
         if ( resource !== undefined ) {
           this.unidades.forEach((el) => { this.unidadeList = [...this.unidadeList, el.sigla]; });
         }
+<<<<<<< HEAD
 >>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8
       }
     );
@@ -241,6 +259,14 @@ export class UsuarioFormComponent extends BaseResourceFormComponent<Usuario> imp
     this.unidade.nome = '';
     this.resourceForm.get('desc_unidade').setValue('');
 =======
+    this.resourceForm.get('nome_unidade').setValue('');
+>>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8
+=======
+      }
+    );
+  }
+
+  limpaDadosUnidadeServidor() {
     this.resourceForm.get('nome_unidade').setValue('');
 >>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8
   }
