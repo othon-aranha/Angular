@@ -16,7 +16,27 @@
     
         <div class="card-body">
           <div class="form-row">
+<<<<<<< HEAD
                 <div class="form-group col-md-4">
+=======
+            <div class="form-group col-md-2">
+                <label for="siglaModulo">Sigla do Módulo</label>
+                <p-autoComplete id="modulo" name="modulo" formControlName="modulo" 
+                                [(ngModel)]="sigla" [suggestions]="moduloList" (completeMethod)="buscaAutoComplete($event.query,'sigla')"
+                                (onClear)="limpaDadosModulo()"  
+                                [size]="20" [minLength]="1" [forceSelection]="true">
+                </p-autoComplete>
+            </div>
+            
+            <div class="form-group col-md-10">
+              <label for="nomeModulo">Módulo</label>  
+              <input type="text" class="form-control" id="nomeModulo" formControlName="nomeModulo">
+            </div>
+          </div>
+
+          <div class="form-row">
+                <div class="form-group col-md-3">
+>>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8
                   <label for="perfil">Perfil</label>
                   <input type="text" class="form-control" id="id" formControlName="id">
         
@@ -37,11 +57,5 @@
 
     </div>      
 
-    <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
-
-    <button routerLink="/perfil" class="btn btn-primary btn-lg float-left mt-3"><< Voltar
-    </button>
-    <button type="submit" class="btn btn-primary btn-lg float-right mt-3">Salvar
-    </button>
-
+    <app-feader-resource-form [urlBack]="urlBack"></app-feader-resource-form>
 </form>

@@ -12,9 +12,12 @@ import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from 'primeng/tabview';
 import { SharedModule } from '../../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsuarioAreaModule } from '../usuario-area/usuario-area.module';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   imports: [
+    AutoCompleteModule,
     CommonModule,
     ConfirmDialogModule,
     BrowserAnimationsModule,
@@ -30,10 +33,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     TableModule,
     TabViewModule,
     SharedModule,
+    UsuarioAreaModule,
     UsuarioRoutingModule
   ],
   exports: [],
-  declarations: [UsuarioFormComponent, UsuarioListComponent],
+  declarations: [UsuarioFormComponent, UsuarioListComponent, UsuarioListComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]
 })
 export class UsuarioModule { }

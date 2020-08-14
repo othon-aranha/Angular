@@ -1,0 +1,24 @@
+
+    <!--<div class="ui-g-12 ui-dialog-buttonpane ui-helper-clearfix">
+          <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" ></p-confirmDialog>
+          <button type="button" [disabled]="!resourceForm.valid" (click)="submitForm(resourceForm)" pButton icon="pi pi-check" label="Gravar"></button>
+          <p-messages [value]="msgs"></p-messages>
+    </div>-->  
+    <p-footer>
+        <!--<div class="ui-g-12 ui-dialog-buttonpane ui-helper-clearfix">
+              <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" ></p-confirmDialog>
+              <button type="button" [disabled]="!resourceForm.valid" (click)="submitForm(resourceForm)" pButton icon="pi pi-check" label="Gravar"></button>
+              <p-messages [value]="msgs"></p-messages>
+        </div>-->  
+        <div class="form-row">
+                <div class="col-md-3">
+                    <button type="button" (click)="retornar($event)" class="btn btn-primary btn-lg float-left mt-3" pButton icon="fas fa-arrow-circle-left" label="Voltar"></button>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-3">    
+                  <button type="submit" class="btn btn-primary btn-lg float-right mt-3" pButton icon="fas fa-save" label="Salvar"></button>
+                </div>
+        </div>          
+    </p-footer>

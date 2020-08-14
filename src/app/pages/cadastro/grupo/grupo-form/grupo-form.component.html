@@ -44,18 +44,10 @@
 
   </div>
 
+  <app-feader-resource-form [urlBack]="urlBack"></app-feader-resource-form>
+
 </form>
 
-<div class="card rodape">
-    <div class="card-body">  
-      <app-server-error-messages [server-error-messages]="serverErrorMessages"></app-server-error-messages>
-
-      <button routerLink="/grupo" class="btn btn-primary btn-lg float-left mt-3"><< Voltar</button>
-      <button [disabled]="resourceForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
-        Salvar
-      </button>
-  </div>
-</div>
 
 {{ resourceForm.value | json }}
 

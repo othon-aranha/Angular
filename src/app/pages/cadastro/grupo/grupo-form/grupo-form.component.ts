@@ -23,20 +23,21 @@ export class GrupoFormComponent extends BaseResourceFormComponent<Grupo> impleme
 
 
   ngOnInit() {
+    this.urlBack = '/grupo';
     super.ngOnInit();
     this.carregaAreas();
   }
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id:   new FormControl( '', [Validators.required, Validators.minLength(1)] ),
+      id:   [null],
       nome: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
       area: new FormControl( '', [Validators.required] )
     });
   }
 
   onAfterloadResource() {
-
+    console.log(this.resourceForm.get('area').value);
   }
 
   carregaAreas() {

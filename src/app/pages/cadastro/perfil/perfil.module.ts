@@ -12,10 +12,12 @@ import { TableModule } from 'primeng/table';
 import { SharedModule } from '../../../shared/shared.module';
 import { PerfilService } from '../../../service/perfil.service';
 import { ConfirmationService } from 'primeng/api';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [PerfilListComponent, PerfilFormComponent],
   imports: [
+    AutoCompleteModule,
     CommonModule,
     ConfirmDialogModule,
     BrowserAnimationsModule,

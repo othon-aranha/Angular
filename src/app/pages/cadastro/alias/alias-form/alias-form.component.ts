@@ -24,9 +24,11 @@ export class AliasFormComponent extends BaseResourceFormComponent<MaquinaServido
 
   constructor(protected aliasService: AliasService, protected injector: Injector, private tribunalService: TribunalService) {
     super(injector, new MaquinaServidora(), aliasService, MaquinaServidora.fromJson);
+    this.urlBack = '/alias';
   }
 
   ngOnInit() {
+
     super.ngOnInit();
     this.tribunalService.recuperarTribunalLocal().subscribe(
       (data) => {

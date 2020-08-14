@@ -17,6 +17,7 @@
               </tr>
           </ng-template>
           <ng-template pTemplate="body" let-rowData let-columns="columns">
+<<<<<<< HEAD
               <tr [pContextMenuRow]="rowData"> 
                   <!--<td *ngFor="let col of columns" [class]="col.classe">                      
                     {{rowData[col.field]}}
@@ -24,6 +25,12 @@
                  <td [class]="ui">{{rowData.modulo.sigla}}</td>
                  <td [class]="ui">{{rowData.id}}</td>  
                  <td [class]="ui-p-2">{{rowData.nome}}</td> 
+=======
+              <tr [pContextMenuRow]="rowData">
+                  <td>{{rowData.modulo.sigla}}</td>
+                  <td>{{rowData.id}}</td>
+                  <td>{{rowData.nome}}</td>
+>>>>>>> ff44086f0c4e07d773db2a6820063f26e9cbcdb8
               </tr>
           </ng-template>                
       </p-table>                

@@ -15,6 +15,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
   id: any;
   alias: string;
+  urlBack: string;
   currentAction: string;
   resourceForm: FormGroup;
   pageTitle: string;
@@ -65,7 +66,8 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
         this.FieldKeyReadOnly = false;
         this.createResource();
       } else { // currentAction == "edit"
-      this.FieldKeyReadOnly = true;
+        this.FieldKeyReadOnly = true;
+        this.resourceForm.get('id').setValue(this.id);
         this.updateResource();
       }
     }

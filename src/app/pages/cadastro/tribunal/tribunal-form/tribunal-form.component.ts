@@ -42,6 +42,7 @@ export class TribunalFormComponent extends BaseResourceFormComponent<Tribunal> i
   }
 
   ngOnInit() {
+    this.urlBack = 'tribunal';
 
     this.ufs = [
     {value: 'AC', viewValue: 'Acre'},
